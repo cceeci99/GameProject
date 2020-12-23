@@ -9,15 +9,16 @@ private:
     const int enhancement;
 
 public:
-    Potion(const std::string& name, double price, int level, int enhancement):Item(name, price, level), enhancement(enhancement){};
+    Potion(const std::string& name, int price, int level, int enhancement):Item(name, price, level), enhancement(enhancement){};
     ~Potion() override = default;
 
-    int getEnhancement() const{
+    int getAttribute() const override{
         return enhancement;
     }
     void print() const override{
         std::cout << "Potion " << getName();
     }
+
 };
 
 

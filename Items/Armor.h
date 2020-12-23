@@ -1,5 +1,3 @@
-#include <utility>
-
 #include "Item.h"
 
 #ifndef GAMEPROJECT_ARMOR_H
@@ -11,14 +9,14 @@ private:
     const int defence;
 
 public:
-    Armor(const std::string& name, double price, int level, int defence): Item(std::move(name), price, level), defence(defence){};
+    Armor(const std::string& name, int price, int level, int defence): Item(name, price, level), defence(defence){};
     ~Armor() override = default;
 
-    int getDefence() const{
+    int getAttribute() const override{
         return defence;
     }
     void print() const override{
-        std::cout << "Armor " << getName;
+        std::cout << "Armor " << getName();
     }
 };
 

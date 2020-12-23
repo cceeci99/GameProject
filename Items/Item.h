@@ -6,26 +6,27 @@
 
 class Item {
 private:
-    const string name;
-    const double price{};
-    const int requiredLevel{};
+    const std::string name;
+    const int price;
+    const int requiredLevel;
 
 public:
-    Item(string  name, double price, level): name(move(name)), price(price), requiredLevel(level){}
+    Item(std::string  name, int price, int level): name(std::move(name)), price(price), requiredLevel(level){}
     virtual ~Item() = 0;
 
-    string getName() const{
+    std::string getName() const{
         return name;
     }
-    double getPrice() const{
+    int getPrice() const{
         return price;
     }
     int getRequiredLevel() const{
         return requiredLevel;
     }
 
+    virtual int getAttribute() const = 0;
     virtual void print() const = 0;
-}
+};
 
 
 #endif //GAMEPROJECT_ITEM_H

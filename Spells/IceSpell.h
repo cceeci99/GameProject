@@ -4,15 +4,17 @@
 #define GAMEPROJECT_ICESPELL_H
 
 
-class IceSpell {
+class IceSpell: public Spell {
 private:
     const int reduceDamage;
 
 public:
-    IceSpell(const std::string& name, double price, int level, int mana, int low, int high, int reduce):Spell(name, price, level, mana, low, high), reduceDamage(reduce){};
+    IceSpell(const std::string& name, int price, int level, int mana, Range range, int reduce):Spell(name, price, level, mana, range), reduceDamage(reduce){};
     ~IceSpell() override = default;
 
-
+    int use() const override{
+        return reduceDamage;
+    }
 };
 
 

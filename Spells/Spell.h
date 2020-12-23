@@ -1,35 +1,27 @@
 #include <iostream>
 #include <utility>
 
+#include "../Range.h"
+
 #ifndef GAMEPROJECT_SPELL_H
 #define GAMEPROJECT_SPELL_H
-
-
-class DamageRange{
-public:
-    int low;
-    int high;
-
-    DamageRange(int low, int high):low(low), high(high){};
-
-};
 
 class Spell {
 private:
     const std::string name;
-    const double price;
-    const int requiredLevel{};
+    const int price;
+    const int requiredLevel;
     const int manaRequired;
-    DamageRange damageRange;
+    Range damageRange;
 
 public:
-    Spell(std::string name, double price, int level, int mana, int low, int high):name(std::move(name)), price(price), requiredLevel(level), manaRequired(mana), damageRange(low, high){};
+    Spell(std::string name, int price, int level, int mana, Range range):name(std::move(name)), price(price), requiredLevel(level), manaRequired(mana), damageRange(range){};
     virtual ~Spell() = 0;
 
     std::string getName() const{
         return name;
     }
-    double getPrice() const{
+    int getPrice() const{
         return price;
     }
     int getRequiredLevel() const{
@@ -39,7 +31,7 @@ public:
         return manaRequired;
     }
 
-    virtual void print() = 0;
+    virtual int use() const = 0;
 };
 
 

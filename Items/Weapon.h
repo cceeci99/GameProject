@@ -11,16 +11,15 @@ private:
     const bool oneHanded;
 
 public:
-    Weapon(const std::string& name, double price, int level, int damage, bool oneHanded): Item(std::move(name), price, level), damage(damage), oneHanded(oneHanded){}
+    Weapon(const std::string& name, int price, int level, int damage, bool oneHanded): Item(name, price, level), damage(damage), oneHanded(oneHanded){}
     ~Weapon() override = default;
 
-    int getDamage() const{
-        return damage;
-    }
     bool isOneHanded() const{
         return oneHanded;
     }
-
+    int getAttribute() const override{
+        return damage;
+    }
     void print() const override{
         std::cout << "Weapon " << getName();
     }

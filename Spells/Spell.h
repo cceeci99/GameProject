@@ -30,7 +30,14 @@ public:
     int getManaRequired() const{
         return manaRequired;
     }
+    void getDamageRange() const{
+        damageRange.print();
+    }
+    int cast() const{
+        damageRange.getValue();
+    }
 
+    virtual void print() const = 0;
     virtual int getEffect() const = 0;
 };
 

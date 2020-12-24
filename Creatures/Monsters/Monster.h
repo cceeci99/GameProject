@@ -15,7 +15,7 @@ protected:
 
 public:
     Monster(const std::string& name, int health, int level, Range range, int defence, int dodge): LivingCreature(name, health, level), damageRange(range), defence(defence), dodge(dodge){};
-    ~Monster() override = default;
+    ~Monster() override = 0;
 
     int getDefence() const{
         return defence;

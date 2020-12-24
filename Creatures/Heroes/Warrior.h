@@ -9,13 +9,9 @@ class Warrior: public Hero {
 
 public:
 
-    Warrior(const std::string& name): Hero(name, WARRIOR_STRENGTH, DEFAULT_DEXTERITY, WARRIOR_AGILITY){
-        std::cout << "Warrior created" << std::endl;
-    }
+    explicit Warrior(const std::string& name): Hero(name, WARRIOR_STRENGTH, DEFAULT_DEXTERITY, WARRIOR_AGILITY){}
 
-    ~Warrior() override{
-        std::cout << "warrior destroyed" << std::endl;
-    }
+    ~Warrior() override = default;
 
     void levelUp() override {
         level++;
@@ -27,9 +23,9 @@ public:
     }
 
     void print() const override{
-        std::cout << "Warrior " << getName() << "level " << level;
-        std::cout << "Health " << getHealth() << " Mana " << getMana() << " Money " << getMoney();
-        std::cout << "Strength " << strength << " Dexterity " << dexterity << " Agility " << agility << std::endl;
+        std::cout << "Warrior " << getName() << " level " << level;
+        std::cout << " Health " << getHealth() << " Mana " << getMana() << " Money " << getMoney();
+        std::cout << " Strength " << strength << " Dexterity " << dexterity << " Agility " << agility << std::endl;
     }
 
 };

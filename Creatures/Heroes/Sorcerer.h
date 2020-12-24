@@ -6,8 +6,10 @@
 
 class Sorcerer: public Hero {
 public:
+
     explicit Sorcerer(const std::string& name): Hero(name, DEFAULT_STRENGTH, SORCERER_DEXTERITY, SORCERER_AGILITY){}
     ~Sorcerer() override = default;
+
 
     void levelUp() override{
         level++;
@@ -19,9 +21,9 @@ public:
     }
 
     void print() const override{
-        std::cout << "Sorcerer " << getName() << "level " << level;
-        std::cout << "Health " << getHealth() << " Mana " << getMana() << " Money " << getMoney();
-        std::cout << "Strength " << strength << " Dexterity " << dexterity << " Agility " << agility << std::endl;
+        std::cout << " Sorcerer " << getName() << " level " << level;
+        std::cout << " Health " << getHealth() << " Mana " << getMana() << " Money " << getMoney();
+        std::cout << " Strength " << strength << " Dexterity " << dexterity << " Agility " << agility << std::endl;
     }
 
 };

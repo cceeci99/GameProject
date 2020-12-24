@@ -6,7 +6,8 @@
 
 class Paladin: public Hero {
 public:
-    explicit Paladin(const std::string& name): Hero(name, PALADIN_STRENGTH, PALADIN_DEXTERITY, DEFAULT_AGILITY){};\
+
+    explicit Paladin(const std::string& name): Hero(name, PALADIN_STRENGTH, PALADIN_DEXTERITY, DEFAULT_AGILITY){};
     ~Paladin() override = default;
 
     void levelUp() override{

@@ -4,8 +4,10 @@
 
 int main() {
 
-    Warrior warrior("Kratos");
-    warrior.print();
+    auto* warrior = new Warrior("Kratos");
+    warrior->print();
+
+    delete warrior;
 
     return 0;
 }

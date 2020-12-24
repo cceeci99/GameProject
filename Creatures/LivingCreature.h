@@ -1,8 +1,6 @@
 #include <iostream>
 #include <utility>
 
-#include "LIVING_ATTRIBUTES.h"
-
 #ifndef GAMEPROJECT_LIVINGCREATURE_H
 #define GAMEPROJECT_LIVINGCREATURE_H
 
@@ -10,23 +8,23 @@
 class LivingCreature {
 private:
     const std::string name;
-    double health = START_HP;
+    int health;
 
 protected:
-    int level = START_LEVEL;
+    int level;
 
 public:
-    explicit LivingCreature(std::string name): name(std::move(name)){};
+    LivingCreature(std::string name, int health, int level): name(std::move(name)), health(health), level(level){};
     virtual ~LivingCreature() = 0;
 
     std::string getName() const{
         return name;
     }
-
-    void reduceHealth(double damage){
-        health -= damage;
+    int getHealth() const{
+        return health;
     }
 
+    virtual void print() const = 0;
     virtual void levelUp() = 0;
 };
 

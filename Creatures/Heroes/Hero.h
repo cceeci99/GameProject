@@ -1,4 +1,4 @@
-#include <utility>
+#include <iostream>
 
 #include "../LivingCreature.h"
 #include "HERO_ATTRIBUTES.h"
@@ -9,21 +9,34 @@
 
 class Hero: public LivingCreature {
 private:
-    int mana = START_MP;
-    int money = START_MONEY;
+    int mana;
+    int money;
 
 protected:
-    int experience = START_XP;
-    int strength{};
-    int dexterity{};
-    int agility{};
+    int experience;
+    int strength;
+    int dexterity;
+    int agility;
 
 public:
-    explicit Hero(std::string name):LivingCreature(std::move(name)){}
+    Hero(const std::string& name, int newStrength, int newDexterity, int newAgility) : LivingCreature(name, START_HP, START_LEVEL){
+        mana = START_MP;
+        money = START_MONEY;
+        experience = START_XP;
 
-    Hero(const std::string& name, int newStrength, int newDexterity, int newAgility) : LivingCreature(name), strength(newStrength), dexterity(newDexterity), agility(newAgility){}
+        strength = newStrength;
+        dexterity = newDexterity;
+        agility = newAgility;
+    }
 
-    ~Hero() override = default;
+    ~Hero() override = 0;
+
+    int getMana() const{
+        return mana;
+    }
+    int getMoney() const{
+        return money;
+    }
 
     void addExperience(int xp){
         experience += xp;
@@ -32,8 +45,11 @@ public:
             levelUp();
     }
 
+    void print() const override = 0;
+
     void levelUp() override = 0;
 };
+
 
 
 #endif //GAMEPROJECT_HERO_H

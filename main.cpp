@@ -4,5 +4,8 @@
 
 int main() {
 
+    Warrior warrior("Kratos");
+    warrior.print();
+
     return 0;
 }

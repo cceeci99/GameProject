@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 project(GameProject)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
-add_executable(GameProject main.cpp Items/Item.h Items/Weapon.h Items/Armor.h Items/Potion.h Spells/Spell.h Spells/IceSpell.h Spells/FireSpell.h Spells/LightingSpell.h Creatures/LivingCreature.h Creatures/Heroes/Hero.h Creatures/Heroes/Warrior.h Items/Item.cpp Items/Armor.cpp Items/Weapon.cpp Items/Potion.cpp Spells/Spell.cpp Spells/LightingSpell.cpp Spells/IceSpell.cpp Creatures/Heroes/Hero.cpp Spells/FireSpell.cpp Creatures/Heroes/HERO_ATTRIBUTES.h Creatures/LivingCreature.cpp Creatures/Heroes/Warrior.cpp Creatures/Heroes/Sorcerer.cpp Creatures/Heroes/Sorcerer.h Creatures/Heroes/Paladin.cpp Creatures/Heroes/Paladin.h Range.cpp Range.h Creatures/LIVING_ATTRIBUTES.h Creatures/Monsters/Monster.cpp Creatures/Monsters/Monster.h Creatures/Monsters/Dragon.cpp Creatures/Monsters/Dragon.h)
+add_executable(GameProject main.cpp Items/Item.h Items/Weapon.h Items/Armor.h Items/Potion.h Spells/Spell.h Spells/IceSpell.h Spells/FireSpell.h Spells/LightingSpell.h Creatures/LivingCreature.h Creatures/Heroes/Hero.h Creatures/Heroes/Warrior.h Items/Item.cpp Items/Armor.cpp Items/Weapon.cpp Items/Potion.cpp Spells/Spell.cpp Spells/LightingSpell.cpp Spells/IceSpell.cpp Creatures/Heroes/Hero.cpp Spells/FireSpell.cpp Creatures/Heroes/HERO_ATTRIBUTES.h Creatures/LivingCreature.cpp Creatures/Heroes/Warrior.cpp Creatures/Heroes/Sorcerer.cpp Creatures/Heroes/Sorcerer.h Creatures/Heroes/Paladin.cpp Creatures/Heroes/Paladin.h Range.cpp Range.h Creatures/Monsters/Monster.cpp Creatures/Monsters/Monster.h)

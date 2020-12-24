@@ -22,6 +22,10 @@ public:
         min -= reduce;
         max -= reduce;
     }
+
+    void print() const{
+        std::cout << min << "-" << max;
+    }
 };
 
 

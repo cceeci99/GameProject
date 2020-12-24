@@ -31,7 +31,7 @@ public:
         return manaRequired;
     }
 
-    virtual int use() const = 0;
+    virtual int getEffect() const = 0;
 };
 
 

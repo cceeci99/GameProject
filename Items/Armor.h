@@ -16,7 +16,7 @@ public:
         return defence;
     }
     void print() const override{
-        std::cout << "Armor " << getName();
+        std::cout << "Armor " << getName() << " Defence " << defence;
     }
 };
 

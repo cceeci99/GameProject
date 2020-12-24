@@ -16,7 +16,7 @@ public:
         return enhancement;
     }
     void print() const override{
-        std::cout << "Potion " << getName();
+        std::cout << "Potion " << getName() << " enhancement";
     }
 
 };

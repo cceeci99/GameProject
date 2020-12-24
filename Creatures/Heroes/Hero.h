@@ -1,7 +1,11 @@
 #include <iostream>
+#include <vector>
 
 #include "../LivingCreature.h"
 #include "HERO_ATTRIBUTES.h"
+
+#include "../../Items/Item.h"
+#include "../../Items/Weapon.h"
 
 #ifndef GAMEPROJECT_HERO_H
 #define GAMEPROJECT_HERO_H
@@ -11,6 +15,8 @@ class Hero: public LivingCreature {
 private:
     int mana;
     int money;
+
+    std::vector<Item*> inventory;
 
 protected:
     int experience;
@@ -47,6 +53,11 @@ public:
 
     void print() const override = 0;
     void levelUp() override = 0;
+
+    void buy(Item* item){
+        if ( money >= item->getPrice() && level >= item->getRequiredLevel() )
+            inventory.push_back(item);
+    }
 };
 
 

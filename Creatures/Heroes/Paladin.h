@@ -20,9 +20,12 @@ public:
     }
 
     void print() const override{
-        std::cout << "Paladin " << getName() << "level " << level;
-        std::cout << "Health " << getHealth() << " Mana " << getMana() << " Money " << getMoney();
-        std::cout << "Strength " << strength << " Dexterity " << dexterity << " Agility " << agility << std::endl;
+        std::cout << "Paladin: " << getName() << std::endl;
+        std::cout << "Level " << level << std::endl;
+        std::cout << "Money: " << getMoney() << std::endl;
+        std::cout << "Health: " << getHealth() << std::endl;
+        std::cout << "Mana: " << getMana() << std::endl;
+        std::cout << "Attributes:" << "Strength:" << strength << " Dexterity:" << dexterity << " Agility:" << agility << std::endl;
     }
 };
 

@@ -23,6 +23,9 @@ public:
     int getHealth() const{
         return health;
     }
+    int getLevel() const{
+        return level;
+    }
 
     virtual void print() const = 0;
     virtual void levelUp() = 0;

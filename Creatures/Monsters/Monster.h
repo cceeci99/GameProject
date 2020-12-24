@@ -1,5 +1,3 @@
-#include <utility>
-
 #include "../LivingCreature.h"
 #include "../../Range.h"
 
@@ -23,14 +21,10 @@ public:
     int getDodge() const{
         return dodge;
     }
-
-    void print() const override{
-        std::cout << getName();
-        std::cout << "Level " << level << " Health " << getHealth();
-        std::cout << "Damage Range ";
+    void getDamageRange() const{
         damageRange.print();
-        std::cout << " Defence " << defence << " Dodge " << dodge << std::endl;
     }
+    virtual void print() = 0;
 };
 
 #endif //GAMEPROJECT_MONSTER_H

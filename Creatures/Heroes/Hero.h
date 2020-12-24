@@ -6,6 +6,7 @@
 
 #include "../../Items/Item.h"
 #include "../../Items/Weapon.h"
+#include "../../Spells/Spell.h"
 
 #ifndef GAMEPROJECT_HERO_H
 #define GAMEPROJECT_HERO_H
@@ -25,16 +26,7 @@ protected:
     int agility;
 
 public:
-    Hero(const std::string& name, int newStrength, int newDexterity, int newAgility) : LivingCreature(name, START_HP, START_LEVEL){
-        mana = START_MP;
-        money = START_MONEY;
-        experience = START_XP;
-
-        strength = newStrength;
-        dexterity = newDexterity;
-        agility = newAgility;
-    }
-
+    Hero(const std::string& name, int newStrength, int newDexterity, int newAgility);
     ~Hero() override = 0;
 
     int getMana() const{
@@ -47,17 +39,20 @@ public:
     void addExperience(int xp){
         experience += xp;
 
-        if ( experience >= 100 )
+        if ( experience >= 100 ) {
             levelUp();
+        }
+    }
+
+    void buy(Item* item){
+        if ( money >= item->getPrice() && level >= item->getRequiredLevel() ) {
+            inventory.push_back(item);
+        }
     }
 
     void print() const override = 0;
     void levelUp() override = 0;
 
-    void buy(Item* item){
-        if ( money >= item->getPrice() && level >= item->getRequiredLevel() )
-            inventory.push_back(item);
-    }
 };
 
 

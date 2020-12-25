@@ -51,8 +51,8 @@ public:
     }
 
     void print() const override = 0;
-    void levelUp() override = 0;
 
+    virtual void levelUp() = 0;
 };
 
 

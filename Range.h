@@ -14,8 +14,8 @@ public:
     ~Range() = default;
 
     int getValue() const{
-        srand(time(nullptr));
-        return min + (rand() % ((max+1) - min));
+        srandom(time(nullptr));
+        return min + ((int)random() % ((max+1) - min));
     }
 
     void reduceRange(int reduce){
@@ -24,7 +24,16 @@ public:
     }
 
     void print() const{
-        std::cout << min << "-" << max;
+        std::cout << min << "-" << max << std::endl;
+    }
+
+    static Range getRandomRange(){
+        srandom(time(nullptr));
+        int min = (int)random() % 500;
+        int max = min + ((int)random() % ((1500+1) - min));
+
+        Range range(min, max);
+        return range;
     }
 };
 

@@ -34,7 +34,7 @@ public:
         damageRange.print();
     }
     int cast() const{
-        damageRange.getValue();
+        return damageRange.getValue();
     }
 
     virtual void print() const = 0;

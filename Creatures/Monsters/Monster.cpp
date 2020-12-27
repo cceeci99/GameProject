@@ -1,6 +1,6 @@
 #include "Monster.h"
 
-Monster::Monster(const std::string &name, int health, int level, Range range, int defence, int dodge) : LivingCreature(name, health, level), damageRange(range), defence(defence), dodge(dodge){}
+Monster::Monster(const std::string &name, int level, int health, Range range, int defence, int dodge) : LivingCreature(name, level, health), damageRange(range), defence(defence), dodge(dodge){}
 
 Monster::~Monster() = default;
 

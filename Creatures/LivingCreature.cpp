@@ -1,6 +1,6 @@
 #include "LivingCreature.h"
 
-LivingCreature::LivingCreature(std::string name, int health, int level) : name(std::move(name)), health(health), level(level){}
+LivingCreature::LivingCreature(std::string name, int level, int health) : name(std::move(name)), level(level), health(health){}
 
 LivingCreature::~LivingCreature() = default;
 

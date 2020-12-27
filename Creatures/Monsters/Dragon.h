@@ -8,7 +8,7 @@
 class Dragon: public Monster {
 
 public:
-    Dragon(const std::string& name, int health, int level, Range range, int defence, int dodge);
+    Dragon(const std::string& name, int level, int health, Range range, int defence, int dodge): Monster(name, level, health, range, defence, dodge){}
     ~Dragon() override = default;
 
     int attack() const override;

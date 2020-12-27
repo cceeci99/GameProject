@@ -14,7 +14,7 @@ protected:
     int dodge;
 
 public:
-    Monster(const std::string& name, int health, int level, Range range, int defence, int dodge);
+    Monster(const std::string& name, int level, int health, Range range, int defence, int dodge);
     ~Monster() override;
 
     int getDefence() const;
@@ -22,7 +22,7 @@ public:
     void printDamageRange() const;
 
     virtual int attack() const = 0;
-    virtual void print() const = 0;
+    void print() const override = 0;
 
 };
 

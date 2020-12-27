@@ -1,11 +1,11 @@
-#include "Dragon.h"
+#include "ExoSkeleton.h"
 
-int Dragon::attack() const {
+int ExoSkeleton::attack() const {
     return damageRange.getValue();
 }
 
-void Dragon::print() const {
-    std::cout << "Dragon " << getName() << std::endl;
+void ExoSkeleton::print() const {
+    std::cout << "ExoSkeleton " << getName() << std::endl;
     std::cout << "Level " << level << std::endl;
     std::cout << "Health " << getHealth() << std::endl;
     std::cout << "Damage range: ";

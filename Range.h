@@ -4,7 +4,6 @@
 #ifndef GAMEPROJECT_RANGE_H
 #define GAMEPROJECT_RANGE_H
 
-
 class Range {
 public:
     int min;
@@ -27,10 +26,10 @@ public:
         std::cout << min << "-" << max << std::endl;
     }
 
-    static Range getRandomRange(){
+    static Range getRandomRange(int lowerBound, int upperBound){
         srandom(time(nullptr));
-        int min = (int)random() % 500;
-        int max = min + ((int)random() % ((1500+1) - min));
+        int min = (int)random() % lowerBound;
+        int max = min + ((int)random() % ((upperBound+1) - min));
 
         Range range(min, max);
         return range;

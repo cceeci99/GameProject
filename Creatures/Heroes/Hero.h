@@ -17,8 +17,6 @@ private:
     int mana;
     int money;
 
-    std::vector<Item*> inventory;
-
 protected:
     int experience;
     int strength;
@@ -27,28 +25,14 @@ protected:
 
 public:
     Hero(const std::string& name, int newStrength, int newDexterity, int newAgility);
+
     ~Hero() override = 0;
 
-    int getMana() const{
-        return mana;
-    }
-    int getMoney() const{
-        return money;
-    }
+    int getMana() const;
 
-    void addExperience(int xp){
-        experience += xp;
+    int getMoney() const;
 
-        if ( experience >= 100 ) {
-            levelUp();
-        }
-    }
-
-    void buy(Item* item){
-        if ( money >= item->getPrice() && level >= item->getRequiredLevel() ) {
-            inventory.push_back(item);
-        }
-    }
+    void addExperience(int xp);
 
     void print() const override = 0;
 

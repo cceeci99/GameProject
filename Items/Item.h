@@ -12,20 +12,19 @@ private:
 
 public:
     Item(std::string  name, int price, int level): name(std::move(name)), price(price), requiredLevel(level){}
+
     virtual ~Item() = 0;
 
-    std::string getName() const{
-        return name;
-    }
-    int getPrice() const{
-        return price;
-    }
-    int getRequiredLevel() const{
-        return requiredLevel;
-    }
+    std::string getName() const;
+
+    int getPrice() const;
+
+    int getRequiredLevel() const;
+
+    virtual void print() const = 0;
 
     virtual int getAttribute() const = 0;
-    virtual void print() const = 0;
+
 };
 
 

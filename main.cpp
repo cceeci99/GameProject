@@ -3,10 +3,15 @@
 #include <fstream>
 #include <vector>
 
+#include "Creatures/Heroes/Hero.h"
+#include "Items/Potion.h"
+
+
 using namespace std;
 
 int main(int args, char* argv[]) {
 
+    // read names from file
     vector<string> names;
 
     string name;

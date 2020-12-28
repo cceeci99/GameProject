@@ -16,28 +16,23 @@ private:
 
 public:
     Spell(std::string name, int price, int level, int mana, Range range):name(std::move(name)), price(price), requiredLevel(level), manaRequired(mana), damageRange(range){};
+
     virtual ~Spell() = 0;
 
-    std::string getName() const{
-        return name;
-    }
-    int getPrice() const{
-        return price;
-    }
-    int getRequiredLevel() const{
-        return requiredLevel;
-    }
-    int getManaRequired() const{
-        return manaRequired;
-    }
-    void getDamageRange() const{
-        damageRange.print();
-    }
-    int cast() const{
-        return damageRange.getValue();
-    }
+    std::string getName() const;
+
+    int getPrice() const;
+
+    int getRequiredLevel() const;
+
+    int getManaRequired() const;
+
+    void printDamage() const;
+
+    int cast() const;
 
     virtual void print() const = 0;
+
     virtual int getEffect() const = 0;
 };
 

@@ -1,6 +1,8 @@
 #ifndef GAMEPROJECT_HERO_ATTRIBUTES_H
 #define GAMEPROJECT_HERO_ATTRIBUTES_H
 
+enum Attribute{Health, Mana, Experience, Money, Strength, Dexterity, Agility};
+
 #define START_LEVEL 1
 #define START_XP 0
 #define START_HP 100

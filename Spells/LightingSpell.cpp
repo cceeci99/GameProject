@@ -1,7 +1,7 @@
 #include "LightingSpell.h"
 
 void LightingSpell::print() const {
-    std::cout << "Lighting Spell: " << getName() << " Reduce Dodge effect by: " << reduceDodge << " Damage range ";
+    std::cout << "Lighting Spell: " << getName() << " Effect: ReduceDodge by: " << reduceDodge << " DamageRange: ";
     printDamage();
 }
 

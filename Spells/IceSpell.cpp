@@ -1,7 +1,7 @@
 #include "IceSpell.h"
 
 void IceSpell::print() const {
-    std::cout << "Ice Spell: " << getName() << " Effect Reduce Damage by: " << reduceDamage << " Damage range ";
+    std::cout << "Ice Spell: " << getName() << " Effect: ReduceDamage by: " << reduceDamage << " DamageRange: ";
     printDamage();
 }
 

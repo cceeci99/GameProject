@@ -1,7 +1,7 @@
 #include "Potion.h"
 
 void Potion::print() const {
-    std::cout << "Potion: " << getName() << " increase " << attributeType << " by " << enhancement << std::endl;
+    std::cout << "Potion: " << getName() << ", Increase " << attributeType << " by " << enhancement << std::endl;
 }
 
 int Potion::getAttribute() const {

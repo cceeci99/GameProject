@@ -15,3 +15,57 @@ void Hero::addExperience(int xp) {
         levelUp();
     }
 }
+
+void Hero::buyItem(Item *newItem) {
+    if ( money >= newItem->getPrice() && level >= newItem->getRequiredLevel() )
+    {
+        newItem->print();
+        std::cout << "Price: " << newItem->getPrice() << std::endl;
+        std::cout << "Do you want to buy this item ? Y/N" << std::endl;
+        std::string answer;
+        std::cin >> answer;
+
+        if ( answer == "Y" || answer == "y" )
+        {
+            inventory.addItem(newItem);
+            money -= newItem->getPrice();
+        }
+    }
+    else
+    {
+        if ( money < newItem->getPrice() )
+            std::cout << "Not enough money to buy the item" << std::endl;
+        else
+            std::cout << "Level too low to use this item" << std::endl;
+    }
+}
+
+void Hero::buySpell(Spell *newSpell) {
+    if ( money >= newSpell->getPrice() && level >= newSpell->getRequiredLevel() )
+    {
+        newSpell->print();
+        std::cout << "Price: " << newSpell->getPrice() << std::endl;
+        std::cout << "Do you want to buy this spell ? Y/N" << std::endl;
+        std::string answer;
+        std::cin >> answer;
+
+        if ( answer == "Y" || answer == "y" )
+        {
+            inventory.addSpell(newSpell);
+            money -= newSpell->getPrice();
+        }
+    }
+    else
+    {
+        if ( money < newSpell->getPrice() )
+            std::cout << "Not enough money to buy the spell" << std::endl;
+        else
+            std::cout << "Level too low to use this spell" << std::endl;
+    }
+}
+
+void Hero::checkInventory() const {
+    std::cout << "Hero's inventory: " << std::endl;
+    std::cout << "Money: " << money << std::endl;
+    inventory.print();
+}

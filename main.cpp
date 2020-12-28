@@ -3,10 +3,6 @@
 #include <fstream>
 #include <vector>
 
-#include "Creatures/Heroes/Hero.h"
-#include "Items/Potion.h"
-
-
 using namespace std;
 
 int main(int args, char* argv[]) {

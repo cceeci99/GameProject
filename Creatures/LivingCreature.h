@@ -16,10 +16,13 @@ protected:
 
 public:
     LivingCreature(std::string name, int level, int health);
+
     virtual ~LivingCreature() = 0;
 
     std::string getName() const;
+
     int getHealth() const;
+
     int getLevel() const;
 
     virtual void print() const = 0;

@@ -24,9 +24,17 @@ protected:
     int agility;
 
 public:
-    Hero(const std::string& name, int newStrength, int newDexterity, int newAgility);
+    Hero(const std::string& name, int newStrength, int newDexterity, int newAgility): LivingCreature(name, START_LEVEL, START_HP){
+        mana = START_MP;
+        money = START_MONEY;
+        experience = START_XP;
 
-    ~Hero() override = 0;
+        strength = newStrength;
+        dexterity = newDexterity;
+        agility = newAgility;
+    }
+
+    ~Hero() override = default;
 
     int getMana() const;
 

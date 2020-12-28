@@ -3,6 +3,8 @@
 #include <fstream>
 #include <vector>
 
+#include "Creatures/Heroes/Warrior.h"
+
 using namespace std;
 
 int main(int args, char* argv[]) {
@@ -17,6 +19,13 @@ int main(int args, char* argv[]) {
     while(getline(file, name)){
         names.push_back(name);
     }
+
+    int r = random() % names.size();
+
+    Hero* warrior = new Warrior(names.at(r));
+    warrior->print();
+
+    delete warrior;
 
     return 0;
 }

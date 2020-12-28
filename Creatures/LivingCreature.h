@@ -15,9 +15,9 @@ protected:
     int level;
 
 public:
-    LivingCreature(std::string name, int level, int health);
+    LivingCreature(std::string name, int level, int health): name(std::move(name)), level(level), health(health){}
 
-    virtual ~LivingCreature() = 0;
+    virtual ~LivingCreature() = default;
 
     std::string getName() const;
 

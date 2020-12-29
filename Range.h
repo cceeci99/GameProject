@@ -15,7 +15,7 @@ public:
 
     int getValue() const{
         srandom(time(nullptr));
-        return min + ((int)random() % ((max+1) - min));     //get a random value within the range
+        return min + ((int)random() % ((max+1) - min));     //remove a random value within the range
     }
 
     void reduceRange(int reduce){

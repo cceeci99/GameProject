@@ -21,6 +21,7 @@ public:
 
             case Health:
                 attributeType = "Health";
+                break;
             case Mana:
                 attributeType = "Mana";
                 break;

@@ -17,22 +17,63 @@ void Hero::addExperience(int xp) {
 }
 
 void Hero::checkInventory() {
-    std::cout << "Hero's inventory: " << std::endl;
-    std::cout << "Money: " << money << std::endl;
+    std::cout << "Hero's inventory: " << "Money: " << money << std::endl;
+
+
+    std::cout << "Opening inventory" << std::endl;
     inventory.print();
 
-    std::cout << "Which item you want to use ?" << std::endl;
-    int pos;
-    std::cin >> pos;
+    while (true)
+    {
+        int pos;
+        std::cin >> pos;
 
-    Item* item = inventory.getItem(pos-1);
-    if ( item->getType() == weapon || item->getType() == armor )
-    {
-        equip(item);
-    }
-    else
-    {
-        use((Potion* ) item);
+        if ( pos == 0 )
+        {
+            std::cout << "Closing inventory" << std::endl;
+            break;
+        }
+
+        Item* item = inventory.getItem(pos-1);
+
+        if ( item == nullptr )
+        {
+            std::cout << "this place is empty choose another item" << std::endl;
+            continue;
+        }
+
+        if ( item->getType() == armor )
+        {
+            if ( equipedArmor == nullptr )
+            {
+                equip(item);
+                inventory.removeItem(pos-1);
+            }
+            else
+            {
+                item = inventory.changeItem(pos-1, equipedArmor);
+                equip(item);
+            }
+        }
+        else if ( item->getType() == weapon )
+        {
+            if ( equipedWeapon == nullptr )
+            {
+                equip(item);
+                inventory.removeItem(pos-1);
+            }
+            else
+            {
+                item = inventory.changeItem(pos-1, equipedWeapon);
+                equip(item);
+            }
+        }
+        else
+        {
+            use((Potion *) item);
+            inventory.removeItem(pos-1);
+        }
+        inventory.print();
     }
 }
 
@@ -84,9 +125,8 @@ void Hero::buySpell(Spell *newSpell) {
     }
 }
 
-
-
-void Hero::sellItem(Item *item) {
+void Hero::sellItem(int pos) {
+    Item* item = inventory.getItem(pos);
     item->print();
     std::cout << "Do you want to sell this item? Y/N" << std::endl;
     std::string answer;
@@ -95,12 +135,13 @@ void Hero::sellItem(Item *item) {
     if ( answer == "Y" || answer == "y" )
     {
         money += item->getPrice() / 2;
-        inventory.removeItem(item);
+        inventory.removeItem(pos);
     }
 
 }
 
-void Hero::sellSpell(Spell *spell) {
+void Hero::sellSpell(int pos) {
+    Spell* spell = skills.getSpell(pos);
     spell->print();
     std::cout << "Do you want to sell this spell? Y/N" << std::endl;
     std::string answer;
@@ -109,6 +150,73 @@ void Hero::sellSpell(Spell *spell) {
     if ( answer == "Y" || answer == "y")
     {
         money += spell->getPrice()/2;
-        skills.removeSpell(spell);
+        skills.removeSpell(pos);
+    }
+}
+
+void Hero::equip(Item *item) {
+    if (item->getType() == weapon)
+    {
+        equipedWeapon = item;
+        std::cout << equipedWeapon->getName() << " weapon equiped and ready for use" << std::endl;
+    }
+    else
+    {
+        equipedArmor = item;
+        std::cout << equipedArmor->getName() << " armor equiped" << std::endl;
+    }
+}
+
+void Hero::use(Potion *potion) {
+    switch (potion->getAttributeType()) {
+
+        case Health:
+            health += potion->getAttribute();
+            std::cout << "increased health by " << potion->getAttribute() << std::endl;
+            break;
+        case Mana:
+            mana += potion->getAttribute();
+            std::cout << "increased mana by " << potion->getAttribute() << std::endl;
+            break;
+        case Strength:
+            strength += potion->getAttribute();
+            std::cout << "increased strength by " << potion->getAttribute() << std::endl;
+            break;
+        case Dexterity:
+            dexterity += potion->getAttribute();
+            std::cout << "increased dexterity by " << potion->getAttribute() << std::endl;
+            break;
+        case Agility:
+            agility += potion->getAttribute();
+            std::cout << "increased agility by " << potion->getAttribute() << std::endl;
+            break;
+    }
+}
+
+void Hero::castSpell() {
+    skills.print();
+    std::cout << "Which spell you want to cast ?" << std::endl;
+
+    while (true)
+    {
+        int pos;
+        std::cin >> pos;
+
+        Spell *spell = skills.getSpell(pos - 1);
+        if (mana < spell->getManaRequired())
+        {
+            std::cout << "Not enough mana to cast this spell" << std::endl;
+        }
+        else
+        {
+            std::cout << "Casting " << spell->getName() << std::endl;
+            std::cout << "Effect: " << spell->getEffect() << std::endl;
+            std::cout << "Damage: " << spell->cast() << std::endl;
+
+            mana -= spell->getManaRequired();
+
+            std::cout << "Mana after casting spell " << mana << std::endl;
+            break;
+        }
     }
 }

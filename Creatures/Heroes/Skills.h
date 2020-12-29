@@ -1,7 +1,7 @@
 #include <iostream>
-#include <vector>
-#include <string>
 #include "../../Spells/Spell.h"
+
+#include "../../List.h"
 
 #ifndef GAMEPROJECT_SKILLS_H
 #define GAMEPROJECT_SKILLS_H
@@ -10,38 +10,25 @@
 class Skills {
 
 private:
-    std::vector<Spell*> spells;
+    int maxSpells = 10;
+    int acquiredSpells = 0;
+
+//    List<Spell*> spells;
+    Spell** spells = new Spell*[maxSpells];
 
 public:
 
-    ~Skills(){
-        spells.clear();
-    }
+    ~Skills() {
+        delete[] spells;
+    };
 
-    void addSpell(Spell* newSpell){
-        spells.push_back(newSpell);
-    }
+    Spell* getSpell(int pos);
 
-    void removeSpell(Spell* spell){
-        for (Spell* s: spells)
-        {
-            if ( s == spell ){
-                s = nullptr;
-            }
-        }
-    }
+    void addSpell(Spell* newSpell);
 
-    void print() const{
-        int k=1;
-        for(Spell* s: spells)
-        {
-            if ( s != nullptr )
-            {
-                std::cout << k << ")";
-                s->print();
-            }
-        }
-    }
+    void removeSpell(int pos);
+
+    void print() const;
 };
 
 

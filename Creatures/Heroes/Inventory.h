@@ -1,8 +1,7 @@
 #include "../../Items/Item.h"
 #include "../../Spells/Spell.h"
 
-#include <iostream>
-#include <vector>
+#include "../../List.h"
 
 #ifndef GAMEPROJECT_INVENTORY_H
 #define GAMEPROJECT_INVENTORY_H
@@ -11,43 +10,27 @@
 class Inventory {
 
 private:
-    std::vector<Item*> items;
+//    List<Item*> items;
+    int capacity = 20;
+    int addedItems = 0;
+    Item** items = new Item*[capacity];
 
 public:
 
-    ~Inventory(){
-        items.clear();
-    }
+    ~Inventory() {
+        delete[] items;
+    };
 
-    Item * getItem(int pos) const {
-        return items.at(pos);
-    }
+    Item * getItem(int pos) ;
 
-    void addItem(Item* newItem){
-        items.push_back(newItem);
-    }
+    Item* changeItem(int pos, Item* item);
 
-    void removeItem(Item* item){
-        for(Item* i: items)
-        {
-            if ( i == item ) {
-                i = nullptr;
-            }
-        }
-    }
+    void addItem(Item* newItem);
 
-    void print() const{
-        int k=1;
-        for(Item* i: items)
-        {
-            if ( i != nullptr )
-            {
-                std::cout << k << ")";
-                i->print();
-                k++;
-            }
-        }
-    }
+    void removeItem(int pos);
+
+    void print() const;
+
 };
 
 

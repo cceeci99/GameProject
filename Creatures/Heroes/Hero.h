@@ -61,40 +61,17 @@ public:
 
     void buySpell(Spell* newSpell);
 
-    void sellItem(Item* item);
+    void sellItem(int pos);
 
-    void sellSpell(Spell* spell);
+    void sellSpell(int pos);
 
     void checkInventory();
 
-    void equip(Item* item){
-        if (item->getType() == weapon)
-            equipedWeapon = item;
-        else
-            equipedArmor = item;
-    }
+    void equip(Item* item);
 
-    void use(Potion* potion){
-        switch (potion->getAttributeType()) {
+    void use(Potion* potion);
 
-            case Health:
-                health += potion->getAttribute();
-                break;
-            case Mana:
-                mana += potion->getAttribute();
-                break;
-            case Strength:
-                strength += potion->getAttribute();
-                break;
-            case Dexterity:
-                dexterity += potion->getAttribute();
-                break;
-            case Agility:
-                agility += potion->getAttribute();
-                break;
-        }
-    }
-
+    void castSpell();
 };
 
 

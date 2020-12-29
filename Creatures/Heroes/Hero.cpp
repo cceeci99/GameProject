@@ -46,26 +46,26 @@ void Hero::checkInventory() {
         {
             if ( equipedArmor == nullptr )
             {
-                equip(item);
+                equip((Armor*) item);
                 inventory.removeItem(pos-1);
             }
             else
             {
                 item = inventory.changeItem(pos-1, equipedArmor);
-                equip(item);
+                equip((Armor*) item);
             }
         }
         else if ( item->getType() == weapon )
         {
             if ( equipedWeapon == nullptr )
             {
-                equip(item);
+                equip((Weapon*)item);
                 inventory.removeItem(pos-1);
             }
             else
             {
                 item = inventory.changeItem(pos-1, equipedWeapon);
-                equip(item);
+                equip((Weapon*)item);
             }
         }
         else
@@ -154,17 +154,14 @@ void Hero::sellSpell(int pos) {
     }
 }
 
-void Hero::equip(Item *item) {
-    if (item->getType() == weapon)
-    {
-        equipedWeapon = item;
-        std::cout << equipedWeapon->getName() << " weapon equiped and ready for use" << std::endl;
-    }
-    else
-    {
-        equipedArmor = item;
-        std::cout << equipedArmor->getName() << " armor equiped" << std::endl;
-    }
+void Hero::equip(Weapon* weapon) {
+    equipedWeapon = weapon;
+    std::cout << weapon->getName() << " weapon equipped" << std::endl;
+}
+
+void Hero::equip(Armor *armor) {
+    equipedArmor = armor;
+    std::cout << armor->getName() << " armor equipped" << std::endl;
 }
 
 void Hero::use(Potion *potion) {
@@ -202,6 +199,9 @@ void Hero::castSpell() {
         int pos;
         std::cin >> pos;
 
+        if ( pos == 0 )
+            break;
+
         Spell *spell = skills.getSpell(pos - 1);
         if (mana < spell->getManaRequired())
         {
@@ -220,3 +220,5 @@ void Hero::castSpell() {
         }
     }
 }
+
+

@@ -10,6 +10,7 @@
 #include "Inventory.h"
 #include "Skills.h"
 #include "../../Items/Potion.h"
+#include "../../Items/Armor.h"
 
 #ifndef GAMEPROJECT_HERO_H
 #define GAMEPROJECT_HERO_H
@@ -67,7 +68,9 @@ public:
 
     void checkInventory();
 
-    void equip(Item* item);
+    void equip(Weapon* weapon);
+
+    void equip(Armor* armor);
 
     void use(Potion* potion);
 

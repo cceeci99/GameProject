@@ -22,8 +22,8 @@ private:
     int mana;
     int money;
 
-    Item* equipedWeapon = nullptr;
-    Item* equipedArmor = nullptr;
+    Item* equippedWeapon = nullptr;
+    Item* equippedArmor = nullptr;
 
     Skills skills;
     Inventory inventory;

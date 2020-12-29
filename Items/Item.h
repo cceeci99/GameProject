@@ -33,11 +33,9 @@ public:
         }
     }
 
-    virtual ~Item() = 0;
+    virtual ~Item() = default;
 
-    Items getType() const{
-        return type;
-    }
+    Items getType() const;
 
     std::string getName() const;
 

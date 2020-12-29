@@ -44,27 +44,27 @@ void Hero::checkInventory() {
 
         if ( item->getType() == armor )
         {
-            if ( equipedArmor == nullptr )
+            if (equippedArmor == nullptr )
             {
                 equip((Armor*) item);
                 inventory.removeItem(pos-1);
             }
             else
             {
-                item = inventory.changeItem(pos-1, equipedArmor);
+                item = inventory.changeItem(pos-1, equippedArmor);
                 equip((Armor*) item);
             }
         }
         else if ( item->getType() == weapon )
         {
-            if ( equipedWeapon == nullptr )
+            if (equippedWeapon == nullptr )
             {
                 equip((Weapon*)item);
                 inventory.removeItem(pos-1);
             }
             else
             {
-                item = inventory.changeItem(pos-1, equipedWeapon);
+                item = inventory.changeItem(pos-1, equippedWeapon);
                 equip((Weapon*)item);
             }
         }
@@ -155,12 +155,12 @@ void Hero::sellSpell(int pos) {
 }
 
 void Hero::equip(Weapon* weapon) {
-    equipedWeapon = weapon;
+    equippedWeapon = weapon;
     std::cout << weapon->getName() << " weapon equipped" << std::endl;
 }
 
 void Hero::equip(Armor *armor) {
-    equipedArmor = armor;
+    equippedArmor = armor;
     std::cout << armor->getName() << " armor equipped" << std::endl;
 }
 
@@ -192,7 +192,6 @@ void Hero::use(Potion *potion) {
 
 void Hero::castSpell() {
     skills.print();
-    std::cout << "Which spell you want to cast ?" << std::endl;
 
     while (true)
     {
@@ -215,7 +214,6 @@ void Hero::castSpell() {
 
             mana -= spell->getManaRequired();
 
-            std::cout << "Mana after casting spell " << mana << std::endl;
             break;
         }
     }

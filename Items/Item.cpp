@@ -1,9 +1,11 @@
 #include "Item.h"
 
-Item::~Item() = default;
-
 std::string Item::getName() const {
     return name;
+}
+
+Items Item::getType() const {
+    return type;
 }
 
 int Item::getPrice() const {

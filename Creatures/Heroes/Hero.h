@@ -8,6 +8,7 @@
 #include "../../Items/Weapon.h"
 #include "../../Spells/Spell.h"
 #include "Inventory.h"
+#include "Skills.h"
 
 #ifndef GAMEPROJECT_HERO_H
 #define GAMEPROJECT_HERO_H
@@ -17,7 +18,9 @@ class Hero: public LivingCreature {
 private:
     int mana;
     int money;
+//    Weapon* equipedWeapon;
 
+    Skills skills;
     Inventory inventory;
 
 protected:

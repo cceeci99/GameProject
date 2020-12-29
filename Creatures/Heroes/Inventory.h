@@ -11,24 +11,14 @@
 class Inventory {
 private:
     std::vector<Item*> items;
-    std::vector<Spell*> spells;
 
 public:
     ~Inventory(){
         items.clear();
-        spells.clear();
     }
 
     void addItem(Item* newItem){
         items.push_back(newItem);
-    }
-
-    void addSpell(Spell* newSpell){
-        spells.push_back(newSpell);
-    }
-
-    Item * getItem(int pos) const {
-        return items.at(pos);
     }
 
     void removeItem(Item* item){
@@ -36,15 +26,6 @@ public:
         {
             if ( i == item ) {
                 i = nullptr;
-            }
-        }
-    }
-
-    void removeSpell(Spell* spell){
-        for (Spell* s: spells)
-        {
-            if ( s == spell ){
-                s = nullptr;
             }
         }
     }
@@ -58,14 +39,6 @@ public:
                 std::cout << k << ")";
                 i->print();
                 k++;
-            }
-        }
-        for(Spell* s: spells)
-        {
-            if ( s != nullptr )
-            {
-                std::cout << k << ")";
-                s->print();
             }
         }
     }

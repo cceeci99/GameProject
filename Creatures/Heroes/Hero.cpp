@@ -58,7 +58,7 @@ void Hero::buySpell(Spell *newSpell) {
 
         if ( answer == "Y" || answer == "y" )
         {
-            inventory.addSpell(newSpell);
+            skills.addSpell(newSpell);
             money -= newSpell->getPrice();
         }
     }
@@ -96,6 +96,6 @@ void Hero::sellSpell(Spell *spell) {
     if ( answer == "Y" || answer == "y")
     {
         money += spell->getPrice()/2;
-        inventory.removeSpell(spell);
+        skills.removeSpell(spell);
     }
 }

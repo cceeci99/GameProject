@@ -31,11 +31,30 @@ public:
         return items.at(pos);
     }
 
+    void removeItem(Item* item){
+        for(Item* i: items)
+        {
+            if ( i == item ) {
+                i = nullptr;
+            }
+        }
+    }
+
+    void removeSpell(Spell* spell){
+        for (Spell* s: spells)
+        {
+            if ( s == spell ){
+                s = nullptr;
+            }
+        }
+    }
+
     void print() const{
         int k=1;
         for(Item* i: items)
         {
-            if ( i != nullptr ) {
+            if ( i != nullptr )
+            {
                 std::cout << k << ")";
                 i->print();
                 k++;
@@ -43,7 +62,8 @@ public:
         }
         for(Spell* s: spells)
         {
-            if ( s != nullptr ) {
+            if ( s != nullptr )
+            {
                 std::cout << k << ")";
                 s->print();
             }

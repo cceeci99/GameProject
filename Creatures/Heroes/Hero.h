@@ -53,6 +53,10 @@ public:
 
     void buySpell(Spell* newSpell);
 
+    void sellItem(Item* item);
+
+    void sellSpell(Spell* spell);
+
     void checkInventory() const;
 
 };

@@ -16,6 +16,13 @@ void Hero::addExperience(int xp) {
     }
 }
 
+void Hero::checkInventory() const {
+    std::cout << "Hero's inventory: " << std::endl;
+    std::cout << "Money: " << money << std::endl;
+    inventory.print();
+
+}
+
 void Hero::buyItem(Item *newItem) {
     if ( money >= newItem->getPrice() && level >= newItem->getRequiredLevel() )
     {
@@ -64,9 +71,31 @@ void Hero::buySpell(Spell *newSpell) {
     }
 }
 
-void Hero::checkInventory() const {
-    std::cout << "Hero's inventory: " << std::endl;
-    std::cout << "Money: " << money << std::endl;
-    inventory.print();
 
+
+void Hero::sellItem(Item *item) {
+    item->print();
+    std::cout << "Do you want to sell this item? Y/N" << std::endl;
+    std::string answer;
+    std::cin >> answer;
+
+    if ( answer == "Y" || answer == "y" )
+    {
+        money += item->getPrice() / 2;
+        inventory.removeItem(item);
+    }
+
+}
+
+void Hero::sellSpell(Spell *spell) {
+    spell->print();
+    std::cout << "Do you want to sell this spell? Y/N" << std::endl;
+    std::string answer;
+    std::cin >> answer;
+
+    if ( answer == "Y" || answer == "y")
+    {
+        money += spell->getPrice()/2;
+        inventory.removeSpell(spell);
+    }
 }

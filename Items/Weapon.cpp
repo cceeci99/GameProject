@@ -5,7 +5,7 @@ bool Weapon::isOneHanded() const {
 }
 
 void Weapon::print() const {
-    std::cout << "Weapon: " << getName() << ", Damage: " << damage << ", Type: " << type << std::endl;
+    std::cout << "Weapon: " << getName() << ", Damage: " << damage << ", Type: " << weaponType << std::endl;
 }
 
 int Weapon::getAttribute() const {

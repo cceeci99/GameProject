@@ -9,12 +9,18 @@
 
 
 class Inventory {
+
 private:
     std::vector<Item*> items;
 
 public:
+
     ~Inventory(){
         items.clear();
+    }
+
+    Item * getItem(int pos) const {
+        return items.at(pos);
     }
 
     void addItem(Item* newItem){

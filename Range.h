@@ -5,6 +5,7 @@
 #define GAMEPROJECT_RANGE_H
 
 class Range {
+
 public:
     int min;
     int max;

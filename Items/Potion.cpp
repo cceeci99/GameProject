@@ -8,10 +8,6 @@ int Potion::getAttribute() const {
     return enhancement;
 }
 
-bool Potion::isUsed() const {
-    return used;
-}
-
-void Potion::use() {
-    used = true;
+Attribute Potion::getAttributeType() const {
+    return attribute;
 }

@@ -6,8 +6,11 @@
 
 
 class Warrior: public Hero {
+
 public:
-    explicit Warrior(const std::string& name): Hero(name, WARRIOR_STRENGTH, DEFAULT_DEXTERITY, WARRIOR_AGILITY){}
+
+    explicit Warrior(const std::string& name)
+    :Hero(name, WARRIOR_STRENGTH, DEFAULT_DEXTERITY, WARRIOR_AGILITY){}
 
     ~Warrior() override = default;
 

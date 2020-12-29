@@ -16,11 +16,24 @@ void Hero::addExperience(int xp) {
     }
 }
 
-void Hero::checkInventory() const {
+void Hero::checkInventory() {
     std::cout << "Hero's inventory: " << std::endl;
     std::cout << "Money: " << money << std::endl;
     inventory.print();
 
+    std::cout << "Which item you want to use ?" << std::endl;
+    int pos;
+    std::cin >> pos;
+
+    Item* item = inventory.getItem(pos-1);
+    if ( item->getType() == weapon || item->getType() == armor )
+    {
+        equip(item);
+    }
+    else
+    {
+        use((Potion* ) item);
+    }
 }
 
 void Hero::buyItem(Item *newItem) {

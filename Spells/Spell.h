@@ -15,7 +15,8 @@ private:
     Range damageRange;
 
 public:
-    Spell(std::string name, int price, int level, int mana, Range range):name(std::move(name)), price(price), requiredLevel(level), manaRequired(mana), damageRange(range){};
+    Spell(std::string name, int price, int level, int mana, Range range)
+    :name(std::move(name)), price(price), requiredLevel(level), manaRequired(mana), damageRange(range){};
 
     virtual ~Spell() = 0;
 

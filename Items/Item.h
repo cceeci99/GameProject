@@ -7,6 +7,7 @@
 enum Items{armor, weapon, potion};
 
 class Item {
+
 private:
     const std::string name;
     const int price;
@@ -14,9 +15,10 @@ private:
     Items type;
     std::string itemType;
 
-
 public:
-    Item(std::string  name, int price, int level, Items type): name(std::move(name)), price(price), requiredLevel(level), type(type){
+
+    Item(std::string  name, int price, int level, Items type)
+    :name(std::move(name)), price(price), requiredLevel(level), type(type){
         switch (type) {
 
             case armor:

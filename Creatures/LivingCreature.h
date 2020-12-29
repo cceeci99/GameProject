@@ -9,13 +9,15 @@ class LivingCreature {
 
 private:
     const std::string name;
-    int health;
 
 protected:
     int level;
+    int health;
 
 public:
-    LivingCreature(std::string name, int level, int health): name(std::move(name)), level(level), health(health){}
+
+    LivingCreature(std::string name, int level, int health)
+    :name(std::move(name)), level(level), health(health){}
 
     virtual ~LivingCreature() = default;
 

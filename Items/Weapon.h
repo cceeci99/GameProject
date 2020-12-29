@@ -6,13 +6,16 @@
 #include "Item.h"
 
 class Weapon: public Item {
+
 private:
     const int damage;
     const bool oneHanded;
     std::string weaponType;
 
 public:
-    Weapon(const std::string& name, int price, int level, int damage, bool oneHanded, Items type = weapon): Item(name, price, level, type), damage(damage), oneHanded(oneHanded){
+
+    Weapon(const std::string& name, int price, int level, int damage, bool oneHanded, Items type = weapon)
+    :Item(name, price, level, type), damage(damage), oneHanded(oneHanded){
         if ( oneHanded )
             weaponType = "one handed";
         else

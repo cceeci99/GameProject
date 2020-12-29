@@ -5,8 +5,11 @@
 
 
 class Sorcerer: public Hero {
+
 public:
-    explicit Sorcerer(const std::string& name): Hero(name, DEFAULT_STRENGTH, SORCERER_DEXTERITY, SORCERER_AGILITY){}
+
+    explicit Sorcerer(const std::string& name)
+    :Hero(name, DEFAULT_STRENGTH, SORCERER_DEXTERITY, SORCERER_AGILITY){}
 
     ~Sorcerer() override = default;
 

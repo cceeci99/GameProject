@@ -9,16 +9,20 @@
 #include "../../Spells/Spell.h"
 #include "Inventory.h"
 #include "Skills.h"
+#include "../../Items/Potion.h"
 
 #ifndef GAMEPROJECT_HERO_H
 #define GAMEPROJECT_HERO_H
 
 
 class Hero: public LivingCreature {
+
 private:
     int mana;
     int money;
-//    Weapon* equipedWeapon;
+
+    Item* equipedWeapon = nullptr;
+    Item* equipedArmor = nullptr;
 
     Skills skills;
     Inventory inventory;
@@ -30,7 +34,8 @@ protected:
     int agility;
 
 public:
-    Hero(const std::string& name, int newStrength, int newDexterity, int newAgility): LivingCreature(name, START_LEVEL, START_HP){
+    Hero(const std::string& name, int newStrength, int newDexterity, int newAgility)
+    :LivingCreature(name, START_LEVEL, START_HP){
         mana = START_MP;
         money = START_MONEY;
         experience = START_XP;
@@ -60,7 +65,35 @@ public:
 
     void sellSpell(Spell* spell);
 
-    void checkInventory() const;
+    void checkInventory();
+
+    void equip(Item* item){
+        if (item->getType() == weapon)
+            equipedWeapon = item;
+        else
+            equipedArmor = item;
+    }
+
+    void use(Potion* potion){
+        switch (potion->getAttributeType()) {
+
+            case Health:
+                health += potion->getAttribute();
+                break;
+            case Mana:
+                mana += potion->getAttribute();
+                break;
+            case Strength:
+                strength += potion->getAttribute();
+                break;
+            case Dexterity:
+                dexterity += potion->getAttribute();
+                break;
+            case Agility:
+                agility += potion->getAttribute();
+                break;
+        }
+    }
 
 };
 

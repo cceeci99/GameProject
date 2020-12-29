@@ -8,10 +8,12 @@
 
 
 class Skills {
+
 private:
     std::vector<Spell*> spells;
 
 public:
+
     ~Skills(){
         spells.clear();
     }

@@ -5,8 +5,11 @@
 
 
 class Spirit: public Monster {
+
 public:
-    Spirit(const std::string& name, int level, int health, Range range, int defence, int dodge):Monster(name, level, health, range, defence, dodge){};
+
+    Spirit(const std::string& name, int level, int health, Range range, int defence, int dodge)
+    :Monster(name, level, health, range, defence, dodge){};
 
     ~Spirit() override = default;
 

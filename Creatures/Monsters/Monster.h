@@ -7,13 +7,16 @@
 
 
 class Monster: public LivingCreature {
+
 protected:
     Range damageRange;
     int defence;
     int dodge;
 
 public:
-    Monster(const std::string& name, int level, int health, Range range, int defence, int dodge): LivingCreature(name, level, health), damageRange(range), defence(defence), dodge(dodge){}
+
+    Monster(const std::string& name, int level, int health, Range range, int defence, int dodge)
+    :LivingCreature(name, level, health), damageRange(range), defence(defence), dodge(dodge){}
 
     ~Monster() override = default;
 

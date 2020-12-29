@@ -37,4 +37,5 @@ public:
     }
 };
 
+
 #endif //GAMEPROJECT_RANGE_H

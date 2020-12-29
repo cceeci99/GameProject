@@ -9,14 +9,14 @@ class Weapon: public Item {
 private:
     const int damage;
     const bool oneHanded;
-    std::string type;
+    std::string weaponType;
 
 public:
-    Weapon(const std::string& name, int price, int level, int damage, bool oneHanded): Item(name, price, level), damage(damage), oneHanded(oneHanded){
+    Weapon(const std::string& name, int price, int level, int damage, bool oneHanded, Items type = weapon): Item(name, price, level, type), damage(damage), oneHanded(oneHanded){
         if ( oneHanded )
-            type = "one handed";
+            weaponType = "one handed";
         else
-            type = "both hands";
+            weaponType = "both hands";
     }
 
     ~Weapon() override = default;

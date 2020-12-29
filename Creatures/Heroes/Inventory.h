@@ -27,16 +27,24 @@ public:
         spells.push_back(newSpell);
     }
 
+    Item * getItem(int pos) const {
+        return items.at(pos);
+    }
+
     void print() const{
+        int k=1;
         for(Item* i: items)
         {
             if ( i != nullptr ) {
+                std::cout << k << ")";
                 i->print();
+                k++;
             }
         }
         for(Spell* s: spells)
         {
             if ( s != nullptr ) {
+                std::cout << k << ")";
                 s->print();
             }
         }

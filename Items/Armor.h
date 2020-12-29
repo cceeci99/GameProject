@@ -9,7 +9,7 @@ private:
     const int defence;
 
 public:
-    Armor(const std::string& name, int price, int level, int defence): Item(name, price, level), defence(defence){};
+    Armor(const std::string& name, int price, int level, int defence, Items type = armor): Item(name, price, level, type), defence(defence){};
 
     ~Armor() override = default;
 

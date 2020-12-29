@@ -14,7 +14,7 @@ private:
     bool used = false;
 
 public:
-    Potion(const std::string& name, int price, int level, Attribute attribute, int enhancement):Item(name, price, level), attribute(attribute) , enhancement(enhancement){
+    Potion(const std::string& name, int price, int level, Attribute attribute, int enhancement, Items type = potion): Item(name, price, level, type), attribute(attribute) , enhancement(enhancement){
         switch (attribute) {
             case Health:
                 attributeType = "Health";

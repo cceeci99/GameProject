@@ -68,4 +68,5 @@ void Hero::checkInventory() const {
     std::cout << "Hero's inventory: " << std::endl;
     std::cout << "Money: " << money << std::endl;
     inventory.print();
+
 }

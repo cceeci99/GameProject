@@ -1,20 +1,18 @@
-#include <iostream>
 #include "../../Spells/Spell.h"
 
-#include "../../List.h"
 
 #ifndef GAMEPROJECT_SKILLS_H
 #define GAMEPROJECT_SKILLS_H
 
 
+#define SPELLS_LIMIT 10
+
+
 class Skills {
 
 private:
-    int maxSpells = 10;
     int acquiredSpells = 0;
-
-//    List<Spell*> spells;
-    Spell** spells = new Spell*[maxSpells];
+    Spell** spells = new Spell*[SPELLS_LIMIT];
 
 public:
 

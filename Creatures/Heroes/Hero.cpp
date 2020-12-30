@@ -17,24 +17,23 @@ void Hero::addExperience(int xp) {
 }
 
 void Hero::checkInventory() {
-    std::cout << "Hero's inventory: " << "Money: " << money << std::endl;
-
-
     std::cout << "Opening inventory" << std::endl;
+    std::cout << "Money: " << money << std::endl;
     inventory.print();
 
     while (true)
     {
         int pos;
-        std::cin >> pos;
+        std::cin >> pos;    // get user input for position of item he want's to use
 
         if ( pos == 0 )
         {
             std::cout << "Closing inventory" << std::endl;
-            break;
+            return;
         }
 
-        Item* item = inventory.getItem(pos-1);
+        pos--;
+        Item* item = inventory.getItem(pos);
 
         if ( item == nullptr )
         {
@@ -47,11 +46,11 @@ void Hero::checkInventory() {
             if (equippedArmor == nullptr )
             {
                 equip((Armor*) item);
-                inventory.removeItem(pos-1);
+                inventory.removeItem(pos);
             }
             else
             {
-                item = inventory.changeItem(pos-1, equippedArmor);
+                item = inventory.changeItem(pos, equippedArmor);
                 equip((Armor*) item);
             }
         }
@@ -60,20 +59,21 @@ void Hero::checkInventory() {
             if (equippedWeapon == nullptr )
             {
                 equip((Weapon*)item);
-                inventory.removeItem(pos-1);
+                inventory.removeItem(pos);
             }
             else
             {
-                item = inventory.changeItem(pos-1, equippedWeapon);
+                item = inventory.changeItem(pos, equippedWeapon);
                 equip((Weapon*)item);
             }
         }
         else
         {
             use((Potion *) item);
-            inventory.removeItem(pos-1);
+            inventory.removeItem(pos);
         }
         inventory.print();
+
     }
 }
 
@@ -169,28 +169,29 @@ void Hero::use(Potion *potion) {
 
         case Health:
             health += potion->getAttribute();
-            std::cout << "increased health by " << potion->getAttribute() << std::endl;
+            std::cout << "health + " << potion->getAttribute() << std::endl;
             break;
         case Mana:
             mana += potion->getAttribute();
-            std::cout << "increased mana by " << potion->getAttribute() << std::endl;
+            std::cout << "mana + " << potion->getAttribute() << std::endl;
             break;
         case Strength:
             strength += potion->getAttribute();
-            std::cout << "increased strength by " << potion->getAttribute() << std::endl;
+            std::cout << "strength + " << potion->getAttribute() << std::endl;
             break;
         case Dexterity:
             dexterity += potion->getAttribute();
-            std::cout << "increased dexterity by " << potion->getAttribute() << std::endl;
+            std::cout << "dexterity + " << potion->getAttribute() << std::endl;
             break;
         case Agility:
             agility += potion->getAttribute();
-            std::cout << "increased agility by " << potion->getAttribute() << std::endl;
+            std::cout << "agility + " << potion->getAttribute() << std::endl;
             break;
     }
 }
 
 void Hero::castSpell() {
+    std::cout << "Your acquired skills are:" << std::endl;
     skills.print();
 
     while (true)
@@ -199,9 +200,17 @@ void Hero::castSpell() {
         std::cin >> pos;
 
         if ( pos == 0 )
-            break;
+            return;
 
-        Spell *spell = skills.getSpell(pos - 1);
+        pos--;
+
+        Spell *spell = skills.getSpell(pos);
+        if ( spell == nullptr )
+        {
+            std::cout << "no available skill on this position" << std::endl;
+            continue;
+        }
+
         if (mana < spell->getManaRequired())
         {
             std::cout << "Not enough mana to cast this spell" << std::endl;
@@ -214,7 +223,7 @@ void Hero::castSpell() {
 
             mana -= spell->getManaRequired();
 
-            break;
+            return;
         }
     }
 }

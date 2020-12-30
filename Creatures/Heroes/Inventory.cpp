@@ -2,16 +2,14 @@
 
 
 Item *Inventory::getItem(int pos)  {
-//    return items.get(pos);
-    if ( pos >= capacity )
+    if ( pos >= INVENTORY_CAPACITY )
         return nullptr;
 
     return items[pos];
 }
 
 Item *Inventory::changeItem(int pos, Item *item) {
-//    return items.swap(pos, item);
-    if ( pos >= capacity )
+    if ( pos >= INVENTORY_CAPACITY )
         return nullptr;
 
     Item* temp = items[pos];
@@ -20,14 +18,13 @@ Item *Inventory::changeItem(int pos, Item *item) {
 }
 
 void Inventory::addItem(Item *newItem) {
-//    items.add(newItem);
     if ( addedItems >= 10 )
     {
         std::cout << "Inventory full cant add new item" << std::endl;
         return;
     }
 
-    for(int i=0; i < capacity; i++)
+    for(int i=0; i < INVENTORY_CAPACITY; i++)
     {
         if ( items[i] == nullptr )
         {
@@ -39,8 +36,7 @@ void Inventory::addItem(Item *newItem) {
 }
 
 void Inventory::removeItem(int pos) {
-//    items.remove(item);
-    if ( pos >= capacity )
+    if ( pos >= INVENTORY_CAPACITY )
         return;
 
     items[pos] = nullptr;
@@ -49,7 +45,7 @@ void Inventory::removeItem(int pos) {
 
 void Inventory::print() const {
 
-    for(int i=0; i < capacity; i++)
+    for(int i=0; i < INVENTORY_CAPACITY; i++)
     {
         if ( items[i] != nullptr )
         {

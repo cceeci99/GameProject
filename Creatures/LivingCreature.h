@@ -1,5 +1,4 @@
 #include <iostream>
-#include <utility>
 
 #ifndef GAMEPROJECT_LIVINGCREATURE_H
 #define GAMEPROJECT_LIVINGCREATURE_H

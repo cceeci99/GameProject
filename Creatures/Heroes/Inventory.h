@@ -1,19 +1,17 @@
 #include "../../Items/Item.h"
-#include "../../Spells/Spell.h"
 
-#include "../../List.h"
 
 #ifndef GAMEPROJECT_INVENTORY_H
 #define GAMEPROJECT_INVENTORY_H
+
+#define INVENTORY_CAPACITY 20
 
 
 class Inventory {
 
 private:
-//    List<Item*> items;
-    int capacity = 20;
     int addedItems = 0;
-    Item** items = new Item*[capacity];
+    Item** items = new Item*[INVENTORY_CAPACITY];
 
 public:
 
@@ -32,6 +30,7 @@ public:
     void print() const;
 
 };
+
 
 
 #endif //GAMEPROJECT_INVENTORY_H

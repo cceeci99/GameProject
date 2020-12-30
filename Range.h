@@ -15,7 +15,7 @@ public:
 
     int getValue() const{
         srandom(time(nullptr));
-        return min + ((int)random() % ((max+1) - min));     //remove a random value within the range
+        return min + ((int)random() % ((max+1) - min));     //return random value within the range
     }
 
     void reduceRange(int reduce){
@@ -27,6 +27,7 @@ public:
         std::cout << min << "-" << max << std::endl;
     }
 
+    //generate random rage with within lower and upper Bound
     static Range getRandomRange(int lowerBound, int upperBound){
         srandom(time(nullptr));
         int min = (int)random() % lowerBound;

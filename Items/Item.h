@@ -13,25 +13,11 @@ private:
     const int price;
     const int requiredLevel;
     Items type;
-    std::string itemType;
 
 public:
 
     Item(std::string  name, int price, int level, Items type)
-    :name(std::move(name)), price(price), requiredLevel(level), type(type){
-        switch (type) {
-
-            case armor:
-                itemType = "Armor";
-                break;
-            case weapon:
-                itemType = "Weapon";
-                break;
-            case potion:
-                itemType = "Potion";
-                break;
-        }
-    }
+    :name(std::move(name)), price(price), requiredLevel(level), type(type){};
 
     virtual ~Item() = default;
 

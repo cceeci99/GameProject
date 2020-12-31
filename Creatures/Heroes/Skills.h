@@ -24,7 +24,7 @@ public:
 
     void addSpell(Spell* newSpell);
 
-    void removeSpell(int pos);
+    Spell* removeSpell(int pos);
 
     void print() const;
 };

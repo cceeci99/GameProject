@@ -46,30 +46,27 @@ public:
 
     ~Hero() override = default;
 
-    int getMana() const;
+    void print() const override = 0;
+    virtual void levelUp() = 0;
 
+    int getMana() const;
     int getMoney() const;
 
     void addExperience(int xp);
 
-    void print() const override = 0;
-
-    virtual void levelUp() = 0;
-
     void buyItem(Item* newItem);
-
     void buySpell(Spell* newSpell);
 
-    void sellItem(int pos);
-
-    void sellSpell(int pos);
+    Item* sellItem(int pos);
+    Spell* sellSpell(int pos);
 
     void checkInventory();
+    void printInventory() const;
+
+    void printSkills() const;
 
     void equip(Weapon* weapon);
-
     void equip(Armor* armor);
-
     void use(Potion* potion);
 
     void castSpell();

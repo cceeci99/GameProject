@@ -80,17 +80,8 @@ void Hero::checkInventory() {
 void Hero::buyItem(Item *newItem) {
     if ( money >= newItem->getPrice() && level >= newItem->getRequiredLevel() )
     {
-        newItem->print();
-        std::cout << "Price: " << newItem->getPrice() << std::endl;
-        std::cout << "Do you want to buy this item ? Y/N" << std::endl;
-        std::string answer;
-        std::cin >> answer;
-
-        if ( answer == "Y" || answer == "y" )
-        {
-            inventory.addItem(newItem);
-            money -= newItem->getPrice();
-        }
+        inventory.addItem(newItem);
+        money -= newItem->getPrice();
     }
     else
     {
@@ -104,17 +95,8 @@ void Hero::buyItem(Item *newItem) {
 void Hero::buySpell(Spell *newSpell) {
     if ( money >= newSpell->getPrice() && level >= newSpell->getRequiredLevel() )
     {
-        newSpell->print();
-        std::cout << "Price: " << newSpell->getPrice() << std::endl;
-        std::cout << "Do you want to buy this spell ? Y/N" << std::endl;
-        std::string answer;
-        std::cin >> answer;
-
-        if ( answer == "Y" || answer == "y" )
-        {
-            skills.addSpell(newSpell);
-            money -= newSpell->getPrice();
-        }
+        skills.addSpell(newSpell);
+        money -= newSpell->getPrice();
     }
     else
     {
@@ -125,33 +107,24 @@ void Hero::buySpell(Spell *newSpell) {
     }
 }
 
-void Hero::sellItem(int pos) {
-    Item* item = inventory.getItem(pos);
-    item->print();
-    std::cout << "Do you want to sell this item? Y/N" << std::endl;
-    std::string answer;
-    std::cin >> answer;
+Item* Hero::sellItem(int pos) {
+    Item* item = inventory.removeItem(pos);
 
-    if ( answer == "Y" || answer == "y" )
-    {
+    if ( item != nullptr ) {
         money += item->getPrice() / 2;
-        inventory.removeItem(pos);
     }
 
+    return item;
 }
 
-void Hero::sellSpell(int pos) {
-    Spell* spell = skills.getSpell(pos);
-    spell->print();
-    std::cout << "Do you want to sell this spell? Y/N" << std::endl;
-    std::string answer;
-    std::cin >> answer;
+Spell* Hero::sellSpell(int pos) {
+    Spell* spell = skills.removeSpell(pos);
 
-    if ( answer == "Y" || answer == "y")
-    {
-        money += spell->getPrice()/2;
-        skills.removeSpell(pos);
+    if ( spell != nullptr ) {
+        money += spell->getPrice() / 2;
     }
+
+    return spell;
 }
 
 void Hero::equip(Weapon* weapon) {
@@ -228,4 +201,13 @@ void Hero::castSpell() {
     }
 }
 
+void Hero::printInventory() const {
+    std::cout << "Your Money: " << money << std::endl;
+    inventory.print();
+    std::cout << std::endl;
+}
 
+void Hero::printSkills() const {
+    skills.print();
+    std::cout << std::endl;
+}

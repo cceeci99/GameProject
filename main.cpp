@@ -4,12 +4,13 @@
 #include "Spells/FireSpell.h"
 #include "Spells/IceSpell.h"
 
+#include "MarketPlace/Market.h"
+
 using namespace std;
 
 int main(int args, char* argv[]) {
 
     Hero* warrior = new Warrior("Kratos");
-    warrior->print();
 
     Item* armor = new Armor("Emblem", 122, 1, 450);
     Item* armor1 = new Armor("hat", 50, 1, 25);
@@ -23,17 +24,17 @@ int main(int args, char* argv[]) {
 
     Spell* spell1 = new IceSpell("iceball", 50, 1, 1100, Range::getRandomRange(500, 1000), 80);
 
-    warrior->buyItem(armor);
-    warrior->buyItem(weapon);
-    warrior->buyItem(weapon1);
-    warrior->buyItem(armor1);
-    warrior->buyItem(potion);
-    warrior->buySpell(spell);
-    warrior->buySpell(spell1);
 
-    warrior->checkInventory();
+    Market marketPlace;
+    marketPlace.addItem(armor);
+    marketPlace.addItem(armor1);
+    marketPlace.addItem(weapon);
+    marketPlace.addItem(weapon1);
+    marketPlace.addItem(potion);
+    marketPlace.addSpell(spell);
+    marketPlace.addSpell(spell1);
 
-    warrior->castSpell();
+    marketPlace.open(warrior);
 
     delete armor1;
     delete weapon1;

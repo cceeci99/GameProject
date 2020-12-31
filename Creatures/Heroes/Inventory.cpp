@@ -18,7 +18,7 @@ Item *Inventory::changeItem(int pos, Item *item) {
 }
 
 void Inventory::addItem(Item *newItem) {
-    if ( addedItems >= 10 )
+    if ( addedItems >= INVENTORY_CAPACITY)
     {
         std::cout << "Inventory full cant add new item" << std::endl;
         return;
@@ -35,12 +35,16 @@ void Inventory::addItem(Item *newItem) {
     }
 }
 
-void Inventory::removeItem(int pos) {
-    if ( pos >= INVENTORY_CAPACITY )
-        return;
+Item* Inventory::removeItem(int pos) {
+    if ( pos >= INVENTORY_CAPACITY  || items[pos] == nullptr)
+        return nullptr;
+
+    Item* temp = items[pos];
 
     items[pos] = nullptr;
     addedItems--;
+
+    return temp;
 }
 
 void Inventory::print() const {

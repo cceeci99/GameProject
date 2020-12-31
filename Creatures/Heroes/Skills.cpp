@@ -17,11 +17,16 @@ void Skills::addSpell(Spell *newSpell) {
     }
 }
 
-void Skills::removeSpell(int pos) {
-    if (pos >= SPELLS_LIMIT)
-        return;
+Spell* Skills::removeSpell(int pos) {
+    if (pos >= SPELLS_LIMIT || spells[pos] == nullptr)
+        return nullptr;
+
+    Spell* temp = spells[pos];
 
     spells[pos] = nullptr;
+    acquiredSpells--;
+
+    return temp;
 }
 
 Spell* Skills::getSpell(int pos){

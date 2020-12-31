@@ -25,7 +25,7 @@ public:
 
     void addItem(Item* newItem);
 
-    void removeItem(int pos);
+    Item* removeItem(int pos);
 
     void print() const;
 

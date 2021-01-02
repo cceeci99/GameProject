@@ -13,6 +13,8 @@
 #define GAMEPROJECT_HERO_H
 
 
+enum HeroType{warrior, paladin, sorcerer};
+
 
 class Hero: public LivingCreature {
 
@@ -50,6 +52,7 @@ public:
     virtual void levelUp() = 0;
 
     int getMana() const;
+
     int getMoney() const;
 
     void addExperience(int xp);
@@ -61,15 +64,16 @@ public:
     Spell* sellSpell(int pos);
 
     void checkInventory();
-    void printInventory() const;
 
+    void printInventory() const;
     void printSkills() const;
 
     void equip(Weapon* weapon);
     void equip(Armor* armor);
     void use(Potion* potion);
 
-    void castSpell();
+    // for implementing !!
+    void castSpell();       //casting spell on monster, spell make some damage on monster and has an effect for some turns
 };
 
 

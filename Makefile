@@ -16,7 +16,7 @@ EXEC = main
 
 # Παράμετροι για δοκιμαστική εκτέλεση
 ARGS1 =
-
+ 
 
 $(EXEC): $(OBJS)
 	$(CC) $(OBJS) -o $(EXEC) $(LDFLAGS)

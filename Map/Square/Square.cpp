@@ -6,7 +6,7 @@ Square::Square(unsigned int x, unsigned int y, SquareType type) : x(x), y(y), ty
     }
 }
 
-Status Square::getType() const{
+SquareType Square::getType() const{
     return type;
 }
 

@@ -6,7 +6,7 @@
 #include "MarketPlace/Market.h"
 #include "Map/Grid/Grid.h"
 
-using namespace std;
+#define MAX_TEAMMATES 3
 
 int main(int args, char* argv[]) {
     //Grid creation
@@ -101,7 +101,7 @@ int main(int args, char* argv[]) {
             Square* next = map->getSquare(x1, y1);
             if(next->getType() == nonAccessible)
             {
-                std::cout << "The Square you want to enter is no accesible" << std::endl;
+                std::cout << "The Square you want to enter is no accessible" << std::endl;
                 std::cout << "Please, go to another direction" << std::endl;
             }
             else
@@ -126,11 +126,11 @@ int main(int args, char* argv[]) {
 
                     if(answer == 'y' || answer == 'Y')
                     {
-                        array<Hero*, 3> HeroSquad = current->getHeroSquad();
+                        std::array<Hero*, MAX_TEAMMATES> HeroSquad = current->getHeroSquad();
 
                         for(int i = 0; i < current->getSize(); i++)
                         {
-                            std::cout << "Do you want to open market for " << HeroSquad[i]->getName() << "? Y/size" << std::endl;
+                            std::cout << "Do you want to open market for " << HeroSquad[i]->getName() << "? Y/N" << std::endl;
 
                             std::cin >> answer;
 
@@ -141,18 +141,18 @@ int main(int args, char* argv[]) {
                     }
                 }
 
-                std::cout << "Do you want to check inventory? Y/size" << std::endl;
+                std::cout << "Do you want to check inventory? Y/N" << std::endl;
 
                 char answer;
                 std::cin >> answer;
 
                 if(answer == 'Y' || answer == 'y')
                 {
-                    array<Hero*, 3> HeroSquad = current->getHeroSquad();
+                    std::array<Hero*, MAX_TEAMMATES> HeroSquad = current->getHeroSquad();
 
                     for(int i = 0; i < current->getSize(); i++)
                     {
-                        std::cout << "Do you want to check inventory for " << HeroSquad[i]->getName() << "? Y/size" << std::endl;
+                        std::cout << "Do you want to check inventory for " << HeroSquad[i]->getName() << "? Y/N" << std::endl;
                         std::cin >> answer;
                         if(answer == 'Y' || answer == 'y') {
                             HeroSquad[i]->checkInventory();
@@ -163,11 +163,10 @@ int main(int args, char* argv[]) {
         }
         else
         {
-            cout << "The square you want to go is out of bound" << std::endl;
-            cout << "Please, go to another direction" << std::endl;
+            std::cout << "The square you want to go is out of bound" << std::endl;
+            std::cout << "Please, go to another direction" << std::endl;
         }
 
-        //cout << "YOU ARE IN SQUARE WITH (x, y)=(" << current->getX() << ", " << current->getY() << ")" << std::endl;
     }
 
     delete armor1;

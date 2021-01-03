@@ -17,7 +17,7 @@ private:
     unsigned int x, y;                      //coordinates of square
     unsigned int size;
 
-    std::array<Hero*, MAX_TEAMMATES> HeroSquad;
+    std::array<Hero*, MAX_TEAMMATES> HeroSquad{};
     SquareType type;
 
 public:

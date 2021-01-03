@@ -15,14 +15,14 @@ class Square{
 
 private:
     unsigned int x, y;                      //coordinates of square
-    unsigned int size;
+    unsigned int teammatesNumber;
 
     std::array<Hero*, MAX_TEAMMATES> HeroSquad{};
     SquareType type;
 
 public:
 
-    Square(unsigned int x, unsigned int y, SquareType stat);
+    Square(unsigned int x, unsigned int y, SquareType type);
 
     SquareType getType() const;
 

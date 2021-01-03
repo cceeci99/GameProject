@@ -1,5 +1,6 @@
 #include "../Square/Square.h"
 
+
 #ifndef GAMEPROJECT_GRID_H
 #define GAMEPROJECT_GRID_H
 
@@ -23,6 +24,8 @@ public:
     void displayMap() const;
 
 };
+
+
 
 
 #endif //GAMEPROJECT_GRID_H

@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "Creatures/Heroes/Warrior.h"
 #include "Items/Armor.h"
 #include "Spells/FireSpell.h"
@@ -9,6 +10,7 @@
 #define MAX_TEAMMATES 3
 
 int main(int args, char* argv[]) {
+
     //Grid creation
     Grid* map = new Grid(5);
 
@@ -36,6 +38,7 @@ int main(int args, char* argv[]) {
     //Heroes creation
     Hero* warrior = new Warrior("Kratos");
 
+    //Game must be in it's own class and have this while loop and other functions etc.
     //Game
     Square* current = map->getSquare(0, 0);
     current->setHero(warrior);
@@ -99,6 +102,7 @@ int main(int args, char* argv[]) {
         if(!map->outOfBounds(x1, y1))
         {
             Square* next = map->getSquare(x1, y1);
+
             if(next->getType() == nonAccessible)
             {
                 std::cout << "The Square you want to enter is no accessible" << std::endl;
@@ -119,7 +123,7 @@ int main(int args, char* argv[]) {
                 else
                 {
                     std::cout << "You have entered a square with market" << std::endl;
-                    std::cout << "Do you want to open market? Y/size" << std::endl;
+                    std::cout << "Do you want to open market? Y/teammatesNumber" << std::endl;
 
                     char answer;
                     std::cin >> answer;
@@ -137,6 +141,7 @@ int main(int args, char* argv[]) {
                             if(answer == 'Y' || answer == 'y') {
                                 marketPlace.open(HeroSquad[i]);
                             }
+
                         }
                     }
                 }
@@ -154,9 +159,11 @@ int main(int args, char* argv[]) {
                     {
                         std::cout << "Do you want to check inventory for " << HeroSquad[i]->getName() << "? Y/N" << std::endl;
                         std::cin >> answer;
+
                         if(answer == 'Y' || answer == 'y') {
                             HeroSquad[i]->checkInventory();
                         }
+
                     }
                 }
             }   

@@ -1,6 +1,6 @@
 #include "Square.h"
 
-Square::Square(unsigned int x, unsigned int y, SquareType type) : x(x), y(y), type(type), size(0){
+Square::Square(unsigned int x, unsigned int y, SquareType type) : x(x), y(y), type(type), teammatesNumber(0){
     for(int i = 0; i < MAX_TEAMMATES; i++){
         HeroSquad[i] = nullptr;
     }
@@ -16,7 +16,7 @@ bool Square::setHero(Hero* hero){
         if(HeroSquad[i] ==  nullptr)
         {
             HeroSquad[i] = hero;
-            size++;
+            teammatesNumber++;
 
             return true;
         }
@@ -26,12 +26,12 @@ bool Square::setHero(Hero* hero){
 }
 
 void Square::move(Square* square){
-    for(int i = 0; i < size; i++)
+    for(int i = 0; i < teammatesNumber; i++)
     {
         square->setHero(HeroSquad[i]);
 
         HeroSquad[i] = nullptr;
-        size--;
+        teammatesNumber--;
     }
 }
 
@@ -44,7 +44,7 @@ unsigned int Square::getY() const {
 }
 
 unsigned int Square::getSize() const{
-    return size;
+    return teammatesNumber;
 }
 
 std::array<Hero*, MAX_TEAMMATES> Square::getHeroSquad() const {

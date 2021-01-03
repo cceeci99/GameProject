@@ -13,7 +13,9 @@ private:
     const int price;
     const int requiredLevel;
     const int manaRequired;
+
     Range damageRange;
+
 
 public:
 

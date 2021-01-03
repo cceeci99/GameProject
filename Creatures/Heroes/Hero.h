@@ -66,7 +66,7 @@ public:
     void use(Potion* potion);
 
     int attack() const;
-    void castSpell(int& damage, int& effect);       //casting spell on monster, spell make some damage on monster and has an effect for some turns
+    void castSpell(int& damage, int& effect, int& duration);       //casting spell on monster, spell make some damage on monster and has an effect for some turns
     void usePotion();
 
 };

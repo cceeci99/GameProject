@@ -174,7 +174,7 @@ void Hero::use(Potion *potion) {
     }
 }
 
-void Hero::castSpell(int& damage, int& effect) {
+void Hero::castSpell(int& damage, int& effect, int& duration) {
     std::cout << "Your acquired skills are:" << std::endl;
     skills.print();
 
@@ -219,6 +219,7 @@ int Hero::attack() const {
 
 void Hero::usePotion() {
     std::cout << "Choose potion to use" << std::endl;
-    use(inventory.choosePotion());
+    Potion* potion = inventory.choosePotion();
+    use(potion);
 }
 

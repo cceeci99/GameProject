@@ -1,19 +1,23 @@
 #include "Square.h"
 
-Square::Square(unsigned int x1, unsigned int y1, Status stat) : x(x1), y(y1), status(stat), size(0){
-    for(int i = 0; i < 3; i++)
+Square::Square(unsigned int x, unsigned int y, SquareType type) : x(x), y(y), type(type), size(0){
+    for(int i = 0; i < MAX_TEAMMATES; i++){
         HeroSquad[i] = nullptr;
+    }
 }
 
-Status Square::getStatus() const{
-    return status;
+Status Square::getType() const{
+    return type;
 }
 
-bool Square::setHero(Hero* h){
-    for(int i = 0; i < 3; i++){
-        if(HeroSquad[i] ==  nullptr){
-            HeroSquad[i] = h;
+bool Square::setHero(Hero* hero){
+    for(int i = 0; i < MAX_TEAMMATES; i++)
+    {
+        if(HeroSquad[i] ==  nullptr)
+        {
+            HeroSquad[i] = hero;
             size++;
+
             return true;
         }
     }
@@ -21,9 +25,11 @@ bool Square::setHero(Hero* h){
     return false;
 }
 
-void Square::move(Square* sq){
-    for(int i = 0; i < size; i++){
-        sq->setHero(HeroSquad[i]);
+void Square::move(Square* square){
+    for(int i = 0; i < size; i++)
+    {
+        square->setHero(HeroSquad[i]);
+
         HeroSquad[i] = nullptr;
         size--;
     }
@@ -41,6 +47,6 @@ unsigned int Square::getSize() const{
     return size;
 }
 
-std::array<Hero*, 3> Square::getHeroSquad() const {
+std::array<Hero*, MAX_TEAMMATES> Square::getHeroSquad() const {
     return HeroSquad;
 }

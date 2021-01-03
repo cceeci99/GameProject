@@ -1,28 +1,43 @@
-#include "../../Creatures/Heroes/Hero.h"
 #include <array>
+
+#include "../../Creatures/Heroes/Hero.h"
+
 
 #ifndef GAMEPROJECT_SQUARE_H
 #define GAMEPROJECT_SQUARE_H
 
-enum Status{nonAccesible, market, common};
+#define MAX_TEAMMATES 3
 
-using namespace std;
+enum SquareType{nonAccessible, market, common};
+
 
 class Square{
-    private:
-        unsigned int x, y; //coordinates of square
-        unsigned int size;
-        array<Hero*, 3> HeroSquad;
-        Status status;
-    public:
-        Square(unsigned int x1, unsigned int y1, Status stat);
-        Status getStatus() const;
-        unsigned int getX() const;
-        unsigned int getY() const;
-        unsigned int getSize() const;
-        std::array<Hero*, 3> getHeroSquad() const;
-        bool setHero(Hero* h);
-        void move(Square* sq);
+
+private:
+    unsigned int x, y;                      //coordinates of square
+    unsigned int size;
+
+    std::array<Hero*, MAX_TEAMMATES> HeroSquad;
+    SquareType type;
+
+public:
+
+    Square(unsigned int x, unsigned int y, SquareType stat);
+
+    SquareType getType() const;
+
+    unsigned int getX() const;
+
+    unsigned int getY() const;
+
+    unsigned int getSize() const;
+
+    std::array<Hero*, MAX_TEAMMATES> getHeroSquad() const;
+
+    bool setHero(Hero* h);
+
+    void move(Square* sq);
 }; 
+
 
 #endif //GAMEPROJECT_SQUARE_H

@@ -21,6 +21,7 @@ public:
     void print() const override;
 
     int getEffect() const override;
+
 };
 
 

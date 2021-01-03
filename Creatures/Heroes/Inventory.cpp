@@ -58,3 +58,7 @@ void Inventory::print() const {
         }
     }
 }
+
+bool Inventory::empty() const {
+    return addedItems == 0;
+}

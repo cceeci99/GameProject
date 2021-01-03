@@ -1,9 +1,5 @@
 #include "Hero.h"
 
-int Hero::getMana() const {
-    return mana;
-}
-
 int Hero::getMoney() const {
     return money;
 }
@@ -16,6 +12,17 @@ void Hero::addExperience(int xp) {
     }
 }
 
+void Hero::printInventory() const {
+    std::cout << "Your Money: " << money << std::endl;
+    inventory.print();
+    std::cout << std::endl;
+}
+
+void Hero::printSkills() const {
+    skills.print();
+    std::cout << std::endl;
+}
+
 void Hero::checkInventory() {
     std::cout << "Opening inventory" << std::endl;
     std::cout << "Money: " << money << std::endl;
@@ -23,6 +30,10 @@ void Hero::checkInventory() {
 
     while (true)
     {
+        if ( inventory.empty() ) {
+            std::cout << "No items in your inventory" << std::endl;
+        }
+
         int pos;
         std::cin >> pos;    // get user input for position of item he want's to use
 
@@ -201,13 +212,3 @@ void Hero::castSpell() {
     }
 }
 
-void Hero::printInventory() const {
-    std::cout << "Your Money: " << money << std::endl;
-    inventory.print();
-    std::cout << std::endl;
-}
-
-void Hero::printSkills() const {
-    skills.print();
-    std::cout << std::endl;
-}

@@ -138,6 +138,8 @@ int main(int args, char* argv[]) {
         //cout << "YOU ARE IN SQUARE WITH (x, y)=(" << sq->getX() << ", " << sq->getY() << ")" << std::endl;
     }
 
+    warrior->checkInventory();
+
     delete armor1;
     delete weapon1;
     delete spell;

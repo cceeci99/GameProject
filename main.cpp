@@ -36,6 +36,8 @@ int main(int args, char* argv[]) {
 
     marketPlace.open(warrior);
 
+    warrior->checkInventory();
+
     delete armor1;
     delete weapon1;
     delete spell;

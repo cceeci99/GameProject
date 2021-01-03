@@ -19,6 +19,8 @@ public:
         delete[] items;
     };
 
+    bool empty() const;
+
     Item * getItem(int pos) ;
 
     Item* changeItem(int pos, Item* item);

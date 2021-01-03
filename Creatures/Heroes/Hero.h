@@ -13,13 +13,13 @@
 #define GAMEPROJECT_HERO_H
 
 
+//use hero Type for player choice of hero
 enum HeroType{warrior, paladin, sorcerer};
 
 
 class Hero: public LivingCreature {
 
 private:
-    int mana;
     int money;
 
     Weapon* equippedWeapon = nullptr;
@@ -29,33 +29,26 @@ private:
     Inventory inventory;
 
 protected:
+    int mana;
     int experience;
     int strength;
     int dexterity;
     int agility;
 
 public:
-    Hero(const std::string& name, int newStrength, int newDexterity, int newAgility)
-    :LivingCreature(name, START_LEVEL, START_HP){
-        mana = START_MP;
-        money = START_MONEY;
-        experience = START_XP;
 
-        strength = newStrength;
-        dexterity = newDexterity;
-        agility = newAgility;
-    }
+    Hero(const std::string& name, int strength, int dexterity, int agility)
+    :LivingCreature(name, START_LEVEL, START_HP), mana(START_MP), money(START_MONEY), experience(START_XP),
+    strength(strength), dexterity(dexterity), agility(agility){}
 
     ~Hero() override = default;
 
     void print() const override = 0;
     virtual void levelUp() = 0;
 
-    int getMana() const;
+    void addExperience(int xp);
 
     int getMoney() const;
-
-    void addExperience(int xp);
 
     void buyItem(Item* newItem);
     void buySpell(Spell* newSpell);
@@ -63,10 +56,10 @@ public:
     Item* sellItem(int pos);
     Spell* sellSpell(int pos);
 
-    void checkInventory();
-
     void printInventory() const;
     void printSkills() const;
+
+    void checkInventory();
 
     void equip(Weapon* weapon);
     void equip(Armor* armor);

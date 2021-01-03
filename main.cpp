@@ -38,6 +38,10 @@ int main(int args, char* argv[]) {
 
     warrior->checkInventory();
 
+    warrior->usePotion();
+
+    warrior->checkInventory();
+
     delete armor1;
     delete weapon1;
     delete spell;

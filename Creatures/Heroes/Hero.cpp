@@ -174,7 +174,7 @@ void Hero::use(Potion *potion) {
     }
 }
 
-void Hero::castSpell() {
+void Hero::castSpell(int& damage, int& effect) {
     std::cout << "Your acquired skills are:" << std::endl;
     skills.print();
 
@@ -201,14 +201,24 @@ void Hero::castSpell() {
         }
         else
         {
+            damage = spell->cast()*dexterity/100 + dexterity;
+            effect = spell->getEffect();
+
             std::cout << "Casting " << spell->getName() << std::endl;
-            std::cout << "Effect: " << spell->getEffect() << std::endl;
-            std::cout << "Damage: " << spell->cast() << std::endl;
 
             mana -= spell->getManaRequired();
 
             return;
         }
     }
+}
+
+int Hero::attack() const {
+    return strength+equippedWeapon->getAttribute();
+}
+
+void Hero::usePotion() {
+    std::cout << "Choose potion to use" << std::endl;
+    use(inventory.choosePotion());
 }
 

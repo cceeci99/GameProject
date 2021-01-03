@@ -65,8 +65,10 @@ public:
     void equip(Armor* armor);
     void use(Potion* potion);
 
-    // for implementing !!
-    void castSpell();       //casting spell on monster, spell make some damage on monster and has an effect for some turns
+    int attack() const;
+    void castSpell(int& damage, int& effect);       //casting spell on monster, spell make some damage on monster and has an effect for some turns
+    void usePotion();
+
 };
 
 

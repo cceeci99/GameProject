@@ -211,7 +211,6 @@ public:
             else
             {
                 Square* next = map->getSquare(x1, y1);
-                squad->move(next);
                 if(next->getType() == nonAccessible)
                 {
                     std::cout << "The Square you want to enter is no accessible" << std::endl;

@@ -4,10 +4,8 @@
 #include "Spells/IceSpell.h"
 #include "Spells/FireSpell.h"
 
-#define MAX_TEAMMATES 3
 
 int main(int args, char* argv[]) {
-
 
     std::vector<Item*> items;
     std::vector<Spell*> spells;

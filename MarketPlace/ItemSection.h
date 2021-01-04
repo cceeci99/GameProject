@@ -44,7 +44,7 @@ public:
 
             pos--;
 
-            Item *item = removeItem(pos);
+            Item *item = getItem(pos);
 
             if (item == nullptr) {
                 std::cout << "Please choose available item" << std::endl;
@@ -60,7 +60,7 @@ public:
         }
     }
 
-    void sellOption(Hero* hero){
+    void sellOption(Hero* hero) const{
         while (true)
         {
             std::cout << "Which item from yours you want to sell ?" << std::endl;
@@ -80,8 +80,6 @@ public:
                 std::cout << "Please choose available item" << std::endl;
                 continue;
             }
-
-            addItem(item);
 
             std::cout << "Item Section:" << std::endl;
             print();
@@ -139,15 +137,11 @@ public:
             }
         }
     }
-    Item* removeItem(int pos) {
+    Item* getItem(int pos) {
         if ( pos >= ITEMS_CAPACITY )
             return nullptr;
 
-        Item* temp = items[pos];
-        items[pos] = nullptr;
-        addedItems--;
-
-        return temp;
+        return items[pos];
     }
 
 };

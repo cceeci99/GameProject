@@ -12,7 +12,7 @@ private:
 public:
 
     IceSpell(const std::string& name, int price, int level, int mana, Range range, int reduce)
-    :Spell(name, price, level, mana, range), reduceDamage(reduce){};
+    :Spell(name, price, level, mana, range, 3), reduceDamage(reduce){};
 
     ~IceSpell() override = default;
 

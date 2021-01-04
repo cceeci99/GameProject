@@ -32,7 +32,7 @@ public:
 
             pos--;
 
-            Spell* spell = removeSpell(pos);
+            Spell* spell = getSpell(pos);
 
             if ( spell == nullptr )
             {
@@ -49,7 +49,7 @@ public:
         }
     }
 
-    void sellOption(Hero* hero){
+    void sellOption(Hero* hero) const{
         while(true)
         {
             std::cout << "Which spell from yours you would like to sell ?" << std::endl;
@@ -68,8 +68,6 @@ public:
                 std::cout << "Please choose available spell" << std::endl;
                 continue;
             }
-
-            addSpell(spell);
 
             std::cout << "Available spells:" << std::endl;
             print();
@@ -137,15 +135,11 @@ public:
             }
         }
     }
-    Spell* removeSpell(int pos){
+    Spell* getSpell(int pos){
         if (pos >= SPELLS_CAPACITY)
             return nullptr;
 
-        Spell* temp = spells[pos];
-        spells[pos] = nullptr;
-        addedSpells--;
-
-        return temp;
+        return spells[pos];
     }
 };
 

@@ -203,6 +203,7 @@ void Hero::castSpell(int& damage, int& effect, int& duration) {
         {
             damage = spell->cast()*dexterity/100 + dexterity;
             effect = spell->getEffect();
+            duration = spell->getDuration();
 
             std::cout << "Casting " << spell->getName() << std::endl;
 

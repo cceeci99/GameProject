@@ -50,6 +50,13 @@ public:
 
     int getMoney() const;
 
+    void regeneration() override{
+        if ( health != 0 ){
+            health += 10/100*health;
+        }
+        mana += mana + 15/100*mana;
+    }
+
     void buyItem(Item* newItem);
     void buySpell(Spell* newSpell);
 

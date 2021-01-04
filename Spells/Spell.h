@@ -19,7 +19,7 @@ private:
 
 public:
 
-    Spell(std::string name, int price, int level, int mana, Range range)
+    Spell(std::string name, int price, int level, int mana, Range range, int duration)
     :name(std::move(name)), price(price), requiredLevel(level), manaRequired(mana), damageRange(range){};
 
     virtual ~Spell() = 0;
@@ -35,6 +35,10 @@ public:
     void printDamage() const;
 
     int cast() const;
+
+    int getDuration() const{
+        return duration;
+    }
 
     virtual void print() const = 0;
 

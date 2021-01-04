@@ -67,15 +67,19 @@ public:
     }
 
     bool wiped() const{
-        //
-        return true;
+        int totalHealth = 0;
+        for(int i=0; i<teammates; i++){
+            totalHealth += team[i]->getHealth();
+        }
+
+        return totalHealth==0;
     }
 
     void regeneration(){
-        //
-        return;
+        for(int i=0; i<teammates; i++){
+            team[i]->regeneration();
+        }
     }
-
 
 
 };

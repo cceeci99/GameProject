@@ -13,11 +13,11 @@ Grid::Grid(int size) : size(size){
         {
             // to implement pattern for squares !!
             if(i % 3 == 0)
-                array[i][j] = new Square(i, j, nonAccessible);
-            else if(i % 2 == 0)
                 array[i][j] = new Square(i, j, market);
-            else
+            else if(i % 2 == 0)
                 array[i][j] = new Square(i, j, common);
+            else
+                array[i][j] = new Square(i, j, nonAccessible);
             //
         }
     }
@@ -73,20 +73,15 @@ void Grid::displayMap() const{
                     break;
             }
 
-            std::array<Hero*, 3> HeroSquad = square->getHeroSquad();
-
-            unsigned int heroes = square->getSize();
-
-            if(heroes == 0)
+            if(square->getSquad() == nullptr)
             {
                 std::cout << "No Hero exists in this square" << std::endl;
             }
             else
             {
                 std::cout << "Heroes in this square are:" << std::endl;
-                for(int i = 0; i < heroes; i++) {
-                    HeroSquad[i]->print();
-                }
+                HeroSquad* squad = square->getSquad();
+                squad->print();
             }
         }
     }

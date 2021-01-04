@@ -15,7 +15,7 @@ private:
     const int manaRequired;
 
     Range damageRange;
-
+    int duration;
 
 public:
 

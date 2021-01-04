@@ -1,5 +1,5 @@
 #include "../Square/Square.h"
-
+#include "../../HeroSquad.h"
 
 #ifndef GAMEPROJECT_GRID_H
 #define GAMEPROJECT_GRID_H
@@ -9,7 +9,7 @@ class Grid {
 
 private:
     Square*** array;
-    unsigned int size;
+    int size;
 
 public:
 

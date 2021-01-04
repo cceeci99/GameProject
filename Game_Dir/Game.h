@@ -61,9 +61,6 @@ public:
 
     }
 
-    static void displayStats(){
-
-    }
 
     void fight(HeroSquad* heroSquad){
         std::cout << "Fight..." << std::endl;

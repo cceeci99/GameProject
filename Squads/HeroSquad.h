@@ -11,7 +11,7 @@ class HeroSquad {
 
 private:
 
-    Hero** team;
+    Hero** squad;
     int teammates=0;
 
 public:
@@ -20,9 +20,7 @@ public:
 
     ~HeroSquad();
 
-    int getSize() const{
-        return teammates;
-    }
+    int getSize() const;
 
     void print() const;
 
@@ -30,7 +28,7 @@ public:
 
     Hero* getHero(int pos) const;
 
-    Hero** getTeam() const;
+    Hero** getSquad() const;
 
     void move(Square* square);
 

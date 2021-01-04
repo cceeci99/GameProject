@@ -102,9 +102,7 @@ void Game::play() {
         }
         else
         {
-            start->setSquad(nullptr);
             Square* next = map->getSquare(x1, y1);
-            squad->move(next);
 
             if(next->getType() == nonAccessible)
             {
@@ -114,6 +112,10 @@ void Game::play() {
             }
             else if (next->getType() == market)
             {
+                start->setSquad(nullptr);
+                squad->move(next);
+                start = map->getSquare(x1, y1);
+
                 std::cout << "You entered a marketPlace do you want to open market? Y/N" << std::endl;
                 char answer;
                 std::cin >> answer;
@@ -143,6 +145,9 @@ void Game::play() {
             }
             else
             {
+                start->setSquad(nullptr);
+                squad->move(next);
+
                 std::cout << "You have entered a common square" << std::endl;
 
                 //if(...)

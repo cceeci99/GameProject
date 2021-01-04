@@ -81,7 +81,7 @@ void Grid::displayMap() const{
             }
             else
             {
-                std::cout << "Heroes in this square are:" << std::endl;
+                std::cout << "your squad -->";
                 HeroSquad* squad = square->getSquad();
                 squad->print();
             }

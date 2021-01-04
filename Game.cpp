@@ -79,8 +79,8 @@ void Game::play() {
                 y1 = y + 1;
                 break;
             case 'q':
-                quit();
-                break;
+                std::cout << "Quit Game... Bye!" << std::endl;
+                return;
             case 'm':
                 map->displayMap();
                 continue;
@@ -216,9 +216,4 @@ void Game::fillMarket(const std::vector<Item *> &items, const std::vector<Spell 
 
 void Game::createMap(int size) {
     map = new Grid(size);
-}
-
-void Game::quit() {
-    std::cout << "Quit Game... Bye!" << std::endl;
-    exit(0);
 }

@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Game_Dir/Game.h"
+#include "Game.h"
 #include "Spells/IceSpell.h"
 #include "Spells/FireSpell.h"
 

@@ -7,7 +7,7 @@
 #include "Creatures/Heroes/Hero.h"
 
 #include "HeroSquad.h"
-
+#include "MonsterSquad.h"
 #include "Creatures/Heroes/Warrior.h"
 #include "Creatures/Heroes/Paladin.h"
 #include "Creatures/Heroes/Sorcerer.h"
@@ -211,7 +211,7 @@ public:
             else
             {
                 Square* next = map->getSquare(x1, y1);
-
+                squad->move(next);
                 if(next->getType() == nonAccessible)
                 {
                     std::cout << "The Square you want to enter is no accessible" << std::endl;
@@ -234,6 +234,9 @@ public:
 
                             if(answer == 'Y' || answer == 'y'){
                                 marketPlace->open(squad->getHero(i));
+                            }
+                            else{
+                                continue;
                             }
                         }
                         continue;
@@ -259,55 +262,55 @@ public:
 
     }
 
-    void figth(HeroSquad ){
+    void figth(HeroSquad* herosquad){
         cout << "Fight..." << endl;
 
-        int totalMonsters = rand() % 5 + 1; //[1, 5]
+        int size = herosquad->getSize();
         //create MosterSquad
-        unsigned int j = 0;
-        for(int i = 0; i < totalMonsters; i++){
-            unsigned int curLevel = HeroSquad[j]->getLevel(); 
-            int MonsterType = rand % 3;
-            
+        MonsterSquad* monstersquad = new MonsterSquad(size);
+        for(int i = 0; i < size; i++){
+            Hero* hero = herosquad->getHero(i);
+            int level = hero->getLevel();
+            int MonsterType = rand % 3 +1; //[1, 3]
+            Monster* monster;
+
             switch (MonsterType)
             {
             case Dragon:
-                //...
+                //monster = new Dragon("sjuf", level);
                 break;
             case ExoSkeleton:
-                //...
+                //monster = new ExoSkeleton("fef", level);
                 break;
             }
             case Spirit:
-                //...
+                //monster = new Spirit("fgerge" level);
                 break;
             }
 
-            j++;
-            if(j >= sq->getSize())
-                j = 0;
+            monstersquad->setMonster(monster);
         }
 
-        unsigned int round = 1;
-        while(true){
-           if (HeroSquad.wiped() || MonsterSquad.wiped(){
-                //...   
-                break;
-           }
+    //     unsigned int round = 1;
+    //     while(true){
+    //        if (HeroSquad.wiped() || MonsterSquad.wiped(){
+    //             //...   
+    //             break;
+    //        }
 
-            if(round % 2 == 1){ //Heroes' turn
-                //...        
-            }
-            else{ //Monsters' turn
-                //...
-            }
+    //         if(round % 2 == 1){ //Heroes' turn
+    //             //...        
+    //         }
+    //         else{ //Monsters' turn
+    //             //...
+    //         }
 
-            //REGENERATION
-            HeroSquad.regeneration();
-            MonsterSquad.regeneration();
+    //         //REGENERATION
+    //         HeroSquad.regeneration();
+    //         MonsterSquad.regeneration();
 
-            round++;
-        }
+    //         round++;
+    //     }
     }
 
     static void quit(){

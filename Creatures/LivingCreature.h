@@ -26,9 +26,7 @@ public:
 
     int getLevel() const;
 
-    void setHealth(int newHealth){
-        health = newHealth;
-    }
+    void setHealth(int newHealth);
 
     virtual void print() const = 0;
     virtual void regeneration() = 0;

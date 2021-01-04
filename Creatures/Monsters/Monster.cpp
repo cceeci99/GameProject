@@ -7,3 +7,9 @@ int Monster::getDefence() const {
 int Monster::getDodge() const {
     return dodge;
 }
+
+void Monster::regeneration() {
+    if (health != 0){
+        health += 15/100*health;
+    }
+}

@@ -1,5 +1,5 @@
 #include "../Square/Square.h"
-#include "../../HeroSquad.h"
+#include "../../Squads/HeroSquad.h"
 
 #ifndef GAMEPROJECT_GRID_H
 #define GAMEPROJECT_GRID_H

@@ -5,7 +5,7 @@
 #ifndef GAMEPROJECT_MONSTER_H
 #define GAMEPROJECT_MONSTER_H
 
-enum Monstertype{dragon=1, exoskeleton=2, spirit=3};
+enum MonsterType{dragon=1, exoskeleton=2, spirit=3};
 
 class Monster: public LivingCreature {
 
@@ -29,11 +29,7 @@ public:
 
     void print() const override = 0;
 
-    void regeneration() override{
-        if (health != 0){
-            health += 15/100*health;
-        }
-    }
+    void regeneration() override;
 
 };
 

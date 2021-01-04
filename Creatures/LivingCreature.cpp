@@ -12,3 +12,7 @@ int LivingCreature::getLevel() const {
     return level;
 }
 
+void LivingCreature::setHealth(int newHealth) {
+    health = newHealth;
+}
+

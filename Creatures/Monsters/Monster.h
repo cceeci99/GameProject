@@ -28,6 +28,12 @@ public:
 
     void print() const override = 0;
 
+    void regeneration() override{
+        if (health != 0){
+            health += 15/100*health;
+        }
+    }
+
 };
 
 #endif //GAMEPROJECT_MONSTER_H

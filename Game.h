@@ -209,7 +209,9 @@ public:
             }
             else
             {
+                start->setSquad(nullptr);
                 Square* next = map->getSquare(x1, y1);
+                squad->move(next);
 
                 if(next->getType() == nonAccessible)
                 {

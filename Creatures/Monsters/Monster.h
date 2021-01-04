@@ -1,9 +1,10 @@
+
+#ifndef GAMEPROJECT_MONSTER_H
+#define GAMEPROJECT_MONSTER_H
+
 #include "../LivingCreature.h"
 #include "../../Range.h"
 
- 
-#ifndef GAMEPROJECT_MONSTER_H
-#define GAMEPROJECT_MONSTER_H
 
 enum MonsterType{dragon=1, exoskeleton=2, spirit=3};
 

@@ -1,10 +1,9 @@
-#include <iostream>
-
-#include "../Creatures/Heroes/Hero.h"
-#include "../Map/Square/Square.h"
 
 #ifndef GAMEPROJECT_HEROSQUAD_H
 #define GAMEPROJECT_HEROSQUAD_H
+
+#include "../Creatures/Heroes/Hero.h"
+#include "../Map/Square/Square.h"
 
 
 class HeroSquad {

@@ -1,7 +1,8 @@
-#include <iostream>
 
 #ifndef GAMEPROJECT_LIVINGCREATURE_H
 #define GAMEPROJECT_LIVINGCREATURE_H
+
+#include <iostream>
 
 
 class LivingCreature {
@@ -25,8 +26,6 @@ public:
     int getHealth() const;
 
     int getLevel() const;
-
-    void setHealth(int newHealth);
 
     virtual void print() const = 0;
     virtual void regeneration() = 0;

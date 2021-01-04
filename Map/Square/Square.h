@@ -1,4 +1,3 @@
-#include <iostream>
 
 #ifndef GAMEPROJECT_SQUARE_H
 #define GAMEPROJECT_SQUARE_H
@@ -18,7 +17,8 @@ private:
 
 public:
 
-    Square(int x, int y, SquareType type): x(x), y(y), type(type){}
+    Square(int x, int y, SquareType type)
+    : x(x), y(y), type(type){}
 
     ~Square() = default;
 

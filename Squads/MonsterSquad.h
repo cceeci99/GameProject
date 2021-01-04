@@ -1,10 +1,8 @@
-#include <iostream>
-
-#include "../Creatures/Monsters/Monster.h"
 
 #ifndef GAMEPROJECT_MONSTERSQUAD_H
 #define GAMEPROJECT_MONSTERSQUAD_H
 
+#include "../Creatures/Monsters/Monster.h"
 
 
 class MonsterSquad {

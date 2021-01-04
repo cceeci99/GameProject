@@ -1,9 +1,8 @@
-#include "../../Spells/Spell.h"
-
 
 #ifndef GAMEPROJECT_SKILLS_H
 #define GAMEPROJECT_SKILLS_H
 
+#include "../../Spells/Spell.h"
 
 #define SPELLS_LIMIT 10
 

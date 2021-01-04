@@ -1,9 +1,8 @@
-#include "Spell.h"
-
-#include <utility>
 
 #ifndef GAMEPROJECT_LIGHTINGSPELL_H
 #define GAMEPROJECT_LIGHTINGSPELL_H
+
+#include "Spell.h"
 
 
 class LightingSpell: public Spell {

@@ -1,9 +1,9 @@
-#include "Item.h"
-#include "../Creatures/Heroes/HERO_ATTRIBUTES.h"
 
 #ifndef GAMEPROJECT_POTION_H
 #define GAMEPROJECT_POTION_H
 
+#include "Item.h"
+#include "../Creatures/Heroes/HERO_ATTRIBUTES.h"
 
 
 class Potion: public Item {

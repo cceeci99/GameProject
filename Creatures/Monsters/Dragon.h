@@ -1,8 +1,8 @@
-#include "Monster.h"
-
 
 #ifndef GAMEPROJECT_DRAGON_H
 #define GAMEPROJECT_DRAGON_H
+
+#include "Monster.h"
 
 
 class Dragon: public Monster {

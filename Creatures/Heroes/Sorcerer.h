@@ -1,7 +1,8 @@
-#include "Hero.h"
 
 #ifndef GAMEPROJECT_SORCERER_H
 #define GAMEPROJECT_SORCERER_H
+
+#include "Hero.h"
 
 
 class Sorcerer: public Hero {

@@ -1,10 +1,9 @@
-#include <iostream>
+
+#ifndef GAMEPROJECT_GAME_H
+#define GAMEPROJECT_GAME_H
 
 #include "Map/Grid/Grid.h"
 #include "MarketPlace/Market.h"
-
-#include "Creatures/Monsters/Monster.h"
-#include "Creatures/Heroes/Hero.h"
 
 #include "Squads/HeroSquad.h"
 #include "Squads/MonsterSquad.h"
@@ -12,9 +11,6 @@
 #include "Creatures/Heroes/Warrior.h"
 #include "Creatures/Heroes/Paladin.h"
 #include "Creatures/Heroes/Sorcerer.h"
-
-#ifndef GAMEPROJECT_GAME_H
-#define GAMEPROJECT_GAME_H
 
 
 #define MAX_TEAMMATES 3     //max number of mobs in a squad
@@ -61,7 +57,6 @@ public:
 
     }
 
-/*
     void fight(HeroSquad* heroSquad){
         std::cout << "Fight..." << std::endl;
 
@@ -115,7 +110,7 @@ public:
 
     //         round++;
     //     }
-    } */
+    }
 
 };
 

@@ -1,9 +1,8 @@
-#include <iostream>
-#include "Hero.h"
 
 #ifndef GAMEPROJECT_WARRIOR_H
 #define GAMEPROJECT_WARRIOR_H
 
+#include "Hero.h"
 
 class Warrior: public Hero {
 

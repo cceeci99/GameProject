@@ -1,4 +1,6 @@
-#include <iostream>
+
+#ifndef GAMEPROJECT_HERO_H
+#define GAMEPROJECT_HERO_H
 
 #include "../LivingCreature.h"
 
@@ -8,9 +10,6 @@
 #include "../../Items/Weapon.h"
 #include "../../Items/Potion.h"
 #include "../../Items/Armor.h"
-
-#ifndef GAMEPROJECT_HERO_H
-#define GAMEPROJECT_HERO_H
 
 
 //use hero Type for player choice of hero
@@ -72,8 +71,6 @@ public:
     void usePotion();
 
 };
-
-
 
 
 #endif //GAMEPROJECT_HERO_H

@@ -1,7 +1,8 @@
-#include "Spell.h"
 
 #ifndef GAMEPROJECT_FIRESPELL_H
 #define GAMEPROJECT_FIRESPELL_H
+
+#include "Spell.h"
 
 
 class FireSpell: public Spell {

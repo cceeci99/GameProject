@@ -59,7 +59,9 @@ public:
         // create array of monsters initialize them with some level and attributes(health, defence, dodge) , names from file
         // values of level, attributes from macros or some kind of algorithm
 
+    }
 
+    static void displayStats(){
 
     }
 

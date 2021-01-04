@@ -19,8 +19,9 @@ int MonsterSquad::getSize() const {
 
 void MonsterSquad::print() const {
     for (int i=0; i < mobs; i++){
-        squad[i]->print();
+        std::cout << squad[i]->getName() << ", ";
     }
+    std::cout << std::endl;
 }
 
 void MonsterSquad::setMonster(Monster *monster) {

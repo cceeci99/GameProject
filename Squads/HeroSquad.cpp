@@ -14,9 +14,11 @@ HeroSquad::~HeroSquad() {
 }
 
 void HeroSquad::print() const {
+    std::cout << "Squad: ";
     for (int i=0; i<teammates; i++){
-        team[i]->print();
+        std::cout << team[i]->getName() << ", ";
     }
+    std::cout << std::endl;
 }
 
 void HeroSquad::setHero(Hero *hero) {

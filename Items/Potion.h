@@ -34,6 +34,8 @@ public:
             case Agility:
                 attributeType = "Agility";
                 break;
+            default:
+                break;
         }
     };
 

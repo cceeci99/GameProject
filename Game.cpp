@@ -140,11 +140,10 @@ void Game::play() {
                         else
                             continue;
                     }
-                    continue;
                 }
                 else
                 {
-                    std::cout << "Not opening market" << std::endl;
+                    std::cout << "You are not opening market, you can check your inventory or continue moving your heroes" << std::endl;
                     continue;
                 }
             }
@@ -155,19 +154,28 @@ void Game::play() {
 
                 std::cout << "You have entered a common square" << std::endl;
 
-                //if(...)
-
-                MonsterSquad* monsterSquad = createMonsters();  //call function to create the monsters for fight
-
-                Fight* fight = new Fight(squad, monsterSquad);  //create new fight
-
-                while (!fight->isOver())
+                //a probability function for starting a fight
+                if ( Fight::begin() )
                 {
-                    fight->battle();            //where fight is implemented...
+                    MonsterSquad* monsterSquad = createMonsters();  //call function to create the monsters for fight
 
-                    ///
+                    Fight* fight = new Fight(squad, monsterSquad);  //create new fight
 
+                    while (!fight->isOver())
+                    {
+                        fight->battle();            //where fight is implemented...
+
+                        ///
+
+                    }
                 }
+                else
+                {
+                    std::cout << "No fight, you can check your inventory or continue moving your heroes" << std::endl;
+                    continue;
+                }
+
+
 
             }
             break;

@@ -4,6 +4,7 @@
 
 #include "Squads/HeroSquad.h"
 #include "Squads/MonsterSquad.h"
+#include <cstdlib>
 
 
 class Fight {
@@ -20,6 +21,11 @@ public:
 
     ~Fight() = default;
 
+    static bool begin() {
+        srand(time(nullptr));
+        return ((float) random()/RAND_MAX > 0.45);
+    }
+
     void displayStats() const{
         heroes->printStats();
         enemies->print();
@@ -32,6 +38,8 @@ public:
     void battle() {
         std::cout << "Battle Begins..." << std::endl;
 
+        srand(time(nullptr));
+
         unsigned int round = 1;
 
         if (round % 2 == 1)
@@ -39,6 +47,7 @@ public:
 
             for (int i=0; i<heroes->getSize(); i++)
             {
+
                 Hero* hero = heroes->getHero(i);
                 //hero's turn
                 std::cout << "Do you want to make normal attack (o), cast spell(l) or use potion(p)" << std::endl;

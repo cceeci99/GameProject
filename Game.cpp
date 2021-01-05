@@ -134,9 +134,8 @@ void Game::play() {
 
                         std::cin >> answer;
 
-                        if(answer == 'Y' || answer == 'y'){
+                        if(answer == 'Y' || answer == 'y')
                             marketPlace->open(squad->getHero(i));
-                        }
                         else
                             continue;
                     }
@@ -174,8 +173,6 @@ void Game::play() {
                     std::cout << "No fight, you can check your inventory or continue moving your heroes" << std::endl;
                     continue;
                 }
-
-
 
             }
             break;

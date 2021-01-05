@@ -4,7 +4,6 @@
 
 #include "../Range.h"
 
-
 class Spell {
 
 private:

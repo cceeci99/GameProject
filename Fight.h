@@ -13,7 +13,6 @@ private:
     HeroSquad* heroes;
     MonsterSquad* enemies;
 
-
 public:
 
     Fight(HeroSquad* heroes, MonsterSquad* enemies)

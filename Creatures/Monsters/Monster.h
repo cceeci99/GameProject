@@ -1,6 +1,6 @@
 #include "../LivingCreature.h"
 #include "../../Range.h"
-
+#include "MONSTER_ATTRIBUTES.h"
  
 #ifndef GAMEPROJECT_MONSTER_H
 #define GAMEPROJECT_MONSTER_H
@@ -16,8 +16,8 @@ protected:
 
 public:
 
-    Monster(const std::string& name, int level, int health, Range range, int defence, int dodge)
-    :LivingCreature(name, level, health), damageRange(range), defence(defence), dodge(dodge){}
+    Monster(const std::string& name, int level, Range range, int defence, int dodge)
+    :LivingCreature(name, level, START_HP), damageRange(range), defence(defence), dodge(dodge){}
 
     ~Monster() override = default;
 

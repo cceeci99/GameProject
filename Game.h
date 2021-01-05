@@ -11,6 +11,9 @@
 #include "Creatures/Heroes/Warrior.h"
 #include "Creatures/Heroes/Paladin.h"
 #include "Creatures/Heroes/Sorcerer.h"
+#include "Creatures/Monsters/Dragon.h"
+#include "Creatures/Monsters/ExoSkeleton.h"
+#include "Creatures/Monsters/Spirit.h"
 
 #ifndef GAMEPROJECT_GAME_H
 #define GAMEPROJECT_GAME_H
@@ -252,9 +255,7 @@ public:
                 else
                 {
                     std::cout << "You have entered a common square" << std::endl;
-
-                    //if(...)
-                        //attack()
+                    //figth(squad);
 
                 }
                 break;
@@ -265,7 +266,7 @@ public:
     }
 
     void figth(HeroSquad* herosquad){
-        cout << "Fight..." << endl;
+        std::cout << "Fight..." << std::endl;
 
         int size = herosquad->getSize();
         //create MosterSquad
@@ -273,25 +274,26 @@ public:
         for(int i = 0; i < size; i++){
             Hero* hero = herosquad->getHero(i);
             int level = hero->getLevel();
-            int MonsterType = rand % 3 +1; //[1, 3]
+            int MonsterType = rand() % 3 +1; //[1, 3]
             Monster* monster;
 
             switch (MonsterType)
             {
-            case Dragon:
-                //monster = new Dragon("sjuf", level);
+            case dragon:
+                monster = new Dragon("sjuf", level);
                 break;
-            case ExoSkeleton:
-                //monster = new ExoSkeleton("fef", level);
+            case exoskeleton:
+                monster = new ExoSkeleton("fef", level);
                 break;
-            }
-            case Spirit:
-                //monster = new Spirit("fgerge" level);
+            case spirit:
+                monster = new Spirit("fgerge", level);
                 break;
             }
 
             monstersquad->setMonster(monster);
         }
+        herosquad->print();
+        monstersquad->print();
 
     //     unsigned int round = 1;
     //     while(true){

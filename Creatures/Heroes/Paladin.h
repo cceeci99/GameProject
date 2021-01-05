@@ -1,7 +1,8 @@
-#include "Hero.h"
 
 #ifndef GAMEPROJECT_PALADIN_H
 #define GAMEPROJECT_PALADIN_H
+
+#include "Hero.h"
 
 
 class Paladin: public Hero {

@@ -57,7 +57,7 @@ void Grid::displayMap() const{
         for(int j = 0; j < size; j++)
         {
             Square* square = array[i][j];
-            std::cout << "Square with coordinates (" << square->getX() << ", " << square->getY() << "):" << std::endl;
+            std::cout << "(" << square->getX() << ", " << square->getY() << "):" << std::endl;
 
             std::cout << "This square ";
             switch (square->getType())
@@ -71,15 +71,17 @@ void Grid::displayMap() const{
                 case market:
                     std::cout << "contains market" << std::endl;
                     break;
+                default:
+                    break;
             }
 
             if(square->getSquad() == nullptr)
             {
-                std::cout << "No Hero exists in this square" << std::endl;
+                std::cout << "--" << std::endl;
             }
             else
             {
-                std::cout << "Heroes in this square are:" << std::endl;
+                std::cout << "your squad -->";
                 HeroSquad* squad = square->getSquad();
                 squad->print();
             }

@@ -224,3 +224,10 @@ void Hero::usePotion() {
     use(potion);
 }
 
+void Hero::regeneration() {
+    if ( health != 0 ){
+        health += 10/100*health;
+    }
+    mana += mana + 15/100*mana;
+}
+

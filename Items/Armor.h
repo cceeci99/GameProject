@@ -1,8 +1,8 @@
-#include "Item.h"
 
 #ifndef GAMEPROJECT_ARMOR_H
 #define GAMEPROJECT_ARMOR_H
 
+#include "Item.h"
 
 class Armor: public Item {
 
@@ -19,6 +19,7 @@ public:
     void print() const override;
 
     int getAttribute() const override;
+
 };
 
 

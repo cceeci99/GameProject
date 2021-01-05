@@ -25,3 +25,7 @@ void Spell::printDamage() const {
 int Spell::cast() const {
     return damageRange.getValue();
 }
+
+int Spell::getDuration() const {
+    return duration;
+}

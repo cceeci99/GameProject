@@ -62,3 +62,43 @@ void Inventory::print() const {
 bool Inventory::empty() const {
     return addedItems == 0;
 }
+
+Potion *Inventory::choosePotion() {
+    int k=1;
+
+    std::vector<Potion*> potions;
+
+    for (int i=0; i<INVENTORY_CAPACITY; i++)
+    {
+        if ( items[i] == nullptr )
+            continue;
+
+        if ( items[i]->getType() == potion )
+        {
+            std::cout << k << ")";
+            k++;
+            items[i]->print();
+            potions.push_back((Potion*)items[i]);
+        }
+    }
+
+    int pos;
+    std::cin >> pos;
+
+    if ( pos == 0 )
+        return nullptr;
+    else
+    {
+        Potion* temp = potions.at(pos-1);
+
+        for (int i=0; i<INVENTORY_CAPACITY; i++)
+        {
+            if ( items[i] == temp )
+            {
+                removeItem(i);
+            }
+        }
+        potions.clear();
+        return temp;
+    }
+}

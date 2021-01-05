@@ -1,8 +1,10 @@
-#include <iostream>
-#include <cstdlib>
 
 #ifndef GAMEPROJECT_RANGE_H
 #define GAMEPROJECT_RANGE_H
+
+#include <iostream>
+#include <cstdlib>
+
 
 class Range {
 

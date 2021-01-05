@@ -1,7 +1,8 @@
-#include "Monster.h"
 
 #ifndef GAMEPROJECT_EXOSKELETON_H
 #define GAMEPROJECT_EXOSKELETON_H
+
+#include "Monster.h"
 
 
 class ExoSkeleton: public Monster {

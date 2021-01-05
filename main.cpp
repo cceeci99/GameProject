@@ -37,6 +37,8 @@ int main(int args, char* argv[]) {
 
     game->play();
 
+    items.clear();
+    spells.clear();
     delete armor1;
     delete weapon1;
     delete spell;

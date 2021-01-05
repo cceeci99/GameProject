@@ -1,7 +1,8 @@
-#include "Spell.h"
 
 #ifndef GAMEPROJECT_ICESPELL_H
 #define GAMEPROJECT_ICESPELL_H
+
+#include "Spell.h"
 
 
 class IceSpell: public Spell {

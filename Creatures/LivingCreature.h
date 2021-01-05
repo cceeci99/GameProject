@@ -1,7 +1,8 @@
-#include <iostream>
 
 #ifndef GAMEPROJECT_LIVINGCREATURE_H
 #define GAMEPROJECT_LIVINGCREATURE_H
+
+#include <iostream>
 
 
 class LivingCreature {
@@ -31,6 +32,7 @@ public:
     }
 
     virtual void print() const = 0;
+
     virtual void regeneration() = 0;
 
 };

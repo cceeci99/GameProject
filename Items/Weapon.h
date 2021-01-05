@@ -1,8 +1,7 @@
+
 #ifndef GAMEPROJECT_WEAPON_H
 #define GAMEPROJECT_WEAPON_H
 
-#include <iostream>
-#include <utility>
 #include "Item.h"
 
 class Weapon: public Item {

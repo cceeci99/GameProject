@@ -1,7 +1,8 @@
-#include "Monster.h"
 
 #ifndef GAMEPROJECT_SPIRIT_H
 #define GAMEPROJECT_SPIRIT_H
+
+#include "Monster.h"
 
 
 class Spirit: public Monster {

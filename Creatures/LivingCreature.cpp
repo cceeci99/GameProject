@@ -11,4 +11,3 @@ int LivingCreature::getHealth() const {
 int LivingCreature::getLevel() const {
     return level;
 }
-

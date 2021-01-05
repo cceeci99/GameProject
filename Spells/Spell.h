@@ -1,10 +1,9 @@
-#include <iostream>
-#include <utility>
-
-#include "../Range.h"
 
 #ifndef GAMEPROJECT_SPELL_H
 #define GAMEPROJECT_SPELL_H
+
+#include "../Range.h"
+
 
 class Spell {
 
@@ -15,7 +14,7 @@ private:
     const int manaRequired;
 
     Range damageRange;
-    int duration;
+    int duration{};
 
 public:
 
@@ -36,9 +35,7 @@ public:
 
     int cast() const;
 
-    int getDuration() const{
-        return duration;
-    }
+    int getDuration() const;
 
     virtual void print() const = 0;
 

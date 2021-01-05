@@ -18,6 +18,11 @@ public:
 
     ~Fight() = default;
 
+    void displayStats() const{
+        heroes->printStats();
+        enemies->print();
+    }
+
     bool isOver() const{
         return (heroes->wiped() || enemies->wiped());
     }
@@ -29,6 +34,7 @@ public:
 
         if (round % 2 == 1)
         {
+
             for (int i=0; i<heroes->getSize(); i++)
             {
                 Hero* hero = heroes->getHero(i);
@@ -66,7 +72,7 @@ public:
                 }
                 else
                 {
-                    std::cout << "invalid input" << std::endl;
+                    std::cout << "invalid input, try again" << std::endl;
                 }
             }
 

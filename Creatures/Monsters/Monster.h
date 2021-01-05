@@ -2,6 +2,7 @@
 #ifndef GAMEPROJECT_MONSTER_H
 #define GAMEPROJECT_MONSTER_H
 
+#include "MONSTER_ATTRIBUTES.h"
 #include "../LivingCreature.h"
 #include "../../Range.h"
 

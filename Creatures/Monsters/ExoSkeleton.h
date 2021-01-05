@@ -9,7 +9,7 @@ class ExoSkeleton: public Monster {
 
 public:
 
-    ExoSkeleton(const std::string& name, int level) //, int health, Range range, int defence, int dodge)
+    ExoSkeleton(const std::string& name, int level)
     :Monster(name, level, Range(DEFAULT_MIN_RANGE + (level-1)*INCREASE_DEFAULT_MAX_RANGE, DEFAULT_MAX_RANGE + (level-1)*INCREASE_DEFAULT_MAX_RANGE), EXOSKELETON_DEFENCE + (level-1)*EXOSKELETON_DEFENCE, DEFAULT_DODGE + (level-1)*INCREASE_DEFAULT_DODGE){};
 
     ~ExoSkeleton() override = default;

@@ -66,13 +66,13 @@ public:
             switch (MonsterType)
             {
                 case dragon:
-                    //monster = new Dragon("sjuf", level);
+                    monster = new Dragon("sjuf", level);
                     break;
                 case exoskeleton:
-                    //monster = new ExoSkeleton("fef", level);
+                    monster = new ExoSkeleton("fef", level);
                     break;
                 case spirit:
-                    //monster = new Spirit("fgerge" level);
+                    monster = new Spirit("fgerge", level);
                     break;
                 default:
                     break;
@@ -84,63 +84,6 @@ public:
         return monsterSquad;
 
     }
-
-    /*
-    void fight(HeroSquad* heroSquad){
-        std::cout << "Fight..." << std::endl;
-
-        int size = heroSquad->getSize();
-
-        //create MosterSquad
-        MonsterSquad* monsterSquad = new MonsterSquad(size);
-
-        for(int i = 0; i < size; i++)
-        {
-            Hero *hero = heroSquad->getHero(i);
-            int level = hero->getLevel();
-
-            int MonsterType = rand() % 3 +1; //[1, 3]
-            Monster* monster;
-
-            switch (MonsterType)
-            {
-            case dragon:
-                monster = new Dragon("sjuf", level);
-                break;
-            case exoskeleton:
-                monster = new ExoSkeleton("fef", level);
-                break;
-            case spirit:
-                monster = new Spirit("fgerge", level);
-                break;
-            }
-
-            monsterSquad->setMonster(monster);
-        }
-        herosquad->print();
-        monstersquad->print();
-
-    //     unsigned int round = 1;
-    //     while(true){
-    //        if (HeroSquad.wiped() || MonsterSquad.wiped(){
-    //             //...   
-    //             break;
-    //        }
-
-    //         if(round % 2 == 1){ //Heroes' turn
-    //             //...        
-    //         }
-    //         else{ //Monsters' turn
-    //             //...
-    //         }
-
-    //         //REGENERATION
-    //         HeroSquad.regeneration();
-    //         MonsterSquad.regeneration();
-
-    //         round++;
-    //     }
-    } */
 
 };
 

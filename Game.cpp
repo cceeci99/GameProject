@@ -30,7 +30,7 @@ void Game::play() {
     }
 
     std::cout << "Your Hero Squad is ready: " << std::endl;
-    //print HeroSquad for the player
+
     squad->print();
 
     std::cout << "Are you ready to begin..." << std::endl;
@@ -156,8 +156,9 @@ void Game::play() {
                 std::cout << "You have entered a common square" << std::endl;
 
                 //if(...)
-                //attack()
+
                 MonsterSquad* monsterSquad = createMonsters();  //call function to create the monsters for fight
+
                 Fight* fight = new Fight(squad, monsterSquad);  //create new fight
 
                 while (!fight->isOver())

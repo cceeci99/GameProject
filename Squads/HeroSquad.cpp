@@ -65,3 +65,9 @@ void HeroSquad::regeneration() {
 int HeroSquad::getSize() const {
     return teammates;
 }
+
+void HeroSquad::printStats() const {
+    for(int i=0; i<teammates; i++){
+        squad[i]->print();
+    }
+}

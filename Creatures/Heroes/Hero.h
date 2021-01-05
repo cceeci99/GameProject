@@ -49,6 +49,10 @@ public:
 
     int getMoney() const;
 
+    int getAgility() const{
+        return agility;
+    }
+
     void regeneration() override;
 
     void buyItem(Item* newItem);

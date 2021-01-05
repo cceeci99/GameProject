@@ -84,6 +84,13 @@ void Game::play() {
             case 'm':
                 map->displayMap();
                 continue;
+            case 'c':
+                std::cout << "Your Heroes: " << std::endl;
+                squad->printStats();
+                continue;
+            case 'i':
+                squad->openInventory();
+                continue;
             default:
                 validButton = false;
                 break;
@@ -131,15 +138,14 @@ void Game::play() {
                         if(answer == 'Y' || answer == 'y'){
                             marketPlace->open(squad->getHero(i));
                         }
-                        else{
+                        else
                             continue;
-                        }
                     }
                     continue;
                 }
                 else
                 {
-                    std::cout << "Bye..." << std::endl;
+                    std::cout << "Not opening market" << std::endl;
                     continue;
                 }
             }

@@ -35,9 +35,7 @@ public:
 
     int cast() const;
 
-    int getDuration() const{
-        return duration;
-    }
+    int getDuration() const;
 
     virtual void print() const = 0;
 

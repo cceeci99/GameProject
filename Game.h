@@ -47,13 +47,43 @@ public:
     void fillMarket(const std::vector<Item*>& items, const std::vector<Spell*>& spells);
 
     //function to create the array of monsters for the game, before the player starts the game, monsters will be initialized by us
-    void createMonsters(){
-        // to implement
-        // create array of monsters initialize them with some level and attributes(health, defence, dodge) , names from file
-        // values of level, attributes from macros or some kind of algorithm
+    MonsterSquad* createMonsters(){
+        int size = squad->getSize();
+
+        //create MosterSquad
+        MonsterSquad* monsterSquad = new MonsterSquad(size);
+
+        for(int i = 0; i < size; i++)
+        {
+            Hero *hero = squad->getHero(i);
+            int level = hero->getLevel();
+            int MonsterType = (int) random() % 3 + 1; //[1, 3]
+            Monster *monster = nullptr;
+
+            switch (MonsterType)
+            {
+                case dragon:
+                    //monster = new Dragon("sjuf", level);
+                    break;
+                case exoskeleton:
+                    //monster = new ExoSkeleton("fef", level);
+                    break;
+                case spirit:
+                    //monster = new Spirit("fgerge" level);
+                    break;
+                default:
+                    break;
+            }
+
+            monsterSquad->setMonster(monster);
+        }
+
+
+        return monsterSquad;
 
     }
 
+    /*
     void fight(HeroSquad* heroSquad){
         std::cout << "Fight..." << std::endl;
 
@@ -107,7 +137,7 @@ public:
 
     //         round++;
     //     }
-    }
+    } */
 
 };
 

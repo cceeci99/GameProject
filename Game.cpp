@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Fight.h"
 
 Game::Game() {
     std::cout << "Our Game is created!" << std::endl;
@@ -156,6 +157,16 @@ void Game::play() {
 
                 //if(...)
                 //attack()
+                MonsterSquad* monsterSquad = createMonsters();  //call function to create the monsters for fight
+                Fight* fight = new Fight(squad, monsterSquad);  //create new fight
+
+                while (!fight->isOver())
+                {
+                    fight->battle();            //where fight is implemented...
+
+                    ///
+
+                }
 
             }
             break;

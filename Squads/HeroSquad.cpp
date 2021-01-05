@@ -1,17 +1,5 @@
 #include "HeroSquad.h"
 
-HeroSquad::HeroSquad(int teammates) {
-    //allocate memory for number of mobs which will be given by the user
-    squad = new Hero*[teammates];
-    this->teammates = teammates;
-}
-
-HeroSquad::~HeroSquad() {
-    for(int i=0; i<teammates; i++)
-        delete squad[i];
-
-    delete[] squad;
-}
 
 void HeroSquad::print() const {
     std::cout << "Squad: ";
@@ -20,6 +8,27 @@ void HeroSquad::print() const {
     }
     std::cout << std::endl;
 }
+
+
+void HeroSquad::printStats() const {
+    for(int i=0; i<teammates; i++){
+        squad[i]->print();
+    }
+}
+
+
+int HeroSquad::getSize() const {
+    return teammates;
+}
+
+
+Hero *HeroSquad::getHero(int pos) const {
+    if ( pos >= teammates )
+        return nullptr;
+
+    return squad[pos];
+}
+
 
 void HeroSquad::setHero(Hero *hero) {
     for(int i=0; i<teammates; i++)
@@ -32,20 +41,13 @@ void HeroSquad::setHero(Hero *hero) {
     }
 }
 
-Hero *HeroSquad::getHero(int pos) const {
-    if ( pos >= teammates )
-        return nullptr;
 
-    return squad[pos];
+void HeroSquad::setSquadStats() {
+    for (int i=0; i<teammates; i++){
+        squad[i]->setCurrentStats();
+    }
 }
 
-Hero **HeroSquad::getSquad() const {
-    return squad;
-}
-
-void HeroSquad::move(Square *square) {
-    square->setSquad(this);
-}
 
 bool HeroSquad::wiped() const {
     int totalHealth = 0;
@@ -56,21 +58,25 @@ bool HeroSquad::wiped() const {
     return totalHealth==0;
 }
 
+
 void HeroSquad::regeneration() {
     for(int i=0; i<teammates; i++){
         squad[i]->regeneration();
     }
 }
 
-int HeroSquad::getSize() const {
-    return teammates;
-}
 
-void HeroSquad::printStats() const {
+void HeroSquad::revive() {
     for(int i=0; i<teammates; i++){
-        squad[i]->print();
+        squad[i]->revive();
     }
 }
+
+
+void HeroSquad::move(Square *square) {
+    square->setSquad(this);
+}
+
 
 void HeroSquad::openInventory() {
     for (int i=0; i<teammates; i++){

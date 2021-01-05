@@ -13,7 +13,7 @@ private:
 public:
 
     LightingSpell(const std::string& name, int price, int level, int mana, Range range, int reduce)
-    : Spell(name, price, level, mana, range, 2), reduceDodge(reduce){};
+    : Spell(name, price, level, mana, range, 2, reduce_dodge), reduceDodge(reduce){};
 
     ~LightingSpell() override = default;
 

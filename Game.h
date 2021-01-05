@@ -25,23 +25,21 @@ private:
 
     Grid* map = nullptr;            //a game consists of a map in a form of a grid(NxN array)
 
-    Market* marketPlace = nullptr;  //a game has one marketPlace
+    Market* marketPlace = nullptr;  //a game has one same MarketPlace for the map
 
     HeroSquad* squad = nullptr;     //a game has one squad consisting of (1-3) heroes
 
 public:
 
-    //create game
-    Game();
+    Game(){
+        std::cout << "Our Game is created!" << std::endl;
+    }
 
-    //finish game and delete it
-    ~Game();
-
-    //final function that is starting the game for the player
-    void play();
-
-    //function to create a squad of heroes for the player, the number of mobs is given from player
-    void createTeam(int n);
+    ~Game(){
+        delete map;
+        delete marketPlace;
+        delete squad;
+    }
 
     //function to create the map of a game with some pattern for the squares of the grid, size will be initialized from us
     void createMap(int size);
@@ -49,8 +47,13 @@ public:
     //function to fill the market with some items and spells, before the player starts the game
     void fillMarket(const std::vector<Item*>& items, const std::vector<Spell*>& spells);
 
+    //function to create a squad of heroes for the player, the number of teammates is given from player
+    void createTeam(int teammates);
+
     //function to make an monster squad for battle with heroes, monsters are made randomly, at same level of heroes
-    MonsterSquad* createMonsters();
+    MonsterSquad* createEnemies();
+
+    void play();
 
 };
 

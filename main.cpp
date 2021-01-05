@@ -3,10 +3,11 @@
 #include "Game.h"
 #include "Spells/IceSpell.h"
 #include "Spells/FireSpell.h"
-#include "Creatures/Monsters/Dragon.h"
 
 
 int main(int args, char* argv[]) {
+    srandom(time(nullptr));
+
     std::vector<Item*> items;
     std::vector<Spell*> spells;
 

@@ -14,22 +14,26 @@ private:
 
 public:
 
-    explicit MonsterSquad(int mobs);
+    explicit MonsterSquad(int mobs){
+        squad = new Monster*[mobs];
+        this->mobs = mobs;
+    }
 
-    ~MonsterSquad();
+    ~MonsterSquad(){
+        for(int i=0; i < mobs; i++)
+            delete squad[i];
 
-    int getSize() const;
+        delete[] squad;
+    }
 
     void print() const;
 
-    void setMonster(Monster* monster);
+    int getSize() const;
 
     Monster* getMonster(int pos) const;
-
-    Monster** getSquad() const;
+    void setMonster(Monster* monster);
 
     bool wiped() const;
-
     void regeneration();
 
 };

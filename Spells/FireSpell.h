@@ -13,7 +13,7 @@ private:
 public:
 
     FireSpell(const std::string& name, int price, int level, int mana, Range range, int reduce)
-    :Spell(name, price, level, mana, range, 1), reduceDefence(reduce){};
+    :Spell(name, price, level, mana, range, 1, reduce_defence), reduceDefence(reduce){};
 
     ~FireSpell() override = default;
 

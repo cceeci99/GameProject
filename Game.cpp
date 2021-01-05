@@ -1,15 +1,102 @@
 #include "Game.h"
 #include "Fight.h"
 
-Game::Game() {
-    std::cout << "Our Game is created!" << std::endl;
+
+void Game::createMap(int size) {
+    map = new Grid(size);
 }
 
-Game::~Game() {
-    delete map;
-    delete marketPlace;
-    delete squad;
+
+void Game::fillMarket(const std::vector<Item *> &items, const std::vector<Spell *> &spells) {
+    marketPlace = new Market();
+
+    for(Item* i: items){
+        marketPlace->addItem(i);
+    }
+    for(Spell* s: spells){
+        marketPlace->addSpell(s);
+    }
 }
+
+
+void Game::createTeam(int n) {
+    std::cout << "Creating a squad of " << n << " members" << std::endl;
+    squad = new HeroSquad(n);
+
+    std::cout << "Please choose name and type of each hero 1:warrior, 2:paladin, 3:sorcerer" << std::endl;
+
+    int i=0;
+    while (i < n)
+    {
+        std::cout << "Create your " << i+1 << " hero" << std::endl;
+
+        std::string name;
+        std::cout << "Choose name" << std::endl;
+        std::cin >> name;
+
+        int type;
+        std::cout << "Choose type" << std::endl;
+        std::cin >> type;
+
+        Hero* hero;
+        switch(type)
+        {
+            case warrior:
+                hero = new Warrior(name);
+                squad->setHero(hero);
+                break;
+            case paladin:
+                hero = new Paladin(name);
+                squad->setHero(hero);
+                break;
+            case sorcerer:
+                hero = new Sorcerer(name);
+                squad->setHero(hero);
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+
+}
+
+
+MonsterSquad *Game::createEnemies() {
+    int size = squad->getSize();
+
+    MonsterSquad* monsterSquad = new MonsterSquad(size);
+
+    for(int i = 0; i < size; i++)
+    {
+        Hero *hero = squad->getHero(i);
+
+        int level = hero->getLevel();
+        int MonsterType = (int) random() % 3 + 1; //[1, 3]
+
+        Monster *monster = nullptr;
+
+        switch (MonsterType)
+        {
+            case dragon:
+                monster = new Dragon("sjuf", level);
+                break;
+            case exoskeleton:
+                monster = new ExoSkeleton("fef", level);
+                break;
+            case spirit:
+                monster = new Spirit("fgerge", level);
+                break;
+            default:
+                break;
+        }
+
+        monsterSquad->setMonster(monster);
+    }
+
+    return monsterSquad;
+}
+
 
 void Game::play() {
     std::cout << "Welcome to our game" << std::endl;
@@ -31,7 +118,7 @@ void Game::play() {
 
     std::cout << "Your Hero Squad is ready: " << std::endl;
 
-    squad->print();
+    squad->printStats();
 
     std::cout << "Are you ready to begin..." << std::endl;
     std::cout << "Move your squad by using keys (w, a, s, d) for up, left, down and right" << std::endl;
@@ -156,16 +243,26 @@ void Game::play() {
                 //a probability function for starting a fight
                 if ( Fight::begin() )
                 {
-                    MonsterSquad* monsterSquad = createMonsters();  //call function to create the monsters for fight
+                    squad->setSquadStats();
+
+                    MonsterSquad* monsterSquad = createEnemies();  //call function to create the monsters for fight
 
                     Fight* fight = new Fight(squad, monsterSquad);  //create new fight
 
+                    int round = 1;
                     while (!fight->isOver())
                     {
-                        fight->battle();            //where fight is implemented...
+                        fight->battle(round);            //where fight is implemented...
+                        round++;
+                    }
 
-                        ///
-
+                    if ( squad->wiped() )
+                    {
+                        squad->revive();
+                    }
+                    else
+                    {
+                        //
                     }
                 }
                 else
@@ -173,106 +270,7 @@ void Game::play() {
                     std::cout << "No fight, you can check your inventory or continue moving your heroes" << std::endl;
                     continue;
                 }
-
             }
-            break;
         }
-
-    }
-
-}
-
-void Game::createTeam(int n) {
-    std::cout << "Creating a squad of " << n << " members" << std::endl;
-    squad = new HeroSquad(n);
-
-    std::cout << "Please choose name and type of each hero 1:warrior, 2:paladin, 3:sorcerer" << std::endl;
-
-    int i=0;
-    while (i < n)
-    {
-        std::cout << "Create your " << i+1 << " hero" << std::endl;
-
-        std::string name;
-        std::cout << "Choose name" << std::endl;
-        std::cin >> name;
-
-        int type;
-        std::cout << "Choose type" << std::endl;
-        std::cin >> type;
-
-        Hero* hero;
-        switch(type)
-        {
-            case warrior:
-                hero = new Warrior(name);
-                squad->setHero(hero);
-                break;
-            case paladin:
-                hero = new Paladin(name);
-                squad->setHero(hero);
-                break;
-            case sorcerer:
-                hero = new Sorcerer(name);
-                squad->setHero(hero);
-                break;
-            default:
-                break;
-        }
-        i++;
-    }
-
-}
-
-MonsterSquad *Game::createMonsters() {
-    int size = squad->getSize();
-
-    MonsterSquad* monsterSquad = new MonsterSquad(size);
-
-    for(int i = 0; i < size; i++)
-    {
-        Hero *hero = squad->getHero(i);
-        int level = hero->getLevel();
-        int MonsterType = (int) random() % 3 + 1; //[1, 3]
-        Monster *monster = nullptr;
-
-        switch (MonsterType)
-        {
-            case dragon:
-                monster = new Dragon("sjuf", level);
-                break;
-            case exoskeleton:
-                monster = new ExoSkeleton("fef", level);
-                break;
-            case spirit:
-                monster = new Spirit("fgerge", level);
-                break;
-            default:
-                break;
-        }
-
-        monsterSquad->setMonster(monster);
-    }
-
-    return monsterSquad;
-
-}
-
-void Game::fillMarket(const std::vector<Item *> &items, const std::vector<Spell *> &spells) {
-    marketPlace = new Market();
-
-    for(Item* i: items){
-        marketPlace->addItem(i);
-    }
-    for(Spell* s: spells){
-        marketPlace->addSpell(s);
     }
 }
-
-void Game::createMap(int size) {
-    map = new Grid(size);
-
-    //
-}
-
-

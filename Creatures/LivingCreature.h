@@ -21,19 +21,16 @@ public:
 
     virtual ~LivingCreature() = default;
 
-    std::string getName() const;
-
-    int getHealth() const;
-
-    int getLevel() const;
-
-    void setHealth(int newHealth){
-        health = newHealth;
-    }
-
     virtual void print() const = 0;
 
     virtual void regeneration() = 0;
+
+    std::string getName() const;
+
+    int getHealth() const;
+    int getLevel() const;
+
+    void reduceHealth(int reduce);
 
 };
 

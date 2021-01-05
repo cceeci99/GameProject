@@ -15,28 +15,34 @@ private:
 
 public:
 
-    explicit HeroSquad(int teammates);
+    explicit HeroSquad(int teammates){
+        //allocate memory for number of heroes which will be given by the user
+        squad = new Hero*[teammates];
+        this->teammates = teammates;
+    }
 
-    ~HeroSquad();
+    ~HeroSquad(){
+        for(int i=0; i<teammates; i++)
+            delete squad[i];
+
+        delete[] squad;
+    }
+
+    void print() const;
+    void printStats() const;
 
     int getSize() const;
 
-    void print() const;
-
+    Hero* getHero(int pos) const;
     void setHero(Hero* hero);
 
-    Hero* getHero(int pos) const;
-
-    Hero** getSquad() const;
-
-    void move(Square* square);
+    void setSquadStats();
 
     bool wiped() const;
-
     void regeneration();
+    void revive();
 
-    void printStats() const;
-
+    void move(Square* square);
     void openInventory();
 
 };

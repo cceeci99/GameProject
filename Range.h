@@ -13,7 +13,12 @@ public:
     int max;
 
     Range(int low, int high): min(low), max(high){};
+
     ~Range() = default;
+
+    void print() const{
+        std::cout << min << "-" << max << std::endl;
+    }
 
     int getValue() const{
         srandom(time(nullptr));
@@ -25,10 +30,6 @@ public:
         max -= reduce;
     }
 
-    void print() const{
-        std::cout << min << "-" << max << std::endl;
-    }
-
     //generate random rage with within lower and upper Bound
     static Range getRandomRange(int lowerBound, int upperBound){
         srandom(time(nullptr));
@@ -38,6 +39,7 @@ public:
         Range range(min, max);
         return range;
     }
+
 };
 
 

@@ -1,6 +1,5 @@
 #include "Spell.h"
 
-Spell::~Spell() = default;
 
 std::string Spell::getName() const {
     return name;
@@ -18,14 +17,18 @@ int Spell::getManaRequired() const {
     return manaRequired;
 }
 
+int Spell::getDuration() const {
+    return duration;
+}
+
+EffectType Spell::getEffectType() const {
+    return type;
+}
+
 void Spell::printDamage() const {
     damageRange.print();
 }
 
 int Spell::cast() const {
     return damageRange.getValue();
-}
-
-int Spell::getDuration() const {
-    return duration;
 }

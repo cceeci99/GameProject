@@ -174,7 +174,7 @@ void Hero::use(Potion *potion) {
     }
 }
 
-void Hero::castSpell(int& damage, int& effect, int& duration) {
+void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) {
     std::cout << "Your acquired skills are:" << std::endl;
     skills.print();
 
@@ -203,7 +203,9 @@ void Hero::castSpell(int& damage, int& effect, int& duration) {
         {
             damage = spell->cast()*dexterity/100 + dexterity;
             effect = spell->getEffect();
+            type = spell->getEffectType();
             duration = spell->getDuration();
+
 
             std::cout << "Casting " << spell->getName() << std::endl;
 
@@ -229,5 +231,9 @@ void Hero::regeneration() {
         health += 10/100*health;
     }
     mana += mana + 15/100*mana;
+}
+
+int Hero::getAgility() const {
+    return agility;
 }
 

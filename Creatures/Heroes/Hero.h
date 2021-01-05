@@ -19,6 +19,9 @@ enum HeroType{warrior=1, paladin=2, sorcerer=3};
 class Hero: public LivingCreature {
 
 private:
+    int CURRENT_HEALTH;
+    int CURRENT_MANA;
+
     int money;
 
     Weapon* equippedWeapon = nullptr;
@@ -26,6 +29,7 @@ private:
 
     Skills skills;
     Inventory inventory;
+
 
 protected:
     int mana;
@@ -38,7 +42,7 @@ public:
 
     Hero(const std::string& name, int strength, int dexterity, int agility)
     :LivingCreature(name, START_LEVEL, START_HP), mana(START_MP), money(START_MONEY), experience(START_XP),
-    strength(strength), dexterity(dexterity), agility(agility){}
+    strength(strength), dexterity(dexterity), agility(agility), CURRENT_HEALTH(START_HP), CURRENT_MANA(START_MP){}
 
     ~Hero() override = default;
 
@@ -49,8 +53,25 @@ public:
 
     int getMoney() const;
 
-    int getAgility() const{
-        return agility;
+    int getArmor() const{
+        return equippedArmor->getAttribute();
+    }
+
+    bool avoidAttack() const{
+        srand(time(nullptr));
+        int r = random() % 100 +1;
+
+        return (r <= agility);
+    }
+
+    void setCurrentStats(){
+        CURRENT_HEALTH = health;
+        CURRENT_MANA = mana;
+    }
+
+    void revive(){
+        health = CURRENT_HEALTH/2;
+        mana = CURRENT_MANA/2;
     }
 
     void regeneration() override;
@@ -71,7 +92,7 @@ public:
     void use(Potion* potion);
 
     int attack() const;
-    void castSpell(int& damage, int& effect, int& duration);       //casting spell on monster, spell make some damage on monster and has an effect for some turns
+    void castSpell(int& damage, int& effect, int& duration, EffectType& type);       //casting spell on monster, spell make some damage on monster and has an effect for some turns
     void usePotion();
 
 };

@@ -76,7 +76,7 @@ void Fight::battle(int round) {
             }
             else if ( answer == 'p')
             {
-                hero->usePotion();
+                hero->drinkPotion();
             }
             else
             {
@@ -101,7 +101,7 @@ void Fight::battle(int round) {
                 continue;
 
             int damage = mob->attack();
-            damage -= hero->getArmor();
+            damage -= hero->getArmorDefence();
 
             hero->reduceHealth(damage);
         }

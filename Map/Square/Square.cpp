@@ -1,5 +1,6 @@
 #include "Square.h"
 
+
 SquareType Square::getType() const {
     return type;
 }

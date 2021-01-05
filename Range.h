@@ -21,7 +21,6 @@ public:
     }
 
     int getValue() const{
-        srandom(time(nullptr));
         return min + ((int)random() % ((max+1) - min));     //return random value within the range
     }
 
@@ -32,7 +31,6 @@ public:
 
     //generate random rage with within lower and upper Bound
     static Range getRandomRange(int lowerBound, int upperBound){
-        srandom(time(nullptr));
         int min = (int)random() % lowerBound;
         int max = min + ((int)random() % ((upperBound+1) - min));
 

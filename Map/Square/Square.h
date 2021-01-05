@@ -33,5 +33,4 @@ public:
 
 };
 
-
 #endif //GAMEPROJECT_SQUARE_H

@@ -1,8 +1,5 @@
 #include "Weapon.h"
 
-bool Weapon::isOneHanded() const {
-    return oneHanded;
-}
 
 void Weapon::print() const {
     std::cout << "Weapon: " << getName() << ", Damage: " << damage << ", Type: " << weaponType << std::endl;
@@ -10,4 +7,8 @@ void Weapon::print() const {
 
 int Weapon::getAttribute() const {
     return damage;
+}
+
+bool Weapon::isOneHanded() const {
+    return oneHanded;
 }

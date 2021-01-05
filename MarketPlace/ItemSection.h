@@ -21,11 +21,11 @@ public:
 
     void print() const;
 
+    void open(Hero* hero);
+
     void buyOption(Hero* hero);
 
     void sellOption(Hero* hero) const;
-
-    void open(Hero* hero);
 
     void addItem(Item* newItem);
 

@@ -30,7 +30,6 @@ private:
     Skills skills;
     Inventory inventory;
 
-
 protected:
     int mana;
     int experience;
@@ -47,53 +46,48 @@ public:
     ~Hero() override = default;
 
     void print() const override = 0;
+
     virtual void levelUp() = 0;
+
+    int getMoney() const;
+    int getArmorDefence() const;
+
+    void printInventory() const;
+    void printSkills() const;
 
     void addExperience(int xp);
 
-    int getMoney() const;
+    void setCurrentStats();
 
-    int getArmor() const{
-        return equippedArmor->getAttribute();
-    }
-
-    bool avoidAttack() const{
-        srand(time(nullptr));
-        int r = random() % 100 +1;
-
-        return (r <= agility);
-    }
-
-    void setCurrentStats(){
-        CURRENT_HEALTH = health;
-        CURRENT_MANA = mana;
-    }
-
-    void revive(){
-        health = CURRENT_HEALTH/2;
-        mana = CURRENT_MANA/2;
-    }
+    bool avoidAttack() const;
 
     void regeneration() override;
 
+    void revive();
+
+
+    //transactions that are made by her in market
     void buyItem(Item* newItem);
     void buySpell(Spell* newSpell);
 
     Item* sellItem(int pos);
     Spell* sellSpell(int pos);
 
-    void printInventory() const;
-    void printSkills() const;
-
-    void checkInventory();
-
+    //uses of items from inventory
     void equip(Weapon* weapon);
     void equip(Armor* armor);
     void use(Potion* potion);
 
+    //methods for the player
+
     int attack() const;
-    void castSpell(int& damage, int& effect, int& duration, EffectType& type);       //casting spell on monster, spell make some damage on monster and has an effect for some turns
-    void usePotion();
+
+    void drinkPotion();
+
+    //casting spell on monster, spell make some damage on monster and has an effect for some turns(duration)
+    void castSpell(int& damage, int& effect, int& duration, EffectType& type);
+
+    void checkInventory();
 
 };
 

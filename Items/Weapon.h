@@ -13,7 +13,7 @@ private:
 
 public:
 
-    Weapon(const std::string& name, int price, int level, int damage, bool oneHanded, Items type = weapon)
+    Weapon(const std::string& name, int price, int level, int damage, bool oneHanded, ItemType type = weapon)
     :Item(name, price, level, type), damage(damage), oneHanded(oneHanded){
         if ( oneHanded )
             weaponType = "one handed";
@@ -23,12 +23,13 @@ public:
 
     ~Weapon() override = default;
 
-    bool isOneHanded() const;
-
     void print() const override;
 
     int getAttribute() const override;
 
+    bool isOneHanded() const;
+
 };
+
 
 #endif //GAMEPROJECT_WEAPON_H

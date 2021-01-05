@@ -10,6 +10,7 @@
 
 enum MonsterType{dragon=1, exoskeleton=2, spirit=3};
 
+
 class Monster: public LivingCreature {
 
 private:
@@ -34,7 +35,6 @@ public:
     virtual int attack() const = 0;
 
     int getDefence() const;
-    int getDodge() const;
 
     void reduceDamage(int reduce);
     void reduceDefence(int reduce);
@@ -45,5 +45,6 @@ public:
     bool avoidAttack() const;
 
 };
+
 
 #endif //GAMEPROJECT_MONSTER_H

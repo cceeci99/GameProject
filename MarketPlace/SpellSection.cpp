@@ -1,5 +1,51 @@
 #include "SpellSection.h"
 
+
+void SpellSection::print() const {
+    for (int i=0; i < SPELLS_CAPACITY; i++)
+    {
+        if (spells[i] != nullptr)
+        {
+            std::cout << i+1 << ")";
+            spells[i]->print();
+            std::cout << "Price: " << spells[i]->getPrice() << std::endl;
+        }
+    }
+    std::cout << std::endl;
+}
+
+
+void SpellSection::open(Hero *hero) {
+    while(true)
+    {
+        std::cout << "Available spells:" << std::endl;
+        print();
+
+        std::cout << "Your Acquired Skills" << std::endl;
+        hero->printSkills();
+
+        std::cout << "0.Close Spells Section \t 1.Buy Spell \t 2.Sell Spell" << std::endl;
+
+        int choice;
+        std::cin >> choice;
+
+        if (choice == 0)
+        {
+            std::cout << "Closing Spell Section" << std::endl;
+            return;
+        }
+        else if (choice == 1)
+        {
+            buyOption(hero);
+        }
+        else if (choice == 2)
+        {
+            sellOption(hero);
+        }
+    }
+}
+
+
 void SpellSection::buyOption(Hero *hero) {
     while(true)
     {
@@ -30,6 +76,7 @@ void SpellSection::buyOption(Hero *hero) {
     }
 }
 
+
 void SpellSection::sellOption(Hero *hero) const {
     while(true)
     {
@@ -58,49 +105,6 @@ void SpellSection::sellOption(Hero *hero) const {
     }
 }
 
-void SpellSection::open(Hero *hero) {
-    while(true)
-    {
-        std::cout << "Available spells:" << std::endl;
-        print();
-
-        std::cout << "Your Acquired Skills" << std::endl;
-        hero->printSkills();
-
-        std::cout << "0.Close Spells Section \t 1.Buy Spell \t 2.Sell Spell" << std::endl;
-
-        int choice;
-        std::cin >> choice;
-
-        if (choice == 0)
-        {
-            std::cout << "Closing Spell Section" << std::endl;
-            return;
-        }
-        else if (choice == 1)
-        {
-            buyOption(hero);
-        }
-        else if (choice == 2)
-        {
-            sellOption(hero);
-        }
-    }
-
-}
-
-void SpellSection::print() const {
-    for (int i=0; i < SPELLS_CAPACITY; i++)
-    {
-        if (spells[i] != nullptr)
-        {
-            std::cout << i+1 << ")";
-            spells[i]->print();
-            std::cout << "Price: " << spells[i]->getPrice() << std::endl;
-        }
-    }
-    std::cout << std::endl;
-}
 
 void SpellSection::addSpell(Spell *newSpell) {
     if ( addedSpells >= SPELLS_CAPACITY )
@@ -116,6 +120,7 @@ void SpellSection::addSpell(Spell *newSpell) {
         }
     }
 }
+
 
 Spell *SpellSection::getSpell(int pos) {
     if (pos >= SPELLS_CAPACITY)

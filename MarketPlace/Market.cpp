@@ -5,7 +5,7 @@ void Market::open(Hero *hero) {
 
     while(true)
     {
-        std::cout << "0.Close Market \t 1.Open Items Section \t 2.Open Spells Section" << std::endl;
+        std::cout << "0.Close Market \t 1.Open ItemType Section \t 2.Open Spells Section" << std::endl;
 
         int choice;
         std::cin >> choice;
@@ -18,7 +18,7 @@ void Market::open(Hero *hero) {
         }
         else if ( choice == 1 )
         {
-            std::cout << "Opening Items Section" << std::endl;
+            std::cout << "Opening ItemType Section" << std::endl;
             itemSection.open(hero);
         }
         else if (choice == 2)

@@ -19,13 +19,13 @@ public:
         delete[] spells;
     };
 
-    Spell* getSpell(int pos);
+    void print() const;
 
     void addSpell(Spell* newSpell);
 
+    Spell* getSpell(int pos);
     Spell* removeSpell(int pos);
 
-    void print() const;
 };
 
 

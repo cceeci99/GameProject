@@ -15,7 +15,7 @@ private:
 
 public:
 
-    Potion(const std::string& name, int price, int level, Attribute attribute, int enhancement, Items type = potion)
+    Potion(const std::string& name, int price, int level, Attribute attribute, int enhancement, ItemType type = potion)
     :Item(name, price, level, type), attribute(attribute) , enhancement(enhancement){
         switch (attribute) {
 
@@ -43,9 +43,9 @@ public:
 
     void print() const override;
 
-    Attribute getAttributeType() const;
-
     int getAttribute() const override;
+
+    Attribute getAttributeType() const;
 
 };
 

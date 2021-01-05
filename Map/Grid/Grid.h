@@ -27,6 +27,4 @@ public:
 };
 
 
-
-
 #endif //GAMEPROJECT_GRID_H

@@ -1,21 +1,23 @@
 #include "Inventory.h"
 
 
-Item *Inventory::getItem(int pos)  {
-    if ( pos >= INVENTORY_CAPACITY )
-        return nullptr;
+void Inventory::print() const {
 
-    return items[pos];
+    for(int i=0; i < INVENTORY_CAPACITY; i++)
+    {
+        if ( items[i] != nullptr )
+        {
+            std::cout << i + 1 << ")";
+            items[i]->print();
+        }
+    }
 }
 
-Item *Inventory::changeItem(int pos, Item *item) {
-    if ( pos >= INVENTORY_CAPACITY )
-        return nullptr;
 
-    Item* temp = items[pos];
-    items[pos] = item;
-    return temp;
+bool Inventory::empty() const {
+    return addedItems == 0;
 }
+
 
 void Inventory::addItem(Item *newItem) {
     if ( addedItems >= INVENTORY_CAPACITY)
@@ -35,6 +37,25 @@ void Inventory::addItem(Item *newItem) {
     }
 }
 
+
+Item *Inventory::getItem(int pos)  {
+    if ( pos >= INVENTORY_CAPACITY )
+        return nullptr;
+
+    return items[pos];
+}
+
+
+Item *Inventory::changeItem(int pos, Item *item) {
+    if ( pos >= INVENTORY_CAPACITY )
+        return nullptr;
+
+    Item* temp = items[pos];
+    items[pos] = item;
+    return temp;
+}
+
+
 Item* Inventory::removeItem(int pos) {
     if ( pos >= INVENTORY_CAPACITY  || items[pos] == nullptr)
         return nullptr;
@@ -47,21 +68,6 @@ Item* Inventory::removeItem(int pos) {
     return temp;
 }
 
-void Inventory::print() const {
-
-    for(int i=0; i < INVENTORY_CAPACITY; i++)
-    {
-        if ( items[i] != nullptr )
-        {
-            std::cout << i + 1 << ")";
-            items[i]->print();
-        }
-    }
-}
-
-bool Inventory::empty() const {
-    return addedItems == 0;
-}
 
 Potion *Inventory::choosePotion() {
     int k=1;

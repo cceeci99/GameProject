@@ -1,5 +1,18 @@
 #include "Skills.h"
 
+
+void Skills::print() const {
+    for(int k=0; k<SPELLS_LIMIT; k++)
+    {
+        if ( spells[k] != nullptr )
+        {
+            std::cout << k+1 << ")";
+            spells[k]->print();
+        }
+    }
+}
+
+
 void Skills::addSpell(Spell *newSpell) {
     if ( acquiredSpells >= SPELLS_LIMIT )
     {
@@ -17,6 +30,15 @@ void Skills::addSpell(Spell *newSpell) {
     }
 }
 
+
+Spell* Skills::getSpell(int pos) {
+    if (pos >= SPELLS_LIMIT)
+        return nullptr;
+
+    return spells[pos];
+}
+
+
 Spell* Skills::removeSpell(int pos) {
     if (pos >= SPELLS_LIMIT || spells[pos] == nullptr)
         return nullptr;
@@ -27,22 +49,4 @@ Spell* Skills::removeSpell(int pos) {
     acquiredSpells--;
 
     return temp;
-}
-
-Spell* Skills::getSpell(int pos){
-    if (pos >= SPELLS_LIMIT)
-        return nullptr;
-
-    return spells[pos];
-}
-
-void Skills::print() const {
-    for(int k=0; k<SPELLS_LIMIT; k++)
-    {
-        if ( spells[k] != nullptr )
-        {
-            std::cout << k+1 << ")";
-            spells[k]->print();
-        }
-    }
 }

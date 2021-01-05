@@ -1,5 +1,8 @@
 #include "Spell.h"
 
+void Spell::printDamage() const {
+    damageRange.print();
+}
 
 std::string Spell::getName() const {
     return name;
@@ -23,10 +26,6 @@ int Spell::getDuration() const {
 
 EffectType Spell::getEffectType() const {
     return type;
-}
-
-void Spell::printDamage() const {
-    damageRange.print();
 }
 
 int Spell::cast() const {

@@ -5,7 +5,7 @@
 #include <iostream>
 
 
-enum Items{armor, weapon, potion};
+enum ItemType{armor, weapon, potion};
 
 class Item {
 
@@ -13,26 +13,25 @@ private:
     const std::string name;
     const int price;
     const int requiredLevel;
-    Items type;
+    ItemType type;
 
 public:
 
-    Item(std::string  name, int price, int level, Items type)
+    Item(std::string  name, int price, int level, ItemType type)
     :name(std::move(name)), price(price), requiredLevel(level), type(type){};
 
     virtual ~Item() = default;
 
-    Items getType() const;
-
-    std::string getName() const;
-
-    int getPrice() const;
-
-    int getRequiredLevel() const;
-
     virtual void print() const = 0;
 
     virtual int getAttribute() const = 0;
+
+    std::string getName() const;
+
+    ItemType getType() const;
+
+    int getPrice() const;
+    int getRequiredLevel() const;
 
 };
 

@@ -1,5 +1,6 @@
 #include "ItemSection.h"
 
+
 void ItemSection::print() const {
     for (int i=0; i < ITEMS_CAPACITY; i++)
     {
@@ -12,6 +13,34 @@ void ItemSection::print() const {
     }
     std::cout << std::endl;
 }
+
+
+void ItemSection::open(Hero *hero) {
+    while (true) {
+        std::cout << "Available items:" << std::endl;
+        print();
+        std::cout << "Your Inventory: " << std::endl;
+        hero->printInventory();
+
+        std::cout << "0.Close ItemType Section \t 1.Buy Item \t 2.Sell Item " << std::endl;
+
+        int choice;
+        std::cin >> choice;
+
+        if (choice == 0) {
+            std::cout << "Closing ItemType Section" << std::endl;
+            return;
+        } else if (choice == 1) {
+            buyOption(hero);
+        } else if (choice == 2) {
+            sellOption(hero);
+        } else {
+            std::cout << "Invalid input, try again" << std::endl;
+            continue;
+        }
+    }
+}
+
 
 void ItemSection::buyOption(Hero *hero) {
     while (true) {
@@ -40,6 +69,7 @@ void ItemSection::buyOption(Hero *hero) {
         hero->printInventory();
     }
 }
+
 
 void ItemSection::sellOption(Hero *hero) const {
     while (true)
@@ -70,39 +100,6 @@ void ItemSection::sellOption(Hero *hero) const {
     }
 }
 
-void ItemSection::open(Hero *hero) {
-    while (true)
-    {
-        std::cout << "Available items:" << std::endl;
-        print();
-        std::cout << "Your Inventory: " << std::endl;
-        hero->printInventory();
-
-        std::cout << "0.Close Items Section \t 1.Buy Item \t 2.Sell Item " << std::endl;
-
-        int choice;
-        std::cin >> choice;
-
-        if (choice == 0)
-        {
-            std::cout << "Closing Items Section" << std::endl;
-            return;
-        }
-        else if (choice == 1)
-        {
-            buyOption(hero);
-        }
-        else if (choice == 2)
-        {
-            sellOption(hero);
-        }
-        else
-        {
-            std::cout << "Invalid input, try again" << std::endl;
-            continue;
-        }
-    }
-}
 
 void ItemSection::addItem(Item *newItem) {
     if ( addedItems >= ITEMS_CAPACITY )
@@ -118,6 +115,7 @@ void ItemSection::addItem(Item *newItem) {
         }
     }
 }
+
 
 Item *ItemSection::getItem(int pos) {
     if ( pos >= ITEMS_CAPACITY )

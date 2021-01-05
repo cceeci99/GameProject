@@ -21,17 +21,15 @@ public:
         delete[] items;
     };
 
+    void print() const;
+
     bool empty() const;
-
-    Item * getItem(int pos) ;
-
-    Item* changeItem(int pos, Item* item);
 
     void addItem(Item* newItem);
 
+    Item * getItem(int pos);
+    Item* changeItem(int pos, Item* item);
     Item* removeItem(int pos);
-
-    void print() const;
 
     Potion* choosePotion();
 

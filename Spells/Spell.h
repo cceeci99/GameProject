@@ -26,6 +26,8 @@ public:
 
     virtual ~Spell() = default;
 
+    void printDamage() const;
+
     virtual void print() const = 0;
     virtual int getEffect() const = 0;
 
@@ -37,8 +39,6 @@ public:
     int getRequiredLevel() const;
     int getManaRequired() const;
     int getDuration() const;
-
-    void printDamage() const;
 
     int cast() const;
 

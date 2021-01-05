@@ -4,10 +4,6 @@ int Monster::getDefence() const {
     return defence;
 }
 
-int Monster::getDodge() const {
-    return dodge;
-}
-
 void Monster::reduceDamage(int reduce) {
     damageRange.reduceRange(reduce);
 }

@@ -11,7 +11,7 @@ private:
 
 public:
 
-    Armor(const std::string& name, int price, int level, int defence, Items type = armor)
+    Armor(const std::string& name, int price, int level, int defence, ItemType type = armor)
     :Item(name, price, level, type), defence(defence){};
 
     ~Armor() override = default;

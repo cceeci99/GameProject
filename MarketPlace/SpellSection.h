@@ -19,13 +19,13 @@ public:
         delete[] spells;
     }
 
-    void buyOption(Hero* hero);
-
-    void sellOption(Hero* hero) const;
-
     void open(Hero* hero);
 
     void print() const;
+
+    void buyOption(Hero* hero);
+
+    void sellOption(Hero* hero) const;
 
     void addSpell(Spell* newSpell);
 

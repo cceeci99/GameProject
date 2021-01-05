@@ -11,6 +11,9 @@
 #include "Creatures/Heroes/Warrior.h"
 #include "Creatures/Heroes/Paladin.h"
 #include "Creatures/Heroes/Sorcerer.h"
+#include "Creatures/Monsters/Dragon.h"
+#include "Creatures/Monsters/ExoSkeleton.h"
+#include "Creatures/Monsters/Spirit.h"
 
 
 #define MAX_TEAMMATES 3     //max number of mobs in a squad
@@ -78,7 +81,6 @@ public:
             monsterSquad->setMonster(monster);
         }
 
-
         return monsterSquad;
 
     }
@@ -96,26 +98,27 @@ public:
         {
             Hero *hero = heroSquad->getHero(i);
             int level = hero->getLevel();
-            int MonsterType = (int) random() % 3 + 1; //[1, 3]
-            Monster *monster = nullptr;
+
+            int MonsterType = rand() % 3 +1; //[1, 3]
+            Monster* monster;
 
             switch (MonsterType)
             {
-                case dragon:
-                    //monster = new Dragon("sjuf", level);
-                    break;
-                case exoskeleton:
-                    //monster = new ExoSkeleton("fef", level);
-                    break;
-                case spirit:
-                    //monster = new Spirit("fgerge" level);
-                    break;
-                default:
-                    break;
+            case dragon:
+                monster = new Dragon("sjuf", level);
+                break;
+            case exoskeleton:
+                monster = new ExoSkeleton("fef", level);
+                break;
+            case spirit:
+                monster = new Spirit("fgerge", level);
+                break;
             }
 
             monsterSquad->setMonster(monster);
         }
+        herosquad->print();
+        monstersquad->print();
 
     //     unsigned int round = 1;
     //     while(true){

@@ -219,6 +219,40 @@ void Game::createTeam(int n) {
 
 }
 
+MonsterSquad *Game::createMonsters() {
+    int size = squad->getSize();
+
+    MonsterSquad* monsterSquad = new MonsterSquad(size);
+
+    for(int i = 0; i < size; i++)
+    {
+        Hero *hero = squad->getHero(i);
+        int level = hero->getLevel();
+        int MonsterType = (int) random() % 3 + 1; //[1, 3]
+        Monster *monster = nullptr;
+
+        switch (MonsterType)
+        {
+            case dragon:
+                monster = new Dragon("sjuf", level);
+                break;
+            case exoskeleton:
+                monster = new ExoSkeleton("fef", level);
+                break;
+            case spirit:
+                monster = new Spirit("fgerge", level);
+                break;
+            default:
+                break;
+        }
+
+        monsterSquad->setMonster(monster);
+    }
+
+    return monsterSquad;
+
+}
+
 void Game::fillMarket(const std::vector<Item *> &items, const std::vector<Spell *> &spells) {
     marketPlace = new Market();
 
@@ -232,4 +266,8 @@ void Game::fillMarket(const std::vector<Item *> &items, const std::vector<Spell 
 
 void Game::createMap(int size) {
     map = new Grid(size);
+
+    //
 }
+
+

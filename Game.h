@@ -16,7 +16,7 @@
 #include "Creatures/Monsters/Spirit.h"
 
 
-#define MAX_TEAMMATES 3     //max number of mobs in a squad
+#define MAX_TEAMMATES 3     //max number of heroes per squad
 
 
 class Game {
@@ -49,44 +49,10 @@ public:
     //function to fill the market with some items and spells, before the player starts the game
     void fillMarket(const std::vector<Item*>& items, const std::vector<Spell*>& spells);
 
-    //function to create the array of monsters for the game, before the player starts the game, monsters will be initialized by us
-    MonsterSquad* createMonsters(){
-        int size = squad->getSize();
-
-        //create MosterSquad
-        MonsterSquad* monsterSquad = new MonsterSquad(size);
-
-        for(int i = 0; i < size; i++)
-        {
-            Hero *hero = squad->getHero(i);
-            int level = hero->getLevel();
-            int MonsterType = (int) random() % 3 + 1; //[1, 3]
-            Monster *monster = nullptr;
-
-            switch (MonsterType)
-            {
-                case dragon:
-                    monster = new Dragon("sjuf", level);
-                    break;
-                case exoskeleton:
-                    monster = new ExoSkeleton("fef", level);
-                    break;
-                case spirit:
-                    monster = new Spirit("fgerge", level);
-                    break;
-                default:
-                    break;
-            }
-
-            monsterSquad->setMonster(monster);
-        }
-
-        return monsterSquad;
-
-    }
+    //function to make an monster squad for battle with heroes, monsters are made randomly, at same level of heroes
+    MonsterSquad* createMonsters();
 
 };
 
 
 #endif //GAMEPROJECT_GAME_H
-

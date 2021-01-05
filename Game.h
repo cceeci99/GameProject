@@ -14,7 +14,6 @@
 
 
 #define MAX_TEAMMATES 3     //max number of mobs in a squad
-#define MAX_ENEMIES 100     //max number of monsters in the game
 
 
 class Game {
@@ -24,8 +23,6 @@ private:
     Grid* map = nullptr;            //a game consists of a map in a form of a grid(NxN array)
 
     Market* marketPlace = nullptr;  //a game has one marketPlace
-
-    Monster** monsters = new Monster*[MAX_ENEMIES];   //a game has one array of monsters
 
     HeroSquad* squad = nullptr;     //a game has one squad consisting of (1-3) heroes
 
@@ -50,7 +47,7 @@ public:
     void fillMarket(const std::vector<Item*>& items, const std::vector<Spell*>& spells);
 
     //function to create the array of monsters for the game, before the player starts the game, monsters will be initialized by us
-    void createMonsters(std::string names[MAX_ENEMIES]){
+    void createMonsters(){
         // to implement
         // create array of monsters initialize them with some level and attributes(health, defence, dodge) , names from file
         // values of level, attributes from macros or some kind of algorithm

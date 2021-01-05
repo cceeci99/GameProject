@@ -28,6 +28,7 @@ public:
     int getLevel() const;
 
     virtual void print() const = 0;
+
     virtual void regeneration() = 0;
 
 };

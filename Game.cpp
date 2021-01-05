@@ -8,7 +8,6 @@ Game::~Game() {
     delete map;
     delete marketPlace;
     delete squad;
-    delete[] monsters;
 }
 
 void Game::play() {
@@ -37,13 +36,12 @@ void Game::play() {
     std::cout << "Move your squad by using keys (w, a, s, d) for up, left, down and right" << std::endl;
     std::cout << "You can see map by pressing (m) whenever you want" << std::endl;
     std::cout << "You can quit game by pressing (q) whenever you want" << std::endl;
-    std::cout << "If your squad gets in common square and don't get in fight, you can check inventory of your heroes by pressing (i)" << std::endl;
-    std::cout << "Whenever you get involved in fight and it's your turn you can display stats of your squad and enemies by pressing (t)" << std::endl;
-    std::cout << "You can make normal attack by pressing (o), cast spell by pressing (l) or use potion by pressing (p)" << std::endl;
+    std::cout << "You can check inventory of your heroes by pressing (i)" << std::endl;
+    std::cout << "You can check your heroes status by pressing (c)" << std::endl;
 
 
-    Square* start = map->getSquare(0,0);
-    squad->move(start);
+    Square* current = map->getSquare(0, 0);
+    squad->move(current);
 
     bool validButton = true;
 
@@ -55,8 +53,8 @@ void Game::play() {
         std::cin >> button;
 
         unsigned int x, y;
-        x = start->getX();
-        y = start->getY();
+        x = current->getX();
+        y = current->getY();
 
         unsigned int x1, y1;
 
@@ -119,9 +117,9 @@ void Game::play() {
             }
             else if (next->getType() == market)
             {
-                start->setSquad(nullptr);
+                current->setSquad(nullptr);
                 squad->move(next);
-                start = map->getSquare(x1, y1);
+                current = map->getSquare(x1, y1);
 
                 std::cout << "You entered a marketPlace do you want to open market? Y/N" << std::endl;
                 char answer;
@@ -151,7 +149,7 @@ void Game::play() {
             }
             else
             {
-                start->setSquad(nullptr);
+                current->setSquad(nullptr);
                 squad->move(next);
 
                 std::cout << "You have entered a common square" << std::endl;

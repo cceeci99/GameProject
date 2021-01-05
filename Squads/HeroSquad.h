@@ -37,18 +37,7 @@ public:
 
     void printStats() const;
 
-    void openInventory() {
-        for (int i=0; i<teammates; i++){
-            std::cout << "Do you want to open inventory for hero: " << squad[i]->getName() << " ? Y/N" << std::endl;
-
-            char answer;
-            std::cin >> answer;
-
-            if ( answer == 'Y' || answer == 'y' ) {
-                squad[i]->checkInventory();
-            }
-        }
-    }
+    void openInventory();
 
 };
 

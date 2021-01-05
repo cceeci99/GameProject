@@ -14,7 +14,6 @@ private:
 
     HeroSquad* squad{};
 
-
 public:
 
     Square(int x, int y, SquareType type)
@@ -22,24 +21,15 @@ public:
 
     ~Square() = default;
 
-    SquareType getType() const{
-        return type;
-    }
+    SquareType getType() const;
 
-    int getX() const{
-        return x;
-    }
-    int getY() const{
-        return y;
-    }
+    int getX() const;
 
-    HeroSquad* getSquad() const{
-        return squad;
-    }
+    int getY() const;
 
-    void setSquad(HeroSquad* heroSquad){
-        squad = heroSquad;
-    }
+    HeroSquad* getSquad() const;
+
+    void setSquad(HeroSquad* heroSquad);
 
 };
 

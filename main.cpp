@@ -29,7 +29,6 @@ int main(int args, char* argv[]) {
     spells.push_back(spell);
     spells.push_back(spell1);
 
-
     Game* game = new Game();
 
     game->fillMarket(items, spells);

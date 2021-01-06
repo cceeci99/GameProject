@@ -37,7 +37,8 @@ void Fight::battle(int round) {
             {
                 int damage = hero->attack();
 
-                if ( mob->avoidAttack() ){
+                if ( mob->avoidAttack() )
+                {
                     i++;
                     continue;
                 }

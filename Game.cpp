@@ -63,15 +63,18 @@ void Game::createTeam(int n) {
 
 
 MonsterSquad *Game::createEnemies() {
-    int size = squad->getSize();
+    int size = (int)random() % 5 + 1;
 
     MonsterSquad* monsterSquad = new MonsterSquad(size);
 
+    int averageLevel = 0;
+    for(int i=0; i<squad->getSize(); i++){
+        averageLevel += squad->getHero(i)->getLevel();
+    }
+    averageLevel = averageLevel/squad->getSize();
+
     for(int i = 0; i < size; i++)
     {
-        Hero *hero = squad->getHero(i);
-
-        int level = hero->getLevel();
         int MonsterType = (int) random() % 3 + 1; //[1, 3]
 
         Monster *monster = nullptr;
@@ -79,13 +82,13 @@ MonsterSquad *Game::createEnemies() {
         switch (MonsterType)
         {
             case dragon:
-                monster = new Dragon("sjuf", level);
+                monster = new Dragon("sjuf", averageLevel);
                 break;
             case exoskeleton:
-                monster = new ExoSkeleton("fef", level);
+                monster = new ExoSkeleton("fef", averageLevel);
                 break;
             case spirit:
-                monster = new Spirit("fgerge", level);
+                monster = new Spirit("fgerge", averageLevel);
                 break;
             default:
                 break;
@@ -259,6 +262,8 @@ void Game::play() {
                     if ( squad->wiped() )
                     {
                         squad->revive();
+                        current->setSquad(nullptr);
+                        squad->move(map->getSquare(0,0));   //move squad at start point of map because they died
                     }
                     else
                     {

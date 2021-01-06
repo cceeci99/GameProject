@@ -79,6 +79,12 @@ void Fight::battle(int round) {
             {
                 hero->drinkPotion();
             }
+            else if ( answer == 't')
+            {
+                std::cout << "Stats of heroes and monsters are:" << std::endl;
+                displayStats();
+                continue;
+            }
             else
             {
                 std::cout << "invalid input, try again" << std::endl;

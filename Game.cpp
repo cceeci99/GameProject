@@ -253,7 +253,7 @@ void Game::play() {
                     Fight* fight = new Fight(squad, monsterSquad);  //create new fight
 
                     int round = 1;
-                    while (!fight->isOver())
+                    while (fight->isNotOver())
                     {
                         fight->battle(round);            //where fight is implemented...
                         round++;
@@ -286,6 +286,7 @@ void Game::play() {
                             //create formula for experience and money earn...
                             int xp = ((squad->getHero(i)->getLevel())*2 + 5)/monsterSquad->getSize();
                             int money = (squad->getHero(i)->getLevel()*100 + 50)/monsterSquad->getSize();
+                            //
 
                             squad->getHero(i)->addExperience(xp);
                             squad->getHero(i)->earnMoney(money);

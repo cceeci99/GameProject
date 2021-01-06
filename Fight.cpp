@@ -55,11 +55,12 @@ void Fight::battle(int round) {
 
                 hero->castSpell(damage, effect, duration, type);
 
+
                 // spell on mob , effect for some rounds...
 
                 damage -= mob->getDefence();
                 mob->reduceHealth(damage);
-
+                mob->activateSpell(type, duration);
                 EffectType tempType = type;
                 if ( type == reduce_defence )
                 {
@@ -111,6 +112,15 @@ void Fight::battle(int round) {
             damage -= hero->getArmorDefence();
 
             hero->reduceHealth(damage);
+        }
+    }
+
+    for(int i = 0; i < enemies->getSize(); i++){
+        Monster* monster = enemies->getMonster(i);
+        monster->reduceSpellRound(); //for each spell it reduces duration rounds if spell is activated
+        if(monster->mustDisable(reduce_damage)){
+            monster->disableSpells(reduce_damage);
+            monster->regeneration(type);
         }
     }
 

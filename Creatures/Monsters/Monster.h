@@ -6,7 +6,7 @@
 #include "../LivingCreature.h"
 #include "../../Range.h"
 #include "../Heroes/Hero.h"
-
+#include "../../Spells/AllSpellsEffect.h"
 
 enum MonsterType{dragon=1, exoskeleton=2, spirit=3};
 
@@ -22,7 +22,7 @@ protected:
     Range damageRange;
     int defence;
     int dodge;
-
+    AllSpellsEffect allspellsduration;
 public:
 
     Monster(const std::string& name, int level, Range range, int defence, int dodge)
@@ -43,6 +43,24 @@ public:
     void regeneration() override;
 
     bool avoidAttack() const;
+
+    
+    void activateSpell(EffectType type, int duration){
+        allspellsduration.activate(type, duration);
+    }
+
+    bool disableSpells(EffectType type){
+        return allspellsduration.disable(type);
+    }
+
+    void reduceSpellsRound(){
+        allspellsduration.reduceRound();
+    }
+
+    bool mustDisable(EffectType type){
+        return allspellsduration.mustDisable(type);
+    }
+
 
 };
 

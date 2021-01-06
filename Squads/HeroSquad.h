@@ -10,22 +10,22 @@ class HeroSquad {
 
 private:
 
-    Hero** squad;
+    Hero** heroes;
     int teammates=0;
 
 public:
 
     explicit HeroSquad(int teammates){
         //allocate memory for number of heroes which will be given by the user
-        squad = new Hero*[teammates];
+        heroes = new Hero*[teammates];
         this->teammates = teammates;
     }
 
     ~HeroSquad(){
         for(int i=0; i<teammates; i++)
-            delete squad[i];
+            delete heroes[i];
 
-        delete[] squad;
+        delete[] heroes;
     }
 
     void print() const;
@@ -38,7 +38,7 @@ public:
 
     void setSquadStats();
 
-    bool wiped() const;
+    bool defeated() const;
     void regeneration();
     void revive();
 

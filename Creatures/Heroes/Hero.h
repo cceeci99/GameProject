@@ -55,6 +55,11 @@ public:
     void printInventory() const;
     void printSkills() const;
 
+    bool dead() const;
+
+    void earnMoney(int earned);
+    void looseMoney();
+
     void addExperience(int xp);
 
     void setCurrentStats();
@@ -64,7 +69,6 @@ public:
     void regeneration() override;
 
     void revive();
-
 
     //transactions that are made by her in market
     void buyItem(Item* newItem);

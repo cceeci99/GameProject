@@ -2,41 +2,41 @@
 
 
 void MonsterSquad::print() const {
-    for (int i=0; i < mobs; i++){
-        squad[i]->print();
+    for (int i=0; i < numberOfMonsters; i++){
+        monsters[i]->print();
     }
 }
 
 
 int MonsterSquad::getSize() const {
-    return mobs;
+    return numberOfMonsters;
 }
 
 
 Monster *MonsterSquad::getMonster(int pos) const {
-    if (pos >= mobs )
+    if (pos >= numberOfMonsters )
         return nullptr;
 
-    return squad[pos];
+    return monsters[pos];
 }
 
 
 void MonsterSquad::setMonster(Monster *monster) {
-    for(int i=0; i < mobs; i++)
+    for(int i=0; i < numberOfMonsters; i++)
     {
-        if (squad[i] == nullptr )
+        if (monsters[i] == nullptr )
         {
-            squad[i] = monster;
+            monsters[i] = monster;
             return;
         }
     }
 }
 
 
-bool MonsterSquad::wiped() const {
+bool MonsterSquad::defeated() const {
     int totalHealth=0;
-    for(int i=0; i<mobs; i++){
-        totalHealth += squad[i]->getHealth();
+    for(int i=0; i < numberOfMonsters; i++){
+        totalHealth += monsters[i]->getHealth();
     }
 
     return (totalHealth==0);
@@ -44,7 +44,7 @@ bool MonsterSquad::wiped() const {
 
 
 void MonsterSquad::regeneration() {
-    for(int i=0; i<mobs; i++){
-        squad[i]->regeneration();
+    for(int i=0; i < numberOfMonsters; i++){
+        monsters[i]->regeneration();
     }
 }

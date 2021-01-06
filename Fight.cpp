@@ -6,7 +6,7 @@ bool Fight::begin() {
 }
 
 bool Fight::isOver() const {
-    return (heroes->wiped() || enemies->wiped());
+    return (heroes->defeated() || enemies->defeated());
 }
 
 void Fight::displayStats() const {
@@ -29,7 +29,7 @@ void Fight::battle(int round) {
             char answer;
             std::cin >> answer;
 
-            //each hero attacks random monster from the squad
+            //each hero attacks random monster from the heroes
             int r = (int)random() % enemies->getSize();
             Monster* mob = enemies->getMonster(r);
 

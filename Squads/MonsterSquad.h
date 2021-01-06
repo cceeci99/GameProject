@@ -9,21 +9,21 @@ class MonsterSquad {
 
 private:
 
-    Monster** squad;
-    int mobs=0;
+    Monster** monsters;
+    int numberOfMonsters=0;
 
 public:
 
     explicit MonsterSquad(int mobs){
-        squad = new Monster*[mobs];
-        this->mobs = mobs;
+        monsters = new Monster*[mobs];
+        this->numberOfMonsters = mobs;
     }
 
     ~MonsterSquad(){
-        for(int i=0; i < mobs; i++)
-            delete squad[i];
+        for(int i=0; i < numberOfMonsters; i++)
+            delete monsters[i];
 
-        delete[] squad;
+        delete[] monsters;
     }
 
     void print() const;
@@ -33,7 +33,7 @@ public:
     Monster* getMonster(int pos) const;
     void setMonster(Monster* monster);
 
-    bool wiped() const;
+    bool defeated() const;
     void regeneration();
 
 };

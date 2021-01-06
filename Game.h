@@ -16,7 +16,7 @@
 #include "Creatures/Monsters/Spirit.h"
 
 
-#define MAX_TEAMMATES 3     //max number of heroes per squad
+#define MAX_TEAMMATES 3     //max number of heroes per heroes
 
 
 class Game {
@@ -27,7 +27,7 @@ private:
 
     Market* marketPlace = nullptr;  //a game has one same MarketPlace for the map
 
-    HeroSquad* squad = nullptr;     //a game has one squad consisting of (1-3) heroes
+    HeroSquad* squad = nullptr;     //a game has one heroes consisting of (1-3) heroes
 
 public:
 
@@ -47,10 +47,10 @@ public:
     //function to fill the market with some items and spells, before the player starts the game
     void fillMarket(const std::vector<Item*>& items, const std::vector<Spell*>& spells);
 
-    //function to create a squad of heroes for the player, the number of teammates is given from player
+    //function to create a heroes of heroes for the player, the number of teammates is given from player
     void createTeam(int teammates);
 
-    //function to make an monster squad for battle with heroes, monsters are made randomly, at same level of heroes
+    //function to make an monster heroes for battle with heroes, monsters are made randomly, at same level of heroes
     MonsterSquad* createEnemies();
 
     void play();

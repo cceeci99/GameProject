@@ -20,7 +20,7 @@ void Game::fillMarket(const std::vector<Item *> &items, const std::vector<Spell 
 
 
 void Game::createTeam(int n) {
-    std::cout << "Creating a squad of " << n << " members" << std::endl;
+    std::cout << "Creating a heroes of " << n << " heroes" << std::endl;
     squad = new HeroSquad(n);
 
     std::cout << "Please choose name and type of each hero 1:warrior, 2:paladin, 3:sorcerer" << std::endl;
@@ -103,7 +103,7 @@ MonsterSquad *Game::createEnemies() {
 
 void Game::play() {
     std::cout << "Welcome to our game" << std::endl;
-    std::cout << "Please create your Hero Squad  of (1-3) members" << std::endl;
+    std::cout << "Please create your Hero Squad  of (1-3) heroes" << std::endl;
 
     int n;
     while (true)
@@ -124,7 +124,7 @@ void Game::play() {
     squad->printStats();
 
     std::cout << "Are you ready to begin..." << std::endl;
-    std::cout << "Move your squad by using keys (w, a, s, d) for up, left, down and right" << std::endl;
+    std::cout << "Move your heroes by using keys (w, a, s, d) for up, left, down and right" << std::endl;
     std::cout << "You can see map by pressing (m) whenever you want" << std::endl;
     std::cout << "You can quit game by pressing (q) whenever you want" << std::endl;
     std::cout << "You can check inventory of your heroes by pressing (i)" << std::endl;
@@ -136,7 +136,7 @@ void Game::play() {
 
     bool validButton = true;
 
-    std::cout << "Start moving your squad..." << std::endl;
+    std::cout << "Start moving your heroes..." << std::endl;
 
     while(true)
     {
@@ -259,15 +259,37 @@ void Game::play() {
                         round++;
                     }
 
-                    if ( squad->wiped() )
+                    if (squad->defeated())
                     {
                         squad->revive();
+
                         current->setSquad(nullptr);
-                        squad->move(map->getSquare(0,0));   //move squad at start point of map because they died
+                        squad->move(map->getSquare(0,0));   //move heroes at start point of map because they died
+
+                        for (int i=0; i<squad->getSize(); i++){
+                            squad->getHero(i)->looseMoney();
+                        }
                     }
                     else
                     {
-                        //
+                        //if some hero of the squad is defeated then revive him, with half of his hp and mp
+                        for(int i=0; i<squad->getSize(); i++)
+                        {
+                            if (squad->getHero(i)->dead()){
+                                squad->getHero(i)->revive();
+                            }
+                        }
+
+                        //get XP and money
+                        for(int i=0; i<squad->getSize(); i++)
+                        {
+                            //create formula for experience and money earn...
+                            int xp = ((squad->getHero(i)->getLevel())*2 + 5)/monsterSquad->getSize();
+                            int money = (squad->getHero(i)->getLevel()*100 + 50)/monsterSquad->getSize();
+
+                            squad->getHero(i)->addExperience(xp);
+                            squad->getHero(i)->earnMoney(money);
+                        }
                     }
                 }
                 else

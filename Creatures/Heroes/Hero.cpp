@@ -23,10 +23,27 @@ void Hero::printSkills() const {
 }
 
 
+bool Hero::dead() const {
+    return health==0;
+}
+
+
+void Hero::earnMoney(int earned) {
+    money += earned;
+}
+
+
+void Hero::looseMoney() {
+    money = money/2;
+}
+
+
 void Hero::addExperience(int xp) {
     experience += xp;
+    //experience required for next level
+    int nextLevel = 500 * (level ^ 2) - (500 * level);
 
-    if ( experience >= 100 ) {
+    if ( experience >= nextLevel ) {
         levelUp();
     }
 }
@@ -56,6 +73,7 @@ void Hero::regeneration() {
 void Hero::revive() {
     health = CURRENT_HEALTH/2;
     mana = CURRENT_MANA/2;
+    money = money/2;
 }
 
 
@@ -271,3 +289,4 @@ void Hero::checkInventory() {
 
     }
 }
+

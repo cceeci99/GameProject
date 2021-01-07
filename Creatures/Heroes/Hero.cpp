@@ -97,38 +97,33 @@ void Hero::regeneration() {
 void Hero::revive() {
     health = CURRENT_HEALTH/2;
     mana = CURRENT_MANA/2;
-    money = money/2;
 }
 
 
 void Hero::buyItem(Item *newItem) {
-    if ( money >= newItem->getPrice() && level >= newItem->getRequiredLevel() )
+    if ( money >= newItem->getPrice() )
     {
         inventory.addItem(newItem);
         money -= newItem->getPrice();
     }
     else
     {
-        if ( money < newItem->getPrice() )
-            std::cout << "Not enough money to buy the item" << std::endl;
-        else
-            std::cout << "Level too low to use this item" << std::endl;
+        std::cout << "Not enough money to buy the item" << std::endl;
+        return;
     }
 }
 
 
 void Hero::buySpell(Spell *newSpell) {
-    if ( money >= newSpell->getPrice() && level >= newSpell->getRequiredLevel() )
+    if ( money >= newSpell->getPrice() )
     {
         skills.addSpell(newSpell);
         money -= newSpell->getPrice();
     }
     else
     {
-        if ( money < newSpell->getPrice() )
             std::cout << "Not enough money to buy the spell" << std::endl;
-        else
-            std::cout << "Level too low to use this spell" << std::endl;
+            return;
     }
 }
 
@@ -280,6 +275,12 @@ void Hero::checkInventory() {
         if ( item == nullptr )
         {
             std::cout << "this place is empty choose another item" << std::endl;
+            continue;
+        }
+
+        if ( item->getRequiredLevel() > level )
+        {
+            std::cout << "Your level is too low to use this item" << std::endl;
             continue;
         }
 

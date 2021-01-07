@@ -8,6 +8,7 @@ void SpellSection::print() const {
         {
             std::cout << i+1 << ")";
             spells[i]->print();
+            std::cout << "Required Level: " << spells[i]->getRequiredLevel() << std::endl;
             std::cout << "Price: " << spells[i]->getPrice() << std::endl;
         }
     }

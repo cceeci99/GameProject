@@ -8,6 +8,7 @@ void ItemSection::print() const {
         {
             std::cout << i+1 << ")";
             items[i]->print();
+            std::cout << "Required Level: " << items[i]->getRequiredLevel() << std::endl;
             std::cout << "Price: " <<items[i]->getPrice() << std::endl;
         }
     }

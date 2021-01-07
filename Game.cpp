@@ -224,8 +224,9 @@ void Game::play() {
 
                         std::cin >> answer;
 
-                        if(answer == 'Y' || answer == 'y')
+                        if(answer == 'Y' || answer == 'y') {
                             marketPlace->open(squad->getHero(i));
+                        }
                         else
                             continue;
                     }
@@ -259,14 +260,16 @@ void Game::play() {
                         fight->playerTurn();
                         fight->enemiesTurn();
 
+                        //deal with active spells on monsters
                         for (int i=0; i<enemies->getSize(); i++)
                         {
                             Monster* mob = enemies->getMonster(i);
 
-                            mob->reduceSpellsRound();
-                            mob->checkExpiredSpells();
+                            mob->reduceSpellsRound();       //reduce round
+                            mob->checkExpiredSpells();      //check if some spell is expired and must be disabled
                         }
 
+                        //regenerate stats of both heroes and enemies
                         squad->regeneration();
                         enemies->regeneration();
 
@@ -281,7 +284,7 @@ void Game::play() {
                         squad->move(map->getSquare(0,0));   //move heroes at start point of map because they died
 
                         for (int i=0; i<squad->getSize(); i++){
-                            squad->getHero(i)->looseMoney();
+                            squad->getHero(i)->looseMoney();            //heroes loose half of their money
                         }
                     }
                     else

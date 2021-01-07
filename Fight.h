@@ -2,8 +2,6 @@
 #ifndef GAMEPROJECT_FIGHT_H
 #define GAMEPROJECT_FIGHT_H
 
-#include <cstdlib>
-
 #include "Squads/HeroSquad.h"
 #include "Squads/MonsterSquad.h"
 

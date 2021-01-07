@@ -2,7 +2,7 @@
 
 
 bool Fight::begin() {
-    return ((float) (random()/RAND_MAX) > 0.45);
+    return   (double) random()/RAND_MAX > 0.45;
 }
 
 bool Fight::isNotOver() const {

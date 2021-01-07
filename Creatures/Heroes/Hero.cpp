@@ -292,6 +292,3 @@ void Hero::checkInventory() {
 
     }
 }
-
-
-

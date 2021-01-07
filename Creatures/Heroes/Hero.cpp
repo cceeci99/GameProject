@@ -201,7 +201,13 @@ int Hero::attack() const {
 }
 
 
-void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) {
+bool Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) {
+    if (skills.empty())
+    {
+        std::cout << "None available spells" << std::endl;
+        return false;
+    }
+
     std::cout << "Your acquired skills are:" << std::endl;
     skills.print();
 
@@ -211,7 +217,7 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
         std::cin >> pos;
 
         if ( pos == 0 )
-            return;
+            return false;
 
         pos--;
 
@@ -238,7 +244,7 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
 
             mana -= spell->getManaRequired();
 
-            return;
+            return true;
         }
     }
 }

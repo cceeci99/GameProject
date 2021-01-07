@@ -73,7 +73,9 @@ void Fight::playerTurn() {
             int effect;
             int duration;
 
-            hero->castSpell(damage, effect, duration, type);
+            if (!hero->castSpell(damage, effect, duration, type))
+                continue;
+
 
             std::cout << hero->getName() << " performs spell on: " << mob->getName() << std::endl;
 

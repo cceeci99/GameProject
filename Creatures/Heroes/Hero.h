@@ -87,16 +87,11 @@ public:
     //methods for the player
 
     int attack() const;
-
-    //casting spell on monster, spell make some damage on monster and has an effect for some turns(duration)
-    void castSpell(int& damage, int& effect, int& duration, EffectType& type);
-
+    bool castSpell(int& damage, int& effect, int& duration, EffectType& type);
     void usePotion();
-
     void chooseEquipment();
 
     void checkInventory();
-
 
 };
 

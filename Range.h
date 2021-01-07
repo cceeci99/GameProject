@@ -27,6 +27,12 @@ public:
     void reduceRange(int reduce){
         min -= reduce;
         max -= reduce;
+
+        if ( min < 0 )
+            min = 0;
+
+        if ( max < 0 )
+            max = 0;
     }
 
     //generate random rage with within lower and upper Bound

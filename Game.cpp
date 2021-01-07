@@ -64,7 +64,7 @@ void Game::createTeam(int n) {
 
 MonsterSquad *Game::createEnemies() {
 //    int size = (int)random() % 5 + 1;
-    int size = 1;
+    int size = 2;
 
     MonsterSquad* monsterSquad = new MonsterSquad(size);
 
@@ -263,6 +263,10 @@ void Game::play() {
 
                         std::cout << "Your Turn" << std::endl;
                         fight->playerTurn();
+
+                        if ( enemies->defeated() )
+                            break;
+
                         std::cout << "Enemies Turn" << std::endl;
                         fight->enemiesTurn();
 

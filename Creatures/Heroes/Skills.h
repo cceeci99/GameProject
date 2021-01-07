@@ -21,7 +21,7 @@ public:
 
     void print() const;
 
-    void addSpell(Spell* newSpell);
+    bool addSpell(Spell* newSpell);
 
     Spell* getSpell(int pos);
     Spell* removeSpell(int pos);

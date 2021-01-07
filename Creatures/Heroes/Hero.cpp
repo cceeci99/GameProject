@@ -103,8 +103,9 @@ void Hero::revive() {
 void Hero::buyItem(Item *newItem) {
     if ( money >= newItem->getPrice() )
     {
-        inventory.addItem(newItem);
-        money -= newItem->getPrice();
+        if (inventory.addItem(newItem)) {
+            money -= newItem->getPrice();
+        }
     }
     else
     {
@@ -117,8 +118,9 @@ void Hero::buyItem(Item *newItem) {
 void Hero::buySpell(Spell *newSpell) {
     if ( money >= newSpell->getPrice() )
     {
-        skills.addSpell(newSpell);
-        money -= newSpell->getPrice();
+        if (skills.addSpell(newSpell)) {
+            money -= newSpell->getPrice();
+        }
     }
     else
     {

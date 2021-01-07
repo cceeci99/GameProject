@@ -24,9 +24,12 @@ void Fight::playerTurn() {
     {
         Hero* hero = heroes->getHero(i);
 
-        std::cout << "Do you want to make normal attack (o), cast spell(l) or use potion(p)" << std::endl;
+
+
+        std::cout << "Do you want to make normal attack (o), cast spell(l) or equip(e) or use potion(p)" << std::endl;
         char answer;
         std::cin >> answer;
+
 
         //each hero attacks random monster from the heroes
         int r = (int)random() % enemies->getSize();
@@ -46,8 +49,11 @@ void Fight::playerTurn() {
             }
 
             mob->reduceHealth(damage);
+
             if (mob->dead())
                 std::cout << "Just killed " << mob->getName() << std::endl;
+
+            mob->print();
         }
         else if ( answer == 'l')   // cast spell
         {
@@ -73,11 +79,15 @@ void Fight::playerTurn() {
             else if ( type == reduce_damage){
                 mob->reduceDamage(effect);
             }
+
+            if (mob->dead())
+                std::cout << "Just killed " << mob->getName() << std::endl;
+
             mob->print();
         }
         else if ( answer == 'p')
         {
-            std::cout << hero->getName() << " uses potion" << std::endl;
+            std::cout << "Choose potion" << std::endl;
             hero->drinkPotion();
         }
         else if ( answer == 't')
@@ -86,9 +96,13 @@ void Fight::playerTurn() {
             displayStats();
             continue;
         }
+        else if ( answer == 'e')
+        {
+            hero->chooseEquipment();
+        }
         else
         {
-            std::cout << "invalid input, try again" << std::endl;
+            std::cout << "invalid input try again" << std::endl;
             continue;
         }
         i++;

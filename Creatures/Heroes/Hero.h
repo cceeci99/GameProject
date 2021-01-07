@@ -95,6 +95,20 @@ public:
 
     void checkInventory();
 
+    void chooseEquipment() {
+        std::cout << "Choose equipment" << std::endl;
+        Armor* arm;
+        Weapon* wep;
+
+        inventory.showEquipment(arm, wep);
+
+        if (arm!= nullptr)
+            equip((Armor*)arm);
+
+        if (wep != nullptr)
+            equip((Weapon*)wep);
+    }
+
 };
 
 

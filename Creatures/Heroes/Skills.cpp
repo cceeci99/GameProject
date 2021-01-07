@@ -13,11 +13,25 @@ void Skills::print() const {
 }
 
 
-void Skills::addSpell(Spell *newSpell) {
+bool Skills::addSpell(Spell *newSpell) {
     if ( acquiredSpells >= SPELLS_LIMIT )
     {
         std::cout << "You already have the max number of spells, cannot add new one" << std::endl;
     }
+
+    bool result = true;
+    for (int i=0; i<SPELLS_LIMIT; i++)
+    {
+        if ( spells[i] == newSpell )
+        {
+            std::cout << "You already have that spell choose another" << std::endl;
+            result = false;
+            break;
+        }
+    }
+
+    if (!result)
+        return result;
 
     for(int i=0; i<SPELLS_LIMIT; i++)
     {
@@ -25,9 +39,11 @@ void Skills::addSpell(Spell *newSpell) {
         {
             spells[i] = newSpell;
             acquiredSpells++;
-            return;
+            break;
         }
     }
+
+    return result;
 }
 
 

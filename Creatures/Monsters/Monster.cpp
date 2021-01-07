@@ -21,10 +21,17 @@ void Monster::reduceDamage(int reduce) {
 
 void Monster::reduceDefence(int reduce) {
     defence -= reduce;
+
+    if ( defence < 0 ) {
+        defence = 0;
+    }
 }
 
 void Monster::reduceDodge(int reduce) {
     dodge -= reduce;
+    if ( dodge < 0 ) {
+        dodge = 0;
+    }
 }
 
 void Monster::regeneration() {

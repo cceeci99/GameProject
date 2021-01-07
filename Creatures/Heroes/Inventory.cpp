@@ -19,12 +19,26 @@ bool Inventory::empty() const {
 }
 
 
-void Inventory::addItem(Item *newItem) {
+bool Inventory::addItem(Item *newItem) {
     if ( addedItems >= INVENTORY_CAPACITY)
     {
         std::cout << "Inventory full cant add new item" << std::endl;
-        return;
     }
+
+    bool result = true;
+    for(int i=0; i<INVENTORY_CAPACITY; i++)
+    {
+        if ( items[i] == newItem )
+        {
+            std::cout << "You already have that item choose another" << std::endl;
+            result = false;
+            break;
+        }
+    }
+
+    if (!result)
+        return result;
+
 
     for(int i=0; i < INVENTORY_CAPACITY; i++)
     {
@@ -32,9 +46,11 @@ void Inventory::addItem(Item *newItem) {
         {
             items[i] = newItem;
             addedItems++;
-            return;
+            break;
         }
     }
+
+    return result;
 }
 
 
@@ -95,16 +111,20 @@ Potion *Inventory::choosePotion() {
         return nullptr;
     else
     {
+
         Potion* temp = potions.at(pos-1);
 
+        removeItem(temp);
+
+        /*
         for (int i=0; i<INVENTORY_CAPACITY; i++)
         {
             if ( items[i] == temp )
             {
                 removeItem(i);
             }
-        }
-        potions.clear();
+        }*/
+
         return temp;
     }
 }

@@ -24,12 +24,21 @@ void Fight::playerTurn() {
     {
         Hero* hero = heroes->getHero(i);
 
-
-
-        std::cout << "Do you want to make normal attack (o), cast spell(l) or equipWeapon(e) or use potion(p)" << std::endl;
         char answer;
+        std::cout << "Do you want to choose equipment?" << std::endl;
+        std::cin >> answer;
+        if ( answer == 'Y' || answer == 'y' ) {
+            hero->chooseEquipment();
+        }
+
+        std::cout << "Do you want to make normal attack (o), cast spell(l) or use potion(p)" << std::endl;
         std::cin >> answer;
 
+        while( answer != 'o' && answer != 'l' && answer != 'p' && answer != 't' )
+        {
+            std::cout << "invalid input try again" << std::endl;
+            std::cin >> answer; 
+        }
 
         //each hero attacks random monster from the heroes
         int r = (int)random() % enemies->getSize();
@@ -96,15 +105,7 @@ void Fight::playerTurn() {
             displayStats();
             continue;
         }
-        else if ( answer == 'e')
-        {
-            hero->chooseEquipment();
-        }
-        else
-        {
-            std::cout << "invalid input try again" << std::endl;
-            continue;
-        }
+
         i++;
     }
 }

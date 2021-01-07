@@ -96,8 +96,7 @@ void Fight::playerTurn() {
         }
         else if ( answer == 'p')
         {
-            std::cout << "Choose potion" << std::endl;
-            hero->drinkPotion();
+            hero->usePotion();
         }
         else if ( answer == 't')
         {

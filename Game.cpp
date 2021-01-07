@@ -83,13 +83,13 @@ MonsterSquad *Game::createEnemies() {
         switch (MonsterType)
         {
             case dragon:
-                monster = new Dragon("DRAGON", averageLevel);
+                monster = new Dragon("Tiamat", averageLevel);
                 break;
             case exoskeleton:
-                monster = new ExoSkeleton("death", averageLevel);
+                monster = new ExoSkeleton("Venim", averageLevel);
                 break;
             case spirit:
-                monster = new Spirit("fantasma", averageLevel);
+                monster = new Spirit("Viserion", averageLevel);
                 break;
             default:
                 break;

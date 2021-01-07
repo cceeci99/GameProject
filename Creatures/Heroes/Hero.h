@@ -88,42 +88,15 @@ public:
 
     int attack() const;
 
-    void drinkPotion();
-
     //casting spell on monster, spell make some damage on monster and has an effect for some turns(duration)
     void castSpell(int& damage, int& effect, int& duration, EffectType& type);
 
+    void usePotion();
+
+    void chooseEquipment();
+
     void checkInventory();
 
-
-    void chooseEquipment() {
-        Armor* arm = inventory.chooseArmor();
-
-        if ( arm != nullptr )
-        {
-            if ( equippedArmor != nullptr ){
-                inventory.changeItem(arm, equippedArmor);
-            }
-            else{
-                inventory.removeItem(arm);
-            }
-            equipArmor(arm);
-        }
-
-        Weapon* weap = inventory.chooseWeapon();
-
-        if ( weap != nullptr )
-        {
-            if ( equippedWeapon != nullptr ){
-                inventory.changeItem(weap, equippedWeapon);
-            }
-            else{
-                inventory.removeItem(weap);
-            }
-            equipWeapon(weap);
-        }
-
-    }
 
 };
 

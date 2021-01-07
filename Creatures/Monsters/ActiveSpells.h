@@ -17,56 +17,15 @@ public:
     ActiveSpells()
     :fire(reduce_defence), ice(reduce_damage), lighting(reduce_dodge){}
 
+    ~ActiveSpells() = default;
 
-    void activate(EffectType type, int duration){
-        if (type == reduce_defence) {
-            fire.activate(duration);
-        }
-        else if (type == reduce_damage) {
-            ice.activate(duration);
-        }
-        else {
-            lighting.activate(duration);
-        }
-    }
+    void activate(EffectType type, int duration);
 
-    void disable(EffectType type){
-        if (type == reduce_defence) {
-            fire.disable();
-        }
-        else if(type == reduce_damage) {
-            ice.disable();
-        }
-        else {
-            lighting.disable();
-        }
-    }
+    void disable(EffectType type);
 
-    void reduceRound() {
-        if (fire.isActive()) {
-            fire.reduceRound();
-        }
+    void reduceRound();
 
-        if (ice.isActive()) {
-            ice.reduceRound();
-        }
-
-        if (lighting.isActive()) {
-            lighting.reduceRound();
-        }
-    }
-
-    bool mustDisable(EffectType type){
-        if (type == reduce_defence){
-            return fire.mustDisable();
-        }
-        else if (type == reduce_damage){
-            return ice.mustDisable();
-        }
-        else{
-            return lighting.mustDisable();
-        }
-    }
+    bool mustDisable(EffectType type);
 
 };
 

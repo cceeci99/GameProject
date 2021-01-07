@@ -201,16 +201,6 @@ int Hero::attack() const {
 }
 
 
-void Hero::drinkPotion() {
-    std::cout << "Choose potion to use" << std::endl;
-    Potion* potion = inventory.choosePotion();
-
-    if ( potion != nullptr) {
-        use(potion);
-    }
-}
-
-
 void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) {
     std::cout << "Your acquired skills are:" << std::endl;
     skills.print();
@@ -251,6 +241,48 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
             return;
         }
     }
+}
+
+
+void Hero::usePotion() {
+    std::cout << "Choose potion" << std::endl;
+    Potion* potion = inventory.choosePotion();
+
+    if ( potion != nullptr) {
+        use(potion);
+    }
+}
+
+
+void Hero::chooseEquipment() {
+    std::cout << "Choose armor" << std::endl;
+    Armor* arm = inventory.chooseArmor();
+
+    if ( arm != nullptr )
+    {
+        if ( equippedArmor != nullptr ){
+            inventory.changeItem(arm, equippedArmor);
+        }
+        else{
+            inventory.removeItem(arm);
+        }
+        equipArmor(arm);
+    }
+
+    std::cout << "Choose weapon" << std::endl;
+    Weapon* weap = inventory.chooseWeapon();
+
+    if ( weap != nullptr )
+    {
+        if ( equippedWeapon != nullptr ){
+            inventory.changeItem(weap, equippedWeapon);
+        }
+        else{
+            inventory.removeItem(weap);
+        }
+        equipWeapon(weap);
+    }
+
 }
 
 

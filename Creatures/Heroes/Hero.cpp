@@ -18,11 +18,24 @@ void Hero::printSkills() const {
 }
 
 void Hero::reduceHealth(int reduce) {
-    if ( equippedArmor != nullptr ) {
+    if ( equippedArmor != nullptr )
+    {
+
+        if ( reduce <= equippedArmor->getAttribute() )
+            return;
+
         health = health - (reduce - equippedArmor->getAttribute());
+
+        if ( health < 0 ) {
+            health = 0;
+        }
     }
     else{
         health = health - reduce;
+
+        if ( health < 0 ){
+            health = 0;
+        }
     }
 }
 
@@ -60,17 +73,24 @@ void Hero::setCurrentStats() {
 
 
 bool Hero::avoidAttack() const {
-    int r = (int)random() % 100 +1;
+//    int r = (int)random() % 100 +1;
 
-    return (r <= agility);
+//    return (r <= agility);
+    return false;
 }
 
 
 void Hero::regeneration() {
     if ( health != 0 ){
-        health += 10/100*health;
+//        health += 10/100*health;
+        health+= 50;
+        if ( health >= 1000 )
+            health = 1000;
     }
-    mana += mana + 15/100*mana;
+//    mana += mana + 15/100*mana;
+    mana += 50;
+    if ( mana >= 1000 )
+        mana = 1000;
 }
 
 
@@ -175,7 +195,12 @@ void Hero::use(Potion *potion) {
 
 
 int Hero::attack() const {
-    return strength+equippedWeapon->getAttribute();
+    if ( equippedWeapon != nullptr ) {
+        return strength + equippedWeapon->getAttribute();
+    }
+    else{
+        return strength;
+    }
 }
 
 
@@ -213,12 +238,13 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
         }
         else
         {
-            damage = spell->cast()*dexterity/100 + dexterity;
+            damage = spell->cast();
             effect = spell->getEffect();
             type = spell->getEffectType();
             duration = spell->getDuration();
 
             std::cout << "Casting " << spell->getName() << std::endl;
+            std::cout << "damage: " <<  damage <<std::endl;
 
             mana -= spell->getManaRequired();
 

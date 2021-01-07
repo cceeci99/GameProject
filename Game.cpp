@@ -63,7 +63,8 @@ void Game::createTeam(int n) {
 
 
 MonsterSquad *Game::createEnemies() {
-    int size = (int)random() % 5 + 1;
+//    int size = (int)random() % 5 + 1;
+    int size = 1;
 
     MonsterSquad* monsterSquad = new MonsterSquad(size);
 
@@ -82,13 +83,13 @@ MonsterSquad *Game::createEnemies() {
         switch (MonsterType)
         {
             case dragon:
-                monster = new Dragon("sjuf", averageLevel);
+                monster = new Dragon("DRAGON", averageLevel);
                 break;
             case exoskeleton:
-                monster = new ExoSkeleton("fef", averageLevel);
+                monster = new ExoSkeleton("death", averageLevel);
                 break;
             case spirit:
-                monster = new Spirit("fgerge", averageLevel);
+                monster = new Spirit("fantasma", averageLevel);
                 break;
             default:
                 break;
@@ -255,9 +256,14 @@ void Game::play() {
 
                     int round = 1;
 
+                    std::cout << "Fight Begins..." << std::endl;
                     while (fight->isNotOver())
                     {
+                        std::cout << "Round: " << round << std::endl;
+
+                        std::cout << "Your Turn" << std::endl;
                         fight->playerTurn();
+                        std::cout << "Enemies Turn" << std::endl;
                         fight->enemiesTurn();
 
                         //deal with active spells on monsters
@@ -278,6 +284,7 @@ void Game::play() {
 
                     if (squad->defeated())
                     {
+                        std::cout << "YOU LOOSE" << std::endl;
                         squad->revive();
 
                         current->setSquad(nullptr);
@@ -289,6 +296,7 @@ void Game::play() {
                     }
                     else
                     {
+                        std::cout << "VICTORYY!!" << std::endl;
                         //if some hero of the squad is defeated then revive him, with half of his hp and mp
                         for(int i=0; i<squad->getSize(); i++)
                         {

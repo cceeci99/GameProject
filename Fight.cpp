@@ -2,11 +2,12 @@
 
 
 bool Fight::begin() {
-    return   (double) random()/RAND_MAX > 0.45;
+    return   true;
+    //(double) random()/RAND_MAX > 0.45;
 }
 
 bool Fight::isNotOver() const {
-    return (heroes->defeated() || enemies->defeated());
+    return !(heroes->defeated() || enemies->defeated());
 }
 
 void Fight::displayStats() const {
@@ -17,6 +18,8 @@ void Fight::displayStats() const {
 void Fight::playerTurn() {
     int i=0;
 
+    std::cout << "Stats before fight:" << std::endl;
+    displayStats();
     while ( i<heroes->getSize() )
     {
         Hero* hero = heroes->getHero(i);
@@ -29,19 +32,23 @@ void Fight::playerTurn() {
         int r = (int)random() % enemies->getSize();
         Monster* mob = enemies->getMonster(r);
 
-        if ( answer == 'o' )
+        if ( answer == 'o' )        // normal attack
         {
             int damage = hero->attack();
+
+            std::cout << hero->getName() << " performs normal attack on: " << mob->getName() << std::endl;
 
             if ( mob->avoidAttack() )
             {
                 i++;
+                std::cout << mob->getName() << " avoided attack" << std::endl;
                 continue;
             }
 
             mob->reduceHealth(damage);
+            mob->print();
         }
-        else if ( answer == 'l')
+        else if ( answer == 'l')   // cast spell
         {
             EffectType type;
             int damage;
@@ -49,6 +56,8 @@ void Fight::playerTurn() {
             int duration;
 
             hero->castSpell(damage, effect, duration, type);
+
+            std::cout << hero->getName() << " performs spell on: " << mob->getName() << std::endl;
 
             mob->reduceHealth(damage);
 
@@ -63,10 +72,11 @@ void Fight::playerTurn() {
             else if ( type == reduce_damage){
                 mob->reduceDamage(effect);
             }
-
+            mob->print();
         }
-        else if ( answer == 'p')
+        else if ( answer == 'p')     //
         {
+            std::cout << hero->getName() << " uses potion" << std::endl;
             hero->drinkPotion();
         }
         else if ( answer == 't')
@@ -92,10 +102,17 @@ void Fight::enemiesTurn() {
         int r = (int)random() % heroes->getSize();
         Hero* hero = heroes->getHero(r);
 
-        if ( hero->avoidAttack() )
+        if ( hero->avoidAttack() ){
+            std::cout << hero->getName() << " avoided attack" << std::endl;
             continue;
+        }
+
+        std::cout << mob->getName() << " performs attack on: " << hero->getName() << std::endl;
 
         int damage = mob->attack();
+        std::cout << "Damage from monster: " << damage << std::endl;
         hero->reduceHealth(damage);
+
+        hero->print();
     }
 }

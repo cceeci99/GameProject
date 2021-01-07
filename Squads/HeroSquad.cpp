@@ -50,12 +50,15 @@ void HeroSquad::setSquadStats() {
 
 
 bool HeroSquad::defeated() const {
-    int totalHealth = 0;
-    for(int i=0; i<teammates; i++){
-        totalHealth += heroes[i]->getHealth();
+    int total = 0;
+    for(int i=0; i<teammates; i++)
+    {
+        if ( heroes[i]->dead() ) {
+            total++;
+        }
     }
 
-    return totalHealth==0;
+    return total == teammates;
 }
 
 

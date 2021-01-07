@@ -23,8 +23,8 @@ int main(int args, char* argv[]) {
     items.push_back(weapon1);
     items.push_back(potion);
 
-    Spell* spell = new FireSpell("inferno", 45, 1, 110, Range::getRandomRange(100, 500), 150);
-    Spell* spell1 = new IceSpell("iceball", 50, 1, 1100, Range::getRandomRange(500, 1000), 80);
+    Spell* spell = new FireSpell("inferno", 45, 1, 70, Range::getRandomRange(100, 500), 150);
+    Spell* spell1 = new IceSpell("iceball", 50, 1, 40, Range::getRandomRange(500, 1000), 80);
 
     spells.push_back(spell);
     spells.push_back(spell1);

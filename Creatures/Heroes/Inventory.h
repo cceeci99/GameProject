@@ -88,6 +88,36 @@ public:
             return nullptr;
     }
 
+    Weapon* chooseWeapon(){
+        std::vector<Weapon*> weapons;
+        int k=1;
+        for (int i=0; i<INVENTORY_CAPACITY; i++)
+        {
+            if ( items[i] == nullptr )
+                continue;
+
+            if ( items[i]->getType() == weapon )
+            {
+                std::cout << k << ")";
+                k++;
+                items[i]->print();
+                weapons.push_back((Weapon*)items[i]);
+            }
+        }
+        std::cout << "Choose weapon" << std::endl;
+
+        int pos;
+        std::cin >> pos;
+
+        if ( pos != 0 )
+        {
+            Weapon* weap =  weapons.at(pos-1);
+            std::cout << "You choosed " << weap->getName() << std::endl;
+            return weap;
+        }
+        else
+            return nullptr;
+    }
 
     void showEquipment(Armor* arm, Weapon* wep) {
         std::vector<Armor*> armors;

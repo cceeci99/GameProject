@@ -97,7 +97,6 @@ public:
 
 
     void chooseEquipment() {
-        std::cout << "Choose armor" << std::endl;
         Armor* arm = inventory.chooseArmor();
 
         if ( arm != nullptr )
@@ -109,6 +108,19 @@ public:
                 inventory.removeItem(arm);
             }
             equipArmor(arm);
+        }
+
+        Weapon* weap = inventory.chooseWeapon();
+
+        if ( weap != nullptr )
+        {
+            if ( equippedWeapon != nullptr ){
+                inventory.changeItem(weap, equippedWeapon);
+            }
+            else{
+                inventory.removeItem(weap);
+            }
+            equipWeapon(weap);
         }
 
     }

@@ -9,7 +9,7 @@ CC = g++
 CFLAGS = -Wall -Werror -g 
 
 # Αρχεία .o
-OBJS = main.o Spells/FireSpell.o Spells/IceSpell.o Spells/LightingSpell.o Spells/Spell.o Items/Armor.o Items/Weapon.o Items/Item.o Items/Potion.o Creatures/LivingCreature.o Creatures/Heroes/Hero.o Creatures/Heroes/Inventory.o Creatures/Heroes/Paladin.o Creatures/Heroes/Skills.o Creatures/Heroes/Sorcerer.o Creatures/Heroes/Warrior.o Creatures/Monsters/Dragon.o Creatures/Monsters/ExoSkeleton.o Creatures/Monsters/Monster.o Creatures/Monsters/Spirit.o MarketPlace/ItemSection.o MarketPlace/Market.o MarketPlace/SpellSection.o Map/Square/Square.o Map/Grid/Grid.o Game.o 
+OBJS = main.o Spells/FireSpell.o Spells/IceSpell.o Spells/LightingSpell.o Spells/Spell.o Items/Armor.o Items/Weapon.o Items/Item.o Items/Potion.o Creatures/LivingCreature.o Creatures/Heroes/Hero.o Creatures/Heroes/Inventory.o Creatures/Heroes/Paladin.o Creatures/Heroes/Skills.o Creatures/Heroes/Sorcerer.o Creatures/Heroes/Warrior.o Creatures/Monsters/Dragon.o Creatures/Monsters/ExoSkeleton.o Creatures/Monsters/Monster.o Creatures/Monsters/Spirit.o MarketPlace/ItemSection.o MarketPlace/Market.o MarketPlace/SpellSection.o Map/Square/Square.o Map/Grid/Grid.o Game.o Fight.o Squads/HeroSquad.o Squads/MonsterSquad.o 
 
 # Το εκτελέσιμο πρόγραμμα
 EXEC = main

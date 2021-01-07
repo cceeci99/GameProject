@@ -10,6 +10,7 @@
 #include "../../Items/Weapon.h"
 #include "../../Items/Potion.h"
 #include "../../Items/Armor.h"
+#include "../../Spells/SpellEffect.h"
 
 
 //use hero Type for player choice of hero
@@ -50,10 +51,11 @@ public:
     virtual void levelUp() = 0;
 
     int getMoney() const;
-    int getArmorDefence() const;
 
     void printInventory() const;
     void printSkills() const;
+
+    void reduceHealth(int reduce) override;
 
     bool dead() const;
 

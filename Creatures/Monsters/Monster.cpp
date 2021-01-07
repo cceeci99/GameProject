@@ -1,7 +1,7 @@
 #include "Monster.h"
 
-int Monster::getDefence() const {
-    return defence;
+void Monster::reduceHealth(int reduce) {
+    health = health - (reduce-defence);
 }
 
 void Monster::reduceDamage(int reduce) {

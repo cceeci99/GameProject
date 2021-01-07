@@ -5,11 +5,6 @@ int Hero::getMoney() const {
 }
 
 
-int Hero::getArmorDefence() const {
-    return equippedArmor->getAttribute();
-}
-
-
 void Hero::printInventory() const {
     std::cout << "Your Money: " << money << std::endl;
     inventory.print();
@@ -20,6 +15,15 @@ void Hero::printInventory() const {
 void Hero::printSkills() const {
     skills.print();
     std::cout << std::endl;
+}
+
+void Hero::reduceHealth(int reduce) {
+    if ( equippedArmor != nullptr ) {
+        health = health - (reduce - equippedArmor->getAttribute());
+    }
+    else{
+        health = health - reduce;
+    }
 }
 
 
@@ -214,7 +218,6 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
             type = spell->getEffectType();
             duration = spell->getDuration();
 
-
             std::cout << "Casting " << spell->getName() << std::endl;
 
             mana -= spell->getManaRequired();
@@ -289,4 +292,6 @@ void Hero::checkInventory() {
 
     }
 }
+
+
 

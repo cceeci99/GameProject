@@ -14,116 +14,88 @@ void Fight::displayStats() const {
     enemies->print();
 }
 
-void Fight::battle(int round) {
-    std::cout << "Battle Begins..." << std::endl;
+void Fight::playerTurn() {
+    int i=0;
 
-    //hero's turn
-    if (round % 2 == 1)
+    while ( i<heroes->getSize() )
     {
-        int i=0;
-        while ( i<heroes->getSize() )
+        Hero* hero = heroes->getHero(i);
+
+        std::cout << "Do you want to make normal attack (o), cast spell(l) or use potion(p)" << std::endl;
+        char answer;
+        std::cin >> answer;
+
+        //each hero attacks random monster from the heroes
+        int r = (int)random() % enemies->getSize();
+        Monster* mob = enemies->getMonster(r);
+
+        if ( answer == 'o' )
         {
-            Hero* hero = heroes->getHero(i);
+            int damage = hero->attack();
 
-            std::cout << "Do you want to make normal attack (o), cast spell(l) or use potion(p)" << std::endl;
-            char answer;
-            std::cin >> answer;
-
-            //each hero attacks random monster from the heroes
-            int r = (int)random() % enemies->getSize();
-            Monster* mob = enemies->getMonster(r);
-
-            if ( answer == 'o' )
+            if ( mob->avoidAttack() )
             {
-                int damage = hero->attack();
-
-                if ( mob->avoidAttack() )
-                {
-                    i++;
-                    continue;
-                }
-
-                damage -= mob->getDefence();
-                mob->reduceHealth(damage);
-            }
-            else if ( answer == 'l')
-            {
-                EffectType type;
-                int damage;
-                int effect;
-                int duration;
-
-                hero->castSpell(damage, effect, duration, type);
-
-
-                // spell on mob , effect for some rounds...
-
-                damage -= mob->getDefence();
-                mob->reduceHealth(damage);
-                mob->activateSpell(type, duration);
-                EffectType tempType = type;
-                if ( type == reduce_defence )
-                {
-                    mob->reduceDefence(effect);
-                }
-                else if ( type == reduce_dodge )
-                {
-                    mob->reduceDodge(effect);
-                }
-                else if ( type == reduce_damage)
-                {
-                    mob->reduceDamage(effect);
-                }
-
-            }
-            else if ( answer == 'p')
-            {
-                hero->drinkPotion();
-            }
-            else if ( answer == 't')
-            {
-                std::cout << "Stats of heroes and monsters are:" << std::endl;
-                displayStats();
+                i++;
                 continue;
             }
-            else
-            {
-                std::cout << "invalid input, try again" << std::endl;
-                continue;
-            }
-            i++;
+
+            mob->reduceHealth(damage);
         }
+        else if ( answer == 'l')
+        {
+            EffectType type;
+            int damage;
+            int effect;
+            int duration;
 
+            hero->castSpell(damage, effect, duration, type);
+
+            mob->reduceHealth(damage);
+
+            mob->activateSpell(type, duration);
+
+            if ( type == reduce_defence ){
+                mob->reduceDefence(effect);
+            }
+            else if ( type == reduce_dodge ){
+                mob->reduceDodge(effect);
+            }
+            else if ( type == reduce_damage){
+                mob->reduceDamage(effect);
+            }
+
+        }
+        else if ( answer == 'p')
+        {
+            hero->drinkPotion();
+        }
+        else if ( answer == 't')
+        {
+            std::cout << "Stats of heroes and monsters are:" << std::endl;
+            displayStats();
+            continue;
+        }
+        else
+        {
+            std::cout << "invalid input, try again" << std::endl;
+            continue;
+        }
+        i++;
     }
-    //monster's turn
-    else
+}
+
+void Fight::enemiesTurn() {
+    for (int i=0; i<enemies->getSize(); i++)
     {
-        for (int i=0; i<enemies->getSize(); i++)
-        {
-            Monster* mob = enemies->getMonster(i);
+        Monster* mob = enemies->getMonster(i);
 
-            int r = (int)random() % heroes->getSize();
-            Hero* hero = heroes->getHero(r);
+        int r = (int)random() % heroes->getSize();
+        Hero* hero = heroes->getHero(r);
 
-            if ( hero->avoidAttack() )
-                continue;
+        if ( hero->avoidAttack() )
+            continue;
 
-            int damage = mob->attack();
-            damage -= hero->getArmorDefence();
-
-            hero->reduceHealth(damage);
-        }
+        int damage = mob->attack();
+        hero->reduceHealth(damage);
     }
-
-    for(int i = 0; i < enemies->getSize(); i++){
-        Monster* monster = enemies->getMonster(i);
-        monster->reduceSpellRound(); //for each spell it reduces duration rounds if spell is activated
-        if(monster->mustDisable(reduce_damage)){
-            monster->disableSpells(reduce_damage);
-            monster->regeneration(type);
-        }
-    }
-
-    heroes->regeneration();
-    enemies->regeneration();
 }

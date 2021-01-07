@@ -248,14 +248,28 @@ void Game::play() {
                 {
                     squad->setSquadStats();
 
-                    MonsterSquad* monsterSquad = createEnemies();  //call function to create the monsters for fight
+                    MonsterSquad* enemies = createEnemies();  //call function to create the monsters for fight
 
-                    Fight* fight = new Fight(squad, monsterSquad);  //create new fight
+                    Fight* fight = new Fight(squad, enemies);  //create new fight
 
                     int round = 1;
+
                     while (fight->isNotOver())
                     {
-                        fight->battle(round);            //where fight is implemented...
+                        fight->playerTurn();
+                        fight->enemiesTurn();
+
+                        for (int i=0; i<enemies->getSize(); i++)
+                        {
+                            Monster* mob = enemies->getMonster(i);
+
+                            mob->reduceSpellsRound();
+                            mob->checkExpiredSpells();
+                        }
+
+                        squad->regeneration();
+                        enemies->regeneration();
+
                         round++;
                     }
 
@@ -284,8 +298,8 @@ void Game::play() {
                         for(int i=0; i<squad->getSize(); i++)
                         {
                             //create formula for experience and money earn...
-                            int xp = ((squad->getHero(i)->getLevel())*2 + 5)/monsterSquad->getSize();
-                            int money = (squad->getHero(i)->getLevel()*100 + 50)/monsterSquad->getSize();
+                            int xp = ((squad->getHero(i)->getLevel())*2 + 5)/enemies->getSize();
+                            int money = (squad->getHero(i)->getLevel()*100 + 50)/enemies->getSize();
                             //
 
                             squad->getHero(i)->addExperience(xp);

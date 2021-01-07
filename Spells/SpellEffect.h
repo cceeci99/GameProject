@@ -1,33 +1,48 @@
-#include "Spell.h"
 
 #ifndef GAMEPROJECT_SPELLDURATION_H
 #define GAMEPROJECT_SPELLDURATION_H
 
+#include "Spell.h"
+
+
 class SpellEffect {
-    private:
-        int durationRounds;
-        bool active;
-        EffectType type;
-    public:
-        SpellEffect(EffectType t) : durationRounds(0), active(false), type(t){}
 
-        void reduceRound(){
-            durationRounds--;
-        }
+private:
 
-        void activate(int duration){
-            durationRounds = duration;
-            active = true;            
-        }
+    EffectType type;
+    int durationRounds;
+    bool active;
 
-        void disable(){
-            active = false;
-            durationRounds = 0;
-        }
+public:
 
-        bool mustDisable(){
-            return (active && durationRounds == 0)
-        }
+    SpellEffect(EffectType type)
+    :type(type), durationRounds(0), active(false) {};
+
+    ~SpellEffect() = default;
+
+    bool isActive() const{
+        return active;
+    }
+
+    void activate(int duration){
+        active = true;
+        durationRounds = duration;
+    }
+
+    void reduceRound(){
+        durationRounds--;
+    }
+
+    bool mustDisable(){
+        return (active && durationRounds == 0);
+    }
+
+    void disable(){
+        active = false;
+        durationRounds = 0;
+    }
+
 };
+
 
 #endif //GAMEPROJECT_SPELLDURATION_H

@@ -4,9 +4,8 @@
 
 #include "MONSTER_ATTRIBUTES.h"
 #include "../LivingCreature.h"
-#include "../../Range.h"
-#include "../Heroes/Hero.h"
-#include "../../Spells/AllSpellsEffect.h"
+#include "ActiveSpells.h"
+
 
 enum MonsterType{dragon=1, exoskeleton=2, spirit=3};
 
@@ -18,15 +17,18 @@ private:
     const int INIT_DEFENCE;
     const Range INIT_DAMAGE;
 
+    ActiveSpells spells;
+
 protected:
     Range damageRange;
     int defence;
     int dodge;
-    AllSpellsEffect allspellsduration;
+
+
 public:
 
     Monster(const std::string& name, int level, Range range, int defence, int dodge)
-    :LivingCreature(name, level, START_HP), damageRange(range), defence(defence), dodge(dodge), INIT_DODGE(dodge), INIT_DEFENCE(defence), INIT_DAMAGE(range){};
+    :LivingCreature(name, level, START_HP), damageRange(range), defence(defence), spells() ,dodge(dodge), INIT_DODGE(dodge), INIT_DEFENCE(defence), INIT_DAMAGE(range){};
 
     ~Monster() override = default;
 
@@ -34,7 +36,7 @@ public:
 
     virtual int attack() const = 0;
 
-    int getDefence() const;
+    void reduceHealth(int reduce) override;
 
     void reduceDamage(int reduce);
     void reduceDefence(int reduce);
@@ -44,23 +46,33 @@ public:
 
     bool avoidAttack() const;
 
-    
     void activateSpell(EffectType type, int duration){
-        allspellsduration.activate(type, duration);
-    }
-
-    bool disableSpells(EffectType type){
-        return allspellsduration.disable(type);
+        spells.activate(type, duration);
     }
 
     void reduceSpellsRound(){
-        allspellsduration.reduceRound();
+        spells.reduceRound();
     }
 
-    bool mustDisable(EffectType type){
-        return allspellsduration.mustDisable(type);
-    }
+    void checkExpiredSpells() {
+        if ( spells.mustDisable(reduce_defence) )
+        {
+            spells.disable(reduce_defence);
+            defence = INIT_DEFENCE;
+        }
 
+        if ( spells.mustDisable(reduce_damage) )
+        {
+            spells.disable(reduce_damage);
+            damageRange = INIT_DAMAGE;
+        }
+
+        if ( spells.mustDisable(reduce_dodge) )
+        {
+            spells.disable(reduce_dodge);
+            dodge = INIT_DODGE;
+        }
+    }
 
 };
 

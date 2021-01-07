@@ -30,7 +30,7 @@ public:
     int getHealth() const;
     int getLevel() const;
 
-    void reduceHealth(int reduce);
+    virtual void reduceHealth(int reduce) = 0;
 
 };
 

@@ -35,6 +35,15 @@ public:
     Item* changeItem(int pos, Item* item);
     Item* removeItem(int pos);
 
+    void changeItem(Item* item1, Item* item2){
+        for (int i=0; i<INVENTORY_CAPACITY; i++)
+        {
+            if (items[i] == item1){
+                items[i] = item2;
+            }
+        }
+    }
+
     void removeItem(Item* item){
         for (int i=0; i<INVENTORY_CAPACITY; i++)
         {
@@ -48,14 +57,41 @@ public:
 
     Potion* choosePotion();
 
+    Armor* chooseArmor(){
+        std::vector<Armor*> armors;
+        int k=1;
+        for (int i=0; i<INVENTORY_CAPACITY; i++)
+        {
+            if ( items[i] == nullptr )
+                continue;
+
+            if ( items[i]->getType() == armor )
+            {
+                std::cout << k << ")";
+                k++;
+                items[i]->print();
+                armors.push_back((Armor*)items[i]);
+            }
+        }
+        std::cout << "Choose armor" << std::endl;
+
+        int pos;
+        std::cin >> pos;
+
+        if ( pos != 0 )
+        {
+            Armor* arm =  armors.at(pos-1);
+            std::cout << "You choosed " << arm->getName() << std::endl;
+            return arm;
+        }
+        else
+            return nullptr;
+    }
 
 
     void showEquipment(Armor* arm, Weapon* wep) {
         std::vector<Armor*> armors;
         std::vector<Weapon*> weapons;
-
-        arm = nullptr;
-        wep = nullptr;
 
         int k=1;
         for (int i=0; i<INVENTORY_CAPACITY; i++)
@@ -79,11 +115,7 @@ public:
         if ( pos != 0 )
         {
             arm  = armors.at(pos-1);
-            if (arm != nullptr) {
-                std::cout << "yes" << std::endl;
-                std::cout << arm->getName() << std::endl;
-            }
-
+            std::cout << "You choosed " << arm->getName() << std::endl;
             removeItem(arm);
         }
 
@@ -108,6 +140,7 @@ public:
         if ( pos != 0 )
         {
             wep  = weapons.at(pos-1);
+            std::cout << "you choosed " << wep->getName() << std::endl;
             removeItem(wep);
         }
     }

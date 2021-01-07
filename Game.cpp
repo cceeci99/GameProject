@@ -64,7 +64,7 @@ void Game::createTeam(int n) {
 
 MonsterSquad *Game::createEnemies() {
 //    int size = (int)random() % 5 + 1;
-    int size = 2;
+    int size = 1;
 
     MonsterSquad* monsterSquad = new MonsterSquad(size);
 

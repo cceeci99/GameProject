@@ -116,15 +116,6 @@ Potion *Inventory::choosePotion() {
 
         removeItem(temp);
 
-        /*
-        for (int i=0; i<INVENTORY_CAPACITY; i++)
-        {
-            if ( items[i] == temp )
-            {
-                removeItem(i);
-            }
-        }*/
-
         return temp;
     }
 }

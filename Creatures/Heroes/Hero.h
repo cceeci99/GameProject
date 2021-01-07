@@ -80,8 +80,8 @@ public:
     Spell* sellSpell(int pos);
 
     //uses of items from inventory
-    void equip(Weapon* weapon);
-    void equip(Armor* armor);
+    void equipWeapon(Weapon* weapon);
+    void equipArmor(Armor* armor);
     void use(Potion* potion);
 
     //methods for the player
@@ -95,18 +95,22 @@ public:
 
     void checkInventory();
 
+
     void chooseEquipment() {
-        std::cout << "Choose equipment" << std::endl;
-        Armor* arm;
-        Weapon* wep;
+        std::cout << "Choose armor" << std::endl;
+        Armor* arm = inventory.chooseArmor();
 
-        inventory.showEquipment(arm, wep);
+        if ( arm != nullptr )
+        {
+            if ( equippedArmor != nullptr ){
+                inventory.changeItem(arm, equippedArmor);
+            }
+            else{
+                inventory.removeItem(arm);
+            }
+            equipArmor(arm);
+        }
 
-        if (arm!= nullptr)
-            equip((Armor*)arm);
-
-        if (wep != nullptr)
-            equip((Weapon*)wep);
     }
 
 };

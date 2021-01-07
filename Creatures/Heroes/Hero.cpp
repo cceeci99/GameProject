@@ -152,13 +152,13 @@ Spell* Hero::sellSpell(int pos) {
 }
 
 
-void Hero::equip(Weapon* weapon) {
+void Hero::equipWeapon(Weapon* weapon) {
     equippedWeapon = weapon;
     std::cout << weapon->getName() << " weapon equipped" << std::endl;
 }
 
 
-void Hero::equip(Armor *armor) {
+void Hero::equipArmor(Armor *armor) {
     equippedArmor = armor;
     std::cout << armor->getName() << " armor equipped" << std::endl;
 }
@@ -204,7 +204,10 @@ int Hero::attack() const {
 void Hero::drinkPotion() {
     std::cout << "Choose potion to use" << std::endl;
     Potion* potion = inventory.choosePotion();
-    use(potion);
+
+    if ( potion != nullptr) {
+        use(potion);
+    }
 }
 
 
@@ -290,26 +293,26 @@ void Hero::checkInventory() {
         {
             if (equippedArmor == nullptr )
             {
-                equip((Armor*) item);
+                equipArmor((Armor *) item);
                 inventory.removeItem(pos);
             }
             else
             {
                 item = inventory.changeItem(pos, equippedArmor);
-                equip((Armor*) item);
+                equipArmor((Armor *) item);
             }
         }
         else if ( item->getType() == weapon )
         {
             if (equippedWeapon == nullptr )
             {
-                equip((Weapon*)item);
+                equipWeapon((Weapon *) item);
                 inventory.removeItem(pos);
             }
             else
             {
                 item = inventory.changeItem(pos, equippedWeapon);
-                equip((Weapon*)item);
+                equipWeapon((Weapon *) item);
             }
         }
         else

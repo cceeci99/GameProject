@@ -26,7 +26,7 @@ void Fight::playerTurn() {
 
 
 
-        std::cout << "Do you want to make normal attack (o), cast spell(l) or equip(e) or use potion(p)" << std::endl;
+        std::cout << "Do you want to make normal attack (o), cast spell(l) or equipWeapon(e) or use potion(p)" << std::endl;
         char answer;
         std::cin >> answer;
 

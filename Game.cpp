@@ -106,6 +106,7 @@ void Game::play() {
     std::cout << "Welcome to our game" << std::endl;
     std::cout << "Please create your Hero Squad  of (1-3) heroes" << std::endl;
 
+
     int n;
     while (true)
     {
@@ -122,13 +123,13 @@ void Game::play() {
 
     std::cout << "Your Hero Squad is ready: " << std::endl;
 
-    squad->printStats();
+    squad->print();
 
     std::cout << "Are you ready to begin..." << std::endl;
     std::cout << "Move your heroes by using keys (w, a, s, d) for up, left, down and right" << std::endl;
     std::cout << "You can see map by pressing (m) whenever you want" << std::endl;
     std::cout << "You can quit game by pressing (q) whenever you want" << std::endl;
-    std::cout << "You can check inventory of your heroes by pressing (i)" << std::endl;
+    std::cout << "You can check inventory of your heroes by pressing (i) and quit inventory by pressing zero(0)" << std::endl;
     std::cout << "You can check your heroes status by pressing (c)" << std::endl;
 
 
@@ -141,6 +142,7 @@ void Game::play() {
 
     while(true)
     {
+        std::cout << "Make your move" << std::endl;
         char button;
         std::cin >> button;
 
@@ -176,7 +178,7 @@ void Game::play() {
                 continue;
             case 'c':
                 std::cout << "Your Heroes: " << std::endl;
-                squad->printStats();
+                squad->print();
                 continue;
             case 'i':
                 squad->openInventory();
@@ -285,6 +287,8 @@ void Game::play() {
 
                         round++;
                     }
+
+                    delete fight;
 
                     if (squad->defeated())
                     {

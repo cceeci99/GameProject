@@ -142,8 +142,6 @@ Potion *Inventory::choosePotion() {
 
     }
 
-    std::cin >> pos;
-
     if ( pos != 0 )
     {
 

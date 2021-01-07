@@ -29,7 +29,6 @@ public:
     }
 
     void print() const;
-    void printStats() const;
 
     int getSize() const;
 

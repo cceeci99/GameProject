@@ -248,7 +248,7 @@ void Hero::usePotion() {
     std::cout << "Choose potion" << std::endl;
     Potion* potion = inventory.choosePotion();
 
-    if ( potion != nullptr) {
+    if ( potion != nullptr ) {
         use(potion);
     }
 }

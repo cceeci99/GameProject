@@ -36,8 +36,9 @@ public:
 
     virtual int attack() const = 0;
 
-    void reduceHealth(int reduce) override;
+    bool dead() const;
 
+    void reduceHealth(int reduce) override;
     void reduceDamage(int reduce);
     void reduceDefence(int reduce);
     void reduceDodge(int reduce);
@@ -46,33 +47,9 @@ public:
 
     bool avoidAttack() const;
 
-    void activateSpell(EffectType type, int duration){
-        spells.activate(type, duration);
-    }
-
-    void reduceSpellsRound(){
-        spells.reduceRound();
-    }
-
-    void checkExpiredSpells() {
-        if ( spells.mustDisable(reduce_defence) )
-        {
-            spells.disable(reduce_defence);
-            defence = INIT_DEFENCE;
-        }
-
-        if ( spells.mustDisable(reduce_damage) )
-        {
-            spells.disable(reduce_damage);
-            damageRange = INIT_DAMAGE;
-        }
-
-        if ( spells.mustDisable(reduce_dodge) )
-        {
-            spells.disable(reduce_dodge);
-            dodge = INIT_DODGE;
-        }
-    }
+    void activateSpell(EffectType type, int duration);
+    void reduceSpellsRound();
+    void checkExpiredSpells();
 
 };
 

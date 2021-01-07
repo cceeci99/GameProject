@@ -12,7 +12,6 @@ private:
     SpellEffect ice;
     SpellEffect lighting;
 
-
 public:
 
     ActiveSpells()

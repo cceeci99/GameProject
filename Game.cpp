@@ -284,7 +284,7 @@ void Game::play() {
 
                     if (squad->defeated())
                     {
-                        std::cout << "YOU LOOSE" << std::endl;
+                        std::cout << "DEFEATED!!!" << std::endl;
                         squad->revive();
 
                         current->setSquad(nullptr);
@@ -301,6 +301,7 @@ void Game::play() {
                         for(int i=0; i<squad->getSize(); i++)
                         {
                             if (squad->getHero(i)->dead()){
+                                std::cout << "Reviving: " << squad->getHero(i)->getName() << std::endl;
                                 squad->getHero(i)->revive();
                             }
                         }
@@ -310,8 +311,9 @@ void Game::play() {
                         {
                             //create formula for experience and money earn...
                             int xp = ((squad->getHero(i)->getLevel())*2 + 5)/enemies->getSize();
+                            std::cout << "+ " << xp << "xp" << std::endl;
                             int money = (squad->getHero(i)->getLevel()*100 + 50)/enemies->getSize();
-                            //
+                            std::cout << "+ " << money << "money" << std::endl;
 
                             squad->getHero(i)->addExperience(xp);
                             squad->getHero(i)->earnMoney(money);

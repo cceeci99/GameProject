@@ -46,7 +46,8 @@ void Fight::playerTurn() {
             }
 
             mob->reduceHealth(damage);
-            mob->print();
+            if (mob->dead())
+                std::cout << "Just killed " << mob->getName() << std::endl;
         }
         else if ( answer == 'l')   // cast spell
         {
@@ -74,7 +75,7 @@ void Fight::playerTurn() {
             }
             mob->print();
         }
-        else if ( answer == 'p')     //
+        else if ( answer == 'p')
         {
             std::cout << hero->getName() << " uses potion" << std::endl;
             hero->drinkPotion();
@@ -112,6 +113,9 @@ void Fight::enemiesTurn() {
         int damage = mob->attack();
         std::cout << "Damage from monster: " << damage << std::endl;
         hero->reduceHealth(damage);
+
+        if (hero->dead())
+            std::cout <<  hero->getName() <<" defeated by: " << mob->getName() << std::endl;
 
         hero->print();
     }

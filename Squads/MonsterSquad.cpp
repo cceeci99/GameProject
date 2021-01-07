@@ -34,12 +34,15 @@ void MonsterSquad::setMonster(Monster *monster) {
 
 
 bool MonsterSquad::defeated() const {
-    int totalHealth=0;
-    for(int i=0; i < numberOfMonsters; i++){
-        totalHealth += monsters[i]->getHealth();
+    int total = 0;
+    for(int i=0; i < numberOfMonsters; i++)
+    {
+        if ( monsters[i]->dead() ) {
+            total++;
+        }
     }
 
-    return (totalHealth==0);
+    return total == numberOfMonsters;
 }
 
 

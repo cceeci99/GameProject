@@ -11,6 +11,10 @@ void Monster::reduceHealth(int reduce) {
     }
 }
 
+bool Monster::dead() const {
+    return health==0;
+}
+
 void Monster::reduceDamage(int reduce) {
     damageRange.reduceRange(reduce);
 }
@@ -37,3 +41,33 @@ bool Monster::avoidAttack() const {
 
     return (r <= dodge);
 }
+
+void Monster::activateSpell(EffectType type, int duration) {
+    spells.activate(type, duration);
+}
+
+void Monster::reduceSpellsRound() {
+    spells.reduceRound();
+}
+
+void Monster::checkExpiredSpells() {
+    if ( spells.mustDisable(reduce_defence) )
+    {
+        spells.disable(reduce_defence);
+        defence = INIT_DEFENCE;
+    }
+
+    if ( spells.mustDisable(reduce_damage) )
+    {
+        spells.disable(reduce_damage);
+        damageRange = INIT_DAMAGE;
+    }
+
+    if ( spells.mustDisable(reduce_dodge) )
+    {
+        spells.disable(reduce_dodge);
+        dodge = INIT_DODGE;
+    }
+}
+
+

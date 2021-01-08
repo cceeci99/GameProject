@@ -17,9 +17,16 @@ void Fight::displayStats() const {
 
 void Fight::playerTurn() {
     int i=0;
+    char answer;
+    std::cout << "Do you want to display stats?" << std::endl;
+    std::cin >> answer;
 
-    std::cout << "Stats before fight:" << std::endl;
-    displayStats();
+    if( answer == 'y' || answer == 'Y' ){
+        std::cout << "Stats before fight:" << std::endl;
+        displayStats();
+    }
+
+
     while ( i<heroes->getSize() )
     {
         Hero* hero = heroes->getHero(i);

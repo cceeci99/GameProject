@@ -2,15 +2,6 @@
 
 
 void HeroSquad::print() const {
-    std::cout << "Squad: ";
-    for (int i=0; i<teammates; i++){
-        std::cout << heroes[i]->getName() << ", ";
-    }
-    std::cout << std::endl;
-}
-
-
-void HeroSquad::printStats() const {
     for(int i=0; i<teammates; i++){
         heroes[i]->print();
     }

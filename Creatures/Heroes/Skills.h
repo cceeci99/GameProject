@@ -19,6 +19,8 @@ public:
         delete[] spells;
     };
 
+    bool empty() const;
+
     void print() const;
 
     bool addSpell(Spell* newSpell);

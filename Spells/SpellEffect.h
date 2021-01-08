@@ -15,32 +15,20 @@ private:
 
 public:
 
-    SpellEffect(EffectType type)
+    explicit SpellEffect(EffectType type)
     :type(type), durationRounds(0), active(false) {};
 
     ~SpellEffect() = default;
 
-    bool isActive() const{
-        return active;
-    }
+    bool isActive() const;
 
-    void activate(int duration){
-        active = true;
-        durationRounds = duration;
-    }
+    void activate(int duration);
 
-    void reduceRound(){
-        durationRounds--;
-    }
+    void disable();
 
-    bool mustDisable(){
-        return (active && durationRounds == 0);
-    }
+    void reduceRound();
 
-    void disable(){
-        active = false;
-        durationRounds = 0;
-    }
+    bool mustDisable() const;
 
 };
 

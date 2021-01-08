@@ -88,9 +88,7 @@ void Grid::displayMap() const{
             }
             else
             {
-                std::cout << "your heroes -->";
-                HeroSquad* squad = square->getSquad();
-                squad->print();
+                std::cout << "XX" << std::endl;
             }
         }
     }

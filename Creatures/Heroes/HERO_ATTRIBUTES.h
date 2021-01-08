@@ -36,4 +36,5 @@ enum Attribute{Health, Mana, Strength, Dexterity, Agility};
 #define INCREASE_PALADIN_STRENGTH 25
 #define INCREASE_PALADIN_DEXTERITY 25
 
+
 #endif //GAMEPROJECT_HERO_ATTRIBUTES_H

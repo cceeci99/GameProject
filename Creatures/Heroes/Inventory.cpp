@@ -72,6 +72,16 @@ Item *Inventory::changeItem(int pos, Item *item) {
 }
 
 
+void Inventory::changeItem(Item *item1, Item *item2) {
+    for (int i=0; i<INVENTORY_CAPACITY; i++)
+    {
+        if (items[i] == item1){
+            items[i] = item2;
+        }
+    }
+}
+
+
 Item* Inventory::removeItem(int pos) {
     if ( pos >= INVENTORY_CAPACITY  || items[pos] == nullptr)
         return nullptr;
@@ -84,6 +94,17 @@ Item* Inventory::removeItem(int pos) {
     return temp;
 }
 
+
+void Inventory::removeItem(Item *item) {
+    for (int i=0; i<INVENTORY_CAPACITY; i++)
+    {
+        if ( items[i] == item )
+        {
+            items[i] = nullptr;
+            return;
+        }
+    }
+}
 
 Potion *Inventory::choosePotion() {
     int k=1;
@@ -104,12 +125,24 @@ Potion *Inventory::choosePotion() {
         }
     }
 
-    int pos;
-    std::cin >> pos;
-
-    if ( pos == 0 )
+    if (potions.empty())
+    {
+        std::cout << "None available potions" << std::endl;
         return nullptr;
-    else
+    }
+
+    int pos;
+    while (true)
+    {
+        std::cin >> pos;
+        if ( pos > potions.size() )
+            std::cout << "Please choose available potion" << std::endl;
+        else
+            break;
+
+    }
+
+    if ( pos != 0 )
     {
 
         Potion* temp = potions.at(pos-1);
@@ -118,4 +151,92 @@ Potion *Inventory::choosePotion() {
 
         return temp;
     }
+    else
+        return nullptr;
+}
+
+Armor *Inventory::chooseArmor() {
+    std::vector<Armor*> armors;
+    int k=1;
+    for (int i=0; i<INVENTORY_CAPACITY; i++)
+    {
+        if ( items[i] == nullptr )
+            continue;
+
+        if ( items[i]->getType() == armor )
+        {
+            std::cout << k << ")";
+            k++;
+            items[i]->print();
+            armors.push_back((Armor*)items[i]);
+        }
+    }
+
+    if (armors.empty())
+    {
+        std::cout << "None available armors" << std::endl;
+        return nullptr;
+    }
+
+    int pos;
+    while (true)
+    {
+        std::cin >> pos;
+        if ( pos > armors.size() )
+            std::cout << "Please choose available armor" << std::endl;
+        else
+            break;
+
+    }
+
+    if ( pos != 0 )
+    {
+        Armor* arm =  armors.at(pos-1);
+        return arm;
+    }
+    else
+        return nullptr;
+}
+
+Weapon *Inventory::chooseWeapon() {
+    std::vector<Weapon*> weapons;
+    int k=1;
+    for (int i=0; i<INVENTORY_CAPACITY; i++)
+    {
+        if ( items[i] == nullptr )
+            continue;
+
+        if ( items[i]->getType() == weapon )
+        {
+            std::cout << k << ")";
+            k++;
+            items[i]->print();
+            weapons.push_back((Weapon*)items[i]);
+        }
+    }
+
+    if (weapons.empty())
+    {
+        std::cout << "None available potions" << std::endl;
+        return nullptr;
+    }
+
+    int pos;
+    while (true)
+    {
+        std::cin >> pos;
+        if ( pos > weapons.size() )
+            std::cout << "Please choose available weapon" << std::endl;
+        else
+            break;
+
+    }
+
+    if ( pos != 0 )
+    {
+        Weapon* weap =  weapons.at(pos-1);
+        return weap;
+    }
+    else
+        return nullptr;
 }

@@ -1,5 +1,9 @@
 #include "Skills.h"
 
+bool Skills::empty() const {
+    return acquiredSpells == 0;
+}
+
 
 void Skills::print() const {
     for(int k=0; k<SPELLS_LIMIT; k++)
@@ -66,3 +70,5 @@ Spell* Skills::removeSpell(int pos) {
 
     return temp;
 }
+
+

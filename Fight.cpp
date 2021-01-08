@@ -11,7 +11,7 @@ bool Fight::isNotOver() const {
 }
 
 void Fight::displayStats() const {
-    heroes->printStats();
+    heroes->print();
     enemies->print();
 }
 
@@ -30,6 +30,7 @@ void Fight::playerTurn() {
     while ( i<heroes->getSize() )
     {
         Hero* hero = heroes->getHero(i);
+        std::cout << "Play with " << hero->getName() << std::endl;
 
         char answer;
         std::cout << "Do you want to choose equipment?" << std::endl;
@@ -41,7 +42,7 @@ void Fight::playerTurn() {
         std::cout << "Do you want to make normal attack (o), cast spell(l) or use potion(p)" << std::endl;
         std::cin >> answer;
 
-        while( answer != 'o' && answer != 'l' && answer != 'p' && answer != 't' )
+        while( answer != 'o' && answer != 'l' && answer != 'p' )
         {
             std::cout << "invalid input try again" << std::endl;
             std::cin >> answer; 
@@ -59,15 +60,16 @@ void Fight::playerTurn() {
 
             if ( mob->avoidAttack() )
             {
-                i++;
                 std::cout << mob->getName() << " avoided attack" << std::endl;
+                i++;
                 continue;
             }
 
             mob->reduceHealth(damage);
 
-            if (mob->dead())
+            if (mob->dead()) {
                 std::cout << "Just killed " << mob->getName() << std::endl;
+            }
 
             mob->print();
         }
@@ -78,7 +80,9 @@ void Fight::playerTurn() {
             int effect;
             int duration;
 
-            hero->castSpell(damage, effect, duration, type);
+            if (!hero->castSpell(damage, effect, duration, type))
+                continue;
+
 
             std::cout << hero->getName() << " performs spell on: " << mob->getName() << std::endl;
 
@@ -96,15 +100,15 @@ void Fight::playerTurn() {
                 mob->reduceDamage(effect);
             }
 
-            if (mob->dead())
+            if (mob->dead()) {
                 std::cout << "Just killed " << mob->getName() << std::endl;
+            }
 
             mob->print();
         }
-        else if ( answer == 'p')
+        else
         {
-            std::cout << "Choose potion" << std::endl;
-            hero->drinkPotion();
+            hero->usePotion();
         }
 
         i++;

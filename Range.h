@@ -24,6 +24,10 @@ public:
         return min + ((int)random() % ((max+1) - min));     //return random value within the range
     }
 
+    int getMax() const{
+        return max;
+    }
+
     void reduceRange(int reduce){
         min -= reduce;
         max -= reduce;

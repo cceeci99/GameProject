@@ -37,8 +37,11 @@ public:
     }
 
     ~Game(){
+        std::cout << "deleting game" << std::endl;
         delete map;
+
         delete marketPlace;
+
         delete squad;
     }
 
@@ -46,7 +49,7 @@ public:
     void createMap(int size);
 
     //function to fill the market with some items and spells, before the player starts the game
-    void fillMarket(const std::vector<Item*>& items, const std::vector<Spell*>& spells);
+    void createMarket();
 
     //function to create a heroes of heroes for the player, the number of teammates is given from player
     void createTeam(int teammates);
@@ -55,6 +58,11 @@ public:
     MonsterSquad* createEnemies();
 
     void play();
+
+    void quit() {
+        delete this;
+        exit(1);
+    }
 
 };
 

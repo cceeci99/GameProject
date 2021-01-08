@@ -6,6 +6,7 @@
 #include "Squads/MonsterSquad.h"
 
 
+
 class Fight {
 
 private:

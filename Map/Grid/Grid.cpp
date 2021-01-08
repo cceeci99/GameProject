@@ -18,14 +18,9 @@ Grid::Grid(int size) : size(size){
                 array[i][j] = new Square(i, j, common);
             }
 
-            /*
-            // to implement pattern for squares !!
-            if(i % 3 == 0)
-                array[i][j] = new Square(i, j, market);
-            else if(i % 2 == 0)
-                array[i][j] = new Square(i, j, common);
-            else
-                array[i][j] = new Square(i, j, nonAccessible); */
+
+            // for implementation ...
+
         }
     }
 }

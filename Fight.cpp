@@ -2,18 +2,20 @@
 
 
 bool Fight::begin() {
-    return   true;
-    //(double) random()/RAND_MAX > 0.45;
+    return ((random() % 100 + 1) <= 40);
 }
+
 
 bool Fight::isNotOver() const {
     return !(heroes->defeated() || enemies->defeated());
 }
 
+
 void Fight::displayStats() const {
     heroes->print();
     enemies->print();
 }
+
 
 void Fight::playerTurn() {
     int i=0;
@@ -21,7 +23,8 @@ void Fight::playerTurn() {
     std::cout << "Do you want to display stats?" << std::endl;
     std::cin >> answer;
 
-    if( answer == 'y' || answer == 'Y' ){
+    if( answer == 'y' || answer == 'Y' )
+    {
         std::cout << "Stats before fight:" << std::endl;
         displayStats();
     }
@@ -32,12 +35,12 @@ void Fight::playerTurn() {
         Hero* hero = heroes->getHero(i);
         std::cout << "Play with " << hero->getName() << std::endl;
 
-        char answer;
         std::cout << "Do you want to choose equipment?" << std::endl;
         std::cin >> answer;
         if ( answer == 'Y' || answer == 'y' ) {
             hero->chooseEquipment();
         }
+
 
         std::cout << "Do you want to make normal attack (o), cast spell(l) or use potion(p)" << std::endl;
         std::cin >> answer;
@@ -114,6 +117,7 @@ void Fight::playerTurn() {
         i++;
     }
 }
+
 
 void Fight::enemiesTurn() {
     for (int i=0; i<enemies->getSize(); i++)

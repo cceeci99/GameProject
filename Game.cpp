@@ -1,21 +1,51 @@
 #include "Game.h"
 #include "Fight.h"
+#include "Spells/FireSpell.h"
+#include "Spells/IceSpell.h"
 
+
+std::string names[6] = {"a","b","c","d","e","z",};
 
 void Game::createMap(int size) {
     map = new Grid(size);
 }
 
 
-void Game::fillMarket(const std::vector<Item *> &items, const std::vector<Spell *> &spells) {
+void Game::createMarket() {
     marketPlace = new Market();
+/*
+    //create some items and spells.
+    Armor* armor1 = new Armor("name1", 150, 1, 100);
+    Armor* armor2 = new Armor("name2", 250, 3, 200);
 
-    for(Item* i: items){
-        marketPlace->addItem(i);
-    }
-    for(Spell* s: spells){
-        marketPlace->addSpell(s);
-    }
+
+    Weapon* weapon1 = new Weapon("name1", 200, 1, 50, true);
+    Weapon* weapon2 = new Weapon("name2", 300, 3, 100, false);
+
+
+    //
+    Potion* potion1 = new Potion("name1", 150, 1, Health, 75);
+
+     */
+
+    Item* armor = new Armor("Emblem", 122, 1, 450);
+    Item* armor1 = new Armor("hat", 50, 1, 25);
+    Item* weapon = new Weapon("axe", 145, 1, 420, true);
+    Item* weapon1 = new Weapon("sword", 100, 1, 200, false);
+    Item* potion = new Potion("Antidote", 45, 1, Health, 101);
+
+    marketPlace->addItem(armor);
+    marketPlace->addItem(armor1);
+    marketPlace->addItem(weapon);
+    marketPlace->addItem(weapon1);
+    marketPlace->addItem(potion);
+
+    Spell* spell = new FireSpell("inferno", 45, 1, 70, Range::getRandomRange(100, 500), 150);
+    Spell* spell1 = new IceSpell("frost", 50, 1, 40, Range::getRandomRange(500, 1000), 80);
+
+    marketPlace->addSpell(spell);
+    marketPlace->addSpell(spell1);
+
 }
 
 
@@ -63,8 +93,7 @@ void Game::createTeam(int n) {
 
 
 MonsterSquad *Game::createEnemies() {
-//    int size = (int)random() % 5 + 1;
-    int size = 1;
+    int size = (int)random() % 3 + 1;
 
     MonsterSquad* monsterSquad = new MonsterSquad(size);
 
@@ -74,22 +103,46 @@ MonsterSquad *Game::createEnemies() {
     }
     averageLevel = averageLevel/squad->getSize();
 
+    std::vector<std::string> usedNames;
+
     for(int i = 0; i < size; i++)
     {
         int MonsterType = (int) random() % 3 + 1; //[1, 3]
 
         Monster *monster = nullptr;
 
+        std::string name;
+        while (true)
+        {
+            int r = (int)random() % 6;
+            bool found = false;
+            for (auto & usedName : usedNames)
+            {
+                if (names[r] == usedName)
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                usedNames.push_back(names[r]);
+                name = names[r];
+                break;
+            }
+        }
+
         switch (MonsterType)
         {
             case dragon:
-                monster = new Dragon("Tiamat", averageLevel);
+                monster = new Dragon(name, averageLevel);
                 break;
             case exoskeleton:
-                monster = new ExoSkeleton("Venim", averageLevel);
+                monster = new ExoSkeleton(name, averageLevel);
                 break;
             case spirit:
-                monster = new Spirit("Viserion", averageLevel);
+                monster = new Spirit(name, averageLevel);
                 break;
             default:
                 break;
@@ -288,8 +341,6 @@ void Game::play() {
                         round++;
                     }
 
-                    delete fight;
-
                     if (squad->defeated())
                     {
                         std::cout << "DEFEATED!!!" << std::endl;
@@ -308,7 +359,8 @@ void Game::play() {
                         //if some hero of the squad is defeated then revive him, with half of his hp and mp
                         for(int i=0; i<squad->getSize(); i++)
                         {
-                            if (squad->getHero(i)->dead()){
+                            if (squad->getHero(i)->dead())
+                            {
                                 std::cout << "Reviving: " << squad->getHero(i)->getName() << std::endl;
                                 squad->getHero(i)->revive();
                             }
@@ -318,15 +370,18 @@ void Game::play() {
                         for(int i=0; i<squad->getSize(); i++)
                         {
                             //create formula for experience and money earn...
-                            int xp = ((squad->getHero(i)->getLevel())*2 + 5)/enemies->getSize();
-                            std::cout << "+ " << xp << "xp" << std::endl;
-                            int money = (squad->getHero(i)->getLevel()*100 + 50)/enemies->getSize();
-                            std::cout << "+ " << money << "money" << std::endl;
-
+                            int xp = ((squad->getHero(i)->getLevel())*2 + 3)*enemies->getSize();
                             squad->getHero(i)->addExperience(xp);
+                            std::cout << "+ " << xp << "xp" << std::endl;
+
+
+                            int money = (squad->getHero(i)->getLevel()*50)*enemies->getSize();
                             squad->getHero(i)->earnMoney(money);
+                            std::cout << "+ " << money << "money" << std::endl;
                         }
                     }
+
+                    delete fight;
                 }
                 else
                 {

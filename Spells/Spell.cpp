@@ -28,6 +28,10 @@ EffectType Spell::getEffectType() const {
     return type;
 }
 
+int Spell::getMaxDamage() const {
+    return damageRange.getMax();
+}
+
 int Spell::cast() const {
     return damageRange.getValue();
 }

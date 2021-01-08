@@ -15,7 +15,16 @@ private:
 
 public:
 
+    ItemSection() = default;
+
     ~ItemSection(){
+        for (int i=0; i<ITEMS_CAPACITY; i++)
+        {
+            if ( items[i]  != nullptr ) {
+                delete items[i];
+            }
+        }
+
         delete[] items;
     }
 

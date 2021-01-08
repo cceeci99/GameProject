@@ -15,7 +15,16 @@ private:
 
 public:
 
+    SpellSection() = default;
+
     ~SpellSection(){
+        for (int i=0; i<SPELLS_CAPACITY; i++)
+        {
+            if (spells[i] != nullptr) {
+                delete spells[i];
+            }
+        }
+
         delete[] spells;
     }
 

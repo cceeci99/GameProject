@@ -56,11 +56,13 @@ void Hero::looseMoney() {
 
 
 void Hero::addExperience(int xp) {
+    std::cout << xp << std::endl;
     experience += xp;
-    //experience required for next level
-    int nextLevel = 500 * (level ^ 2) - (500 * level);
 
-    if ( experience >= nextLevel ) {
+    //experience required for next level
+    int nextLevelExperience = 5 * (level ^ 2) - (5 * level);
+
+    if ( experience >= nextLevelExperience ) {
         levelUp();
     }
 }
@@ -73,24 +75,26 @@ void Hero::setCurrentStats() {
 
 
 bool Hero::avoidAttack() const {
-//    int r = (int)random() % 100 +1;
+    int r = (int)random() % 100 +1;
 
-//    return (r <= agility);
-    return false;
+    return (r <= agility);
 }
 
 
 void Hero::regeneration() {
-    if ( health != 0 ){
-//        health += 10/100*health;
-        health+= 50;
-        if ( health >= 1000 )
+    if ( health != 0 )
+    {
+        health += 20/100*health;
+
+        if ( health >= 1000 ) {
             health = 1000;
+        }
     }
-//    mana += mana + 15/100*mana;
-    mana += 50;
-    if ( mana >= 1000 )
+    mana += mana + 15/100*mana;
+
+    if ( mana >= 1000 ) {
         mana = 1000;
+    }
 }
 
 
@@ -234,7 +238,14 @@ bool Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
         }
         else
         {
-            damage = spell->cast();
+            //
+            int maxDamage = spell->getMaxDamage();
+            damage = spell->cast() + 10/100*dexterity;
+
+            if ( damage > maxDamage ) {
+                damage = maxDamage;
+            }
+
             effect = spell->getEffect();
             type = spell->getEffectType();
             duration = spell->getDuration();

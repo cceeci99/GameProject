@@ -2,6 +2,7 @@
 
 
 void MonsterSquad::print() const {
+    std::cout << numberOfMonsters << " Enemies" << std::endl;
     for (int i=0; i < numberOfMonsters; i++){
         monsters[i]->print();
     }

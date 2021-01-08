@@ -2,6 +2,7 @@
 
 
 void HeroSquad::print() const {
+    std::cout << "Squad contains " << teammates << " members" << std::endl;
     for(int i=0; i<teammates; i++){
         heroes[i]->print();
     }

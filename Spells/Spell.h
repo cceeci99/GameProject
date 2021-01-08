@@ -39,6 +39,7 @@ public:
     int getRequiredLevel() const;
     int getManaRequired() const;
     int getDuration() const;
+    int getMaxDamage() const;
 
     int cast() const;
 

@@ -171,20 +171,15 @@ void Fight::spellAttack(Hero *hero, Monster *monster) {
         std::cout << "Damage reduced by " << effect << std::endl;
     }
 
-    if (monster->dead())
-    {
+    if (monster->dead()){
         std::cout << " You just killed " << monster->getName() << std::endl;
-    }
-    else
-    {
-        std::cout << "remaining health " << monster->getHealth() << std::endl;
     }
 
 }
 
 void Fight::monsterAttack(Monster *monster, Hero *hero) {
     int damage = monster->attack();
-    std::cout << monster->getName() << " performs attack on  " << hero->getName() << " - " << damage << " health" << std::endl;
+    std::cout << monster->getName() << " performs attack on  " << hero->getName() << " damage " << damage << std::endl;
 
     hero->reduceHealth(damage);
 

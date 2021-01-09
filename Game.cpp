@@ -12,22 +12,133 @@ void Game::quit() {
     exit(1);
 }
 
+bool Game::playerMove(Square *currentPos, unsigned int &x1, unsigned int &y1) {
+    unsigned int x = currentPos->getX();
+    unsigned int y = currentPos->getY();
+
+    std::cout << "Move your heroes" << std::endl;
+
+    char button;
+    std::cin >> button;
+
+    switch (button)
+    {
+        case 'w':
+            x1 = x + 1;
+            y1 = y;
+            break;
+        case 's':
+            x1 = x - 1;
+            y1 = y;
+            break;
+        case 'a':
+            x1 = x;
+            y1 = y - 1;
+            break;
+        case 'd':
+            x1 = x;
+            y1 = y + 1;
+            break;
+        case 'm':
+            map->displayMap();
+            break;
+        case 'c':
+            std::cout << "Your Heroes: " << std::endl;
+            squad->print();
+            break;
+        case 'i':
+            squad->openInventory();
+            break;
+        case 'q':
+            return false;
+        default:
+            std::cout << "Please enter a valid button" << std::endl;
+            break;
+    }
+    return true;
+}
+
+
+void Game::play() {
+
+    std::cout << "Please create your Hero Squad  of (1-3) heroes" << std::endl;
+    createHeroes();
+
+    std::cout << "Your Hero Squad is ready: " << std::endl;
+    squad->print();
+
+    std::cout << "Move your heroes by using keys (w, a, s, d) for up, left, down and right" << std::endl;
+    std::cout << "You can see map by pressing (m) whenever you want" << std::endl;
+    std::cout << "You can quit game by pressing (q) whenever you want" << std::endl;
+    std::cout << "You can check inventory of your heroes by pressing (i) and quit inventory by pressing zero(0)" << std::endl;
+    std::cout << "You can check your heroes stats by pressing (c)" << std::endl;
+
+
+    //heroes start at coordinates 0,0 of map which contains market
+    Square* currentPos = map->getSquare(0, 0);
+    squad->move(currentPos);
+
+    enterMarket();
+
+    unsigned int x = -1;
+    unsigned int y = -1;
+
+    while(playerMove(currentPos, x, y))
+    {
+
+        if (x == -1 && y == -1)
+            continue;
+
+        if (map->outOfBounds(x, y))
+        {
+            std::cout << "You are going out of bounds please try again" << std::endl;
+        }
+        else
+        {
+            Square* next = map->getSquare(x, y);
+
+            if(next->getType() == nonAccessible)
+            {
+                std::cout << "Non-Accessible square, please go to another direction" << std::endl;
+                continue;
+            }
+            else if (next->getType() == market)
+            {
+                currentPos->setSquad(nullptr);
+                squad->move(next);
+
+                enterMarket();
+            }
+            else
+            {
+                currentPos->setSquad(nullptr);
+                squad->move(next);
+
+                enterCommon();
+            }
+
+            currentPos = map->getSquare(x, y);
+        }
+    }
+
+    //quit game
+    quit();
+}
 
 Market* Game::createMarket() {
     marketPlace = new Market();
-/*
+
+    /*
     //create some items and spells.
     Armor* armor1 = new Armor("name1", 150, 1, 100);
     Armor* armor2 = new Armor("name2", 250, 3, 200);
 
-
+    //
     Weapon* weapon1 = new Weapon("name1", 200, 1, 50, true);
     Weapon* weapon2 = new Weapon("name2", 300, 3, 100, false);
 
-
     //
     Potion* potion1 = new Potion("name1", 150, 1, Health, 75);
-
      */
 
     Item* armor = new Armor("Emblem", 100, 1, 70);
@@ -55,8 +166,8 @@ Market* Game::createMarket() {
 
 
 void Game::createHeroes() {
-
     int n;
+
     while (true)
     {
         std::cin >> n;
@@ -73,8 +184,7 @@ void Game::createHeroes() {
 
     std::cout << "Please choose name and type of each hero 1:warrior, 2:paladin, 3:sorcerer" << std::endl;
 
-    int i=0;
-    while (i < n)
+    for(int i=0; i<squad->getSize(); i++)
     {
         std::cout << "Create your " << i+1 << " hero" << std::endl;
 
@@ -102,8 +212,6 @@ void Game::createHeroes() {
                 break;
         }
         squad->setHero(hero);
-
-        i++;
     }
 }
 
@@ -111,7 +219,7 @@ void Game::createHeroes() {
 MonsterSquad *Game::createEnemies() {
     int size = (int)random() % 3 + 1;
 
-    MonsterSquad* monsterSquad = new MonsterSquad(size);
+    MonsterSquad* enemies = new MonsterSquad(size);
 
     int averageLevel = 0;
     for(int i=0; i<squad->getSize(); i++){
@@ -165,119 +273,10 @@ MonsterSquad *Game::createEnemies() {
                 break;
         }
 
-        monsterSquad->setMonster(monster);
+        enemies->setMonster(monster);
     }
 
-    return monsterSquad;
-}
-
-
-void Game::play() {
-
-    std::cout << "Please create your Hero Squad  of (1-3) heroes" << std::endl;
-    createHeroes();
-
-    std::cout << "Your Hero Squad is ready: " << std::endl;
-    squad->print();
-
-    std::cout << "Move your heroes by using keys (w, a, s, d) for up, left, down and right" << std::endl;
-    std::cout << "You can see map by pressing (m) whenever you want" << std::endl;
-    std::cout << "You can quit game by pressing (q) whenever you want" << std::endl;
-    std::cout << "You can check inventory of your heroes by pressing (i) and quit inventory by pressing zero(0)" << std::endl;
-    std::cout << "You can check your heroes status by pressing (c)" << std::endl;
-
-
-    Square* current = map->getSquare(0, 0);
-    squad->move(current);
-
-    enterMarket();
-
-    bool validButton = true;
-
-    while(true)
-    {
-        std::cout << "Move your heroes" << std::endl;
-        char button;
-        std::cin >> button;
-
-        unsigned int x, y;
-        x = current->getX();
-        y = current->getY();
-
-        unsigned int x1, y1;
-
-        switch (button)
-        {
-            case 'w':
-                x1 = x + 1;
-                y1 = y;
-                break;
-            case 's':
-                x1 = x - 1;
-                y1 = y;
-                break;
-            case 'a':
-                x1 = x;
-                y1 = y - 1;
-                break;
-            case 'd':
-                x1 = x;
-                y1 = y + 1;
-                break;
-            case 'q':
-                std::cout << "Quit Game... Bye!" << std::endl;
-                return;
-            case 'm':
-                map->displayMap();
-                continue;
-            case 'c':
-                std::cout << "Your Heroes: " << std::endl;
-                squad->print();
-                continue;
-            case 'i':
-                squad->openInventory();
-                continue;
-            default:
-                validButton = false;
-                break;
-        }
-
-        if ( !validButton ){
-            std::cout << "Please enter a valid button" << std::endl;
-        }
-
-        if (map->outOfBounds(x1, y1))
-        {
-            std::cout << "You are going out of bounds please try again" << std::endl;
-            continue;
-        }
-        else
-        {
-            Square* next = map->getSquare(x1, y1);
-
-            if(next->getType() == nonAccessible)
-            {
-                std::cout << "Non-Accessible square, please go to another direction" << std::endl;
-                continue;
-            }
-            else if (next->getType() == market)
-            {
-                current->setSquad(nullptr);
-                squad->move(next);
-
-                enterMarket();
-            }
-            else
-            {
-                current->setSquad(nullptr);
-                squad->move(next);
-
-                enterCommon();
-            }
-
-            current = map->getSquare(x1, y1);
-        }
-    }
+    return enemies;
 }
 
 
@@ -287,7 +286,7 @@ void Game::enterMarket() {
     char answer;
     std::cin >> answer;
 
-    if ( answer == 'y' || answer == 'Y')
+    if ( answer == 'Y' || answer == 'y')
     {
         for(int i=0; i<squad->getSize(); i++)
         {
@@ -295,66 +294,81 @@ void Game::enterMarket() {
 
             std::cin >> answer;
 
-            if(answer == 'Y' || answer == 'y') {
+            if(answer == 'Y' || answer == 'y')
+            {
                 marketPlace->open(squad->getHero(i));
             }
-        }
-    }
-
-}
-
-void Game::enterCommon() {
-    if (Fight::begin())
-    {
-        std::cout << "Fight Begins..." << std::endl;
-
-        squad->setSquadStats();
-
-        MonsterSquad *enemies = createEnemies();
-
-        Fight *fight = new Fight(squad, enemies);
-
-        int round = 1;
-
-        while (fight->isNotOver())
-        {
-            std::cout << "Round: " << round << std::endl;
-
-            std::cout << "Your Turn" << std::endl;
-            if (!fight->playerTurn()) {
+            else if (answer == 'Q' || answer == 'q')
+            {
                 quit();
             }
-
-            if (enemies->defeated())
-                break;
-
-            std::cout << "Enemies Turn" << std::endl;
-            fight->enemiesTurn();
-
-            //reduce active spells on each monster
-            enemies->unchargeActiveSpells();
-
-            //regenerate stats of both heroes and enemies
-            squad->regeneration();
-            enemies->regeneration();
-
-            round++;
         }
-
-        if (squad->defeated())
-        {
-            std::cout << "DEFEATED!" << std::endl;
-            defeat();
-        }
-        else
-        {
-            std::cout << "VICTORY!" << std::endl;
-            victory(enemies->getSize());
-        }
-
-        delete fight;
+    }
+    else if ( answer == 'Q' || answer == 'q')
+    {
+        quit();
     }
 }
+
+
+void Game::enterCommon() {
+
+    if (!Fight::begin())
+        return;
+
+    std::cout << "Fight Begins..." << std::endl;
+
+    squad->setSquadStats();
+
+    MonsterSquad *enemies = createEnemies();
+
+    Fight* fight = new Fight(squad, enemies);
+
+    int round = 1;
+
+    while (fight->isNotOver())
+    {
+        std::cout << "Round: " << round << std::endl;
+
+        std::cout << "Your Turn" << std::endl;
+
+        //if player want to quit game within the fight
+        if (!fight->playerTurn())
+        {
+            delete fight;
+            quit();
+        }
+
+        if (enemies->defeated())
+            break;
+
+        std::cout << "Enemies Turn" << std::endl;
+        fight->enemiesTurn();
+
+        //reduce active spells on each monster
+        enemies->unchargeActiveSpells();
+
+        //regenerate stats of both heroes and enemies
+        squad->regeneration();
+        enemies->regeneration();
+
+        round++;
+    }
+
+    if (squad->defeated())
+    {
+        std::cout << "DEFEATED!" << std::endl;
+        defeat();
+    }
+    else
+    {
+        std::cout << "VICTORY!" << std::endl;
+        victory(enemies->getSize());
+    }
+
+    delete fight;
+}
+
 
 void Game::victory(int monstersDefeated) {
     for (int i = 0; i < squad->getSize(); i++)
@@ -381,6 +395,7 @@ void Game::victory(int monstersDefeated) {
         std::cout << "+ " << money << "money" << std::endl;
     }
 }
+
 
 void Game::defeat() {
     squad->revive();

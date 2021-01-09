@@ -23,14 +23,14 @@ public:
 
     virtual void print() const = 0;
 
+    virtual void reduceHealth(int reduce) = 0;
+
     virtual void regenerate() = 0;
 
     std::string getName() const;
 
     int getHealth() const;
     int getLevel() const;
-
-    virtual void reduceHealth(int reduce) = 0;
 
 };
 

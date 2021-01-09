@@ -13,6 +13,7 @@
 #include "Creatures/Heroes/Warrior.h"
 #include "Creatures/Heroes/Paladin.h"
 #include "Creatures/Heroes/Sorcerer.h"
+
 #include "Creatures/Monsters/Dragon.h"
 #include "Creatures/Monsters/ExoSkeleton.h"
 #include "Creatures/Monsters/Spirit.h"
@@ -32,10 +33,11 @@ private:
     HeroSquad* squad = nullptr;
 
     void createHeroes();
-
     MonsterSquad* createEnemies();
-
     Market* createMarket();
+
+    void quit();
+    bool playerMove(Square* currentPos, unsigned int& x1, unsigned int& y1);
 
     void enterMarket();
     void enterCommon();
@@ -43,7 +45,6 @@ private:
     void victory(int monstersDefeated);
     void defeat();
 
-    void quit();
 
 public:
 

@@ -41,6 +41,7 @@ public:
     void revive();
 
     void move(Square* square);
+
     void openInventory();
 
 };

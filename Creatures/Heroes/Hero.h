@@ -28,8 +28,14 @@ private:
     Weapon* equippedWeapon = nullptr;
     Armor* equippedArmor = nullptr;
 
-    Skills skills;
     Inventory inventory;
+    Skills skills;
+
+
+    //uses of items from inventory
+    void equip(Weapon* weapon);
+    void equip(Armor* armor);
+    void use(Potion* potion);
 
 protected:
     int mana;
@@ -47,7 +53,6 @@ public:
     ~Hero() override = default;
 
     void print() const override = 0;
-
     virtual void levelUp() = 0;
 
     int getMoney() const;
@@ -55,44 +60,31 @@ public:
     void printInventory() const;
     void printSkills() const;
 
-    void reduceHealth(int reduce) override;
-
-    bool dead() const;
-
-    void earnMoney(int earned);
-    void looseMoney();
-
-    void addExperience(int xp);
-
+    //battle methods
     void setCurrentStats();
-
     bool avoidAttack() const;
-
+    void reduceHealth(int reduce) override;
     void regenerate() override;
-
+    bool dead() const;
     void revive();
 
-    //transactions that are made by her in market
+    //after battle methods
+    void earnMoney(int earned);
+    void looseMoney();
+    void addExperience(int xp);
+
+    //transactions that are made by hero in market
     void buyItem(Item* newItem);
     void buySpell(Spell* newSpell);
-
     Item* sellItem(int pos);
     Spell* sellSpell(int pos);
 
-    //uses of items from inventory
-    void equipWeapon(Weapon* weapon);
-    void equipArmor(Armor* armor);
-    void use(Potion* potion);
-
-    bool haveSkills() const;
-
     //methods for the player
-
+    bool haveSkills() const;
     int attack() const;
     void castSpell(int& damage, int& effect, int& duration, EffectType& type);
     void usePotion();
     void chooseEquipment();
-
     void checkInventory();
 
 };

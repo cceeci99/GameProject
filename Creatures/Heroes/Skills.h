@@ -15,6 +15,8 @@ private:
 
 public:
 
+    Skills() = default;
+
     ~Skills() {
         delete[] spells;
     };

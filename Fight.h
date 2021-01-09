@@ -6,7 +6,6 @@
 #include "Squads/MonsterSquad.h"
 
 
-
 class Fight {
 
 private:
@@ -14,13 +13,13 @@ private:
     HeroSquad* heroes;
     MonsterSquad* enemies;
 
+    void displayStats() const;
 
     static void normalAttack(Hero* hero, Monster* monster);
 
     static void spellAttack(Hero* hero, Monster* monster);
 
     static void monsterAttack(Monster* monster, Hero* hero);
-
 
 
 public:
@@ -35,8 +34,6 @@ public:
     static bool begin();
 
     bool isNotOver() const;
-
-    void displayStats() const;
 
     bool playerTurn();
 

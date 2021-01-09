@@ -163,13 +163,13 @@ Spell* Hero::sellSpell(int pos) {
 }
 
 
-void Hero::equipWeapon(Weapon* weapon) {
+void Hero::equip(Weapon* weapon) {
     equippedWeapon = weapon;
     std::cout << weapon->getName() << " weapon equipped" << std::endl;
 }
 
 
-void Hero::equipArmor(Armor *armor) {
+void Hero::equip(Armor *armor) {
     equippedArmor = armor;
     std::cout << armor->getName() << " armor equipped" << std::endl;
 }
@@ -287,7 +287,7 @@ void Hero::chooseEquipment() {
         else{
             inventory.removeItem(arm);
         }
-        equipArmor(arm);
+        equip(arm);
     }
 
     std::cout << "Choose weapon" << std::endl;
@@ -301,21 +301,23 @@ void Hero::chooseEquipment() {
         else{
             inventory.removeItem(weap);
         }
-        equipWeapon(weap);
+        equip(weap);
     }
 
 }
 
 
 void Hero::checkInventory() {
-    std::cout << "Opening inventory" << std::endl;
+    std::cout << "Opening inventory: " << std::endl;
     std::cout << "Money: " << money << std::endl;
     inventory.print();
 
     while (true)
     {
-        if ( inventory.empty() ) {
+        if ( inventory.empty() )
+        {
             std::cout << "No items in your inventory" << std::endl;
+            return;
         }
 
         int pos;
@@ -346,26 +348,26 @@ void Hero::checkInventory() {
         {
             if (equippedArmor == nullptr )
             {
-                equipArmor((Armor *) item);
+                equip((Armor *) item);
                 inventory.removeItem(pos);
             }
             else
             {
                 item = inventory.changeItem(pos, equippedArmor);
-                equipArmor((Armor *) item);
+                equip((Armor *) item);
             }
         }
         else if ( item->getType() == weapon )
         {
             if (equippedWeapon == nullptr )
             {
-                equipWeapon((Weapon *) item);
+                equip((Weapon *) item);
                 inventory.removeItem(pos);
             }
             else
             {
                 item = inventory.changeItem(pos, equippedWeapon);
-                equipWeapon((Weapon *) item);
+                equip((Weapon *) item);
             }
         }
         else

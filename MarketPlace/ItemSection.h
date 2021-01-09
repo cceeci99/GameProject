@@ -13,6 +13,14 @@ private:
     int addedItems = 0;
     Item** items = new Item*[ITEMS_CAPACITY];
 
+
+    void buyOption(Hero* hero);
+
+    void sellOption(Hero* hero) const;
+
+
+    Item* getItem(int pos);
+
 public:
 
     ItemSection() = default;
@@ -32,14 +40,7 @@ public:
 
     void open(Hero* hero);
 
-    void buyOption(Hero* hero);
-
-    void sellOption(Hero* hero) const;
-
     void addItem(Item* newItem);
-
-    Item* getItem(int pos);
-
 };
 
 

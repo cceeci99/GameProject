@@ -229,7 +229,6 @@ Weapon *Inventory::chooseWeapon() {
             std::cout << "Please choose available weapon" << std::endl;
         else
             break;
-
     }
 
     if ( pos != 0 )

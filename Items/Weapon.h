@@ -27,8 +27,6 @@ public:
 
     int getAttribute() const override;
 
-    bool isOneHanded() const;
-
 };
 
 

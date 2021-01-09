@@ -13,6 +13,13 @@ private:
     int addedSpells = 0;
     Spell** spells = new Spell*[SPELLS_CAPACITY];
 
+
+    void buyOption(Hero* hero);
+
+    void sellOption(Hero* hero) const;
+
+    Spell* getSpell(int pos);
+
 public:
 
     SpellSection() = default;
@@ -28,17 +35,11 @@ public:
         delete[] spells;
     }
 
-    void open(Hero* hero);
-
     void print() const;
 
-    void buyOption(Hero* hero);
-
-    void sellOption(Hero* hero) const;
+    void open(Hero* hero);
 
     void addSpell(Spell* newSpell);
-
-    Spell* getSpell(int pos);
 
 };
 

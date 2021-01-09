@@ -8,7 +8,3 @@ void Weapon::print() const {
 int Weapon::getAttribute() const {
     return damage;
 }
-
-bool Weapon::isOneHanded() const {
-    return oneHanded;
-}

@@ -19,6 +19,8 @@ private:
 
 public:
 
+    Inventory() = default;
+
     ~Inventory() {
         delete[] items;
     };

@@ -28,7 +28,7 @@ public:
 
     void displayStats() const;
 
-    void playerTurn();
+    bool playerTurn();
 
     void enemiesTurn();
 

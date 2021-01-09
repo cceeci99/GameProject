@@ -17,7 +17,7 @@ void Fight::displayStats() const {
 }
 
 
-void Fight::playerTurn() {
+bool Fight::playerTurn() {
     int i=0;
     char answer;
     std::cout << "Do you want to display stats?" << std::endl;
@@ -25,14 +25,25 @@ void Fight::playerTurn() {
 
     if( answer == 'y' || answer == 'Y' )
     {
-        std::cout << "Stats before fight:" << std::endl;
+        std::cout << "Stats::" << std::endl;
         displayStats();
+    }
+    else if ( answer == 'q' || answer == 'Q')
+    {
+        return false;
     }
 
 
     while ( i<heroes->getSize() )
     {
         Hero* hero = heroes->getHero(i);
+
+        if (hero->dead())
+        {
+            i++;
+            continue;
+        }
+
         std::cout << "Play with " << hero->getName() << std::endl;
 
         std::cout << "Do you want to choose equipment?" << std::endl;
@@ -40,10 +51,16 @@ void Fight::playerTurn() {
         if ( answer == 'Y' || answer == 'y' ) {
             hero->chooseEquipment();
         }
+        else if ( answer == 'Q' || answer == 'q' ){
+            return false;
+        }
 
 
         std::cout << "Do you want to make normal attack (o), cast spell(l) or use potion(p)" << std::endl;
         std::cin >> answer;
+
+        if ( answer == 'Q'|| answer == 'q' )
+            return false;
 
         while( answer != 'o' && answer != 'l' && answer != 'p' )
         {
@@ -116,6 +133,8 @@ void Fight::playerTurn() {
 
         i++;
     }
+
+    return true;
 }
 
 
@@ -123,6 +142,10 @@ void Fight::enemiesTurn() {
     for (int i=0; i<enemies->getSize(); i++)
     {
         Monster* mob = enemies->getMonster(i);
+
+        if (mob->dead()){
+            continue;
+        }
 
         int r = (int)random() % heroes->getSize();
         Hero* hero = heroes->getHero(r);

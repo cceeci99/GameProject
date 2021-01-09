@@ -2,6 +2,7 @@
 #include "Fight.h"
 #include "Spells/FireSpell.h"
 #include "Spells/IceSpell.h"
+#include "Spells/LightingSpell.h"
 
 
 std::string names[6] = {"a","b","c","d","e","z",};
@@ -28,11 +29,11 @@ void Game::createMarket() {
 
      */
 
-    Item* armor = new Armor("Emblem", 122, 1, 450);
-    Item* armor1 = new Armor("hat", 50, 1, 25);
-    Item* weapon = new Weapon("axe", 145, 1, 420, true);
-    Item* weapon1 = new Weapon("sword", 100, 1, 200, false);
-    Item* potion = new Potion("Antidote", 45, 1, Health, 101);
+    Item* armor = new Armor("Emblem", 100, 1, 50);
+    Item* armor1 = new Armor("hat", 100, 1, 25);
+    Item* weapon = new Weapon("axe", 100, 1, 50, true);
+    Item* weapon1 = new Weapon("sword", 100, 1, 30, false);
+    Item* potion = new Potion("Antidote", 100, 1, Health, 25);
 
     marketPlace->addItem(armor);
     marketPlace->addItem(armor1);
@@ -40,11 +41,13 @@ void Game::createMarket() {
     marketPlace->addItem(weapon1);
     marketPlace->addItem(potion);
 
-    Spell* spell = new FireSpell("inferno", 45, 1, 70, Range::getRandomRange(100, 500), 150);
-    Spell* spell1 = new IceSpell("frost", 50, 1, 40, Range::getRandomRange(500, 1000), 80);
+    Spell* spell = new FireSpell("inferno", 100, 1, 100, Range::getRandomRange(100, 300), 50);
+    Spell* spell1 = new IceSpell("frost", 100, 1, 100, Range::getRandomRange(200, 250), 80);
+    Spell* spell2 = new LightingSpell("zeus", 100, 1, 100, Range::getRandomRange(100, 200), 5);
 
     marketPlace->addSpell(spell);
     marketPlace->addSpell(spell1);
+    marketPlace->addSpell(spell2);
 
 }
 
@@ -317,7 +320,8 @@ void Game::play() {
                         std::cout << "Round: " << round << std::endl;
 
                         std::cout << "Your Turn" << std::endl;
-                        fight->playerTurn();
+                        if ( !fight->playerTurn() )
+                            quit();
 
                         if ( enemies->defeated() )
                             break;

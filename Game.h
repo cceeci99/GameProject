@@ -60,6 +60,7 @@ public:
     void play();
 
     void quit() {
+        std::cout << "Quit Game... Bye" << std::endl;
         delete this;
         exit(1);
     }

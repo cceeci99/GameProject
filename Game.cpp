@@ -29,11 +29,11 @@ void Game::createMarket() {
 
      */
 
-    Item* armor = new Armor("Emblem", 100, 1, 50);
-    Item* armor1 = new Armor("hat", 100, 1, 25);
-    Item* weapon = new Weapon("axe", 100, 1, 50, true);
-    Item* weapon1 = new Weapon("sword", 100, 1, 30, false);
-    Item* potion = new Potion("Antidote", 100, 1, Health, 25);
+    Item* armor = new Armor("Emblem", 100, 1, 70);
+    Item* armor1 = new Armor("hat", 100, 1, 55);
+    Item* weapon = new Weapon("axe", 100, 1, 100, true);
+    Item* weapon1 = new Weapon("sword", 100, 1, 80, false);
+    Item* potion = new Potion("Antidote", 100, 1, Health, 55);
 
     marketPlace->addItem(armor);
     marketPlace->addItem(armor1);

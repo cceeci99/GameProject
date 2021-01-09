@@ -9,7 +9,7 @@ int main() {
 
     game->createMarket();
 
-    game->createMap(5);
+    game->createMap(8);
 
     game->play();
 

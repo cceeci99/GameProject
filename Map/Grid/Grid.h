@@ -10,7 +10,7 @@ class Grid {
 
 private:
     Square*** array;
-    int size;
+    const int size;
 
 public:
 

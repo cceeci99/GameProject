@@ -336,8 +336,13 @@ void Game::enterMarket() {
 
 void Game::enterCommon() {
 
+    std::cout << "You have entered common square" << std::endl;
+
     if (!Fight::begin())
+    {
+        std::cout << "No monsters around..." << std::endl;
         return;
+    }
 
     std::cout << "Fight Begins..." << std::endl;
 

@@ -7,20 +7,28 @@ Grid::Grid(int size) : size(size){
         array[i] = new Square *[size];
     }
 
-    for(int i = 0; i < size; i++)
+    for(int j = 0; j < size; j++){
+        if( j % 3 == 0 )
+            array[0][j] = new Square(0, j, market);
+        else if( j % 5 == 0 )
+            array[0][j] = new Square(0, j, nonAccessible);
+        else
+            array[0][j] = new Square(0, j, common);
+        
+    }
+
+    for(int i = 1; i < size; i++)
     {
         for(int j = 0; j < size; j++)
         {
-            if (i%2 == 1){
-                array[i][j] = new Square(i, j, market);
+            if( j == 0 ){
+                SquareType type = array[i-1][size-1]->getType();
+                array[i][j] = new Square(i, j, type);
             }
             else{
-                array[i][j] = new Square(i, j, common);
+                SquareType type = array[i-1][j-1]->getType();
+                array[i][j] = new Square(i, j, type);
             }
-
-
-            // for implementation ...
-
         }
     }
 }

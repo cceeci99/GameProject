@@ -41,8 +41,8 @@ public:
 
     //generate random rage with within lower and upper Bound
     static Range getRandomRange(int lowerBound, int upperBound){
-        int min = (int)random() % lowerBound;
-        int max = min + ((int)random() % ((upperBound+1) - min));
+        int min = lowerBound;
+        int max = min + ((int) random() % ((upperBound+1) - min));
 
         Range range(min, max);
         return range;

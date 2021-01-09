@@ -12,7 +12,10 @@ bool Fight::isNotOver() const {
 
 
 void Fight::displayStats() const {
+    std::cout << "Heroes: " << std::endl;
     heroes->print();
+
+    std::cout << "Monsters: " << std::endl;
     enemies->print();
 }
 

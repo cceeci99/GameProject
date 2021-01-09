@@ -4,7 +4,6 @@
 #include "Spells/LightingSpell.h"
 
 
-std::string names[6] = {"a","b","c","d","e","z",};
 
 
 void Game::quit() {
@@ -71,7 +70,7 @@ void Game::play() {
     std::cout << "You can see map by pressing (m) whenever you want" << std::endl;
     std::cout << "You can quit game by pressing (q) whenever you want" << std::endl;
     std::cout << "You can check inventory of your heroes by pressing (i) and quit inventory by pressing zero(0)" << std::endl;
-    std::cout << "You can check your heroes stats by pressing (c)" << std::endl;
+    std::cout << "You can check your heroes stats by pressing (c)\n" << std::endl;
 
 
     //heroes start at coordinates 0,0 of map which contains market
@@ -182,22 +181,41 @@ void Game::createHeroes() {
 
     squad = new HeroSquad(n);
 
-    std::cout << "Please choose name and type of each hero 1:warrior, 2:paladin, 3:sorcerer" << std::endl;
+    static std::string names[10] = {"Karontor","Io","Luthic","Merlin","Sixin",
+                                    "Ilneval", "Vaprak", "Eadro", "Skerrit", "Jubilex"};
 
-    for(int i=0; i<squad->getSize(); i++)
+    std::vector<std::string> usedNames;
+
+    for(int i = 0; i < n; i++)
     {
-        std::cout << "Create your " << i+1 << " hero" << std::endl;
+        int HeroType = (int) random() % 3 + 1; //[1, 3]
+
+        Hero *hero = nullptr;
 
         std::string name;
-        std::cout << "Choose name" << std::endl;
-        std::cin >> name;
+        while (true)
+        {
+            int r = (int) random() % 10;
+            bool found = false;
 
-        int type;
-        std::cout << "Choose type" << std::endl;
-        std::cin >> type;
+            for (auto &usedName : usedNames)
+            {
+                if (names[r] == usedName)
+                {
+                    found = true;
+                    break;
+                }
+            }
 
-        Hero* hero = nullptr;
-        switch(type)
+            if (!found)
+            {
+                usedNames.push_back(names[r]);
+                name = names[r];
+                break;
+            }
+        }
+
+        switch (HeroType)
         {
             case warrior:
                 hero = new Warrior(name);
@@ -217,6 +235,10 @@ void Game::createHeroes() {
 
 
 MonsterSquad *Game::createEnemies() {
+    //some random names for the monsters creation
+    static std::string names[10] = {"Abbathor","Arvoreen","Ehlonna","Heironeous","Pelor",
+                             "Urdlen", "Bahamut", "Orcus", "Vaprak", "Bahgtru"};
+
     int size = (int)random() % 3 + 1;
 
     MonsterSquad* enemies = new MonsterSquad(size);
@@ -239,8 +261,9 @@ MonsterSquad *Game::createEnemies() {
         std::string name;
         while (true)
         {
-            int r = (int)random() % 6;
+            int r = (int)random() % 10;
             bool found = false;
+
             for (auto & usedName : usedNames)
             {
                 if (names[r] == usedName)

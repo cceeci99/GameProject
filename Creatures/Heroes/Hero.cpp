@@ -259,7 +259,7 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
             std::cout << "damage: " <<  damage <<std::endl;
 
             mana -= spell->getManaRequired();
-
+            return;
         }
     }
 }

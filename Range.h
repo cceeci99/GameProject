@@ -39,6 +39,7 @@ public:
             max = 0;
     }
 
+    /*
     //generate random rage with within lower and upper Bound
     static Range getRandomRange(int lowerBound, int upperBound){
         int min = lowerBound;
@@ -46,7 +47,7 @@ public:
 
         Range range(min, max);
         return range;
-    }
+    }*/
 
 };
 

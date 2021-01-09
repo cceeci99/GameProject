@@ -41,10 +41,9 @@ void Game::createMarket() {
     marketPlace->addItem(weapon1);
     marketPlace->addItem(potion);
 
-    Spell* spell = new FireSpell("inferno", 100, 1, 100, Range::getRandomRange(100, 300), 50);
-    Spell* spell1 = new IceSpell("frost", 100, 1, 100, Range::getRandomRange(200, 250), 80);
-    Spell* spell2 = new LightingSpell("zeus", 100, 1, 100, Range::getRandomRange(100, 200), 5);
-
+    Spell* spell = new FireSpell("inferno", 100, 1, 100,Range(100, 300), 50);
+    Spell* spell1 = new IceSpell("frost", 100, 1, 100,Range(200, 250), 80);
+    Spell* spell2 = new LightingSpell("zeus", 100, 1, 100,Range(100, 200), 5);
 
     marketPlace->addSpell(spell);
     marketPlace->addSpell(spell1);

@@ -1,9 +1,9 @@
 #include "Game.h"
+#include "Fight.h"
+
 #include "Spells/FireSpell.h"
 #include "Spells/IceSpell.h"
 #include "Spells/LightingSpell.h"
-
-
 
 
 void Game::quit() {

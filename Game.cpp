@@ -306,31 +306,56 @@ MonsterSquad *Game::createEnemies() {
 void Game::enterMarket() {
     std::cout << "You have entered a marketPlace do you want to open market? Y/N" << std::endl;
 
-    char answer;
-    std::cin >> answer;
-
-    if ( answer == 'Y' || answer == 'y')
+    while (true)
     {
-        for(int i=0; i<squad->getSize(); i++)
+        char answer;
+        std::cin >> answer;
+
+        if ( answer == 'Y' || answer == 'y')
         {
-            std::cout << "Do you want to open market for " << squad->getHero(i)->getName() << "? Y/N" << std::endl;
-
-            std::cin >> answer;
-
-            if(answer == 'Y' || answer == 'y')
+            int i=0;
+            while (i < squad->getSize())
             {
-                marketPlace->open(squad->getHero(i));
+                std::cout << "Do you want to open market for " << squad->getHero(i)->getName() << "? Y/N" << std::endl;
+
+                std::cin >> answer;
+
+                if(answer == 'Y' || answer == 'y')
+                {
+                    marketPlace->open(squad->getHero(i));
+                }
+                else if (answer == 'N' || answer == 'n')
+                {
+                    i++;
+                    continue;
+                }
+                else if (answer == 'Q' || answer == 'q')
+                {
+                    quit();
+                }
+                else
+                {
+                    std::cout << "Invalid input please try again" << std::endl;
+                    continue;
+                }
+                i++;
             }
-            else if (answer == 'Q' || answer == 'q')
-            {
-                quit();
-            }
+            return;
+        }
+        else if (answer == 'N' || answer == 'n')
+        {
+            break;
+        }
+        else if (answer == 'Q' || answer == 'q')
+        {
+            quit();
+        }
+        else
+        {
+            std::cout << "Invalid input please try again" << std::endl;
         }
     }
-    else if ( answer == 'Q' || answer == 'q')
-    {
-        quit();
-    }
+
 }
 
 

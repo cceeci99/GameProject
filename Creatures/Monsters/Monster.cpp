@@ -37,7 +37,7 @@ void Monster::reduceDodge(int reduce) {
 void Monster::regenerate() {
     if (health != 0)
     {
-        health += 15/100*health;
+        health += 10/100*health;
 
         if (health >= 1000) {
             health = 1000;

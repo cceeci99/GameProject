@@ -30,18 +30,20 @@ void SpellSection::open(Hero *hero) {
         int choice;
         std::cin >> choice;
 
-        if (choice == 0)
+        switch (choice)
         {
-            std::cout << "Closing Spell Section" << std::endl;
-            return;
-        }
-        else if (choice == 1)
-        {
-            buyOption(hero);
-        }
-        else if (choice == 2)
-        {
-            sellOption(hero);
+            case 0:
+                std::cout << "Closing Spell Section" << std::endl;
+                return;
+            case 1:
+                buyOption(hero);
+                break;
+            case 2:
+                sellOption(hero);
+                break;
+            default:
+                std::cout << "Invalid input, try again" << std::endl;
+                continue;
         }
     }
 }
@@ -72,6 +74,7 @@ void SpellSection::buyOption(Hero *hero) {
 
         std::cout << "Available spells:" << std::endl;
         print();
+
         std::cout << "Your Acquired Skills" << std::endl;
         hero->printSkills();
     }

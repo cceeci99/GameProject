@@ -22,13 +22,10 @@ bool Fight::playerTurn() {
     std::cout << "Do you want to display stats?" << std::endl;
     std::cin >> answer;
 
-    if( answer == 'y' || answer == 'Y' )
-    {
-        std::cout << "Stats::" << std::endl;
+    if( answer == 'y' || answer == 'Y' ){
         displayStats();
     }
-    else if ( answer == 'q' || answer == 'Q')
-    {
+    else if ( answer == 'q' || answer == 'Q'){
         return false;
     }
 
@@ -53,7 +50,6 @@ bool Fight::playerTurn() {
         {
             return false;
         }
-
 
         std::cout << "Do you want to make normal attack (o), cast spell(l) or use potion(p)" << std::endl;
         std::cin >> answer;
@@ -127,17 +123,12 @@ void Fight::enemiesTurn() {
 void Fight::normalAttack(Hero *hero, Monster *monster) {
     int damage = hero->attack();
 
-    std::cout << hero->getName() << " performs normal attack on: " << monster->getName() << " damage " << damage << std::endl;
+    std::cout << hero->getName() << " performs normal attack on " << monster->getName() << " damage " << damage << std::endl;
 
     monster->reduceHealth(damage);
 
-    if (monster->dead())
-    {
+    if (monster->dead()){
         std::cout << "Just killed " << monster->getName() << std::endl;
-    }
-    else
-    {
-        std::cout << "remaining health: " << monster->getHealth() << std::endl;
     }
 }
 
@@ -150,7 +141,7 @@ void Fight::spellAttack(Hero *hero, Monster *monster) {
     hero->castSpell(damage, effect, duration, type);
 
 
-    std::cout << hero->getName() << " performs spell on: " << monster->getName() << " damage " << damage << std::endl;
+    std::cout << hero->getName() << " performs spell on " << monster->getName() << " damage " << damage << std::endl;
 
     monster->reduceHealth(damage);
     monster->activateSpell(type, duration);
@@ -179,7 +170,7 @@ void Fight::spellAttack(Hero *hero, Monster *monster) {
 
 void Fight::monsterAttack(Monster *monster, Hero *hero) {
     int damage = monster->attack();
-    std::cout << monster->getName() << " performs attack on  " << hero->getName() << " damage " << damage << std::endl;
+    std::cout << monster->getName() << " performs attack on " << hero->getName() << " damage " << damage << std::endl;
 
     hero->reduceHealth(damage);
 

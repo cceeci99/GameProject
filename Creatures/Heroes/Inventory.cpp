@@ -174,7 +174,7 @@ Armor *Inventory::chooseArmor() {
 
     if (armors.empty())
     {
-        std::cout << "None available armors" << std::endl;
+        std::cout << "None available armor" << std::endl;
         return nullptr;
     }
 
@@ -217,7 +217,7 @@ Weapon *Inventory::chooseWeapon() {
 
     if (weapons.empty())
     {
-        std::cout << "None available potions" << std::endl;
+        std::cout << "None available weapon" << std::endl;
         return nullptr;
     }
 

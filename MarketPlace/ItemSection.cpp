@@ -17,9 +17,11 @@ void ItemSection::print() const {
 
 
 void ItemSection::open(Hero *hero) {
-    while (true) {
+    while (true)
+    {
         std::cout << "Available items:" << std::endl;
         print();
+
         std::cout << "Your Inventory: " << std::endl;
         hero->printInventory();
 
@@ -28,23 +30,28 @@ void ItemSection::open(Hero *hero) {
         int choice;
         std::cin >> choice;
 
-        if (choice == 0) {
-            std::cout << "Closing ItemType Section" << std::endl;
-            return;
-        } else if (choice == 1) {
-            buyOption(hero);
-        } else if (choice == 2) {
-            sellOption(hero);
-        } else {
-            std::cout << "Invalid input, try again" << std::endl;
-            continue;
+        switch (choice)
+        {
+            case 0:
+                std::cout << "Closing ItemType Section" << std::endl;
+                return;
+            case 1:
+                buyOption(hero);
+                break;
+            case 2:
+                sellOption(hero);
+                break;
+            default:
+                std::cout << "Invalid input, try again" << std::endl;
+                continue;
         }
     }
 }
 
 
 void ItemSection::buyOption(Hero *hero) {
-    while (true) {
+    while (true)
+    {
         std::cout << "Which item you would like to buy ?" << std::endl;
 
         int pos;
@@ -57,7 +64,8 @@ void ItemSection::buyOption(Hero *hero) {
 
         Item *item = getItem(pos);
 
-        if (item == nullptr) {
+        if (item == nullptr)
+        {
             std::cout << "Please choose available item" << std::endl;
             continue;
         }
@@ -66,6 +74,7 @@ void ItemSection::buyOption(Hero *hero) {
 
         std::cout << "Available items:" << std::endl;
         print();
+
         std::cout << "Your Inventory: " << std::endl;
         hero->printInventory();
     }
@@ -95,6 +104,7 @@ void ItemSection::sellOption(Hero *hero) const {
 
         std::cout << "Item Section:" << std::endl;
         print();
+
         std::cout << "Your inventory: " << std::endl;
         hero->printInventory();
 

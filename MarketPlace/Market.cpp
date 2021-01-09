@@ -10,26 +10,23 @@ void Market::open(Hero *hero) {
         int choice;
         std::cin >> choice;
 
-        if ( choice == 0 )
+        switch (choice)
         {
-            std::cout << "Have a nice day" << std::endl;
-            std::cout << "Closing market" << std::endl;
-            return;
-        }
-        else if ( choice == 1 )
-        {
-            std::cout << "Opening ItemType Section" << std::endl;
-            itemSection.open(hero);
-        }
-        else if (choice == 2)
-        {
-            std::cout << "Opening Spells Section" << std::endl;
-            spellSection.open(hero);
-        }
-        else
-        {
-            std::cout << "Invalid Input, try again" << std::endl;
-            continue;
+            case 0:
+                std::cout << "Thank you, have a nice day" << std::endl;
+                std::cout << "Closing market" << std::endl;
+                return;
+            case 1:
+                std::cout << "Opening ItemType Section" << std::endl;
+                itemSection.open(hero);
+                break;
+            case 2:
+                std::cout << "Opening Spells Section" << std::endl;
+                spellSection.open(hero);
+                break;
+            default:
+                std::cout << "Invalid Input, try again" << std::endl;
+                continue;
         }
     }
 }

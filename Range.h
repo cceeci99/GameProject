@@ -12,7 +12,8 @@ public:
     int min;
     int max;
 
-    Range(int low, int high): min(low), max(high){};
+    Range(int low, int high)
+    : min(low), max(high){};
 
     ~Range() = default;
 
@@ -38,16 +39,6 @@ public:
         if ( max < 0 )
             max = 0;
     }
-
-    /*
-    //generate random rage with within lower and upper Bound
-    static Range getRandomRange(int lowerBound, int upperBound){
-        int min = lowerBound;
-        int max = min + ((int) random() % ((upperBound+1) - min));
-
-        Range range(min, max);
-        return range;
-    }*/
 
 };
 

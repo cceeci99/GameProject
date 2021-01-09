@@ -91,7 +91,7 @@ void Grid::displayMap() const{
             }
             else
             {
-                std::cout << "XX" << std::endl;
+                std::cout << "X" << std::endl;
             }
         }
     }

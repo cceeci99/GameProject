@@ -68,7 +68,7 @@ public:
 
     bool avoidAttack() const;
 
-    void regeneration() override;
+    void regenerate() override;
 
     void revive();
 
@@ -84,10 +84,12 @@ public:
     void equipArmor(Armor* armor);
     void use(Potion* potion);
 
+    bool haveSkills() const;
+
     //methods for the player
 
     int attack() const;
-    bool castSpell(int& damage, int& effect, int& duration, EffectType& type);
+    void castSpell(int& damage, int& effect, int& duration, EffectType& type);
     void usePotion();
     void chooseEquipment();
 

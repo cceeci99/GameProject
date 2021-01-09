@@ -56,6 +56,13 @@ void Hero::looseMoney() {
 
 
 void Hero::addExperience(int xp) {
+
+    if ( level == MAX_LEVEL )
+    {
+        std::cout << "You reached max level congratulations!" << std::endl;
+        return;
+    }
+
     std::cout << xp << std::endl;
     experience += xp;
 
@@ -81,7 +88,7 @@ bool Hero::avoidAttack() const {
 }
 
 
-void Hero::regeneration() {
+void Hero::regenerate() {
     if ( health != 0 )
     {
         health += 20/100*health;
@@ -194,6 +201,10 @@ void Hero::use(Potion *potion) {
     }
 }
 
+bool Hero::haveSkills() const {
+    return !skills.empty();
+}
+
 
 int Hero::attack() const {
     if ( equippedWeapon != nullptr ) {
@@ -205,12 +216,7 @@ int Hero::attack() const {
 }
 
 
-bool Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) {
-    if (skills.empty())
-    {
-        std::cout << "None available spells" << std::endl;
-        return false;
-    }
+void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) {
 
     std::cout << "Your acquired skills are:" << std::endl;
     skills.print();
@@ -221,7 +227,7 @@ bool Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
         std::cin >> pos;
 
         if ( pos == 0 )
-            return false;
+            return;
 
         pos--;
 
@@ -238,7 +244,6 @@ bool Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
         }
         else
         {
-            //
             int maxDamage = spell->getMaxDamage();
             damage = spell->cast() + 10/100*dexterity;
 
@@ -255,7 +260,6 @@ bool Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
 
             mana -= spell->getManaRequired();
 
-            return true;
         }
     }
 }
@@ -373,3 +377,4 @@ void Hero::checkInventory() {
 
     }
 }
+

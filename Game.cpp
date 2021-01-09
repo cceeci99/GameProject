@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "Fight.h"
 #include "Spells/FireSpell.h"
 #include "Spells/IceSpell.h"
 #include "Spells/LightingSpell.h"
@@ -7,12 +6,14 @@
 
 std::string names[6] = {"a","b","c","d","e","z",};
 
-void Game::createMap(int size) {
-    map = new Grid(size);
+
+void Game::quit() {
+    delete this;
+    exit(1);
 }
 
 
-void Game::createMarket() {
+Market* Game::createMarket() {
     marketPlace = new Market();
 /*
     //create some items and spells.
@@ -49,11 +50,25 @@ void Game::createMarket() {
     marketPlace->addSpell(spell1);
     marketPlace->addSpell(spell2);
 
+    return marketPlace;
 }
 
 
-void Game::createTeam(int n) {
-    std::cout << "Creating a heroes of " << n << " heroes" << std::endl;
+void Game::createHeroes() {
+
+    int n;
+    while (true)
+    {
+        std::cin >> n;
+
+        if ( n > MAX_TEAMMATES )
+        {
+            std::cout << "Please choose valid number of heroes" << std::endl;
+            continue;
+        }
+        break;
+    }
+
     squad = new HeroSquad(n);
 
     std::cout << "Please choose name and type of each hero 1:warrior, 2:paladin, 3:sorcerer" << std::endl;
@@ -71,27 +86,25 @@ void Game::createTeam(int n) {
         std::cout << "Choose type" << std::endl;
         std::cin >> type;
 
-        Hero* hero;
+        Hero* hero = nullptr;
         switch(type)
         {
             case warrior:
                 hero = new Warrior(name);
-                squad->setHero(hero);
                 break;
             case paladin:
                 hero = new Paladin(name);
-                squad->setHero(hero);
                 break;
             case sorcerer:
                 hero = new Sorcerer(name);
-                squad->setHero(hero);
                 break;
             default:
                 break;
         }
+        squad->setHero(hero);
+
         i++;
     }
-
 }
 
 
@@ -104,6 +117,7 @@ MonsterSquad *Game::createEnemies() {
     for(int i=0; i<squad->getSize(); i++){
         averageLevel += squad->getHero(i)->getLevel();
     }
+
     averageLevel = averageLevel/squad->getSize();
 
     std::vector<std::string> usedNames;
@@ -159,29 +173,13 @@ MonsterSquad *Game::createEnemies() {
 
 
 void Game::play() {
-    std::cout << "Welcome to our game" << std::endl;
+
     std::cout << "Please create your Hero Squad  of (1-3) heroes" << std::endl;
-
-
-    int n;
-    while (true)
-    {
-        std::cin >> n;
-
-        if ( n > MAX_TEAMMATES )
-        {
-            std::cout << "Please choose valid number of heroes" << std::endl;
-            continue;
-        }
-        createTeam(n);
-        break;
-    }
+    createHeroes();
 
     std::cout << "Your Hero Squad is ready: " << std::endl;
-
     squad->print();
 
-    std::cout << "Are you ready to begin..." << std::endl;
     std::cout << "Move your heroes by using keys (w, a, s, d) for up, left, down and right" << std::endl;
     std::cout << "You can see map by pressing (m) whenever you want" << std::endl;
     std::cout << "You can quit game by pressing (q) whenever you want" << std::endl;
@@ -192,13 +190,13 @@ void Game::play() {
     Square* current = map->getSquare(0, 0);
     squad->move(current);
 
-    bool validButton = true;
+    enterMarket();
 
-    std::cout << "Start moving your heroes..." << std::endl;
+    bool validButton = true;
 
     while(true)
     {
-        std::cout << "Make your move" << std::endl;
+        std::cout << "Move your heroes" << std::endl;
         char button;
         std::cin >> button;
 
@@ -244,10 +242,8 @@ void Game::play() {
                 break;
         }
 
-        if ( !validButton )
-        {
+        if ( !validButton ){
             std::cout << "Please enter a valid button" << std::endl;
-            continue;
         }
 
         if (map->outOfBounds(x1, y1))
@@ -261,138 +257,137 @@ void Game::play() {
 
             if(next->getType() == nonAccessible)
             {
-                std::cout << "The Square you want to enter is no accessible" << std::endl;
-                std::cout << "Please, go to another direction" << std::endl;
+                std::cout << "Non-Accessible square, please go to another direction" << std::endl;
                 continue;
             }
             else if (next->getType() == market)
             {
                 current->setSquad(nullptr);
                 squad->move(next);
-                current = map->getSquare(x1, y1);
 
-                std::cout << "You entered a marketPlace do you want to open market? Y/N" << std::endl;
-                char answer;
-                std::cin >> answer;
-
-                if ( answer == 'y' || answer == 'Y')
-                {
-                    for(int i=0; i<squad->getSize(); i++)
-                    {
-                        std::cout << "Do you want to open market for " << squad->getHero(i)->getName() << "? Y/N" << std::endl;
-
-                        std::cin >> answer;
-
-                        if(answer == 'Y' || answer == 'y') {
-                            marketPlace->open(squad->getHero(i));
-                        }
-                        else
-                            continue;
-                    }
-                }
-                else
-                {
-                    std::cout << "You are not opening market, you can check your inventory or continue moving your heroes" << std::endl;
-                    continue;
-                }
+                enterMarket();
             }
             else
             {
                 current->setSquad(nullptr);
                 squad->move(next);
 
-                std::cout << "You have entered a common square" << std::endl;
+                enterCommon();
+            }
 
-                //a probability function for starting a fight
-                if ( Fight::begin() )
-                {
-                    squad->setSquadStats();
-
-                    MonsterSquad* enemies = createEnemies();  //call function to create the monsters for fight
-
-                    Fight* fight = new Fight(squad, enemies);  //create new fight
-
-                    int round = 1;
-
-                    std::cout << "Fight Begins..." << std::endl;
-                    while (fight->isNotOver())
-                    {
-                        std::cout << "Round: " << round << std::endl;
-
-                        std::cout << "Your Turn" << std::endl;
-                        if ( !fight->playerTurn() )
-                            quit();
-
-                        if ( enemies->defeated() )
-                            break;
-
-                        std::cout << "Enemies Turn" << std::endl;
-                        fight->enemiesTurn();
-
-                        //deal with active spells on monsters
-                        for (int i=0; i<enemies->getSize(); i++)
-                        {
-                            Monster* mob = enemies->getMonster(i);
-
-                            mob->reduceSpellsRound();       //reduce round
-                            mob->checkExpiredSpells();      //check if some spell is expired and must be disabled
-                        }
-
-                        //regenerate stats of both heroes and enemies
-                        squad->regeneration();
-                        enemies->regeneration();
-
-                        round++;
-                    }
-
-                    if (squad->defeated())
-                    {
-                        std::cout << "DEFEATED!!!" << std::endl;
-                        squad->revive();
-
-                        current->setSquad(nullptr);
-                        squad->move(map->getSquare(0,0));   //move heroes at start point of map because they died
-
-                        for (int i=0; i<squad->getSize(); i++){
-                            squad->getHero(i)->looseMoney();            //heroes loose half of their money
-                        }
-                    }
-                    else
-                    {
-                        std::cout << "VICTORYY!!" << std::endl;
-                        //if some hero of the squad is defeated then revive him, with half of his hp and mp
-                        for(int i=0; i<squad->getSize(); i++)
-                        {
-                            if (squad->getHero(i)->dead())
-                            {
-                                std::cout << "Reviving: " << squad->getHero(i)->getName() << std::endl;
-                                squad->getHero(i)->revive();
-                            }
-                        }
-
-                        //get XP and money
-                        for(int i=0; i<squad->getSize(); i++)
-                        {
-                            //create formula for experience and money earn...
-                            int xp = ((squad->getHero(i)->getLevel())*2 + 3)*enemies->getSize();
-                            squad->getHero(i)->addExperience(xp);
-                            std::cout << "+ " << xp << "xp" << std::endl;
+            current = map->getSquare(x1, y1);
+        }
+    }
+}
 
 
-                            int money = (squad->getHero(i)->getLevel()*50)*enemies->getSize();
-                            squad->getHero(i)->earnMoney(money);
-                            std::cout << "+ " << money << "money" << std::endl;
-                        }
-                    }
+void Game::enterMarket() {
+    std::cout << "You have entered a marketPlace do you want to open market? Y/N" << std::endl;
 
-                    delete fight;
-                }
-                else
-                {
-                    std::cout << "No fight, you can check your inventory or continue moving your heroes" << std::endl;
-                    continue;
-                }
+    char answer;
+    std::cin >> answer;
+
+    if ( answer == 'y' || answer == 'Y')
+    {
+        for(int i=0; i<squad->getSize(); i++)
+        {
+            std::cout << "Do you want to open market for " << squad->getHero(i)->getName() << "? Y/N" << std::endl;
+
+            std::cin >> answer;
+
+            if(answer == 'Y' || answer == 'y') {
+                marketPlace->open(squad->getHero(i));
             }
         }
+    }
+
+}
+
+void Game::enterCommon() {
+    if (Fight::begin())
+    {
+        std::cout << "Fight Begins..." << std::endl;
+
+        squad->setSquadStats();
+
+        MonsterSquad *enemies = createEnemies();
+
+        Fight *fight = new Fight(squad, enemies);
+
+        int round = 1;
+
+        while (fight->isNotOver())
+        {
+            std::cout << "Round: " << round << std::endl;
+
+            std::cout << "Your Turn" << std::endl;
+            if (!fight->playerTurn()) {
+                quit();
+            }
+
+            if (enemies->defeated())
+                break;
+
+            std::cout << "Enemies Turn" << std::endl;
+            fight->enemiesTurn();
+
+            //reduce active spells on each monster
+            enemies->unchargeActiveSpells();
+
+            //regenerate stats of both heroes and enemies
+            squad->regeneration();
+            enemies->regeneration();
+
+            round++;
+        }
+
+        if (squad->defeated())
+        {
+            std::cout << "DEFEATED!" << std::endl;
+            defeat();
+        }
+        else
+        {
+            std::cout << "VICTORY!" << std::endl;
+            victory(enemies->getSize());
+        }
+
+        delete fight;
+    }
+}
+
+void Game::victory(int monstersDefeated) {
+    for (int i = 0; i < squad->getSize(); i++)
+    {
+        Hero* hero = squad->getHero(i);
+
+        if (hero->dead()){
+            hero->revive();
+        }
+    }
+
+    for (int i = 0; i < squad->getSize(); i++)
+    {
+        Hero* hero = squad->getHero(i);
+        int level = hero->getLevel();
+
+        int xp = (level * 2 + 3) * monstersDefeated;
+        hero->addExperience(xp);
+        std::cout << "+ " << xp << "xp" << std::endl;
+
+
+        int money = (level*50) * monstersDefeated;
+        hero->earnMoney(money);
+        std::cout << "+ " << money << "money" << std::endl;
+    }
+}
+
+void Game::defeat() {
+    squad->revive();
+
+    for (int i = 0; i < squad->getSize(); i++)
+    {
+        Hero* hero = squad->getHero(i);
+        hero->looseMoney();
     }
 }

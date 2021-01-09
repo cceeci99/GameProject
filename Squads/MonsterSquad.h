@@ -14,9 +14,9 @@ private:
 
 public:
 
-    explicit MonsterSquad(int mobs){
-        monsters = new Monster*[mobs];
-        this->numberOfMonsters = mobs;
+    explicit MonsterSquad(int n){
+        monsters = new Monster*[n];
+        numberOfMonsters = n;
     }
 
     ~MonsterSquad(){
@@ -36,6 +36,7 @@ public:
     bool defeated() const;
     void regeneration();
 
+    void unchargeActiveSpells();
 };
 
 

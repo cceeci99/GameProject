@@ -49,6 +49,14 @@ bool MonsterSquad::defeated() const {
 
 void MonsterSquad::regeneration() {
     for(int i=0; i < numberOfMonsters; i++){
-        monsters[i]->regeneration();
+        monsters[i]->regenerate();
+    }
+}
+
+void MonsterSquad::unchargeActiveSpells() {
+    for (int i = 0; i < numberOfMonsters; i++)
+    {
+        monsters[i]->reduceSpellsRound();
+        monsters[i]->checkExpiredSpells();
     }
 }

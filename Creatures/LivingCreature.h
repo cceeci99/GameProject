@@ -23,7 +23,7 @@ public:
 
     virtual void print() const = 0;
 
-    virtual void regeneration() = 0;
+    virtual void regenerate() = 0;
 
     std::string getName() const;
 

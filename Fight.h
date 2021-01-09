@@ -10,8 +10,18 @@
 class Fight {
 
 private:
+
     HeroSquad* heroes;
     MonsterSquad* enemies;
+
+
+    static void normalAttack(Hero* hero, Monster* monster);
+
+    static void spellAttack(Hero* hero, Monster* monster);
+
+    static void monsterAttack(Monster* monster, Hero* hero);
+
+
 
 public:
 

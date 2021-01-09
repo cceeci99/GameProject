@@ -8,7 +8,8 @@
 #include "Squads/HeroSquad.h"
 #include "Squads/MonsterSquad.h"
 
-//type of monsters and heroes
+#include "Fight.h"
+
 #include "Creatures/Heroes/Warrior.h"
 #include "Creatures/Heroes/Paladin.h"
 #include "Creatures/Heroes/Sorcerer.h"
@@ -16,54 +17,49 @@
 #include "Creatures/Monsters/ExoSkeleton.h"
 #include "Creatures/Monsters/Spirit.h"
 
-
-#define MAX_TEAMMATES 3     //max number of heroes per heroes
+#define MAP_SIZE 8
+#define MAX_TEAMMATES 3
 
 
 class Game {
 
 private:
 
-    Grid* map = nullptr;            //a game consists of a map in a form of a grid(NxN array)
+    Grid* map = new Grid(MAP_SIZE);
 
-    Market* marketPlace = nullptr;  //a game has one same MarketPlace for the map
+    Market* marketPlace = createMarket();
 
-    HeroSquad* squad = nullptr;     //a game has one heroes consisting of (1-3) heroes
+    HeroSquad* squad = nullptr;
+
+    void createHeroes();
+
+    MonsterSquad* createEnemies();
+
+    Market* createMarket();
+
+    void enterMarket();
+    void enterCommon();
+
+    void victory(int monstersDefeated);
+    void defeat();
+
+    void quit();
 
 public:
 
     Game(){
-        std::cout << "Our Game is created!" << std::endl;
+        std::cout << "Welcome to our game!" << std::endl;
     }
 
     ~Game(){
-        std::cout << "deleting game" << std::endl;
+        std::cout << "Quit Game... Bye" << std::endl;
+
         delete map;
-
         delete marketPlace;
-
         delete squad;
     }
 
-    //function to create the map of a game with some pattern for the squares of the grid, size will be initialized from us
-    void createMap(int size);
-
-    //function to fill the market with some items and spells, before the player starts the game
-    void createMarket();
-
-    //function to create a heroes of heroes for the player, the number of teammates is given from player
-    void createTeam(int teammates);
-
-    //function to make an monster heroes for battle with heroes, monsters are made randomly, at same level of heroes
-    MonsterSquad* createEnemies();
-
     void play();
-
-    void quit() {
-        std::cout << "Quit Game... Bye" << std::endl;
-        delete this;
-        exit(1);
-    }
 
 };
 

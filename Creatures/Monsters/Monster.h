@@ -43,7 +43,7 @@ public:
     void reduceDefence(int reduce);
     void reduceDodge(int reduce);
 
-    void regeneration() override;
+    void regenerate() override;
 
     bool avoidAttack() const;
 

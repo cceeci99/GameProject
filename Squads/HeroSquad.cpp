@@ -56,7 +56,7 @@ bool HeroSquad::defeated() const {
 
 void HeroSquad::regeneration() {
     for(int i=0; i<teammates; i++){
-        heroes[i]->regeneration();
+        heroes[i]->regenerate();
     }
 }
 

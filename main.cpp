@@ -7,13 +7,7 @@ int main() {
 
     Game* game = new Game();
 
-    game->createMarket();
-
-    game->createMap(8);
-
     game->play();
-
-    delete game;
 
     return 0;
 

@@ -4,6 +4,8 @@
 
 enum Attribute{Health, Mana, Strength, Dexterity, Agility};
 
+#define MAX_LEVEL 20
+
 #define START_LEVEL 1
 #define START_XP 0
 #define START_HP 1000
@@ -19,16 +21,16 @@ enum Attribute{Health, Mana, Strength, Dexterity, Agility};
 #define INCREASE_DEFAULT_AGILITY 2
 
 #define WARRIOR_STRENGTH 200
-#define WARRIOR_AGILITY 8
+#define WARRIOR_AGILITY 6
 
-#define INCREASE_WARRIOR_STRENGTH 80
-#define INCREASE_WARRIOR_AGILITY 4
+#define INCREASE_WARRIOR_STRENGTH 60
+#define INCREASE_WARRIOR_AGILITY 3
 
 #define SORCERER_DEXTERITY 100
-#define SORCERER_AGILITY 10
+#define SORCERER_AGILITY 6
 
 #define INCREASE_SORCERER_DEXTERITY 60
-#define INCREASE_SORCERER_AGILITY 5
+#define INCREASE_SORCERER_AGILITY 3
 
 #define PALADIN_STRENGTH 180
 #define PALADIN_DEXTERITY 70

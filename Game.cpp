@@ -141,16 +141,23 @@ Market* Game::createMarket() {
      */
 
     Item* armor = new Armor("Emblem", 100, 1, 70);
-    Item* armor1 = new Armor("hat", 100, 1, 55);
-    Item* weapon = new Weapon("axe", 100, 1, 100, true);
-    Item* weapon1 = new Weapon("sword", 100, 1, 80, false);
-    Item* potion = new Potion("Antidote", 100, 1, Health, 55);
-
     marketPlace->addItem(armor);
-    marketPlace->addItem(armor1);
+    armor = new Armor("Hat", 150, 4, 130);
+    marketPlace->addItem(armor);
+    armor = new Armor("Rescue Shield", 200, 8, 200);
+    marketPlace->addItem(armor);
+    armor = new Armor("Silver Shield", 300, 12, 300);
+    marketPlace->addItem(armor);
+    armor = new Armor("Gold Shield", 500, 16, 400);
+    marketPlace->addItem(armor);
+
+    Item* weapon = new Weapon("axe", 100, 1, 100, true);
+    weapon = new Weapon("sword", 100, 1, 80, false);
     marketPlace->addItem(weapon);
-    marketPlace->addItem(weapon1);
+    
+    Item* potion = new Potion("Antidote", 100, 1, Health, 55);
     marketPlace->addItem(potion);
+    
 
     Spell* spell = new FireSpell("inferno", 100, 1, 100,Range(100, 300), 50);
     Spell* spell1 = new IceSpell("frost", 100, 1, 100,Range(200, 250), 80);

@@ -114,6 +114,11 @@ void Hero::revive() {
 void Hero::buyItem(Item *newItem) {
     if ( money >= newItem->getPrice() )
     {
+        if (level < newItem->getRequiredLevel()) {
+            std::cout << "You havent reached the required level" << std::endl << std::endl;
+            return;
+        }
+
         if (inventory.addItem(newItem)) {
             money -= newItem->getPrice();
         }
@@ -129,6 +134,11 @@ void Hero::buyItem(Item *newItem) {
 void Hero::buySpell(Spell *newSpell) {
     if ( money >= newSpell->getPrice() )
     {
+        if (level < newSpell->getManaRequired()) {
+            std::cout << "You havent reached the required level" << std::endl << std::endl;
+            return;
+        }
+
         if (skills.addSpell(newSpell)) {
             money -= newSpell->getPrice();
         }

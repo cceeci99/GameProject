@@ -19,7 +19,7 @@ void SpellSection::print() const {
 void SpellSection::open(Hero *hero) {
     while(true)
     {
-        std::cout << "Available spells:" << std::endl;
+        std::cout << "Available spells on market:" << std::endl;
         print();
 
         std::cout << "Your Acquired Skills" << std::endl;
@@ -72,8 +72,6 @@ void SpellSection::buyOption(Hero *hero) {
 
         hero->buySpell(spell);
 
-        std::cout << "Available spells:" << std::endl;
-        print();
 
         std::cout << "Your Acquired Skills" << std::endl;
         hero->printSkills();
@@ -100,9 +98,6 @@ void SpellSection::sellOption(Hero *hero) const {
             std::cout << "Please choose available spell" << std::endl;
             continue;
         }
-
-        std::cout << "Available spells:" << std::endl;
-        print();
 
         std::cout << "Your Acquired Skills" << std::endl;
         hero->printSkills();

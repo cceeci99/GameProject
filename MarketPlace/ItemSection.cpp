@@ -19,13 +19,13 @@ void ItemSection::print() const {
 void ItemSection::open(Hero *hero) {
     while (true)
     {
-        std::cout << "Available items:" << std::endl;
+        std::cout << "Available items on market:" << std::endl;
         print();
 
         std::cout << "Your Inventory: " << std::endl;
         hero->printInventory();
 
-        std::cout << "0.Close ItemType Section \t 1.Buy Item \t 2.Sell Item " << std::endl;
+        std::cout << "0.Close Items Section \t 1.Buy Item \t 2.Sell Item " << std::endl;
 
         int choice;
         std::cin >> choice;
@@ -33,7 +33,7 @@ void ItemSection::open(Hero *hero) {
         switch (choice)
         {
             case 0:
-                std::cout << "Closing ItemType Section" << std::endl;
+                std::cout << "Closing Items Section" << std::endl;
                 return;
             case 1:
                 buyOption(hero);
@@ -72,9 +72,6 @@ void ItemSection::buyOption(Hero *hero) {
 
         hero->buyItem(item);
 
-        std::cout << "Available items:" << std::endl;
-        print();
-
         std::cout << "Your Inventory: " << std::endl;
         hero->printInventory();
     }
@@ -101,9 +98,6 @@ void ItemSection::sellOption(Hero *hero) const {
             std::cout << "Please choose available item" << std::endl;
             continue;
         }
-
-        std::cout << "Item Section:" << std::endl;
-        print();
 
         std::cout << "Your inventory: " << std::endl;
         hero->printInventory();

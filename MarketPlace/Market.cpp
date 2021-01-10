@@ -1,11 +1,11 @@
 #include "Market.h"
 
 void Market::open(Hero *hero) {
-    std::cout << "Opening Market" << std::endl;
+    std::cout << "Opening Market..." << std::endl;
 
     while(true)
     {
-        std::cout << "0.Close Market \t 1.Open ItemType Section \t 2.Open Spells Section" << std::endl;
+        std::cout << "0.Close Market \t 1.Open Items Section \t 2.Open Spells Section" << std::endl;
 
         int choice;
         std::cin >> choice;
@@ -17,7 +17,7 @@ void Market::open(Hero *hero) {
                 std::cout << "Closing market" << std::endl;
                 return;
             case 1:
-                std::cout << "Opening ItemType Section" << std::endl;
+                std::cout << "Opening Items Section" << std::endl;
                 itemSection.open(hero);
                 break;
             case 2:

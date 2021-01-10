@@ -55,8 +55,6 @@ public:
     void print() const override = 0;
     virtual void levelUp() = 0;
 
-    int getMoney() const;
-
     void printInventory() const;
     void printSkills() const;
 

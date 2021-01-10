@@ -4,8 +4,11 @@
 void HeroSquad::print() const {
     for(int i=0; i<teammates; i++)
     {
-        std::cout << i+1 << ")";
-        heroes[i]->print();
+        if (!heroes[i]->dead())
+        {
+            std::cout << i+1 << ")";
+            heroes[i]->print();
+        }
     }
     std::cout << std::endl;
 }

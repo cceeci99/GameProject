@@ -12,10 +12,10 @@ bool Fight::isNotOver() const {
 
 
 void Fight::displayStats() const {
-    std::cout << "Heroes: " << std::endl;
+    std::cout << "Stats of Heroes: " << std::endl;
     heroes->print();
 
-    std::cout << "Monsters: " << std::endl;
+    std::cout << "Stats of Monsters: " << std::endl;
     enemies->print();
 }
 
@@ -35,12 +35,16 @@ bool Fight::playerTurn() {
 
     for(int i=0; i<heroes->getSize(); i++)
     {
+        if (enemies->defeated())
+            return true;
+
         Hero* hero = heroes->getHero(i);
 
         if (hero->dead())
             continue;
 
         std::cout << "Play with " << hero->getName() << std::endl;
+
 
         std::cout << "Do you want to choose equipment?" << std::endl;
         std::cin >> answer;
@@ -105,6 +109,9 @@ bool Fight::playerTurn() {
 void Fight::enemiesTurn() {
     for (int i=0; i<enemies->getSize(); i++)
     {
+        if ( heroes->defeated() )
+            return;
+
         Monster* monster = enemies->getMonster(i);
 
         if (monster->dead())

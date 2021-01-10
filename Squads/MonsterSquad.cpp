@@ -4,8 +4,11 @@
 void MonsterSquad::print() const {
     for (int i=0; i < numberOfMonsters; i++)
     {
-        std::cout << i+1 << ")";
-        monsters[i]->print();
+        if (!monsters[i]->dead())
+        {
+            std::cout << i+1 << ")";
+            monsters[i]->print();
+        }
     }
     std::cout << std::endl;
 }

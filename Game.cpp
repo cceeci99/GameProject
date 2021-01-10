@@ -85,6 +85,7 @@ void Game::play() {
     while(playerMove(currentPos, x, y))
     {
 
+        //if player isn't moving but choose other option(check inventory, display map etc.) then continue
         if (x == -1 && y == -1)
             continue;
 
@@ -181,6 +182,7 @@ void Game::createHeroes() {
 
     squad = new HeroSquad(n);
 
+    //random names for heroes
     static std::string names[10] = {"Karontor","Io","Luthic","Merlin","Sixin",
                                     "Ilneval", "Vaprak", "Eadro", "Skerrit", "Jubilex"};
 
@@ -192,6 +194,7 @@ void Game::createHeroes() {
 
         Hero *hero = nullptr;
 
+        //check for duplicate names
         std::string name;
         while (true)
         {
@@ -229,6 +232,7 @@ void Game::createHeroes() {
             default:
                 break;
         }
+
         squad->setHero(hero);
     }
 }

@@ -1,9 +1,5 @@
 #include "Hero.h"
 
-int Hero::getMoney() const {
-    return money;
-}
-
 
 void Hero::printInventory() const {
     std::cout << "Your Money: " << money << std::endl;
@@ -63,7 +59,6 @@ void Hero::addExperience(int xp) {
         return;
     }
 
-    std::cout << xp << std::endl;
     experience += xp;
 
     //experience required for next level
@@ -276,6 +271,12 @@ void Hero::usePotion() {
 
 
 void Hero::chooseEquipment() {
+    if (inventory.empty())
+    {
+        std::cout << "your inventory is empty" << std::endl;
+        return;
+    }
+
     std::cout << "Choose armor" << std::endl;
     Armor* arm = inventory.chooseArmor();
 

@@ -21,15 +21,25 @@ void Fight::displayStats() const {
 
 
 bool Fight::playerTurn() {
-    char answer;
     std::cout << "Do you want to display stats?" << std::endl;
-    std::cin >> answer;
 
-    if( answer == 'y' || answer == 'Y' ){
-        displayStats();
-    }
-    else if ( answer == 'q' || answer == 'Q'){
-        return false;
+    char answer;
+    while(true)
+    {
+        std::cin >> answer;
+
+        if(answer == 'y' || answer == 'Y'){
+            displayStats();
+        }
+        else if (answer =='n' || answer == 'N'){
+            break;
+        }
+        else if ( answer == 'q' || answer == 'Q'){
+            return false;
+        }
+        else{
+            std::cout << "Invalid input please try again" << std::endl;
+        }
     }
 
 
@@ -45,10 +55,10 @@ bool Fight::playerTurn() {
 
         std::cout << "Play with " << hero->getName() << std::endl;
 
-
         std::cout << "Do you want to choose equipment?" << std::endl;
         std::cin >> answer;
 
+        ////////
         if ( answer == 'Y' || answer == 'y' )
         {
             hero->chooseEquipment();

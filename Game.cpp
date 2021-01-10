@@ -153,6 +153,7 @@ Market* Game::createMarket() {
     marketPlace->addItem(armor);
 
     Item* weapon = new Weapon("axe", 100, 1, 100, true);
+    marketPlace->addItem(weapon);
     weapon = new Weapon("sword", 100, 1, 80, false);
     marketPlace->addItem(weapon);
     

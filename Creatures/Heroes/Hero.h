@@ -8,7 +8,6 @@
 #include "Skills.h"
 
 
-
 //use hero Type for player choice of hero
 enum HeroType{warrior=1, paladin=2, sorcerer=3};
 

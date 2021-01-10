@@ -27,23 +27,28 @@ bool Fight::playerTurn() {
     while(true)
     {
         std::cin >> answer;
-
-        if(answer == 'y' || answer == 'Y'){
+        if(answer == 'y' || answer == 'Y')
+        {
             displayStats();
-        }
-        else if (answer =='n' || answer == 'N'){
             break;
         }
-        else if ( answer == 'q' || answer == 'Q'){
+        else if (answer =='n' || answer == 'N')
+        {
+            break;
+        }
+        else if ( answer == 'q' || answer == 'Q')
+        {
             return false;
         }
-        else{
+        else
+        {
             std::cout << "Invalid input please try again" << std::endl;
+            continue;
         }
     }
 
-
-    for(int i=0; i<heroes->getSize(); i++)
+    int i=0;
+    while (i<heroes->getSize())
     {
         if (enemies->defeated())
             return true;
@@ -51,28 +56,34 @@ bool Fight::playerTurn() {
         Hero* hero = heroes->getHero(i);
 
         if (hero->dead())
+        {
+            i++;
             continue;
+        }
 
         std::cout << "Play with " << hero->getName() << std::endl;
+        std::cout << "Do you want to choose equipment y/n?" << std::endl;
 
-        std::cout << "Do you want to choose equipment?" << std::endl;
         std::cin >> answer;
-
-        ////////
-        if ( answer == 'Y' || answer == 'y' )
+        while ( answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N' && answer != 'q' && answer != 'Q')
         {
+            std::cout << "Invalid input please try again" << std::endl;
+            std::cin >> answer;
+        }
+
+        if ( answer == 'y' || answer == 'Y') {
             hero->chooseEquipment();
         }
-        else if ( answer == 'Q' || answer == 'q' )
-        {
+        else if (answer == 'q' || answer == 'Q') {
             return false;
         }
 
         std::cout << "Do you want to make normal attack (o), cast spell(l) or use potion(p)" << std::endl;
         std::cin >> answer;
 
-        if ( answer == 'Q'|| answer == 'q' )
+        if ( answer == 'Q'|| answer == 'q' ) {
             return false;
+        }
 
         while( answer != 'o' && answer != 'l' && answer != 'p' )
         {
@@ -90,26 +101,27 @@ bool Fight::playerTurn() {
             continue;
         }
 
-        if ( answer == 'o' )
+        if (answer == 'o')
         {
             normalAttack(hero, monster);
         }
-        else if ( answer == 'l')
+        else if (answer == 'l')
         {
             if ( !hero->haveSkills() )
             {
-                std::cout << "You don't have any skills perform normal attack" << std::endl;
-                normalAttack(hero, monster);
+                std::cout << "You don't have any acquired spells" << std::endl;
+                continue;
             }
             else
             {
                 spellAttack(hero, monster);
             }
         }
-        else if ( answer == 'p' )
+        else if (answer == 'p')
         {
             hero->usePotion();
         }
+        i++;
     }
 
     return true;

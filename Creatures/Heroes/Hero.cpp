@@ -11,6 +11,7 @@ void Hero::printSkills() const {
     skills.print();
 }
 
+
 void Hero::reduceHealth(int reduce) {
     if ( equippedArmor != nullptr )
     {
@@ -128,7 +129,7 @@ void Hero::buyItem(Item *newItem) {
 void Hero::buySpell(Spell *newSpell) {
     if ( money >= newSpell->getPrice() )
     {
-        if (level < newSpell->getManaRequired())
+        if (level < newSpell->getRequiredLevel())
         {
             std::cout << "You haven't reached the required level to buy this spell" << std::endl << std::endl;
             return;
@@ -261,7 +262,6 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
             duration = spell->getDuration();
 
             std::cout << "Casting " << spell->getName() << std::endl;
-            std::cout << "damage: " <<  damage <<std::endl;
 
             mana -= spell->getManaRequired();
             return;
@@ -346,12 +346,6 @@ void Hero::checkInventory() {
         if ( item == nullptr )
         {
             std::cout << "this place is empty choose another item" << std::endl;
-            continue;
-        }
-
-        if ( item->getRequiredLevel() > level )
-        {
-            std::cout << "Your level is too low to use this item" << std::endl;
             continue;
         }
 

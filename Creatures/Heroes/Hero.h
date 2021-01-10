@@ -7,10 +7,6 @@
 #include "Inventory.h"
 #include "Skills.h"
 
-#include "../../Items/Weapon.h"
-#include "../../Items/Potion.h"
-#include "../../Items/Armor.h"
-#include "../../Spells/SpellEffect.h"
 
 
 //use hero Type for player choice of hero
@@ -20,19 +16,17 @@ enum HeroType{warrior=1, paladin=2, sorcerer=3};
 class Hero: public LivingCreature {
 
 private:
-    int CURRENT_HEALTH;
-    int CURRENT_MANA;
-
     int money;
-
-    Weapon* equippedWeapon = nullptr;
-    Armor* equippedArmor = nullptr;
 
     Inventory inventory;
     Skills skills;
 
+    int CURRENT_HEALTH;
+    int CURRENT_MANA;
 
-    //uses of items from inventory
+    Weapon* equippedWeapon = nullptr;
+    Armor* equippedArmor = nullptr;
+
     void equip(Weapon* weapon);
     void equip(Armor* armor);
     void use(Potion* potion);
@@ -40,6 +34,7 @@ private:
 protected:
     int mana;
     int experience;
+
     int strength;
     int dexterity;
     int agility;
@@ -53,36 +48,45 @@ public:
     ~Hero() override = default;
 
     void print() const override = 0;
+
     virtual void levelUp() = 0;
 
     void printInventory() const;
     void printSkills() const;
 
-    //battle methods
     void setCurrentStats();
+
     bool avoidAttack() const;
+
     void reduceHealth(int reduce) override;
+
     void regenerate() override;
+
     bool dead() const;
+
     void revive();
 
-    //after battle methods
     void earnMoney(int earned);
     void looseMoney();
+
     void addExperience(int xp);
 
-    //transactions that are made by hero in market
     void buyItem(Item* newItem);
     void buySpell(Spell* newSpell);
+
     Item* sellItem(int pos);
     Spell* sellSpell(int pos);
 
-    //methods for the player
-    bool haveSkills() const;
+    bool haveSkills() const;        //function that returns true if hero have acquired spells
+
     int attack() const;
+
     void castSpell(int& damage, int& effect, int& duration, EffectType& type);
+
     void usePotion();
-    void chooseEquipment();
+
+    void chooseEquipment();         //function that gives the option to player to choose equipment for it's hero (armor/weapon)
+
     void checkInventory();
 
 };

@@ -2,15 +2,13 @@
 
 
 void Hero::printInventory() const {
-    std::cout << "Your Money: " << money << std::endl;
+    std::cout << "Money: " << money << std::endl;
     inventory.print();
-    std::cout << std::endl;
 }
 
 
 void Hero::printSkills() const {
     skills.print();
-    std::cout << std::endl;
 }
 
 void Hero::reduceHealth(int reduce) {

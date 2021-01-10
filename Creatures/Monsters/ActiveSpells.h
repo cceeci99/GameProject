@@ -25,7 +25,7 @@ public:
 
     void reduceRound();
 
-    bool mustDisable(EffectType type);
+    bool expired(EffectType type);
 
 };
 

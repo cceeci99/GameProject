@@ -28,7 +28,6 @@ public:
     virtual void regenerate() = 0;
 
     std::string getName() const;
-
     int getHealth() const;
     int getLevel() const;
 

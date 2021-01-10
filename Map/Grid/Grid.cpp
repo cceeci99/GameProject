@@ -1,5 +1,6 @@
 #include "Grid.h"
 
+
 Grid::Grid(int size) : size(size){
     array = new Square**[size];
 
@@ -33,6 +34,7 @@ Grid::Grid(int size) : size(size){
     }
 }
 
+
 Grid::~Grid(){
     for(int i = 0; i < size; i++)
     {
@@ -48,9 +50,11 @@ Grid::~Grid(){
     delete[] array;
 }
 
+
 Square* Grid::getSquare(unsigned int x, unsigned int y) const{
     return array[x][y];
 }
+
 
 bool Grid::outOfBounds (unsigned int x, unsigned int y) const {
     if(x >= size || x < 0 || y >= size || y < 0)
@@ -58,6 +62,7 @@ bool Grid::outOfBounds (unsigned int x, unsigned int y) const {
     else
         return false;
 }
+
 
 void Grid::displayMap() const{
     std::cout << "Map consists of:" << std::endl;

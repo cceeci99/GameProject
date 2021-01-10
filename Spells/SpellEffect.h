@@ -28,7 +28,7 @@ public:
 
     void reduceRound();
 
-    bool mustDisable() const;
+    bool expired() const;
 
 };
 

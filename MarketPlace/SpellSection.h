@@ -15,7 +15,6 @@ private:
 
 
     void buyOption(Hero* hero);
-
     void sellOption(Hero* hero) const;
 
     Spell* getSpell(int pos);

@@ -1,5 +1,12 @@
 #include "Monster.h"
 
+bool Monster::avoidAttack() const {
+    int r = (int)random() % 100 +1;
+
+    return (r <= dodge);
+}
+
+
 void Monster::reduceHealth(int reduce) {
     if ( reduce <= defence )
         return;
@@ -11,13 +18,11 @@ void Monster::reduceHealth(int reduce) {
     }
 }
 
-bool Monster::dead() const {
-    return health==0;
-}
 
 void Monster::reduceDamage(int reduce) {
     damageRange.reduceRange(reduce);
 }
+
 
 void Monster::reduceDefence(int reduce) {
     defence -= reduce;
@@ -27,12 +32,19 @@ void Monster::reduceDefence(int reduce) {
     }
 }
 
+
 void Monster::reduceDodge(int reduce) {
     dodge -= reduce;
     if ( dodge < 0 ) {
         dodge = 0;
     }
 }
+
+
+bool Monster::dead() const {
+    return health==0;
+}
+
 
 void Monster::regenerate() {
     if (health != 0)
@@ -45,38 +57,33 @@ void Monster::regenerate() {
     }
 }
 
-bool Monster::avoidAttack() const {
-    int r = (int)random() % 100 +1;
-
-    return (r <= dodge);
-}
 
 void Monster::activateSpell(EffectType type, int duration) {
     spells.activate(type, duration);
 }
 
+
 void Monster::reduceSpellsRound() {
     spells.reduceRound();
 }
 
+
 void Monster::checkExpiredSpells() {
-    if ( spells.mustDisable(reduce_defence) )
+    if (spells.expired(reduce_defence) )
     {
         spells.disable(reduce_defence);
         defence = INIT_DEFENCE;
     }
 
-    if ( spells.mustDisable(reduce_damage) )
+    if (spells.expired(reduce_damage) )
     {
         spells.disable(reduce_damage);
         damageRange = INIT_DAMAGE;
     }
 
-    if ( spells.mustDisable(reduce_dodge) )
+    if (spells.expired(reduce_dodge) )
     {
         spells.disable(reduce_dodge);
         dodge = INIT_DODGE;
     }
 }
-
-

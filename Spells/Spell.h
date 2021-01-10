@@ -29,6 +29,7 @@ public:
     void printDamage() const;
 
     virtual void print() const = 0;
+
     virtual int getEffect() const = 0;
 
     EffectType getEffectType() const;
@@ -36,8 +37,10 @@ public:
     std::string getName() const;
 
     int getPrice() const;
+
     int getRequiredLevel() const;
     int getManaRequired() const;
+
     int getDuration() const;
     int getMaxDamage() const;
 

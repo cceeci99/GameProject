@@ -24,13 +24,12 @@ public:
     SquareType getType() const;
 
     int getX() const;
-
     int getY() const;
 
     HeroSquad* getSquad() const;
-
     void setSquad(HeroSquad* heroSquad);
 
 };
+
 
 #endif //GAMEPROJECT_SQUARE_H

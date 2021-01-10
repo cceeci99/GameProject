@@ -18,6 +18,6 @@ void SpellEffect::reduceRound() {
     durationRounds--;
 }
 
-bool SpellEffect::mustDisable() const {
+bool SpellEffect::expired() const {
     return (active && durationRounds == 0);
 }

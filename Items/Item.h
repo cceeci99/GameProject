@@ -7,6 +7,7 @@
 
 enum ItemType{armor, weapon, potion};
 
+
 class Item {
 
 private:
@@ -27,7 +28,6 @@ public:
     virtual int getAttribute() const = 0;
 
     std::string getName() const;
-
     ItemType getType() const;
 
     int getPrice() const;

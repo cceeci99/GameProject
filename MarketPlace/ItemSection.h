@@ -15,9 +15,7 @@ private:
 
 
     void buyOption(Hero* hero);
-
     void sellOption(Hero* hero) const;
-
 
     Item* getItem(int pos);
 
@@ -41,6 +39,7 @@ public:
     void open(Hero* hero);
 
     void addItem(Item* newItem);
+
 };
 
 

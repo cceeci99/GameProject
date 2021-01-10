@@ -12,6 +12,7 @@ void ActiveSpells::activate(EffectType type, int duration) {
     }
 }
 
+
 void ActiveSpells::disable(EffectType type) {
     if (type == reduce_defence) {
         fire.disable();
@@ -23,6 +24,7 @@ void ActiveSpells::disable(EffectType type) {
         lighting.disable();
     }
 }
+
 
 void ActiveSpells::reduceRound() {
     if (fire.isActive()) {
@@ -38,14 +40,15 @@ void ActiveSpells::reduceRound() {
     }
 }
 
-bool ActiveSpells::mustDisable(EffectType type) {
+
+bool ActiveSpells::expired(EffectType type) {
     if (type == reduce_defence){
-        return fire.mustDisable();
+        return fire.expired();
     }
     else if (type == reduce_damage){
-        return ice.mustDisable();
+        return ice.expired();
     }
     else{
-        return lighting.mustDisable();
+        return lighting.expired();
     }
 }

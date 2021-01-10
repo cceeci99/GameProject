@@ -4,6 +4,8 @@
 
 #include "Spell.h"
 
+#define LIGHTING_DURATION 2
+
 
 class LightingSpell: public Spell {
 
@@ -13,7 +15,7 @@ private:
 public:
 
     LightingSpell(const std::string& name, int price, int level, int mana, Range range, int reduce)
-    : Spell(name, price, level, mana, range, 2, reduce_dodge), reduceDodge(reduce){};
+    : Spell(name, price, level, mana, range, LIGHTING_DURATION, reduce_dodge), reduceDodge(reduce){};
 
     ~LightingSpell() override = default;
 

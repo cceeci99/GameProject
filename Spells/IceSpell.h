@@ -4,6 +4,8 @@
 
 #include "Spell.h"
 
+#define ICE_DURATION 3
+
 
 class IceSpell: public Spell {
 
@@ -13,7 +15,7 @@ private:
 public:
 
     IceSpell(const std::string& name, int price, int level, int mana, Range range, int reduce)
-    :Spell(name, price, level, mana, range, 3, reduce_damage), reduceDamage(reduce){};
+    :Spell(name, price, level, mana, range, ICE_DURATION, reduce_damage), reduceDamage(reduce){};
 
     ~IceSpell() override = default;
 

@@ -17,8 +17,8 @@ public:
 
     Potion(const std::string& name, int price, int level, Attribute attribute, int enhancement, ItemType type = potion)
     :Item(name, price, level, type), attribute(attribute) , enhancement(enhancement){
-        switch (attribute) {
-
+        switch (attribute)
+        {
             case Health:
                 attributeType = "Health";
                 break;

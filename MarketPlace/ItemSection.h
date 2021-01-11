@@ -13,7 +13,6 @@ private:
     int addedItems = 0;
     Item** items = new Item*[ITEMS_CAPACITY];
 
-
     void buyOption(Hero* hero);
     static void sellOption(Hero* hero) ;
 
@@ -22,6 +21,7 @@ private:
 public:
 
     ItemSection();
+
     ~ItemSection();
 
     void print() const;

@@ -21,12 +21,13 @@ public:
 
     ~Square() = default;
 
-    SquareType getType() const;
-
     int getX() const;
     int getY() const;
 
+    SquareType getType() const;
+
     HeroSquad* getSquad() const;
+
     void setSquad(HeroSquad* heroSquad);
 
 };

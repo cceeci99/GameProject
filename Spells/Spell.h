@@ -4,7 +4,9 @@
 
 #include "../Range.h"
 
+
 enum EffectType{reduce_damage, reduce_defence, reduce_dodge};
+
 
 class Spell {
 

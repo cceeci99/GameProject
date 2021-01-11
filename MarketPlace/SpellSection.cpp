@@ -1,7 +1,7 @@
 #include "SpellSection.h"
 
-
 SpellSection::SpellSection() {
+
     for (int i=0; i<SPELLS_CAPACITY; i++)
     {
         spells[i] = nullptr;
@@ -10,6 +10,7 @@ SpellSection::SpellSection() {
 
 
 SpellSection::~SpellSection() {
+
     for (int i=0; i<SPELLS_CAPACITY; i++)
     {
         if (spells[i] != nullptr)
@@ -23,6 +24,7 @@ SpellSection::~SpellSection() {
 
 
 void SpellSection::print() const {
+
     for (int i=0; i < SPELLS_CAPACITY; i++)
     {
         if (spells[i] != nullptr)
@@ -40,6 +42,7 @@ void SpellSection::print() const {
 
 
 void SpellSection::open(Hero *hero) {
+
     while(true)
     {
         std::cout << "Available spells on market:" << std::endl;
@@ -73,6 +76,7 @@ void SpellSection::open(Hero *hero) {
 
 
 void SpellSection::buyOption(Hero *hero) {
+
     while(true)
     {
         std::cout << "Which spell you would like to buy ?" << std::endl;
@@ -88,7 +92,7 @@ void SpellSection::buyOption(Hero *hero) {
         Spell* spell = nullptr;
         spell = getSpell(pos);
 
-        if ( spell == nullptr )
+        if (spell == nullptr)
         {
             std::cout << "Please choose available spell" << std::endl;
             continue;
@@ -104,6 +108,7 @@ void SpellSection::buyOption(Hero *hero) {
 
 
 void SpellSection::sellOption(Hero *hero) {
+
     while(true)
     {
         std::cout << "Which spell from yours you would like to sell ?" << std::endl;
@@ -119,7 +124,7 @@ void SpellSection::sellOption(Hero *hero) {
         Spell* spell = nullptr;
         spell =hero->sellSpell(pos);
 
-        if ( spell == nullptr )
+        if (spell == nullptr)
         {
             std::cout << "Please choose available spell" << std::endl;
             continue;
@@ -132,12 +137,13 @@ void SpellSection::sellOption(Hero *hero) {
 
 
 void SpellSection::addSpell(Spell *newSpell) {
-    if ( addedSpells >= SPELLS_CAPACITY )
+
+    if (addedSpells >= SPELLS_CAPACITY)
         return;
 
-    for(int i=0; i < SPELLS_CAPACITY; i++)
+    for(int i = 0; i < SPELLS_CAPACITY; i++)
     {
-        if ( spells[i] == nullptr )
+        if (spells[i] == nullptr)
         {
             spells[i] = newSpell;
             addedSpells++;
@@ -148,10 +154,9 @@ void SpellSection::addSpell(Spell *newSpell) {
 
 
 Spell *SpellSection::getSpell(int pos) {
+
     if (pos >= SPELLS_CAPACITY)
         return nullptr;
 
     return spells[pos];
 }
-
-

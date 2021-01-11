@@ -44,23 +44,13 @@ private:
     void victory(int monstersDefeated);
     void defeat();
 
+    static std::string getUnusedName(std::vector<std::string>& usedNames, std::string* names);
 
 public:
 
-    Game(){
-        std::cout << "Welcome to our game!" << std::endl;
+    Game();
 
-        map = new Grid(MAP_SIZE);
-        marketPlace = createMarket();
-    }
-
-    ~Game(){
-        std::cout << "Quit Game... Bye" << std::endl;
-
-        delete map;
-        delete marketPlace;
-        delete squad;
-    }
+    ~Game();
 
     void play();
 

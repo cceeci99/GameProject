@@ -1,11 +1,24 @@
 #include "Inventory.h"
 
+Inventory::Inventory() {
+
+    for (int i = 0; i < INVENTORY_CAPACITY; i++)
+    {
+        items[i] = nullptr;
+    }
+}
+
+
+Inventory::~Inventory() {
+    delete[] items;
+}
+
 
 void Inventory::print() const {
 
-    for(int i=0; i < INVENTORY_CAPACITY; i++)
+    for(int i = 0; i < INVENTORY_CAPACITY; i++)
     {
-        if ( items[i] != nullptr )
+        if (items[i] != nullptr)
         {
             std::cout << i + 1 << ")";
             items[i]->print();
@@ -15,23 +28,26 @@ void Inventory::print() const {
 
 
 bool Inventory::empty() const {
-    return addedItems == 0;
+    return (addedItems == 0);
 }
 
 
 bool Inventory::addItem(Item *newItem) {
-    if ( addedItems >= INVENTORY_CAPACITY)
+
+    if (addedItems >= INVENTORY_CAPACITY)
     {
         std::cout << "Inventory full cant add new item" << std::endl;
     }
 
     bool result = true;
-    for(int i=0; i<INVENTORY_CAPACITY; i++)
+
+    for(int i = 0; i < INVENTORY_CAPACITY; i++)
     {
-        if ( items[i] == newItem )
+        if (items[i] == newItem)
         {
             std::cout << "You already have that item choose another" << std::endl;
             result = false;
+
             break;
         }
     }
@@ -39,13 +55,13 @@ bool Inventory::addItem(Item *newItem) {
     if (!result)
         return result;
 
-
-    for(int i=0; i < INVENTORY_CAPACITY; i++)
+    for(int i = 0; i < INVENTORY_CAPACITY; i++)
     {
-        if ( items[i] == nullptr )
+        if (items[i] == nullptr)
         {
             items[i] = newItem;
             addedItems++;
+
             break;
         }
     }
@@ -55,7 +71,8 @@ bool Inventory::addItem(Item *newItem) {
 
 
 Item *Inventory::getItem(int pos)  {
-    if ( pos >= INVENTORY_CAPACITY )
+
+    if (pos >= INVENTORY_CAPACITY)
         return nullptr;
 
     return items[pos];
@@ -63,19 +80,24 @@ Item *Inventory::getItem(int pos)  {
 
 
 Item *Inventory::changeItem(int pos, Item *item) {
-    if ( pos >= INVENTORY_CAPACITY )
+
+    if (pos >= INVENTORY_CAPACITY)
         return nullptr;
 
     Item* temp = items[pos];
+
     items[pos] = item;
+
     return temp;
 }
 
 
 void Inventory::changeItem(Item *item1, Item *item2) {
-    for (int i=0; i<INVENTORY_CAPACITY; i++)
+
+    for (int i = 0; i < INVENTORY_CAPACITY; i++)
     {
-        if (items[i] == item1){
+        if (items[i] == item1)
+        {
             items[i] = item2;
         }
     }
@@ -83,7 +105,8 @@ void Inventory::changeItem(Item *item1, Item *item2) {
 
 
 Item* Inventory::removeItem(int pos) {
-    if ( pos >= INVENTORY_CAPACITY  || items[pos] == nullptr)
+
+    if (pos >= INVENTORY_CAPACITY  || items[pos] == nullptr)
         return nullptr;
 
     Item* temp = items[pos];
@@ -96,31 +119,35 @@ Item* Inventory::removeItem(int pos) {
 
 
 void Inventory::removeItem(Item *item) {
-    for (int i=0; i<INVENTORY_CAPACITY; i++)
+
+    for (int i = 0; i < INVENTORY_CAPACITY; i++)
     {
-        if ( items[i] == item )
+        if (items[i] == item)
         {
             items[i] = nullptr;
             addedItems--;
+
             return;
         }
     }
 }
 
 Potion *Inventory::choosePotion() {
-    int k=1;
 
     std::vector<Potion*> potions;
 
-    for (int i=0; i<INVENTORY_CAPACITY; i++)
+    int k=1;
+
+    for (int i = 0; i < INVENTORY_CAPACITY; i++)
     {
-        if ( items[i] == nullptr )
+        if (items[i] == nullptr)
             continue;
 
-        if ( items[i]->getType() == potion )
+        if (items[i]->getType() == potion)
         {
             std::cout << k << ")";
             k++;
+
             items[i]->print();
             potions.push_back((Potion*)items[i]);
         }
@@ -136,16 +163,14 @@ Potion *Inventory::choosePotion() {
     while (true)
     {
         std::cin >> pos;
-        if ( pos > potions.size() )
+        if (pos > potions.size())
             std::cout << "Please choose available potion" << std::endl;
         else
             break;
-
     }
 
-    if ( pos != 0 )
+    if (pos != 0)
     {
-
         Potion* temp = potions.at(pos-1);
 
         removeItem(temp);
@@ -157,17 +182,21 @@ Potion *Inventory::choosePotion() {
 }
 
 Armor *Inventory::chooseArmor() {
+
     std::vector<Armor*> armors;
+
     int k=1;
-    for (int i=0; i<INVENTORY_CAPACITY; i++)
+
+    for (int i = 0; i < INVENTORY_CAPACITY; i++)
     {
-        if ( items[i] == nullptr )
+        if (items[i] == nullptr)
             continue;
 
-        if ( items[i]->getType() == armor )
+        if (items[i]->getType() == armor)
         {
             std::cout << k << ")";
             k++;
+
             items[i]->print();
             armors.push_back((Armor*)items[i]);
         }
@@ -183,34 +212,34 @@ Armor *Inventory::chooseArmor() {
     while (true)
     {
         std::cin >> pos;
-        if ( pos > armors.size() )
+        if (pos > armors.size())
             std::cout << "Please choose available armor" << std::endl;
         else
             break;
 
     }
 
-    if ( pos != 0 )
-    {
-        Armor* arm =  armors.at(pos-1);
-        return arm;
-    }
+    if (pos != 0)
+        return armors.at(pos-1);
     else
         return nullptr;
 }
 
 Weapon *Inventory::chooseWeapon() {
+
     std::vector<Weapon*> weapons;
+
     int k=1;
-    for (int i=0; i<INVENTORY_CAPACITY; i++)
+    for (int i = 0; i < INVENTORY_CAPACITY; i++)
     {
-        if ( items[i] == nullptr )
+        if (items[i] == nullptr)
             continue;
 
-        if ( items[i]->getType() == weapon )
+        if (items[i]->getType() == weapon)
         {
             std::cout << k << ")";
             k++;
+
             items[i]->print();
             weapons.push_back((Weapon*)items[i]);
         }
@@ -226,17 +255,14 @@ Weapon *Inventory::chooseWeapon() {
     while (true)
     {
         std::cin >> pos;
-        if ( pos > weapons.size() )
+        if (pos > weapons.size())
             std::cout << "Please choose available weapon" << std::endl;
         else
             break;
     }
 
-    if ( pos != 0 )
-    {
-        Weapon* weap =  weapons.at(pos-1);
-        return weap;
-    }
+    if (pos != 0)
+        return weapons.at(pos-1);
     else
         return nullptr;
 }

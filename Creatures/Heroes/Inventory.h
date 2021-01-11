@@ -19,16 +19,9 @@ private:
 
 public:
 
-    Inventory(){
-        for (int i=0; i<INVENTORY_CAPACITY; i++)
-        {
-            items[i] = nullptr;
-        }
-    }
+    Inventory();
 
-    ~Inventory() {
-        delete[] items;
-    };
+    ~Inventory();
 
     void print() const;
 

@@ -13,7 +13,6 @@ private:
     int addedSpells = 0;
     Spell** spells = new Spell*[SPELLS_CAPACITY];
 
-
     void buyOption(Hero* hero);
     static void sellOption(Hero* hero) ;
 
@@ -22,6 +21,7 @@ private:
 public:
 
     SpellSection();
+
     ~SpellSection();
 
     void print() const;

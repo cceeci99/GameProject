@@ -23,7 +23,7 @@ public:
 
     void disable(EffectType type);
 
-    void reduceRound();
+    void reduceDuration();
 
     bool expired(EffectType type);
 

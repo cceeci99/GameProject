@@ -1,5 +1,18 @@
 #include "Skills.h"
 
+
+Skills::Skills() {
+    for (int i=0; i<SPELLS_LIMIT; i++)
+    {
+        spells[i] = nullptr;
+    }
+}
+
+Skills::~Skills() {
+    delete[] spells;
+}
+
+
 bool Skills::empty() const {
     return acquiredSpells == 0;
 }
@@ -70,5 +83,3 @@ Spell* Skills::removeSpell(int pos) {
 
     return temp;
 }
-
-

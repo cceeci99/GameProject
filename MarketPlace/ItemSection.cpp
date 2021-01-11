@@ -2,7 +2,8 @@
 
 
 ItemSection::ItemSection() {
-    for (int i=0; i<ITEMS_CAPACITY; i++)
+
+    for (int i = 0; i < ITEMS_CAPACITY; i++)
     {
         items[i] = nullptr;
     }
@@ -10,9 +11,10 @@ ItemSection::ItemSection() {
 
 
 ItemSection::~ItemSection() {
-    for (int i=0; i<ITEMS_CAPACITY; i++)
+
+    for (int i = 0 ; i < ITEMS_CAPACITY; i++)
     {
-        if ( items[i] != nullptr )
+        if (items[i] != nullptr)
         {
             delete items[i];
         }
@@ -23,7 +25,8 @@ ItemSection::~ItemSection() {
 
 
 void ItemSection::print() const {
-    for (int i=0; i < ITEMS_CAPACITY; i++)
+
+    for (int i = 0; i < ITEMS_CAPACITY; i++)
     {
         if (items[i] != nullptr)
         {
@@ -40,6 +43,7 @@ void ItemSection::print() const {
 
 
 void ItemSection::open(Hero *hero) {
+
     while (true)
     {
         std::cout << "Available items on market:" << std::endl;
@@ -73,6 +77,7 @@ void ItemSection::open(Hero *hero) {
 
 
 void ItemSection::buyOption(Hero *hero) {
+
     while (true)
     {
         std::cout << "Which item you would like to buy ?" << std::endl;
@@ -103,6 +108,7 @@ void ItemSection::buyOption(Hero *hero) {
 
 
 void ItemSection::sellOption(Hero *hero) {
+
     while (true)
     {
         std::cout << "Which item from yours you want to sell ?" << std::endl;
@@ -110,7 +116,7 @@ void ItemSection::sellOption(Hero *hero) {
         int pos;
         std::cin >> pos;
 
-        if ( pos == 0 )
+        if (pos == 0)
             break;
 
         pos--;
@@ -118,7 +124,7 @@ void ItemSection::sellOption(Hero *hero) {
         Item* item = nullptr;
         item = hero->sellItem(pos);
 
-        if ( item == nullptr )
+        if (item == nullptr)
         {
             std::cout << "Please choose available item" << std::endl;
             continue;
@@ -132,12 +138,13 @@ void ItemSection::sellOption(Hero *hero) {
 
 
 void ItemSection::addItem(Item *newItem) {
-    if ( addedItems >= ITEMS_CAPACITY )
+
+    if (addedItems >= ITEMS_CAPACITY)
         return;
 
-    for(int i=0; i < ITEMS_CAPACITY; i++)
+    for(int i = 0; i < ITEMS_CAPACITY; i++)
     {
-        if ( items[i] == nullptr )
+        if (items[i] == nullptr)
         {
             items[i] = newItem;
             addedItems++;
@@ -148,7 +155,8 @@ void ItemSection::addItem(Item *newItem) {
 
 
 Item *ItemSection::getItem(int pos) {
-    if ( pos >= ITEMS_CAPACITY )
+
+    if (pos >= ITEMS_CAPACITY)
         return nullptr;
 
     return items[pos];

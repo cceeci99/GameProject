@@ -8,9 +8,11 @@
 
 class Range {
 
-public:
+private:
     int min;
     int max;
+
+public:
 
     Range(int low, int high)
     : min(low), max(high){};

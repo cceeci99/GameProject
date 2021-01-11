@@ -8,12 +8,13 @@ bool Monster::avoidAttack() const {
 
 
 void Monster::reduceHealth(int reduce) {
-    if ( reduce <= defence )
+    if (reduce <= defence)
         return;
 
     health = health - (reduce-defence);
 
-    if ( health < 0 ) {
+    if (health < 0)
+    {
         health = 0;
     }
 }
@@ -27,7 +28,8 @@ void Monster::reduceDamage(int reduce) {
 void Monster::reduceDefence(int reduce) {
     defence -= reduce;
 
-    if ( defence < 0 ) {
+    if (defence < 0)
+    {
         defence = 0;
     }
 }
@@ -35,7 +37,9 @@ void Monster::reduceDefence(int reduce) {
 
 void Monster::reduceDodge(int reduce) {
     dodge -= reduce;
-    if ( dodge < 0 ) {
+
+    if (dodge < 0)
+    {
         dodge = 0;
     }
 }
@@ -47,11 +51,13 @@ bool Monster::dead() const {
 
 
 void Monster::regenerate() {
+
     if (health != 0)
     {
         health += 10/100*health;
 
-        if (health >= 1000) {
+        if (health >= 1000)
+        {
             health = 1000;
         }
     }
@@ -63,25 +69,26 @@ void Monster::activateSpell(EffectType type, int duration) {
 }
 
 
-void Monster::reduceSpellsRound() {
-    spells.reduceRound();
+void Monster::reduceSpellsDuration() {
+    spells.reduceDuration();
 }
 
 
 void Monster::checkExpiredSpells() {
-    if (spells.expired(reduce_defence) )
+
+    if (spells.expired(reduce_defence))
     {
         spells.disable(reduce_defence);
         defence = INIT_DEFENCE;
     }
 
-    if (spells.expired(reduce_damage) )
+    if (spells.expired(reduce_damage))
     {
         spells.disable(reduce_damage);
         damageRange = INIT_DAMAGE;
     }
 
-    if (spells.expired(reduce_dodge) )
+    if (spells.expired(reduce_dodge))
     {
         spells.disable(reduce_dodge);
         dodge = INIT_DODGE;

@@ -13,22 +13,25 @@ void Hero::printSkills() const {
 
 
 void Hero::reduceHealth(int reduce) {
-    if ( equippedArmor != nullptr )
+    if (equippedArmor != nullptr)
     {
 
-        if ( reduce <= equippedArmor->getAttribute() )
+        if (reduce <= equippedArmor->getAttribute())
             return;
 
         health = health - (reduce - equippedArmor->getAttribute());
 
-        if ( health < 0 ) {
+        if (health < 0)
+        {
             health = 0;
         }
     }
-    else{
+    else
+    {
         health = health - reduce;
 
-        if ( health < 0 ){
+        if ( health < 0 )
+        {
             health = 0;
         }
     }
@@ -52,7 +55,7 @@ void Hero::looseMoney() {
 
 void Hero::addExperience(int xp) {
 
-    if ( level == MAX_LEVEL )
+    if (level == MAX_LEVEL)
     {
         std::cout << "You reached max level!" << std::endl;
         return;
@@ -63,7 +66,7 @@ void Hero::addExperience(int xp) {
     //experience required for next level
     int nextLevelExperience = 5 * ((level+1)*(level+1)) - (5 * (level+1));
 
-    if ( experience >= nextLevelExperience )
+    if (experience >= nextLevelExperience)
     {
         std::cout << "Level UP! Congrats you reached level " << level+1;
         levelUp();
@@ -87,17 +90,20 @@ bool Hero::avoidAttack() const {
 
 
 void Hero::regenerate() {
-    if ( health != 0 )
+
+    if (health != 0)
     {
         health += 20/100*health;
 
-        if ( health >= 1000 ) {
+        if (health >= 1000)
+        {
             health = 1000;
         }
     }
     mana += mana + 15/100*mana;
 
-    if ( mana >= 1000 ) {
+    if (mana >= 1000)
+    {
         mana = 1000;
     }
 }
@@ -110,7 +116,8 @@ void Hero::revive() {
 
 
 void Hero::buyItem(Item *newItem) {
-    if ( money >= newItem->getPrice() )
+
+    if (money >= newItem->getPrice())
     {
         if (level < newItem->getRequiredLevel())
         {
@@ -118,7 +125,8 @@ void Hero::buyItem(Item *newItem) {
             return;
         }
 
-        if (inventory.addItem(newItem)) {
+        if (inventory.addItem(newItem))
+        {
             money -= newItem->getPrice();
         }
     }
@@ -131,7 +139,8 @@ void Hero::buyItem(Item *newItem) {
 
 
 void Hero::buySpell(Spell *newSpell) {
-    if ( money >= newSpell->getPrice() )
+
+    if (money >= newSpell->getPrice())
     {
         if (level < newSpell->getRequiredLevel())
         {
@@ -139,7 +148,8 @@ void Hero::buySpell(Spell *newSpell) {
             return;
         }
 
-        if (skills.addSpell(newSpell)) {
+        if (skills.addSpell(newSpell))
+        {
             money -= newSpell->getPrice();
         }
     }
@@ -152,9 +162,11 @@ void Hero::buySpell(Spell *newSpell) {
 
 
 Item* Hero::sellItem(int pos) {
+
     Item* item = inventory.removeItem(pos);
 
-    if ( item != nullptr ) {
+    if (item != nullptr)
+    {
         money += item->getPrice() / 2;
     }
 
@@ -163,9 +175,11 @@ Item* Hero::sellItem(int pos) {
 
 
 Spell* Hero::sellSpell(int pos) {
+
     Spell* spell = skills.removeSpell(pos);
 
-    if ( spell != nullptr ) {
+    if (spell != nullptr)
+    {
         money += spell->getPrice() / 2;
     }
 
@@ -174,19 +188,23 @@ Spell* Hero::sellSpell(int pos) {
 
 
 void Hero::equip(Weapon* weapon) {
+
     equippedWeapon = weapon;
     std::cout << weapon->getName() << " weapon equipped" << std::endl;
 }
 
 
 void Hero::equip(Armor *armor) {
+
     equippedArmor = armor;
     std::cout << armor->getName() << " armor equipped" << std::endl;
 }
 
 
 void Hero::use(Potion *potion) {
-    switch (potion->getAttributeType()) {
+
+    switch (potion->getAttributeType())
+    {
 
         case Health:
             health += potion->getAttribute();
@@ -211,16 +229,20 @@ void Hero::use(Potion *potion) {
     }
 }
 
+
 bool Hero::haveSkills() const {
     return !skills.empty();
 }
 
 
 int Hero::attack() const {
-    if ( equippedWeapon != nullptr ) {
+
+    if (equippedWeapon != nullptr)
+    {
         return strength + equippedWeapon->getAttribute();
     }
-    else{
+    else
+    {
         return strength;
     }
 }
@@ -236,13 +258,13 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
         int pos;
         std::cin >> pos;
 
-        if ( pos == 0 )
+        if (pos == 0)
             return;
 
         pos--;
 
         Spell *spell = skills.getSpell(pos);
-        if ( spell == nullptr )
+        if (spell == nullptr)
         {
             std::cout << "no available skill on this position" << std::endl;
             continue;
@@ -257,7 +279,8 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
             int maxDamage = spell->getMaxDamage();
             damage = spell->cast() + 10/100*dexterity;
 
-            if ( damage > maxDamage ) {
+            if ( damage > maxDamage )
+            {
                 damage = maxDamage;
             }
 
@@ -275,16 +298,19 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
 
 
 void Hero::usePotion() {
+
     std::cout << "Choose potion" << std::endl;
     Potion* potion = inventory.choosePotion();
 
-    if ( potion != nullptr ) {
+    if (potion != nullptr)
+    {
         use(potion);
     }
 }
 
 
 void Hero::chooseEquipment() {
+
     if (inventory.empty())
     {
         std::cout << "your inventory is empty" << std::endl;
@@ -294,12 +320,14 @@ void Hero::chooseEquipment() {
     std::cout << "Choose armor" << std::endl;
     Armor* arm = inventory.chooseArmor();
 
-    if ( arm != nullptr )
+    if (arm != nullptr)
     {
-        if ( equippedArmor != nullptr ){
+        if (equippedArmor != nullptr)
+        {
             inventory.changeItem(arm, equippedArmor);
         }
-        else{
+        else
+        {
             inventory.removeItem(arm);
         }
         equip(arm);
@@ -308,28 +336,31 @@ void Hero::chooseEquipment() {
     std::cout << "Choose weapon" << std::endl;
     Weapon* weap = inventory.chooseWeapon();
 
-    if ( weap != nullptr )
+    if (weap != nullptr)
     {
-        if ( equippedWeapon != nullptr ){
+        if (equippedWeapon != nullptr)
+        {
             inventory.changeItem(weap, equippedWeapon);
         }
-        else{
+        else
+        {
             inventory.removeItem(weap);
         }
         equip(weap);
     }
-
 }
 
 
 void Hero::checkInventory() {
+
     std::cout << "Opening inventory: " << std::endl;
     std::cout << "Money: " << money << std::endl;
+
     inventory.print();
 
     while (true)
     {
-        if ( inventory.empty() )
+        if (inventory.empty())
         {
             std::cout << "No items in your inventory" << std::endl;
             return;
@@ -338,7 +369,7 @@ void Hero::checkInventory() {
         int pos;
         std::cin >> pos;    // get user input for position of item he want's to use
 
-        if ( pos == 0 )
+        if (pos == 0)
         {
             std::cout << "Closing inventory" << std::endl;
             return;
@@ -347,15 +378,15 @@ void Hero::checkInventory() {
         pos--;
         Item* item = inventory.getItem(pos);
 
-        if ( item == nullptr )
+        if (item == nullptr)
         {
             std::cout << "this place is empty choose another item" << std::endl;
             continue;
         }
 
-        if ( item->getType() == armor )
+        if (item->getType() == armor)
         {
-            if (equippedArmor == nullptr )
+            if (equippedArmor == nullptr)
             {
                 equip((Armor *) item);
                 inventory.removeItem(pos);
@@ -366,9 +397,9 @@ void Hero::checkInventory() {
                 equip((Armor *) item);
             }
         }
-        else if ( item->getType() == weapon )
+        else if (item->getType() == weapon)
         {
-            if (equippedWeapon == nullptr )
+            if (equippedWeapon == nullptr)
             {
                 equip((Weapon *) item);
                 inventory.removeItem(pos);
@@ -384,8 +415,7 @@ void Hero::checkInventory() {
             use((Potion *) item);
             inventory.removeItem(pos);
         }
-        inventory.print();
 
+        inventory.print();
     }
 }
-

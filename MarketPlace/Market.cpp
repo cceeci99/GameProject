@@ -1,6 +1,7 @@
 #include "Market.h"
 
 void Market::open(Hero *hero) {
+
     std::cout << "Opening Market..." << std::endl;
 
     while(true)

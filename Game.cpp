@@ -5,12 +5,34 @@
 #include "Spells/LightingSpell.h"
 
 
+Game::Game() {
+
+    std::cout << "Welcome to our game!" << std::endl;
+
+    map = new Grid(MAP_SIZE);
+    marketPlace = createMarket();
+}
+
+
+Game::~Game() {
+
+    std::cout << "Quit Game... Bye" << std::endl;
+
+    delete map;
+    delete marketPlace;
+    delete squad;
+}
+
+
 void Game::quit() {
+
     delete this;
     exit(1);
 }
 
+
 bool Game::playerMove(Square *currentPos, unsigned int &x1, unsigned int &y1) {
+
     unsigned int x = currentPos->getX();
     unsigned int y = currentPos->getY();
 
@@ -67,11 +89,10 @@ void Game::play() {
     squad->print();
 
     std::cout << "Move your heroes by using keys (w, a, s, d) for up, left, down and right" << std::endl;
-    std::cout << "You can see map by pressing (m) whenever you want" << std::endl;
-    std::cout << "You can quit game by pressing (q) whenever you want" << std::endl;
-    std::cout << "You can check inventory of your heroes by pressing (i) and quit inventory by pressing zero(0)" << std::endl;
+    std::cout << "You can see map by pressing (m)" << std::endl;
+    std::cout << "You can quit game by pressing (q)" << std::endl;
+    std::cout << "You can check inventory of your heroes by pressing (i)" << std::endl;
     std::cout << "You can check your heroes stats by pressing (c)\n" << std::endl;
-
 
     //heroes start at coordinates 0,0 of map which contains market
     Square* currentPos = map->getSquare(0, 0);
@@ -82,14 +103,16 @@ void Game::play() {
     unsigned int x = -1;
     unsigned int y = -1;
 
-    unsigned int tempX = x;
-    unsigned int tempY = y;
-
-    while(playerMove(currentPos, x, y))
+    while(true)
     {
+        unsigned int tempX = x;
+        unsigned int tempY = y;
+
+        if (!playerMove(currentPos, x, y))
+            break;
 
         //check if player is at same coordinates
-        if ( (x == -1 && y == -1) || (x == tempX && y == tempY))
+        if ( (x == -1 && y == -1) || (x == tempX && y == tempY) )
             continue;
 
         if (map->outOfBounds(x, y))
@@ -101,7 +124,7 @@ void Game::play() {
             Square* next = nullptr;
             next = map->getSquare(x, y);
 
-            if(next->getType() == nonAccessible)
+            if (next->getType() == nonAccessible)
             {
                 std::cout << "Non-Accessible square, please go to another direction" << std::endl;
                 continue;
@@ -123,16 +146,15 @@ void Game::play() {
 
             currentPos = map->getSquare(x, y);
         }
-
-        tempX = x;
-        tempY = y;
     }
 
     //quit game
     quit();
 }
 
+
 Market* Game::createMarket() {
+
     marketPlace = new Market();
 
     Item* armor = new Armor("Emblem", 100, 1, 70);
@@ -168,6 +190,7 @@ Market* Game::createMarket() {
 
 
 void Game::createHeroes() {
+
     int n;
 
     while (true)
@@ -179,6 +202,7 @@ void Game::createHeroes() {
             std::cout << "Please choose valid number of heroes" << std::endl;
             continue;
         }
+
         break;
     }
 
@@ -197,28 +221,7 @@ void Game::createHeroes() {
         Hero *hero = nullptr;
 
         //check for duplicate names
-        std::string name;
-        while (true)
-        {
-            int r = (int) random() % 10;
-            bool found = false;
-
-            for (auto &usedName : usedNames)
-            {
-                if (names[r] == usedName)
-                {
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found)
-            {
-                usedNames.push_back(names[r]);
-                name = names[r];
-                break;
-            }
-        }
+        std::string name = getUnusedName(usedNames, names);
 
         switch (HeroType)
         {
@@ -241,6 +244,7 @@ void Game::createHeroes() {
 
 
 MonsterSquad *Game::createEnemies() {
+
     //some random names for the monsters creation
     static std::string names[10] = {"Abbathor","Arvoreen","Ehlonna","Heironeous","Pelor",
                              "Urdlen", "Bahamut", "Orcus", "Vaprak", "Bahgtru"};
@@ -251,7 +255,9 @@ MonsterSquad *Game::createEnemies() {
     enemies = new MonsterSquad(size);
 
     int averageLevel = 0;
-    for(int i=0; i<squad->getSize(); i++){
+
+    for(int i = 0; i < squad->getSize(); i++)
+    {
         averageLevel += squad->getHero(i)->getLevel();
     }
 
@@ -265,28 +271,7 @@ MonsterSquad *Game::createEnemies() {
 
         Monster *monster = nullptr;
 
-        std::string name;
-        while (true)
-        {
-            int r = (int)random() % 10;
-            bool found = false;
-
-            for (auto & usedName : usedNames)
-            {
-                if (names[r] == usedName)
-                {
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found)
-            {
-                usedNames.push_back(names[r]);
-                name = names[r];
-                break;
-            }
-        }
+        std::string name = getUnusedName(usedNames, names);
 
         switch (MonsterType)
         {
@@ -311,6 +296,7 @@ MonsterSquad *Game::createEnemies() {
 
 
 void Game::enterMarket() {
+
     std::cout << "You have entered a marketPlace do you want to open market? Y/N" << std::endl;
 
     while (true)
@@ -318,16 +304,17 @@ void Game::enterMarket() {
         char answer;
         std::cin >> answer;
 
-        if ( answer == 'Y' || answer == 'y')
+        if (answer == 'Y' || answer == 'y')
         {
-            int i=0;
-            while (i < squad->getSize())
+            int i = 0;
+
+            while ( i < squad->getSize() )
             {
                 std::cout << "Do you want to open market for " << squad->getHero(i)->getName() << "? Y/N" << std::endl;
 
                 std::cin >> answer;
 
-                if(answer == 'Y' || answer == 'y')
+                if (answer == 'Y' || answer == 'y')
                 {
                     marketPlace->open(squad->getHero(i));
                 }
@@ -362,7 +349,6 @@ void Game::enterMarket() {
             std::cout << "Invalid input please try again" << std::endl;
         }
     }
-
 }
 
 
@@ -435,12 +421,14 @@ void Game::enterCommon() {
 
 
 void Game::victory(int monstersDefeated) {
+
     for (int i = 0; i < squad->getSize(); i++)
     {
         Hero* hero = nullptr;
         hero = squad->getHero(i);
 
-        if (hero->dead()){
+        if (hero->dead())
+        {
             hero->revive();
         }
     }
@@ -464,6 +452,7 @@ void Game::victory(int monstersDefeated) {
 
 
 void Game::defeat() {
+
     squad->revive();
 
     for (int i = 0; i < squad->getSize(); i++)
@@ -471,5 +460,31 @@ void Game::defeat() {
         Hero* hero = nullptr;
         hero = squad->getHero(i);
         hero->looseMoney();
+    }
+}
+
+std::string Game::getUnusedName(std::vector<std::string> &usedNames, std::string *names) {
+
+    while (true)
+    {
+        std::string name;
+        int r = (int)random() % 10;
+        bool found = false;
+
+        for (int i = 0; i < usedNames.size(); i++)
+        {
+            if (names[r] == usedNames[i])
+            {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+        {
+            usedNames.push_back(names[r]);
+            name = names[r];
+            return name;
+        }
     }
 }

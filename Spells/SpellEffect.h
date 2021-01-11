@@ -26,7 +26,7 @@ public:
 
     void disable();
 
-    void reduceRound();
+    void reduceDuration();
 
     bool expired() const;
 

@@ -1,32 +1,41 @@
 #include "Grid.h"
 
-
 Grid::Grid(int size) : size(size){
+
     array = new Square**[size];
 
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < size; i++)
+    {
         array[i] = new Square *[size];
     }
 
-    for(int j = 0; j < size; j++){
-        if( j % 3 == 0 )
+    for(int j = 0; j < size; j++)
+    {
+        if (j % 3 == 0)
+        {
             array[0][j] = new Square(0, j, market);
-        else if( j % 5 == 0 )
+        }
+        else if(j % 5 == 0)
+        {
             array[0][j] = new Square(0, j, nonAccessible);
+        }
         else
+        {
             array[0][j] = new Square(0, j, common);
-        
+        }
     }
 
     for(int i = 1; i < size; i++)
     {
         for(int j = 0; j < size; j++)
         {
-            if( j == 0 ){
+            if (j == 0)
+            {
                 SquareType type = array[i-1][size-1]->getType();
                 array[i][j] = new Square(i, j, type);
             }
-            else{
+            else
+            {
                 SquareType type = array[i-1][j-1]->getType();
                 array[i][j] = new Square(i, j, type);
             }
@@ -36,14 +45,17 @@ Grid::Grid(int size) : size(size){
 
 
 Grid::~Grid(){
+
     for(int i = 0; i < size; i++)
     {
-        for (int j = 0; j < size; j++) {
+        for (int j = 0; j < size; j++)
+        {
             delete array[i][j];
         }
     }
 
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < size; i++)
+    {
         delete[] array[i];
     }
 
@@ -57,6 +69,7 @@ Square* Grid::getSquare(unsigned int x, unsigned int y) const{
 
 
 bool Grid::outOfBounds (unsigned int x, unsigned int y) const {
+
     if(x >= size || x < 0 || y >= size || y < 0)
         return true;
     else
@@ -65,6 +78,7 @@ bool Grid::outOfBounds (unsigned int x, unsigned int y) const {
 
 
 void Grid::displayMap() const{
+
     std::cout << "Map consists of:" << std::endl;
 
     for(int i = 0; i < size; i++)

@@ -1,6 +1,5 @@
 #include "Weapon.h"
 
-
 void Weapon::print() const {
     std::cout << "Weapon: " << getName() << ", Damage: " << damage << ", Type: " << weaponType << std::endl;
 }

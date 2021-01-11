@@ -1,9 +1,10 @@
 #include "MonsterSquad.h"
 
 MonsterSquad::MonsterSquad(int n) {
+
     monsters = new Monster*[n];
 
-    for (int i=0; i<n; i++)
+    for (int i = 0; i < n; i++)
     {
         monsters[i] = nullptr;
     }
@@ -13,9 +14,10 @@ MonsterSquad::MonsterSquad(int n) {
 
 
 MonsterSquad::~MonsterSquad() {
-    for(int i=0; i < numberOfMonsters; i++)
+
+    for(int i = 0; i < numberOfMonsters; i++)
     {
-        if ( monsters[i] != nullptr )
+        if (monsters[i] != nullptr)
         {
             delete monsters[i];
         }
@@ -26,7 +28,8 @@ MonsterSquad::~MonsterSquad() {
 
 
 void MonsterSquad::print() const {
-    for (int i=0; i < numberOfMonsters; i++)
+
+    for (int i = 0; i < numberOfMonsters; i++)
     {
         if (!monsters[i]->dead())
         {
@@ -34,6 +37,7 @@ void MonsterSquad::print() const {
             monsters[i]->print();
         }
     }
+
     std::cout << std::endl;
 }
 
@@ -44,7 +48,7 @@ int MonsterSquad::getSize() const {
 
 
 Monster *MonsterSquad::getMonster(int pos) const {
-    if (pos >= numberOfMonsters )
+    if (pos >= numberOfMonsters)
         return nullptr;
 
     return monsters[pos];
@@ -54,7 +58,7 @@ Monster *MonsterSquad::getMonster(int pos) const {
 void MonsterSquad::setMonster(Monster *monster) {
     for(int i=0; i < numberOfMonsters; i++)
     {
-        if (monsters[i] == nullptr )
+        if (monsters[i] == nullptr)
         {
             monsters[i] = monster;
             return;
@@ -68,28 +72,29 @@ bool MonsterSquad::defeated() const {
     int total = 0;
     for(int i=0; i < numberOfMonsters; i++)
     {
-        if ( monsters[i]->dead() ) {
+        if (monsters[i]->dead())
+        {
             total++;
         }
     }
-        return total == numberOfMonsters;
+
+    return (total == numberOfMonsters);
 }
 
 
 void MonsterSquad::regeneration() {
-    for(int i=0; i < numberOfMonsters; i++){
+
+    for(int i = 0; i < numberOfMonsters; i++)
+    {
         monsters[i]->regenerate();
     }
 }
 
 void MonsterSquad::unchargeActiveSpells() {
+
     for (int i = 0; i < numberOfMonsters; i++)
     {
-        monsters[i]->reduceSpellsRound();
+        monsters[i]->reduceSpellsDuration();
         monsters[i]->checkExpiredSpells();
     }
 }
-
-
-
-

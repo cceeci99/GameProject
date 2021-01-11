@@ -14,7 +14,7 @@ void SpellEffect::disable() {
     durationRounds = 0;
 }
 
-void SpellEffect::reduceRound() {
+void SpellEffect::reduceDuration() {
     durationRounds--;
 }
 

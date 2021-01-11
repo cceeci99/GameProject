@@ -19,6 +19,7 @@ private:
 
     ActiveSpells spells;
 
+
 protected:
     Range damageRange;
     int defence;
@@ -44,12 +45,12 @@ public:
     void reduceDodge(int reduce);
 
     bool dead() const;
+
     void regenerate() override;
 
-
-    //functions of monster to deal with spells on it
+    //functions of monster to deal with active spells on it
     void activateSpell(EffectType type, int duration);
-    void reduceSpellsRound();
+    void reduceSpellsDuration();
     void checkExpiredSpells();
 
 };

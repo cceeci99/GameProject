@@ -12,6 +12,7 @@ bool Fight::isNotOver() const {
 
 
 void Fight::displayStats() const {
+
     std::cout << "Stats of Heroes: " << std::endl;
     heroes->print();
 
@@ -21,22 +22,25 @@ void Fight::displayStats() const {
 
 
 bool Fight::playerTurn() {
+
     std::cout << "Do you want to display stats?" << std::endl;
 
     char answer;
+
     while(true)
     {
         std::cin >> answer;
-        if(answer == 'y' || answer == 'Y')
+
+        if(answer == 'Y' || answer == 'y')
         {
             displayStats();
             break;
         }
-        else if (answer =='n' || answer == 'N')
+        else if (answer =='N' || answer == 'n')
         {
             break;
         }
-        else if ( answer == 'q' || answer == 'Q')
+        else if (answer == 'Q' || answer == 'q')
         {
             return false;
         }
@@ -47,8 +51,9 @@ bool Fight::playerTurn() {
         }
     }
 
-    int i=0;
-    while (i<heroes->getSize())
+    int i = 0;
+
+    while (i < heroes->getSize())
     {
         if (enemies->defeated())
             return true;
@@ -66,27 +71,29 @@ bool Fight::playerTurn() {
         std::cout << "Do you want to choose equipment y/n?" << std::endl;
 
         std::cin >> answer;
-        while ( answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N' && answer != 'q' && answer != 'Q')
+
+        while (answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N' && answer != 'q' && answer != 'Q')
         {
             std::cout << "Invalid input please try again" << std::endl;
             std::cin >> answer;
         }
 
-        if ( answer == 'y' || answer == 'Y') {
+        if (answer == 'Y' || answer == 'y')
+        {
             hero->chooseEquipment();
         }
-        else if (answer == 'q' || answer == 'Q') {
+        else if (answer == 'Q' || answer == 'q')
+        {
             return false;
         }
 
         std::cout << "Do you want to make normal attack (o), cast spell(l) or use potion(p)" << std::endl;
         std::cin >> answer;
 
-        if ( answer == 'Q'|| answer == 'q' ) {
+        if (answer == 'Q'|| answer == 'q')
             return false;
-        }
 
-        while( answer != 'o' && answer != 'l' && answer != 'p' )
+        while(answer != 'o' && answer != 'l' && answer != 'p')
         {
             std::cout << "invalid input try again" << std::endl;
             std::cin >> answer; 
@@ -104,9 +111,10 @@ bool Fight::playerTurn() {
             monster = enemies->getMonster(r);
         }
 
-        if ( monster->avoidAttack() )
+        if (monster->avoidAttack())
         {
             std::cout << monster->getName() << " avoided attack" << std::endl;
+            i++;
             continue;
         }
 
@@ -116,7 +124,7 @@ bool Fight::playerTurn() {
         }
         else if (answer == 'l')
         {
-            if ( !hero->haveSkills() )
+            if (!hero->haveSkills())
             {
                 std::cout << "You don't have any acquired spells" << std::endl;
                 continue;
@@ -130,7 +138,9 @@ bool Fight::playerTurn() {
         {
             hero->usePotion();
         }
+
         i++;
+
         std::cout << std::endl;
     }
 
@@ -139,9 +149,10 @@ bool Fight::playerTurn() {
 
 
 void Fight::enemiesTurn() {
-    for (int i=0; i<enemies->getSize(); i++)
+
+    for (int i = 0; i < enemies->getSize(); i++)
     {
-        if ( heroes->defeated() )
+        if (heroes->defeated())
             return;
 
         Monster* monster = nullptr;
@@ -161,7 +172,7 @@ void Fight::enemiesTurn() {
             hero = heroes->getHero(r);
         }
 
-        if ( hero->avoidAttack() )
+        if (hero->avoidAttack())
         {
             std::cout << hero->getName() << " avoided attack" << std::endl;
             continue;
@@ -174,13 +185,15 @@ void Fight::enemiesTurn() {
 }
 
 void Fight::normalAttack(Hero *hero, Monster *monster) {
+
     int damage = hero->attack();
 
     std::cout << hero->getName() << " makes " << damage << " damage on " << monster->getName() << std::endl;
 
     monster->reduceHealth(damage);
 
-    if (monster->dead()){
+    if (monster->dead())
+    {
         std::cout << "Just killed " << monster->getName() << std::endl;
     }
 
@@ -188,36 +201,38 @@ void Fight::normalAttack(Hero *hero, Monster *monster) {
 }
 
 void Fight::spellAttack(Hero *hero, Monster *monster) {
-    EffectType type;
+
+    EffectType effect;
     int damage;
-    int effect;
+    int reduce;
     int duration;
 
-    hero->castSpell(damage, effect, duration, type);
+    hero->castSpell(damage, reduce, duration, effect);
 
     std::cout << hero->getName() << " makes " << damage << " damage on " << monster->getName() << std::endl;
 
-    monster->activateSpell(type, duration);
+    monster->activateSpell(effect, duration);
 
-    if ( type == reduce_defence )
+    if (effect == reduce_defence)
     {
-        monster->reduceDefence(effect);
-        std::cout << monster->getName() <<"'s Defence reduced by " << effect << std::endl;
+        monster->reduceDefence(reduce);
+        std::cout << monster->getName() <<"'s Defence reduced by " << reduce << std::endl;
     }
-    else if ( type == reduce_dodge )
+    else if (effect == reduce_dodge)
     {
-        monster->reduceDodge(effect);
-        std::cout << monster->getName() << "'s Dodge reduced by " << effect << std::endl;
+        monster->reduceDodge(reduce);
+        std::cout << monster->getName() << "'s Dodge reduced by " << reduce << std::endl;
     }
-    else if ( type == reduce_damage)
+    else if (effect== reduce_damage)
     {
-        monster->reduceDamage(effect);
-        std::cout << monster->getName() << "'s Damage reduced by " << effect << std::endl;
+        monster->reduceDamage(reduce);
+        std::cout << monster->getName() << "'s Damage reduced by " << reduce << std::endl;
     }
 
     monster->reduceHealth(damage);
 
-    if (monster->dead()){
+    if (monster->dead())
+    {
         std::cout << " You just killed " << monster->getName() << std::endl;
     }
 
@@ -225,12 +240,14 @@ void Fight::spellAttack(Hero *hero, Monster *monster) {
 }
 
 void Fight::monsterAttack(Monster *monster, Hero *hero) {
+
     int damage = monster->attack();
     std::cout << monster->getName() << " makes " << damage << " on " << hero->getName() << std::endl;
 
     hero->reduceHealth(damage);
 
-    if (hero->dead()) {
+    if (hero->dead())
+    {
         std::cout << hero->getName() << " defeated " << std::endl;
     }
 

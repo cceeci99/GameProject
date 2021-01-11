@@ -1,16 +1,15 @@
 #include "Square.h"
 
-
-SquareType Square::getType() const {
-    return type;
-}
-
 int Square::getX() const {
     return x;
 }
 
 int Square::getY() const {
     return y;
+}
+
+SquareType Square::getType() const {
+    return type;
 }
 
 HeroSquad *Square::getSquad() const {

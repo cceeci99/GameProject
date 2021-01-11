@@ -8,7 +8,6 @@
 #include "Skills.h"
 
 
-//use hero Type for player choice of hero
 enum HeroType{warrior=1, paladin=2, sorcerer=3};
 
 
@@ -30,6 +29,7 @@ private:
     void equip(Armor* armor);
     void use(Potion* potion);
 
+
 protected:
     int mana;
     int experience;
@@ -37,6 +37,7 @@ protected:
     int strength;
     int dexterity;
     int agility;
+
 
 public:
 

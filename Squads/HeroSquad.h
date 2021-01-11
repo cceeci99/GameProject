@@ -42,7 +42,7 @@ public:
 
     void move(Square* square);
 
-    void openInventory();
+    void checkInventory();
 
 };
 

@@ -78,9 +78,10 @@ void HeroSquad::move(Square *square) {
 }
 
 
-void HeroSquad::openInventory() {
-    for (int i=0; i<teammates; i++){
-        std::cout << "Do you want to open inventory for hero: " << heroes[i]->getName() << " ? Y/N" << std::endl;
+void HeroSquad::checkInventory() {
+    for (int i=0; i<teammates; i++)
+    {
+        std::cout << "Do you want to check inventory for hero: " << heroes[i]->getName() << " ? Y/N" << std::endl;
 
         char answer;
         std::cin >> answer;

@@ -195,6 +195,7 @@ void Fight::normalAttack(Hero *hero, Monster *monster) {
     if (monster->dead())
     {
         std::cout << "Just killed " << monster->getName() << std::endl;
+        return;
     }
 
     std::cout << monster->getName() << "'s life: " << monster->getHealth() << std::endl;
@@ -234,6 +235,7 @@ void Fight::spellAttack(Hero *hero, Monster *monster) {
     if (monster->dead())
     {
         std::cout << " You just killed " << monster->getName() << std::endl;
+        return;
     }
 
     std::cout << monster->getName() << "'s life: " << monster->getHealth() << std::endl;
@@ -249,6 +251,7 @@ void Fight::monsterAttack(Monster *monster, Hero *hero) {
     if (hero->dead())
     {
         std::cout << hero->getName() << " defeated " << std::endl;
+        return;
     }
 
     std::cout << hero->getName() << "'s health: " << hero->getHealth() << std::endl;

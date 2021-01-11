@@ -48,7 +48,6 @@ bool MonsterSquad::defeated() const {
             total++;
         }
     }
-    return true;
     return total == numberOfMonsters;
 }
 

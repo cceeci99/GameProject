@@ -390,18 +390,24 @@ void Game::enterCommon() {
 
     squad->setSquadStats();
 
+
     MonsterSquad *enemies = createEnemies();
+
+    std::cout << "ENEMIES CREATED::" << std::endl;
+    enemies->print();
 
     Fight* fight = new Fight(squad, enemies);
 
     int round = 1;
 
-    while (true)
+    /*
+    while (fight->isNotOver())
     {
         std::cout << "Round: " << round << std::endl;
 
         std::cout << "Your Turn" << std::endl;
 
+        fight->playerTurn();
         //if player want to quit game within the fight
         if (!fight->playerTurn())
         {
@@ -424,10 +430,7 @@ void Game::enterCommon() {
         enemies->regeneration();
 
         round++;
-
-        if (!fight->isNotOver())
-            break;
-    }
+    } */
 
     if (squad->defeated())
     {
@@ -440,7 +443,6 @@ void Game::enterCommon() {
         victory(enemies->getSize());
     }
 
-    delete enemies;
     delete fight;
 }
 

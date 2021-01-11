@@ -27,7 +27,10 @@ public:
     Fight(HeroSquad* heroes, MonsterSquad* enemies)
     :heroes(heroes), enemies(enemies){};
 
-    ~Fight() = default;
+    ~Fight(){
+        delete enemies;
+        std::cout << "deleting fight" << std::endl;
+    }
 
     static bool begin();
 

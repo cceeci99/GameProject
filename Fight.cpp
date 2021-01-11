@@ -2,7 +2,7 @@
 
 
 bool Fight::begin() {
-    return ((random() % 100 + 1) <= 40);
+    return ((random() % 100 + 1) <= 50);
 }
 
 
@@ -96,7 +96,7 @@ bool Fight::playerTurn() {
         Monster* monster = enemies->getMonster(r);
 
         //if some monster choosen for attack is dead try another one
-        while (!monster->dead())
+        while (monster->dead())
         {
             r = (int) random() % enemies->getSize();
             monster = enemies->getMonster(r);
@@ -150,7 +150,7 @@ void Fight::enemiesTurn() {
         Hero* hero = heroes->getHero(r);
 
         //if random hero that is choosen for attack is dead choose another one
-        while (!hero->dead())
+        while (hero->dead())
         {
             r = (int) random() % heroes->getSize();
             hero = heroes->getHero(r);
@@ -189,7 +189,6 @@ void Fight::spellAttack(Hero *hero, Monster *monster) {
 
     std::cout << hero->getName() << " performs spell on " << monster->getName() << " damage " << damage << std::endl;
 
-    monster->reduceHealth(damage);
     monster->activateSpell(type, duration);
 
     if ( type == reduce_defence )
@@ -207,6 +206,8 @@ void Fight::spellAttack(Hero *hero, Monster *monster) {
         monster->reduceDamage(effect);
         std::cout << "Damage reduced by " << effect << std::endl;
     }
+
+    monster->reduceHealth(damage);
 
     if (monster->dead()){
         std::cout << " You just killed " << monster->getName() << std::endl;

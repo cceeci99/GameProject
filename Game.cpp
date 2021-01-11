@@ -81,11 +81,14 @@ void Game::play() {
     unsigned int x = -1;
     unsigned int y = -1;
 
+    unsigned int tempX = x;
+    unsigned int tempY = y;
+
     while(playerMove(currentPos, x, y))
     {
 
         //if player isn't moving but choose other option(check inventory, display map etc.) then continue
-        if (x == -1 && y == -1)
+        if ( (x == -1 && y == -1) || (x == tempX && y == tempY))
             continue;
 
         if (map->outOfBounds(x, y))
@@ -118,6 +121,9 @@ void Game::play() {
 
             currentPos = map->getSquare(x, y);
         }
+
+        tempX = x;
+        tempY = y;
     }
 
     //quit game
@@ -390,7 +396,7 @@ void Game::enterCommon() {
 
     int round = 1;
 
-    while (fight->isNotOver())
+    while (true)
     {
         std::cout << "Round: " << round << std::endl;
 
@@ -399,6 +405,7 @@ void Game::enterCommon() {
         //if player want to quit game within the fight
         if (!fight->playerTurn())
         {
+            delete enemies;
             delete fight;
             quit();
         }
@@ -417,6 +424,9 @@ void Game::enterCommon() {
         enemies->regeneration();
 
         round++;
+
+        if (!fight->isNotOver())
+            break;
     }
 
     if (squad->defeated())
@@ -430,6 +440,7 @@ void Game::enterCommon() {
         victory(enemies->getSize());
     }
 
+    delete enemies;
     delete fight;
 }
 

@@ -21,7 +21,11 @@ public:
 
     ~MonsterSquad(){
         for(int i=0; i < numberOfMonsters; i++)
-            delete monsters[i];
+        {
+             if ( monsters[i] != nullptr ) {
+                 delete monsters[i];
+             }
+        }
 
         delete[] monsters;
     }
@@ -37,6 +41,7 @@ public:
     void regeneration();
 
     void unchargeActiveSpells();
+
 };
 
 

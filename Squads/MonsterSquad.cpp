@@ -40,6 +40,7 @@ void MonsterSquad::setMonster(Monster *monster) {
 
 
 bool MonsterSquad::defeated() const {
+
     int total = 0;
     for(int i=0; i < numberOfMonsters; i++)
     {
@@ -47,7 +48,7 @@ bool MonsterSquad::defeated() const {
             total++;
         }
     }
-
+    return true;
     return total == numberOfMonsters;
 }
 

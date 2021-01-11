@@ -27,9 +27,7 @@ public:
     Fight(HeroSquad* heroes, MonsterSquad* enemies)
     :heroes(heroes), enemies(enemies){};
 
-    ~Fight(){
-        delete enemies;
-    }
+    ~Fight() = default;
 
     static bool begin();
 

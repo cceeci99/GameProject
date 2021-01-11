@@ -101,6 +101,7 @@ void Inventory::removeItem(Item *item) {
         if ( items[i] == item )
         {
             items[i] = nullptr;
+            addedItems--;
             return;
         }
     }

@@ -1,6 +1,27 @@
 #include "ItemSection.h"
 
 
+ItemSection::ItemSection() {
+    for (int i=0; i<ITEMS_CAPACITY; i++)
+    {
+        items[i] = nullptr;
+    }
+}
+
+
+ItemSection::~ItemSection() {
+    for (int i=0; i<ITEMS_CAPACITY; i++)
+    {
+        if ( items[i] != nullptr )
+        {
+            delete items[i];
+        }
+    }
+
+    delete[] items;
+}
+
+
 void ItemSection::print() const {
     for (int i=0; i < ITEMS_CAPACITY; i++)
     {
@@ -8,10 +29,12 @@ void ItemSection::print() const {
         {
             std::cout << i+1 << ")";
             items[i]->print();
+
             std::cout << "Required Level: " << items[i]->getRequiredLevel() << std::endl;
             std::cout << "Price: " <<items[i]->getPrice() << std::endl;
         }
     }
+
     std::cout << std::endl;
 }
 
@@ -62,7 +85,8 @@ void ItemSection::buyOption(Hero *hero) {
 
         pos--;
 
-        Item *item = getItem(pos);
+        Item *item = nullptr;
+        item = getItem(pos);
 
         if (item == nullptr)
         {
@@ -78,7 +102,7 @@ void ItemSection::buyOption(Hero *hero) {
 }
 
 
-void ItemSection::sellOption(Hero *hero) const {
+void ItemSection::sellOption(Hero *hero) {
     while (true)
     {
         std::cout << "Which item from yours you want to sell ?" << std::endl;
@@ -91,7 +115,8 @@ void ItemSection::sellOption(Hero *hero) const {
 
         pos--;
 
-        Item* item = hero->sellItem(pos);
+        Item* item = nullptr;
+        item = hero->sellItem(pos);
 
         if ( item == nullptr )
         {
@@ -128,3 +153,5 @@ Item *ItemSection::getItem(int pos) {
 
     return items[pos];
 }
+
+

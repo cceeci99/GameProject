@@ -25,9 +25,9 @@ class Game {
 
 private:
 
-    Grid* map = new Grid(MAP_SIZE);
+    Grid* map = nullptr;
 
-    Market* marketPlace = createMarket();
+    Market* marketPlace = nullptr;
 
     HeroSquad* squad = nullptr;
 
@@ -49,6 +49,9 @@ public:
 
     Game(){
         std::cout << "Welcome to our game!" << std::endl;
+
+        map = new Grid(MAP_SIZE);
+        marketPlace = createMarket();
     }
 
     ~Game(){

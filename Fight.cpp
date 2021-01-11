@@ -2,7 +2,7 @@
 
 
 bool Fight::begin() {
-    return ((random() % 100 + 1) <= 50);
+    return ((random() % 100 + 1) <= 60);
 }
 
 
@@ -53,7 +53,8 @@ bool Fight::playerTurn() {
         if (enemies->defeated())
             return true;
 
-        Hero* hero = heroes->getHero(i);
+        Hero* hero = nullptr;
+        hero = heroes->getHero(i);
 
         if (hero->dead())
         {
@@ -93,7 +94,8 @@ bool Fight::playerTurn() {
 
         //each hero attacks random monster from the heroes
         int r = (int) random() % enemies->getSize();
-        Monster* monster = enemies->getMonster(r);
+        Monster* monster = nullptr;
+        monster = enemies->getMonster(r);
 
         //if some monster choosen for attack is dead try another one
         while (monster->dead())
@@ -129,6 +131,7 @@ bool Fight::playerTurn() {
             hero->usePotion();
         }
         i++;
+        std::cout << std::endl;
     }
 
     return true;
@@ -141,13 +144,15 @@ void Fight::enemiesTurn() {
         if ( heroes->defeated() )
             return;
 
-        Monster* monster = enemies->getMonster(i);
+        Monster* monster = nullptr;
+        monster = enemies->getMonster(i);
 
         if (monster->dead())
             continue;
 
         int r = (int) random() % heroes->getSize();
-        Hero* hero = heroes->getHero(r);
+        Hero* hero = nullptr;
+        hero = heroes->getHero(r);
 
         //if random hero that is choosen for attack is dead choose another one
         while (hero->dead())
@@ -163,19 +168,23 @@ void Fight::enemiesTurn() {
         }
 
         monsterAttack(monster, hero);
+
+        std::cout << std::endl;
     }
 }
 
 void Fight::normalAttack(Hero *hero, Monster *monster) {
     int damage = hero->attack();
 
-    std::cout << hero->getName() << " performs normal attack on " << monster->getName() << " damage " << damage << std::endl;
+    std::cout << hero->getName() << " makes " << damage << " damage on " << monster->getName() << std::endl;
 
     monster->reduceHealth(damage);
 
     if (monster->dead()){
         std::cout << "Just killed " << monster->getName() << std::endl;
     }
+
+    std::cout << monster->getName() << "'s life: " << monster->getHealth() << std::endl;
 }
 
 void Fight::spellAttack(Hero *hero, Monster *monster) {
@@ -186,25 +195,24 @@ void Fight::spellAttack(Hero *hero, Monster *monster) {
 
     hero->castSpell(damage, effect, duration, type);
 
-
-    std::cout << hero->getName() << " performs spell on " << monster->getName() << " damage " << damage << std::endl;
+    std::cout << hero->getName() << " makes " << damage << " damage on " << monster->getName() << std::endl;
 
     monster->activateSpell(type, duration);
 
     if ( type == reduce_defence )
     {
         monster->reduceDefence(effect);
-        std::cout << "Defence reduced by " << effect << std::endl;
+        std::cout << monster->getName() <<"'s Defence reduced by " << effect << std::endl;
     }
     else if ( type == reduce_dodge )
     {
         monster->reduceDodge(effect);
-        std::cout << "Dodge reduced by " << effect << std::endl;
+        std::cout << monster->getName() << "'s Dodge reduced by " << effect << std::endl;
     }
     else if ( type == reduce_damage)
     {
         monster->reduceDamage(effect);
-        std::cout << "Damage reduced by " << effect << std::endl;
+        std::cout << monster->getName() << "'s Damage reduced by " << effect << std::endl;
     }
 
     monster->reduceHealth(damage);
@@ -213,15 +221,18 @@ void Fight::spellAttack(Hero *hero, Monster *monster) {
         std::cout << " You just killed " << monster->getName() << std::endl;
     }
 
+    std::cout << monster->getName() << "'s life: " << monster->getHealth() << std::endl;
 }
 
 void Fight::monsterAttack(Monster *monster, Hero *hero) {
     int damage = monster->attack();
-    std::cout << monster->getName() << " performs attack on " << hero->getName() << " damage " << damage << std::endl;
+    std::cout << monster->getName() << " makes " << damage << " on " << hero->getName() << std::endl;
 
     hero->reduceHealth(damage);
 
     if (hero->dead()) {
         std::cout << hero->getName() << " defeated " << std::endl;
     }
+
+    std::cout << hero->getName() << "'s health: " << hero->getHealth() << std::endl;
 }

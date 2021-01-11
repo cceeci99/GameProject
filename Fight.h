@@ -10,8 +10,8 @@ class Fight {
 
 private:
 
-    HeroSquad* heroes;
-    MonsterSquad* enemies;
+    HeroSquad* heroes = nullptr;
+    MonsterSquad* enemies = nullptr;
 
     void displayStats() const;
 
@@ -27,10 +27,7 @@ public:
     Fight(HeroSquad* heroes, MonsterSquad* enemies)
     :heroes(heroes), enemies(enemies){};
 
-    ~Fight(){
-        delete enemies;
-        std::cout << "deleting fight" << std::endl;
-    }
+    ~Fight() = default;
 
     static bool begin();
 

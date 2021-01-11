@@ -1,6 +1,27 @@
 #include "SpellSection.h"
 
 
+SpellSection::SpellSection() {
+    for (int i=0; i<SPELLS_CAPACITY; i++)
+    {
+        spells[i] = nullptr;
+    }
+}
+
+
+SpellSection::~SpellSection() {
+    for (int i=0; i<SPELLS_CAPACITY; i++)
+    {
+        if (spells[i] != nullptr)
+        {
+            delete spells[i];
+        }
+    }
+
+    delete[] spells;
+}
+
+
 void SpellSection::print() const {
     for (int i=0; i < SPELLS_CAPACITY; i++)
     {
@@ -8,10 +29,12 @@ void SpellSection::print() const {
         {
             std::cout << i+1 << ")";
             spells[i]->print();
+
             std::cout << "Required Level: " << spells[i]->getRequiredLevel() << std::endl;
             std::cout << "Price: " << spells[i]->getPrice() << std::endl;
         }
     }
+
     std::cout << std::endl;
 }
 
@@ -62,7 +85,8 @@ void SpellSection::buyOption(Hero *hero) {
 
         pos--;
 
-        Spell* spell = getSpell(pos);
+        Spell* spell = nullptr;
+        spell = getSpell(pos);
 
         if ( spell == nullptr )
         {
@@ -79,7 +103,7 @@ void SpellSection::buyOption(Hero *hero) {
 }
 
 
-void SpellSection::sellOption(Hero *hero) const {
+void SpellSection::sellOption(Hero *hero) {
     while(true)
     {
         std::cout << "Which spell from yours you would like to sell ?" << std::endl;
@@ -92,7 +116,9 @@ void SpellSection::sellOption(Hero *hero) const {
 
         pos--;
 
-        Spell* spell = hero->sellSpell(pos);
+        Spell* spell = nullptr;
+        spell =hero->sellSpell(pos);
+
         if ( spell == nullptr )
         {
             std::cout << "Please choose available spell" << std::endl;
@@ -127,3 +153,5 @@ Spell *SpellSection::getSpell(int pos) {
 
     return spells[pos];
 }
+
+

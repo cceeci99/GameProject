@@ -15,24 +15,14 @@ private:
 
 
     void buyOption(Hero* hero);
-    void sellOption(Hero* hero) const;
+    static void sellOption(Hero* hero) ;
 
     Item* getItem(int pos);
 
 public:
 
-    ItemSection() = default;
-
-    ~ItemSection(){
-        for (int i=0; i<ITEMS_CAPACITY; i++)
-        {
-            if ( items[i]  != nullptr ) {
-                delete items[i];
-            }
-        }
-
-        delete[] items;
-    }
+    ItemSection();
+    ~ItemSection();
 
     void print() const;
 

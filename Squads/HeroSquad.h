@@ -15,17 +15,9 @@ private:
 
 public:
 
-    explicit HeroSquad(int n){
-        heroes = new Hero*[n];
-        teammates = n;
-    }
+    explicit HeroSquad(int n);
 
-    ~HeroSquad(){
-        for(int i=0; i<teammates; i++)
-            delete heroes[i];
-
-        delete[] heroes;
-    }
+    ~HeroSquad();
 
     void print() const;
 

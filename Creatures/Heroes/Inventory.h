@@ -19,7 +19,12 @@ private:
 
 public:
 
-    Inventory() = default;
+    Inventory(){
+        for (int i=0; i<INVENTORY_CAPACITY; i++)
+        {
+            items[i] = nullptr;
+        }
+    }
 
     ~Inventory() {
         delete[] items;

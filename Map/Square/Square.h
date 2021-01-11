@@ -12,7 +12,7 @@ private:
     SquareType type;
     int x, y;
 
-    HeroSquad* squad{};
+    HeroSquad* squad = nullptr;
 
 public:
 

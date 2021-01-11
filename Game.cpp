@@ -53,6 +53,7 @@ bool Game::playerMove(Square *currentPos, unsigned int &x1, unsigned int &y1) {
             std::cout << "Please enter a valid button" << std::endl;
             break;
     }
+
     return true;
 }
 
@@ -87,7 +88,7 @@ void Game::play() {
     while(playerMove(currentPos, x, y))
     {
 
-        //if player isn't moving but choose other option(check inventory, display map etc.) then continue
+        //check if player is at same coordinates
         if ( (x == -1 && y == -1) || (x == tempX && y == tempY))
             continue;
 
@@ -97,7 +98,8 @@ void Game::play() {
         }
         else
         {
-            Square* next = map->getSquare(x, y);
+            Square* next = nullptr;
+            next = map->getSquare(x, y);
 
             if(next->getType() == nonAccessible)
             {
@@ -132,19 +134,6 @@ void Game::play() {
 
 Market* Game::createMarket() {
     marketPlace = new Market();
-
-    /*
-    //create some items and spells.
-    Armor* armor1 = new Armor("name1", 150, 1, 100);
-    Armor* armor2 = new Armor("name2", 250, 3, 200);
-
-    //
-    Weapon* weapon1 = new Weapon("name1", 200, 1, 50, true);
-    Weapon* weapon2 = new Weapon("name2", 300, 3, 100, false);
-
-    //
-    Potion* potion1 = new Potion("name1", 150, 1, Health, 75);
-     */
 
     Item* armor = new Armor("Emblem", 100, 1, 70);
     marketPlace->addItem(armor);
@@ -258,7 +247,8 @@ MonsterSquad *Game::createEnemies() {
 
     int size = (int)random() % 3 + 1;
 
-    MonsterSquad* enemies = new MonsterSquad(size);
+    MonsterSquad* enemies = nullptr;
+    enemies = new MonsterSquad(size);
 
     int averageLevel = 0;
     for(int i=0; i<squad->getSize(); i++){
@@ -390,24 +380,20 @@ void Game::enterCommon() {
 
     squad->setSquadStats();
 
+    MonsterSquad* enemies = nullptr;
+    enemies = createEnemies();
 
-    MonsterSquad *enemies = createEnemies();
-
-    std::cout << "ENEMIES CREATED::" << std::endl;
-    enemies->print();
-
-    Fight* fight = new Fight(squad, enemies);
+    Fight* fight = nullptr;
+    fight = new Fight(squad, enemies);
 
     int round = 1;
 
-    /*
     while (fight->isNotOver())
     {
         std::cout << "Round: " << round << std::endl;
 
         std::cout << "Your Turn" << std::endl;
 
-        fight->playerTurn();
         //if player want to quit game within the fight
         if (!fight->playerTurn())
         {
@@ -430,7 +416,7 @@ void Game::enterCommon() {
         enemies->regeneration();
 
         round++;
-    } */
+    }
 
     if (squad->defeated())
     {
@@ -443,6 +429,7 @@ void Game::enterCommon() {
         victory(enemies->getSize());
     }
 
+    delete enemies;
     delete fight;
 }
 
@@ -450,7 +437,8 @@ void Game::enterCommon() {
 void Game::victory(int monstersDefeated) {
     for (int i = 0; i < squad->getSize(); i++)
     {
-        Hero* hero = squad->getHero(i);
+        Hero* hero = nullptr;
+        hero = squad->getHero(i);
 
         if (hero->dead()){
             hero->revive();
@@ -459,17 +447,18 @@ void Game::victory(int monstersDefeated) {
 
     for (int i = 0; i < squad->getSize(); i++)
     {
-        Hero* hero = squad->getHero(i);
+        Hero* hero = nullptr;
+        hero = squad->getHero(i);
+
         int level = hero->getLevel();
 
         int xp = (level * 2 + 3) * monstersDefeated;
-        hero->addExperience(xp);
-        std::cout << "+ " << xp << "xp" << std::endl;
-
-
         int money = (level*50) * monstersDefeated;
+
+        std::cout << hero->getName() << " + " << money << " money"  << " + " << xp << " xp " << "    ";
+
+        hero->addExperience(xp);
         hero->earnMoney(money);
-        std::cout << "+ " << money << "money" << std::endl;
     }
 }
 
@@ -479,7 +468,8 @@ void Game::defeat() {
 
     for (int i = 0; i < squad->getSize(); i++)
     {
-        Hero* hero = squad->getHero(i);
+        Hero* hero = nullptr;
+        hero = squad->getHero(i);
         hero->looseMoney();
     }
 }

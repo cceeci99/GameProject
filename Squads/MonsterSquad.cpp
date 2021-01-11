@@ -1,5 +1,29 @@
 #include "MonsterSquad.h"
 
+MonsterSquad::MonsterSquad(int n) {
+    monsters = new Monster*[n];
+
+    for (int i=0; i<n; i++)
+    {
+        monsters[i] = nullptr;
+    }
+
+    numberOfMonsters = n;
+}
+
+
+MonsterSquad::~MonsterSquad() {
+    for(int i=0; i < numberOfMonsters; i++)
+    {
+        if ( monsters[i] != nullptr )
+        {
+            delete monsters[i];
+        }
+    }
+
+    delete[] monsters;
+}
+
 
 void MonsterSquad::print() const {
     for (int i=0; i < numberOfMonsters; i++)
@@ -48,7 +72,7 @@ bool MonsterSquad::defeated() const {
             total++;
         }
     }
-    return total == numberOfMonsters;
+        return total == numberOfMonsters;
 }
 
 
@@ -65,3 +89,7 @@ void MonsterSquad::unchargeActiveSpells() {
         monsters[i]->checkExpiredSpells();
     }
 }
+
+
+
+

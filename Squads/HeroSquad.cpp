@@ -1,5 +1,26 @@
 #include "HeroSquad.h"
 
+HeroSquad::HeroSquad(int n) {
+    heroes = new Hero*[n];
+    for (int i=0; i<n; i++)
+    {
+        heroes[i] = nullptr;
+    }
+    teammates = n;
+}
+
+
+HeroSquad::~HeroSquad() {
+    for(int i=0; i<teammates; i++)
+    {
+        if ( heroes[i] != nullptr )
+        {
+            delete heroes[i];
+        }
+    }
+    delete[] heroes;
+}
+
 
 void HeroSquad::print() const {
     for(int i=0; i<teammates; i++)
@@ -91,3 +112,4 @@ void HeroSquad::checkInventory() {
         }
     }
 }
+

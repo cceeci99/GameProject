@@ -15,7 +15,12 @@ private:
 
 public:
 
-    Skills() = default;
+    Skills(){
+        for (int i=0; i<SPELLS_LIMIT; i++)
+        {
+            spells[i] = nullptr;
+        }
+    }
 
     ~Skills() {
         delete[] spells;

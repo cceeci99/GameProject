@@ -14,28 +14,9 @@ private:
 
 public:
 
-    explicit MonsterSquad(int n){
-        monsters = new Monster*[n];
-        for (int i=0; i<n; i++)
-        {
-            monsters[i] = nullptr;
-        }
-        numberOfMonsters = n;
-    }
+    explicit MonsterSquad(int n);
 
-    ~MonsterSquad(){
-        std::cout << "Deleting monsters" << std::endl;
-        for(int i=0; i < numberOfMonsters; i++)
-        {
-             if ( monsters[i] != nullptr )
-             {
-                 std::cout << "deleting " << monsters[i]->getName() << std::endl;
-                 delete monsters[i];
-             }
-        }
-
-        delete[] monsters;
-    }
+    ~MonsterSquad();
 
     void print() const;
 

@@ -32,10 +32,13 @@ private:
     HeroSquad* squad = nullptr;
 
     void createHeroes();
+
     MonsterSquad* createEnemies();
+
     Market* createMarket();
 
     void quit();
+
     bool playerMove(Square* currentPos, unsigned int& x1, unsigned int& y1);
 
     void enterMarket();

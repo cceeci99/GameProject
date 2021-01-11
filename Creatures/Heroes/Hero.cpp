@@ -66,13 +66,16 @@ void Hero::addExperience(int xp) {
     //experience required for next level
     int nextLevelExperience = 5 * ((level+1)*(level+1)) - (5 * (level+1));
 
+
     if (experience >= nextLevelExperience)
     {
-        std::cout << "Level UP! Congrats you reached level " << level+1;
+        std::cout << "Level UP! Congrats you reached level " << level+1 << std::endl;
         levelUp();
+        return;
     }
 
     std::cout << "  |Current Experience: " << experience << "   Experience for next level: " << nextLevelExperience << "|" << std::endl;
+
 }
 
 

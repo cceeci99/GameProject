@@ -3,6 +3,7 @@
 #include "Game.h"
 
 int main() {
+
     srandom(time(nullptr));
 
     Game* game = new Game();
@@ -10,5 +11,4 @@ int main() {
     game->play();
 
     return 0;
-
 }

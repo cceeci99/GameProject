@@ -204,8 +204,8 @@ void Game::createHeroes() {
     squad = new HeroSquad(n);
 
     //random names for heroes
-    static std::string names[10] = {"Karontor","Io","Luthic","Merlin","Sixin",
-                                    "Ilneval", "Vaprak", "Eadro", "Skerrit", "Jubilex"};
+    static std::string names[10] = {"Karontor","Diirinka","Luthic","Merlin","Sixin",
+                                    "Ilneval", "Kratos", "Eadro", "Skerrit", "Jubilex"};
 
     std::vector<std::string> usedNames;
 

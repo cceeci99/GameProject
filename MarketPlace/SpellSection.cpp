@@ -89,8 +89,7 @@ void SpellSection::buyOption(Hero *hero) {
 
         pos--;
 
-        Spell* spell = nullptr;
-        spell = getSpell(pos);
+        Spell* spell = getSpell(pos);
 
         if (spell == nullptr)
         {
@@ -121,8 +120,7 @@ void SpellSection::sellOption(Hero *hero) {
 
         pos--;
 
-        Spell* spell = nullptr;
-        spell =hero->sellSpell(pos);
+        Spell* spell =hero->sellSpell(pos);
 
         if (spell == nullptr)
         {

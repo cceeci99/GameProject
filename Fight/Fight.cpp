@@ -58,8 +58,7 @@ bool Fight::playerTurn() {
         if (enemies->defeated())
             return true;
 
-        Hero* hero = nullptr;
-        hero = heroes->getHero(i);
+        Hero* hero = heroes->getHero(i);
 
         if (hero->dead())
         {
@@ -101,8 +100,7 @@ bool Fight::playerTurn() {
 
         //each hero attacks random monster from the heroes
         int r = (int) random() % enemies->getSize();
-        Monster* monster = nullptr;
-        monster = enemies->getMonster(r);
+        Monster* monster = enemies->getMonster(r);
 
         //if some monster choosen for attack is dead try another one
         while (monster->dead())
@@ -155,15 +153,13 @@ void Fight::enemiesTurn() {
         if (heroes->defeated())
             return;
 
-        Monster* monster = nullptr;
-        monster = enemies->getMonster(i);
+        Monster* monster = enemies->getMonster(i);
 
         if (monster->dead())
             continue;
 
         int r = (int) random() % heroes->getSize();
-        Hero* hero = nullptr;
-        hero = heroes->getHero(r);
+        Hero* hero = heroes->getHero(r);
 
         //if random hero that is choosen for attack is dead choose another one
         while (hero->dead())

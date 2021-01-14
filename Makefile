@@ -15,7 +15,7 @@ OBJS = main.o Spells/FireSpell.o Spells/IceSpell.o Spells/LightingSpell.o Spells
 EXEC = main
 
 # Παράμετροι για δοκιμαστική εκτέλεση
-ARGS1 =
+#ARGS1 =
  
 
 $(EXEC): $(OBJS)

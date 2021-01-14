@@ -90,8 +90,7 @@ void ItemSection::buyOption(Hero *hero) {
 
         pos--;
 
-        Item *item = nullptr;
-        item = getItem(pos);
+        Item* item = getItem(pos);
 
         if (item == nullptr)
         {
@@ -121,8 +120,7 @@ void ItemSection::sellOption(Hero *hero) {
 
         pos--;
 
-        Item* item = nullptr;
-        item = hero->sellItem(pos);
+        Item* item = hero->sellItem(pos);
 
         if (item == nullptr)
         {

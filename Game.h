@@ -17,6 +17,11 @@
 #include "Creatures/Monsters/ExoSkeleton.h"
 #include "Creatures/Monsters/Spirit.h"
 
+#include "Spells/FireSpell.h"
+#include "Spells/IceSpell.h"
+#include "Spells/LightingSpell.h"
+
+
 #define MAP_SIZE 8
 #define MAX_TEAMMATES 3
 

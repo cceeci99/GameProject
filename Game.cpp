@@ -1,9 +1,5 @@
 #include "Game.h"
 
-#include "Spells/FireSpell.h"
-#include "Spells/IceSpell.h"
-#include "Spells/LightingSpell.h"
-
 
 Game::Game() {
 
@@ -121,8 +117,7 @@ void Game::play() {
         }
         else
         {
-            Square* next = nullptr;
-            next = map->getSquare(x, y);
+            Square* next = map->getSquare(x, y);
 
             if (next->getType() == nonAccessible)
             {
@@ -251,8 +246,7 @@ MonsterSquad *Game::createEnemies() {
 
     int size = (int)random() % 3 + 1;
 
-    MonsterSquad* enemies = nullptr;
-    enemies = new MonsterSquad(size);
+    MonsterSquad* enemies = new MonsterSquad(size);
 
     int averageLevel = 0;
 
@@ -366,13 +360,13 @@ void Game::enterCommon() {
 
     squad->setSquadStats();
 
-    MonsterSquad* enemies = nullptr;
-    enemies = createEnemies();
+    MonsterSquad* enemies = createEnemies();
 
-    Fight* fight = nullptr;
-    fight = new Fight(squad, enemies);
+    Fight* fight = new Fight(squad, enemies);
 
     int round = 1;
+
+    bool stopped = false;
 
     while (fight->isNotOver())
     {
@@ -380,12 +374,12 @@ void Game::enterCommon() {
 
         std::cout << "Your Turn" << std::endl;
 
+
         //if player want to quit game within the fight
         if (!fight->playerTurn())
         {
-            delete enemies;
-            delete fight;
-            quit();
+            stopped = true;
+            break;
         }
 
         if (enemies->defeated())
@@ -404,19 +398,28 @@ void Game::enterCommon() {
         round++;
     }
 
-    if (squad->defeated())
+    //boolean variable stopped is used in case that player wants to exit game during fight, then stopped is true , delete enemies and fight and call quit()
+    if (!stopped)
     {
-        std::cout << "DEFEATED!" << std::endl;
-        defeat();
+        if (squad->defeated())
+        {
+            std::cout << "DEFEATED!" << std::endl;
+            defeat();
+        }
+        else
+        {
+            std::cout << "VICTORY!" << std::endl;
+            victory(enemies->getSize());
+        }
+        delete enemies;
+        delete fight;
     }
     else
     {
-        std::cout << "VICTORY!" << std::endl;
-        victory(enemies->getSize());
+        delete enemies;
+        delete fight;
+        quit();
     }
-
-    delete enemies;
-    delete fight;
 }
 
 
@@ -424,8 +427,7 @@ void Game::victory(int monstersDefeated) {
 
     for (int i = 0; i < squad->getSize(); i++)
     {
-        Hero* hero = nullptr;
-        hero = squad->getHero(i);
+        Hero* hero = squad->getHero(i);
 
         if (hero->dead())
         {
@@ -435,8 +437,7 @@ void Game::victory(int monstersDefeated) {
 
     for (int i = 0; i < squad->getSize(); i++)
     {
-        Hero* hero = nullptr;
-        hero = squad->getHero(i);
+        Hero* hero = squad->getHero(i);
 
         int level = hero->getLevel();
 
@@ -458,8 +459,7 @@ void Game::defeat() {
 
     for (int i = 0; i < squad->getSize(); i++)
     {
-        Hero* hero = nullptr;
-        hero = squad->getHero(i);
+        Hero* hero = squad->getHero(i);
         hero->looseMoney();
     }
 }

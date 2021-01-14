@@ -23,7 +23,7 @@ Game::~Game() {
 void Game::quit() {
 
     delete this;
-    exit(1);
+    exit(EXIT_SUCCESS);
 }
 
 

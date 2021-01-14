@@ -2,7 +2,7 @@
 #ifndef GAMEPROJECT_SPELL_H
 #define GAMEPROJECT_SPELL_H
 
-#include "../Range.h"
+#include "../RangeLibr/Range.h"
 
 
 enum EffectType{reduce_damage, reduce_defence, reduce_dodge};

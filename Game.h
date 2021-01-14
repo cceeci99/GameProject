@@ -7,7 +7,7 @@
 
 #include "Squads/HeroSquad.h"
 #include "Squads/MonsterSquad.h"
-#include "Fight.h"
+#include "Fight/Fight.h"
 
 #include "Creatures/Heroes/Warrior.h"
 #include "Creatures/Heroes/Paladin.h"

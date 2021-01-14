@@ -2,8 +2,8 @@
 #ifndef GAMEPROJECT_FIGHT_H
 #define GAMEPROJECT_FIGHT_H
 
-#include "Squads/HeroSquad.h"
-#include "Squads/MonsterSquad.h"
+#include "../Squads/HeroSquad.h"
+#include "../Squads/MonsterSquad.h"
 
 
 class Fight {

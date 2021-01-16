@@ -356,22 +356,21 @@ bool Game::enterCommon() {
 
     MonsterSquad* enemies = createEnemies();
 
-    Fight* fight = new Fight(squad, enemies);
+    Fight fight(squad, enemies);
 
     int round = 1;
 
-    while (fight->isNotOver())
+    while (fight.isNotOver())
     {
         std::cout << "Round: " << round << std::endl;
 
         std::cout << "Your Turn" << std::endl;
 
 
-        //if player want to quit game within the fight
-        if (!fight->playerTurn())
+        //if player want to quit game during the fight
+        if (!fight.playerTurn())
         {
             delete enemies;
-            delete fight;
             return false;
         }
 
@@ -379,7 +378,7 @@ bool Game::enterCommon() {
             break;
 
         std::cout << "Enemies Turn" << std::endl;
-        fight->enemiesTurn();
+        fight.enemiesTurn();
 
         //reduce active spells on each monster
         enemies->unchargeActiveSpells();
@@ -391,10 +390,9 @@ bool Game::enterCommon() {
         round++;
     }
 
-    //boolean variable stopped is used in case that player wants to exit game during fight, then stopped is true , delete enemies and fight and call quit()
     if (squad->defeated())
     {
-        std::cout << "DEFEATED!" << std::endl;
+        std::cout << "YOU WERE DEFEATED!" << std::endl;
         defeat();
     }
     else
@@ -404,7 +402,6 @@ bool Game::enterCommon() {
     }
 
     delete enemies;
-    delete fight;
 
     return true;
 }

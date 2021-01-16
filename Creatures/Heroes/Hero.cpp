@@ -300,7 +300,7 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
 }
 
 
-void Hero::usePotion() {
+bool Hero::usePotion() {
 
     std::cout << "Choose potion" << std::endl;
     Potion* potion = inventory.choosePotion();
@@ -309,6 +309,10 @@ void Hero::usePotion() {
     {
         use(potion);
     }
+    else
+        return false;
+
+    return true;
 }
 
 

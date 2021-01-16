@@ -79,7 +79,7 @@ public:
     //
     void castSpell(int& damage, int& effect, int& duration, EffectType& type);
 
-    void usePotion();
+    bool usePotion();
 
     void chooseEquipment();         //function that gives the option to player to choose equipment for it's hero (armor/weapon)
 

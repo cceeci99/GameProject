@@ -121,7 +121,7 @@ bool Fight::playerTurn() {
         {
             if (!hero->haveSkills())
             {
-                std::cout << "You don't have any acquired spells" << std::endl;
+                std::cout << "You don't have any acquired spells choose another option" << std::endl;
                 continue;
             }
             else
@@ -131,7 +131,11 @@ bool Fight::playerTurn() {
         }
         else if (answer == 'p')
         {
-            hero->usePotion();
+            if(!hero->usePotion())
+            {
+                std::cout << "You don't have any potions available choose another option" << std::endl;
+                continue;
+            }
         }
         else if (answer == 'Q'|| answer == 'q')
         {

@@ -19,9 +19,6 @@ private:
     Inventory inventory;
     Skills skills;
 
-    int CURRENT_HEALTH;
-    int CURRENT_MANA;
-
     Weapon* equippedWeapon = nullptr;
     Armor* equippedArmor = nullptr;
 
@@ -43,7 +40,7 @@ public:
 
     Hero(const std::string& name, int strength, int dexterity, int agility)
     :LivingCreature(name, START_LEVEL, START_HP), mana(START_MP), money(START_MONEY), experience(START_XP),
-    strength(strength), dexterity(dexterity), agility(agility), CURRENT_HEALTH(START_HP), CURRENT_MANA(START_MP){}
+    strength(strength), dexterity(dexterity), agility(agility){}
 
     ~Hero() override = default;
 
@@ -53,8 +50,6 @@ public:
 
     void printInventory() const;
     void printSkills() const;
-
-    void setCurrentStats();
 
     bool avoidAttack() const;
 

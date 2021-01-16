@@ -26,8 +26,6 @@ public:
     Hero* getHero(int pos) const;
     void setHero(Hero* hero);
 
-    void setSquadStats();
-
     bool defeated() const;
     void regeneration();
     void revive();

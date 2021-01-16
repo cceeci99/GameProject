@@ -69,15 +69,6 @@ void HeroSquad::setHero(Hero *hero) {
 }
 
 
-void HeroSquad::setSquadStats() {
-
-    for (int i = 0; i < teammates; i++)
-    {
-        heroes[i]->setCurrentStats();
-    }
-}
-
-
 bool HeroSquad::defeated() const {
 
     int total = 0;

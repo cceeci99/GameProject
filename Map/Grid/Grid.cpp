@@ -110,7 +110,7 @@ void Grid::displayMap() const{
             }
             else
             {
-                std::cout << "X" << std::endl;
+                std::cout << "Your heroes are here!" << std::endl;
             }
         }
     }

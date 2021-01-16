@@ -172,9 +172,9 @@ Market* Game::createMarket() {
     marketPlace->addItem(potion);
     
 
-    Spell* spell = new FireSpell("inferno", 100, 1, 100,Range(100, 300), 50);
-    Spell* spell1 = new IceSpell("frost", 100, 1, 100,Range(200, 250), 80);
-    Spell* spell2 = new LightingSpell("zeus", 100, 1, 100,Range(100, 200), 5);
+    Spell* spell = new FireSpell("inferno", 100, 1, 150,Range(100, 300), 50);
+    Spell* spell1 = new IceSpell("frost", 100, 1, 300,Range(200, 250), 80);
+    Spell* spell2 = new LightingSpell("zeus", 100, 1, 180,Range(100, 200), 5);
 
     marketPlace->addSpell(spell);
     marketPlace->addSpell(spell1);
@@ -358,8 +358,6 @@ void Game::enterCommon() {
 
     std::cout << "Fight Begins..." << std::endl;
 
-    squad->setSquadStats();
-
     MonsterSquad* enemies = createEnemies();
 
     Fight* fight = new Fight(squad, enemies);
@@ -463,6 +461,7 @@ void Game::defeat() {
         hero->looseMoney();
     }
 }
+
 
 std::string Game::getUnusedName(std::vector<std::string> &usedNames, std::string *names) {
 

@@ -79,12 +79,6 @@ void Hero::addExperience(int xp) {
 }
 
 
-void Hero::setCurrentStats() {
-    CURRENT_HEALTH = health;
-    CURRENT_MANA = mana;
-}
-
-
 bool Hero::avoidAttack() const {
     int r = (int)random() % 100 +1;
 
@@ -96,14 +90,14 @@ void Hero::regenerate() {
 
     if (health != 0)
     {
-        health += 20/100*health;
-
+        health += health*(0.2);
         if (health >= 1000)
         {
             health = 1000;
         }
     }
-    mana += mana + 15/100*mana;
+
+    mana += mana*(0.1);
 
     if (mana >= 1000)
     {
@@ -113,8 +107,8 @@ void Hero::regenerate() {
 
 
 void Hero::revive() {
-    health = CURRENT_HEALTH/2;
-    mana = CURRENT_MANA/2;
+    health = START_HP/2;
+    mana = START_MP/2;
 }
 
 
@@ -212,10 +206,14 @@ void Hero::use(Potion *potion) {
         case Health:
             health += potion->getAttribute();
             std::cout << "health + " << potion->getAttribute() << std::endl;
+            if ( health >= START_HP )
+                health = START_HP;
             break;
         case Mana:
             mana += potion->getAttribute();
             std::cout << "mana + " << potion->getAttribute() << std::endl;
+            if ( mana >= START_MP )
+                mana = START_MP;
             break;
         case Strength:
             strength += potion->getAttribute();
@@ -280,7 +278,7 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
         else
         {
             int maxDamage = spell->getMaxDamage();
-            damage = spell->cast() + 10/100*dexterity;
+            damage = spell->cast() + dexterity*0.1;
 
             if ( damage > maxDamage )
             {
@@ -293,7 +291,9 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
 
             std::cout << "Casting " << spell->getName() << std::endl;
 
-            mana -= spell->getManaRequired();
+            std::cout << "mana before " << mana << std::endl;
+            mana = mana - spell->getManaRequired();
+            std::cout << "mana after " << mana << std::endl;
             return;
         }
     }
@@ -368,6 +368,8 @@ void Hero::checkInventory() {
             std::cout << "No items in your inventory" << std::endl;
             return;
         }
+
+        std::cout << "Choose something to equip/use" << std::endl;
 
         int pos;
         std::cin >> pos;    // get user input for position of item he want's to use

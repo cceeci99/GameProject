@@ -240,7 +240,7 @@ void Fight::spellAttack(Hero *hero, Monster *monster) {
 void Fight::monsterAttack(Monster *monster, Hero *hero) {
 
     int damage = monster->attack();
-    std::cout << monster->getName() << " makes " << damage << " on " << hero->getName() << std::endl;
+    std::cout << monster->getName() << " makes " << damage << " damage on " << hero->getName() << std::endl;
 
     hero->reduceHealth(damage);
 

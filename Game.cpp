@@ -336,6 +336,7 @@ bool Game::enterMarket() {
             std::cout << "Invalid input please try again" << std::endl;
         }
     }
+
     return true;
 }
 
@@ -403,6 +404,7 @@ bool Game::enterCommon() {
 
     delete enemies;
     delete fight;
+
     return true;
 }
 

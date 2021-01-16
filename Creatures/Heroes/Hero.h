@@ -76,6 +76,7 @@ public:
 
     int attack() const;
 
+    //
     void castSpell(int& damage, int& effect, int& duration, EffectType& type);
 
     void usePotion();

@@ -134,7 +134,9 @@ bool Fight::playerTurn() {
             hero->usePotion();
         }
         else if (answer == 'Q'|| answer == 'q')
+        {
             return false;
+        }
 
         i++;
 

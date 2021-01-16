@@ -89,10 +89,7 @@ bool Fight::playerTurn() {
         std::cout << "Do you want to make normal attack (o), cast spell(l) or use potion(p)" << std::endl;
         std::cin >> answer;
 
-        if (answer == 'Q'|| answer == 'q')
-            return false;
-
-        while(answer != 'o' && answer != 'l' && answer != 'p')
+        while(answer != 'o' && answer != 'l' && answer != 'p' && answer != 'q' && answer != 'Q')
         {
             std::cout << "invalid input try again" << std::endl;
             std::cin >> answer; 
@@ -136,6 +133,8 @@ bool Fight::playerTurn() {
         {
             hero->usePotion();
         }
+        else if (answer == 'Q'|| answer == 'q')
+            return false;
 
         i++;
 

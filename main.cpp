@@ -10,5 +10,7 @@ int main() {
 
     game->play();
 
+    delete game;
+
     return 0;
 }

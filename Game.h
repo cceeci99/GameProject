@@ -42,12 +42,10 @@ private:
 
     Market* createMarket();
 
-    void quit();
-
     bool playerMove(Square* currentPos, unsigned int& x1, unsigned int& y1);
 
-    void enterMarket();
-    void enterCommon();
+    bool enterMarket();
+    bool enterCommon();
 
     void victory(int monstersDefeated);
     void defeat();

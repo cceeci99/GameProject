@@ -20,13 +20,6 @@ Game::~Game() {
 }
 
 
-void Game::quit() {
-
-    delete this;
-    exit(EXIT_SUCCESS);
-}
-
-
 bool Game::playerMove(Square *currentPos, unsigned int &x1, unsigned int &y1) {
 
     unsigned int x = currentPos->getX();
@@ -63,7 +56,8 @@ bool Game::playerMove(Square *currentPos, unsigned int &x1, unsigned int &y1) {
             squad->print();
             break;
         case 'i':
-            squad->checkInventory();
+            if(!squad->checkInventory())
+                return false;
             break;
         case 'q':
             return false;
@@ -94,7 +88,8 @@ void Game::play() {
     Square* currentPos = map->getSquare(0, 0);
     squad->move(currentPos);
 
-    enterMarket();
+    if (!enterMarket())
+        return;
 
     unsigned int x = -1;
     unsigned int y = -1;
@@ -129,22 +124,21 @@ void Game::play() {
                 currentPos->setSquad(nullptr);
                 squad->move(next);
 
-                enterMarket();
+                if (!enterMarket())
+                    break;
             }
             else
             {
                 currentPos->setSquad(nullptr);
                 squad->move(next);
 
-                enterCommon();
+                if (!enterCommon())
+                    break;
             }
 
             currentPos = map->getSquare(x, y);
         }
     }
-
-    //quit game
-    quit();
 }
 
 
@@ -289,7 +283,7 @@ MonsterSquad *Game::createEnemies() {
 }
 
 
-void Game::enterMarket() {
+bool Game::enterMarket() {
 
     std::cout << "You have entered a marketPlace do you want to open market? Y/N" << std::endl;
 
@@ -319,7 +313,7 @@ void Game::enterMarket() {
                 }
                 else if (answer == 'Q' || answer == 'q')
                 {
-                    quit();
+                    return false;
                 }
                 else
                 {
@@ -328,7 +322,6 @@ void Game::enterMarket() {
                 }
                 i++;
             }
-            return;
         }
         else if (answer == 'N' || answer == 'n')
         {
@@ -336,24 +329,25 @@ void Game::enterMarket() {
         }
         else if (answer == 'Q' || answer == 'q')
         {
-            quit();
+            return false;
         }
         else
         {
             std::cout << "Invalid input please try again" << std::endl;
         }
     }
+    return true;
 }
 
 
-void Game::enterCommon() {
+bool Game::enterCommon() {
 
     std::cout << "You have entered common square" << std::endl;
 
     if (!Fight::begin())
     {
         std::cout << "No monsters around..." << std::endl;
-        return;
+        return true;
     }
 
     std::cout << "Fight Begins..." << std::endl;
@@ -363,8 +357,6 @@ void Game::enterCommon() {
     Fight* fight = new Fight(squad, enemies);
 
     int round = 1;
-
-    bool stopped = false;
 
     while (fight->isNotOver())
     {
@@ -376,8 +368,9 @@ void Game::enterCommon() {
         //if player want to quit game within the fight
         if (!fight->playerTurn())
         {
-            stopped = true;
-            break;
+            delete enemies;
+            delete fight;
+            return false;
         }
 
         if (enemies->defeated())
@@ -397,27 +390,20 @@ void Game::enterCommon() {
     }
 
     //boolean variable stopped is used in case that player wants to exit game during fight, then stopped is true , delete enemies and fight and call quit()
-    if (!stopped)
+    if (squad->defeated())
     {
-        if (squad->defeated())
-        {
-            std::cout << "DEFEATED!" << std::endl;
-            defeat();
-        }
-        else
-        {
-            std::cout << "VICTORY!" << std::endl;
-            victory(enemies->getSize());
-        }
-        delete enemies;
-        delete fight;
+        std::cout << "DEFEATED!" << std::endl;
+        defeat();
     }
     else
     {
-        delete enemies;
-        delete fight;
-        quit();
+        std::cout << "VICTORY!" << std::endl;
+        victory(enemies->getSize());
     }
+
+    delete enemies;
+    delete fight;
+    return true;
 }
 
 

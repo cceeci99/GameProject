@@ -108,7 +108,7 @@ void HeroSquad::move(Square *square) {
 }
 
 
-void HeroSquad::checkInventory() {
+bool HeroSquad::checkInventory() {
 
     for (int i = 0; i < teammates; i++)
     {
@@ -117,9 +117,20 @@ void HeroSquad::checkInventory() {
         char answer;
         std::cin >> answer;
 
+        while ( answer != 'Y' && answer != 'y' && answer != 'N' && answer != 'n' && answer != 'Q' && answer != 'q')
+        {
+            std::cout << "Invalid input please try again" << std::endl;
+            std::cin >> answer;
+        }
         if (answer == 'Y' || answer == 'y')
         {
             heroes[i]->checkInventory();
         }
+        else if (answer == 'Q' || answer == 'q')
+        {
+            return false;
+        }
     }
+
+    return true;
 }

@@ -32,7 +32,7 @@ public:
 
     void move(Square* square);
 
-    void checkInventory();
+    bool checkInventory();
 
 };
 

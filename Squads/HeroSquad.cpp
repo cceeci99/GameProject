@@ -122,6 +122,7 @@ bool HeroSquad::checkInventory() {
             std::cout << "Invalid input please try again" << std::endl;
             std::cin >> answer;
         }
+
         if (answer == 'Y' || answer == 'y')
         {
             heroes[i]->checkInventory();

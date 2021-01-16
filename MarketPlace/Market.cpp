@@ -14,8 +14,7 @@ void Market::open(Hero *hero) {
         switch (choice)
         {
             case 0:
-                std::cout << "Thank you, have a nice day" << std::endl;
-                std::cout << "Closing market" << std::endl;
+                std::cout << "Thank you, have a nice day! Closing market..." << std::endl;
                 return;
             case 1:
                 std::cout << "Opening Items Section" << std::endl;

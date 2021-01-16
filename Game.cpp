@@ -288,54 +288,49 @@ bool Game::enterMarket() {
 
     std::cout << "You have entered a marketPlace do you want to open market? Y/N" << std::endl;
 
-    while (true)
+    char answer;
+    std::cin >> answer;
+
+    while ( answer != 'Y' && answer != 'y' && answer != 'N' && answer != 'n' && answer != 'Q' && answer != 'q')
     {
-        char answer;
+        std::cout << "Invalid input please try again" << std::endl;
         std::cin >> answer;
+    }
 
-        if (answer == 'Y' || answer == 'y')
+    if (answer == 'Y' || answer == 'y')
+    {
+        int i = 0;
+
+        while ( i < squad->getSize() )
         {
-            int i = 0;
+            std::cout << "Do you want to open market for " << squad->getHero(i)->getName() << "? Y/N" << std::endl;
 
-            while ( i < squad->getSize() )
+            std::cin >> answer;
+
+            if (answer == 'Y' || answer == 'y')
             {
-                std::cout << "Do you want to open market for " << squad->getHero(i)->getName() << "? Y/N" << std::endl;
-
-                std::cin >> answer;
-
-                if (answer == 'Y' || answer == 'y')
-                {
-                    marketPlace->open(squad->getHero(i));
-                }
-                else if (answer == 'N' || answer == 'n')
-                {
-                    i++;
-                    continue;
-                }
-                else if (answer == 'Q' || answer == 'q')
-                {
-                    return false;
-                }
-                else
-                {
-                    std::cout << "Invalid input please try again" << std::endl;
-                    continue;
-                }
-                i++;
+                marketPlace->open(squad->getHero(i));
             }
+            else if (answer == 'N' || answer == 'n')
+            {
+                i++;
+                continue;
+            }
+            else if (answer == 'Q' || answer == 'q')
+            {
+                return false;
+            }
+            else
+            {
+                std::cout << "Invalid input please try again" << std::endl;
+                continue;
+            }
+            i++;
         }
-        else if (answer == 'N' || answer == 'n')
-        {
-            break;
-        }
-        else if (answer == 'Q' || answer == 'q')
-        {
-            return false;
-        }
-        else
-        {
-            std::cout << "Invalid input please try again" << std::endl;
-        }
+    }
+    else if (answer == 'Q' || answer == 'q')
+    {
+        return false;
     }
 
     return true;

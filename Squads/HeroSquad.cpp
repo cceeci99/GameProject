@@ -1,15 +1,16 @@
 #include "HeroSquad.h"
 
-HeroSquad::HeroSquad(int n) {
 
-    heroes = new Hero*[n];
+HeroSquad::HeroSquad(int size) {
 
-    for (int i = 0; i < n; i++)
+    heroes = new Hero*[size];
+
+    for (int i = 0; i < size; i++)
     {
         heroes[i] = nullptr;
     }
 
-    teammates = n;
+    teammates = size;
 }
 
 

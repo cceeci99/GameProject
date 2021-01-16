@@ -1,15 +1,15 @@
 #include "MonsterSquad.h"
 
-MonsterSquad::MonsterSquad(int n) {
+MonsterSquad::MonsterSquad(int size) {
 
-    monsters = new Monster*[n];
+    monsters = new Monster*[size];
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < size; i++)
     {
         monsters[i] = nullptr;
     }
 
-    numberOfMonsters = n;
+    numberOfMonsters = size;
 }
 
 

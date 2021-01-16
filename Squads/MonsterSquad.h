@@ -14,7 +14,7 @@ private:
 
 public:
 
-    MonsterSquad(int n);
+    MonsterSquad(int size);
 
     ~MonsterSquad();
 

@@ -15,7 +15,7 @@ private:
 
 public:
 
-    HeroSquad(int n);
+    HeroSquad(int size);
 
     ~HeroSquad();
 

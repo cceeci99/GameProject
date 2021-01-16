@@ -352,7 +352,6 @@ bool Game::enterCommon() {
         return true;
     }
 
-    std::cout << "Fight Begins..." << std::endl;
 
     MonsterSquad* enemies = createEnemies();
 

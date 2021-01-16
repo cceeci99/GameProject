@@ -2,7 +2,7 @@
 #ifndef GAMEPROJECT_SPELL_H
 #define GAMEPROJECT_SPELL_H
 
-#include "../RangeLibr/Range.h"
+#include "../Range/Range.h"
 
 //enumeration for the effect type of the spell used on monsters
 enum EffectType{reduce_damage, reduce_defence, reduce_dodge};

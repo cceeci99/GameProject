@@ -4,6 +4,8 @@
 
 #include "../LivingCreature.h"
 #include "MONSTER_ATTRIBUTES.h"
+
+#include "../../Range/Range.h"
 #include "ActiveSpells.h"
 
 

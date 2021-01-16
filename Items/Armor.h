@@ -8,6 +8,7 @@
 class Armor: public Item {
 
 private:
+    //armor's attribute is defence
     const int defence;
 
 public:

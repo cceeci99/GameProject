@@ -1,5 +1,6 @@
 #include "Monster.h"
 
+
 bool Monster::avoidAttack() const {
     int r = (int)random() % 100 +1;
 
@@ -54,7 +55,7 @@ void Monster::regenerate() {
 
     if (health != 0)
     {
-        health += 10/100*health;
+        health += (int) (health*0.1);
 
         if (health >= 1000)
         {

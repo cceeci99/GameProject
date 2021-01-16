@@ -11,6 +11,7 @@ Grid::Grid(int size) : size(size){
 
     for(int j = 0; j < size; j++)
     {
+        //Pattern for the grid
         if (j % 3 == 0)
         {
             array[0][j] = new Square(0, j, market);

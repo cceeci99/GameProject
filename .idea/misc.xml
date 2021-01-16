@@ -3,7 +3,14 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <sourceRoots>
+      <file path="$PROJECT_DIR$/Creatures" />
       <file path="$PROJECT_DIR$/Fight" />
+      <file path="$PROJECT_DIR$/Items" />
+      <file path="$PROJECT_DIR$/Map" />
+      <file path="$PROJECT_DIR$/MarketPlace" />
+      <file path="$PROJECT_DIR$/RangeLibr" />
+      <file path="$PROJECT_DIR$/Spells" />
+      <file path="$PROJECT_DIR$/Squads" />
     </sourceRoots>
     <libraryRoots>
       <file path="$PROJECT_DIR$/Game_Dir" />

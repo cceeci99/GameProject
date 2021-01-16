@@ -8,6 +8,7 @@
 class Weapon: public Item {
 
 private:
+    //weapon's attribute is damage
     const int damage;
     const bool oneHanded;
     std::string weaponType;

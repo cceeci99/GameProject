@@ -1,5 +1,6 @@
 #include "ActiveSpells.h"
 
+
 void ActiveSpells::activate(EffectType type, int duration) {
 
     if (type == reduce_defence)

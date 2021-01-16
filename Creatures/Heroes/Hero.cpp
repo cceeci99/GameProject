@@ -90,14 +90,14 @@ void Hero::regenerate() {
 
     if (health != 0)
     {
-        health += health*(0.2);
+        health += (int) (health*(0.2));
         if (health >= 1000)
         {
             health = 1000;
         }
     }
 
-    mana += mana*(0.1);
+    mana += (int) (mana*(0.1));
 
     if (mana >= 1000)
     {
@@ -107,8 +107,8 @@ void Hero::regenerate() {
 
 
 void Hero::revive() {
-    health = START_HP/2;
-    mana = START_MP/2;
+    health = MAX_HP / 2;
+    mana = MAX_MP / 2;
 }
 
 
@@ -206,14 +206,14 @@ void Hero::use(Potion *potion) {
         case Health:
             health += potion->getAttribute();
             std::cout << "health + " << potion->getAttribute() << std::endl;
-            if ( health >= START_HP )
-                health = START_HP;
+            if (health >= MAX_HP )
+                health = MAX_HP;
             break;
         case Mana:
             mana += potion->getAttribute();
             std::cout << "mana + " << potion->getAttribute() << std::endl;
-            if ( mana >= START_MP )
-                mana = START_MP;
+            if (mana >= MAX_MP )
+                mana = MAX_MP;
             break;
         case Strength:
             strength += potion->getAttribute();
@@ -277,23 +277,20 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
         }
         else
         {
-            int maxDamage = spell->getMaxDamage();
-            damage = spell->cast() + dexterity*0.1;
+            damage = (int) (spell->getDamage() + dexterity*0.1);
 
-            if ( damage > maxDamage )
+            if ( damage > spell->getMaxDamage() )
             {
-                damage = maxDamage;
+                damage = spell->getMaxDamage();
             }
 
-            effect = spell->getEffect();
             type = spell->getEffectType();
+            effect = spell->getEffect();
             duration = spell->getDuration();
 
             std::cout << "Casting " << spell->getName() << std::endl;
-
-            std::cout << "mana before " << mana << std::endl;
             mana = mana - spell->getManaRequired();
-            std::cout << "mana after " << mana << std::endl;
+
             return;
         }
     }

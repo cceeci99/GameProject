@@ -4,6 +4,8 @@
 
 #include "Spell.h"
 
+//this class keeps the information for the effect of a spell,
+//it's type(reduce damage,defence or dodge), it's durationRounds initialized with zero, and boolean status (activated or disabled)
 
 class SpellEffect {
 
@@ -15,7 +17,7 @@ private:
 
 public:
 
-    explicit SpellEffect(EffectType type)
+    SpellEffect(EffectType type)
     :type(type), durationRounds(0), active(false) {};
 
     ~SpellEffect() = default;

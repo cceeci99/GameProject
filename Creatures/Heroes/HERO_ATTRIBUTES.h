@@ -2,14 +2,15 @@
 #ifndef GAMEPROJECT_HERO_ATTRIBUTES_H
 #define GAMEPROJECT_HERO_ATTRIBUTES_H
 
+//enumeration for attributes of heroes
 enum Attribute{Health, Mana, Strength, Dexterity, Agility};
 
 #define MAX_LEVEL 20
+#define MAX_HP 1000
+#define MAX_MP 1000
 
 #define START_LEVEL 1
 #define START_XP 0
-#define START_HP 1000
-#define START_MP 1000
 #define START_MONEY 1000
 
 #define DEFAULT_STRENGTH 150

@@ -5,12 +5,14 @@
 #include <iostream>
 
 
+//enumeration for the type of item, it is given by the constructors of subclasses
 enum ItemType{armor, weapon, potion};
 
 
 class Item {
 
 private:
+    //each item has it's name, price and required level
     const std::string name;
     const int price;
     const int requiredLevel;
@@ -27,11 +29,12 @@ public:
 
     virtual int getAttribute() const = 0;
 
-    std::string getName() const;
-
     ItemType getType() const;
 
+    std::string getName() const;
+
     int getPrice() const;
+
     int getRequiredLevel() const;
 
 };

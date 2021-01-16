@@ -162,7 +162,7 @@ Market* Game::createMarket() {
     weapon = new Weapon("sword", 100, 1, 80, false);
     marketPlace->addItem(weapon);
     
-    Item* potion = new Potion("Antidote", 100, 1, Health, 55);
+    Item* potion = new Potion("Antidote", 100, 1, 55, Health);
     marketPlace->addItem(potion);
     
 

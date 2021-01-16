@@ -2,7 +2,6 @@
 #ifndef GAMEPROJECT_INVENTORY_H
 #define GAMEPROJECT_INVENTORY_H
 
-#include <vector>
 #include "../../Items/Item.h"
 #include "../../Items/Potion.h"
 #include "../../Items/Armor.h"
@@ -36,6 +35,7 @@ public:
     Item* removeItem(int pos);
     void removeItem(Item* item);
 
+    //methods for using some item from inventory, they are called by the hero
     Potion* choosePotion();
     Armor* chooseArmor();
     Weapon* chooseWeapon();

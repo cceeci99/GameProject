@@ -6,6 +6,7 @@
 
 #define SPELLS_LIMIT 10
 
+//this class implements the acquired spells of some hero
 
 class Skills {
 
@@ -16,7 +17,7 @@ private:
 public:
 
     Skills();
-    ~Skills();;
+    ~Skills();
 
     bool empty() const;
 

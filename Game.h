@@ -2,6 +2,8 @@
 #ifndef GAMEPROJECT_GAME_H
 #define GAMEPROJECT_GAME_H
 
+#include <vector>
+
 #include "Map/Grid/Grid.h"
 #include "MarketPlace/Market.h"
 

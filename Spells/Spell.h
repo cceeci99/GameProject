@@ -4,22 +4,24 @@
 
 #include "../RangeLibr/Range.h"
 
-
+//enumeration for the effect type of the spell used on monsters
 enum EffectType{reduce_damage, reduce_defence, reduce_dodge};
 
 
 class Spell {
 
 private:
+    //each spell has it's name, price required level and mana
     const std::string name;
     const int price;
     const int requiredLevel;
     const int manaRequired;
 
+    //each spell has effect type, a damage range and some duration
+    EffectType type;
     Range damageRange;
     int duration;
 
-    EffectType type;
 
 public:
 
@@ -44,9 +46,9 @@ public:
     int getManaRequired() const;
 
     int getDuration() const;
-    int getMaxDamage() const;
 
-    int cast() const;
+    int getDamage() const;
+    int getMaxDamage() const;
 
 };
 

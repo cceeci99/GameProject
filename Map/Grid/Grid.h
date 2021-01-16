@@ -14,7 +14,7 @@ private:
 
 public:
 
-    explicit Grid(int size);
+    Grid(int size);
 
     ~Grid();
 

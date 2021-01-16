@@ -4,10 +4,12 @@
 
 #include "../../Spells/SpellEffect.h"
 
+//this class keeps the information, for spells that are used on some monster, and must be changed depending on their duration
 
 class ActiveSpells {
 
 private:
+    //types of spells effect
     SpellEffect fire;
     SpellEffect ice;
     SpellEffect lighting;

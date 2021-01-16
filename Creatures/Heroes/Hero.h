@@ -39,8 +39,8 @@ protected:
 public:
 
     Hero(const std::string& name, int strength, int dexterity, int agility)
-    :LivingCreature(name, START_LEVEL, START_HP), mana(START_MP), money(START_MONEY), experience(START_XP),
-    strength(strength), dexterity(dexterity), agility(agility){}
+    : LivingCreature(name, START_LEVEL, MAX_HP), mana(MAX_MP), money(START_MONEY), experience(START_XP),
+      strength(strength), dexterity(dexterity), agility(agility){}
 
     ~Hero() override = default;
 

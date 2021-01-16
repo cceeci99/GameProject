@@ -22,6 +22,7 @@ private:
     Weapon* equippedWeapon = nullptr;
     Armor* equippedArmor = nullptr;
 
+    //functions equip of armor/weapon and use of potion are private, and only class hero has access of them and calls them when it's needed
     void equip(Weapon* weapon);
     void equip(Armor* armor);
     void use(Potion* potion);
@@ -72,16 +73,18 @@ public:
     Item* sellItem(int pos);
     Spell* sellSpell(int pos);
 
-    bool haveSkills() const;        //function that returns true if hero have acquired spells
-
     int attack() const;
 
-    //
+    //function that returns true if hero have acquired spells
+    bool haveSkills() const;
+    //while casting spell we must return it's damage, effect type of effect and it's duration those are given with parameters by reference
     void castSpell(int& damage, int& effect, int& duration, EffectType& type);
 
+    //function that shows available potions hero haves and returns false if they aren't any potions
     bool usePotion();
 
-    void chooseEquipment();         //function that gives the option to player to choose equipment for it's hero (armor/weapon)
+    //function that gives the option to player to choose equipment for it's hero (armor/weapon)
+    void chooseEquipment();
 
     void checkInventory();
 

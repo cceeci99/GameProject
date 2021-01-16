@@ -44,6 +44,8 @@ private:
 
     Market* createMarket();
 
+    //methods returning bool value are used in case player quit game at any point of the game
+
     bool playerMove(Square* currentPos, unsigned int& x1, unsigned int& y1);
 
     bool enterMarket();

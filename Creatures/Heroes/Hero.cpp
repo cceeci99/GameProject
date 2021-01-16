@@ -206,14 +206,16 @@ void Hero::use(Potion *potion) {
         case Health:
             health += potion->getAttribute();
             std::cout << "health + " << potion->getAttribute() << std::endl;
-            if (health >= MAX_HP )
+            if (health >= MAX_HP ) {
                 health = MAX_HP;
+            }
             break;
         case Mana:
             mana += potion->getAttribute();
             std::cout << "mana + " << potion->getAttribute() << std::endl;
-            if (mana >= MAX_MP )
+            if (mana >= MAX_MP ) {
                 mana = MAX_MP;
+            }
             break;
         case Strength:
             strength += potion->getAttribute();

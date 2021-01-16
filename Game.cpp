@@ -56,8 +56,9 @@ bool Game::playerMove(Square *currentPos, unsigned int &x1, unsigned int &y1) {
             squad->print();
             break;
         case 'i':
-            if(!squad->checkInventory())
+            if(!squad->checkInventory()) {
                 return false;
+            }
             break;
         case 'q':
             return false;

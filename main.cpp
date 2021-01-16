@@ -6,11 +6,8 @@ int main() {
 
     srandom(time(nullptr));
 
-    Game* game = new Game();
-
-    game->play();
-
-    delete game;
+    Game game;
+    game.play();
 
     return 0;
 }

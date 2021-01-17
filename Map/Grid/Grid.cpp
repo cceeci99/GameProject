@@ -1,5 +1,6 @@
 #include "Grid.h"
 
+
 Grid::Grid(int size) : size(size){
 
     array = new Square**[size];

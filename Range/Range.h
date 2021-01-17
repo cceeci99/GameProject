@@ -3,7 +3,6 @@
 #define GAMEPROJECT_RANGE_H
 
 #include <iostream>
-#include <cstdlib>
 
 
 class Range {
@@ -19,28 +18,13 @@ public:
 
     ~Range() = default;
 
-    void print() const{
-        std::cout << min << "-" << max << std::endl;
-    }
+    void print() const;
 
-    int getValue() const{
-        return min + ((int)random() % ((max+1) - min));     //return random value within the range
-    }
+    int getValue() const;
 
-    int getMax() const{
-        return max;
-    }
+    int getMax() const;
 
-    void reduceRange(int reduce){
-        min -= reduce;
-        max -= reduce;
-
-        if ( min < 0 )
-            min = 0;
-
-        if ( max < 0 )
-            max = 0;
-    }
+    void reduceRange(int reduce);
 
 };
 

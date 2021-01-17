@@ -24,29 +24,27 @@ Market* Game::createMarket() {
 
     marketPlace = new Market();
 
-    Item* armor = new Armor("Emblem", 100, 1, 70);
+    Item* armor = new Armor("Emblem", 100, 1, 100);
     marketPlace->addItem(armor);
-    armor = new Armor("Hat", 150, 4, 130);
+    armor = new Armor("Genji Shield", 150, 5, 150);
     marketPlace->addItem(armor);
-    armor = new Armor("Rescue Shield", 200, 8, 200);
+    armor = new Armor("Rescue Shield", 200, 10, 250);
     marketPlace->addItem(armor);
-    armor = new Armor("Silver Shield", 300, 12, 300);
-    marketPlace->addItem(armor);
-    armor = new Armor("Gold Shield", 500, 16, 400);
+    armor = new Armor("Gold Shield", 500, 15, 400);
     marketPlace->addItem(armor);
 
-    Item* weapon = new Weapon("axe", 100, 1, 100, true);
+    Item* weapon = new Weapon("HeartBreaker", 100, 1, 100, true);
     marketPlace->addItem(weapon);
-    weapon = new Weapon("sword", 100, 1, 80, false);
+    weapon = new Weapon("Crystal Sword", 100, 1, 80, false);
     marketPlace->addItem(weapon);
 
     Item* potion = new Potion("Antidote", 100, 1, 55, Health);
     marketPlace->addItem(potion);
 
 
-    Spell* spell = new FireSpell("inferno", 100, 1, 150,Range(100, 300), 50);
-    Spell* spell1 = new IceSpell("frost", 100, 1, 300,Range(200, 250), 80);
-    Spell* spell2 = new LightingSpell("zeus", 100, 1, 180,Range(100, 200), 5);
+    Spell* spell = new FireSpell("Flame", 100, 1, 150,Range(100, 300), 50);
+    Spell* spell1 = new IceSpell("Freeze", 100, 1, 300,Range(200, 250), 80);
+    Spell* spell2 = new LightingSpell("Angel’s Mercy", 100, 1, 180,Range(100, 200), 5);
 
     marketPlace->addSpell(spell);
     marketPlace->addSpell(spell1);
@@ -76,7 +74,7 @@ void Game::createHeroes() {
     squad = new HeroSquad(n);
 
     //random names for heroes
-    static std::string names[10] = {"Karontor","Diirinka","Luthic","Merlin","Sixin",
+    static std::string names[10] = {"Karontor","Memnor","Luthic","Merlin","Sixin",
                                     "Ilneval", "Kratos", "Eadro", "Skerrit", "Jubilex"};
 
     std::vector<std::string> usedNames;

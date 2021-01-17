@@ -202,6 +202,7 @@ void Fight::normalAttack(Hero *hero, Monster *monster) {
     std::cout << monster->getName() << "'s life: " << monster->getHealth() << std::endl;
 }
 
+
 void Fight::spellAttack(Hero *hero, Monster *monster) {
 
     EffectType effect;
@@ -241,6 +242,7 @@ void Fight::spellAttack(Hero *hero, Monster *monster) {
 
     std::cout << monster->getName() << "'s life: " << monster->getHealth() << std::endl;
 }
+
 
 void Fight::monsterAttack(Monster *monster, Hero *hero) {
 

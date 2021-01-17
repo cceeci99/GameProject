@@ -20,129 +20,6 @@ Game::~Game() {
 }
 
 
-bool Game::playerMove(Square *currentPos, unsigned int &x1, unsigned int &y1) {
-
-    unsigned int x = currentPos->getX();
-    unsigned int y = currentPos->getY();
-
-    std::cout << "Move your heroes" << std::endl;
-
-    char button;
-    std::cin >> button;
-
-    switch (button)
-    {
-        case 'w':
-            x1 = x + 1;
-            y1 = y;
-            break;
-        case 's':
-            x1 = x - 1;
-            y1 = y;
-            break;
-        case 'a':
-            x1 = x;
-            y1 = y - 1;
-            break;
-        case 'd':
-            x1 = x;
-            y1 = y + 1;
-            break;
-        case 'm':
-            map->displayMap();
-            break;
-        case 'c':
-            std::cout << "Your Heroes: " << std::endl;
-            squad->print();
-            break;
-        case 'i':
-            if(!squad->checkInventory()) {
-                return false;
-            }
-            break;
-        case 'q':
-            return false;
-        default:
-            std::cout << "Please enter a valid button" << std::endl;
-            break;
-    }
-
-    return true;
-}
-
-
-void Game::play() {
-
-    std::cout << "Please create your Hero Squad  of (1-3) heroes" << std::endl;
-    createHeroes();
-
-    std::cout << "Your Hero Squad is ready: " << std::endl;
-    squad->print();
-
-    std::cout << "Move your heroes by using keys (w, a, s, d) for up, left, down and right" << std::endl;
-    std::cout << "You can see map by pressing (m)" << std::endl;
-    std::cout << "You can quit game by pressing (q)" << std::endl;
-    std::cout << "You can check inventory of your heroes by pressing (i)" << std::endl;
-    std::cout << "You can check your heroes stats by pressing (c)\n" << std::endl;
-
-    //heroes start at coordinates 0,0 of map which contains market
-    Square* currentPos = map->getSquare(0, 0);
-    squad->move(currentPos);
-
-    if (!enterMarket())
-        return;
-
-    unsigned int x = -1;
-    unsigned int y = -1;
-
-    while(true)
-    {
-        unsigned int tempX = x;
-        unsigned int tempY = y;
-
-        if (!playerMove(currentPos, x, y))
-            break;
-
-        //check if player is at same coordinates
-        if ( (x == -1 && y == -1) || (x == tempX && y == tempY) )
-            continue;
-
-        if (map->outOfBounds(x, y))
-        {
-            std::cout << "You are going out of bounds please try again" << std::endl;
-        }
-        else
-        {
-            Square* next = map->getSquare(x, y);
-
-            if (next->getType() == nonAccessible)
-            {
-                std::cout << "Non-Accessible square, please go to another direction" << std::endl;
-                continue;
-            }
-            else if (next->getType() == market)
-            {
-                currentPos->setSquad(nullptr);
-                squad->move(next);
-
-                if (!enterMarket())
-                    break;
-            }
-            else
-            {
-                currentPos->setSquad(nullptr);
-                squad->move(next);
-
-                if (!enterCommon())
-                    break;
-            }
-
-            currentPos = map->getSquare(x, y);
-        }
-    }
-}
-
-
 Market* Game::createMarket() {
 
     marketPlace = new Market();
@@ -162,10 +39,10 @@ Market* Game::createMarket() {
     marketPlace->addItem(weapon);
     weapon = new Weapon("sword", 100, 1, 80, false);
     marketPlace->addItem(weapon);
-    
+
     Item* potion = new Potion("Antidote", 100, 1, 55, Health);
     marketPlace->addItem(potion);
-    
+
 
     Spell* spell = new FireSpell("inferno", 100, 1, 150,Range(100, 300), 50);
     Spell* spell1 = new IceSpell("frost", 100, 1, 300,Range(200, 250), 80);
@@ -237,9 +114,9 @@ MonsterSquad *Game::createEnemies() {
 
     //some random names for the monsters creation
     static std::string names[10] = {"Abbathor","Arvoreen","Ehlonna","Heironeous","Pelor",
-                             "Urdlen", "Bahamut", "Orcus", "Vaprak", "Bahgtru"};
+                                    "Urdlen", "Bahamut", "Orcus", "Vaprak", "Bahgtru"};
 
-    int size = (int)random() % 3 + 1;
+    int size = (int)random() % 3 + 1;   //create random from 1 to 3 monsters
 
     MonsterSquad* enemies = new MonsterSquad(size);
 
@@ -281,6 +158,129 @@ MonsterSquad *Game::createEnemies() {
     }
 
     return enemies;
+}
+
+
+void Game::play() {
+
+    std::cout << "Please create your Hero Squad  of (1-3) heroes" << std::endl;
+    createHeroes();
+
+    std::cout << "Your Hero Squad is ready: " << std::endl;
+    squad->print();
+
+    std::cout << "Move your heroes by using keys (w, a, s, d) for up, left, down and right" << std::endl;
+    std::cout << "You can see map by pressing (m)" << std::endl;
+    std::cout << "You can quit game by pressing (q)" << std::endl;
+    std::cout << "You can check inventory of your heroes by pressing (i)" << std::endl;
+    std::cout << "You can check your heroes stats by pressing (c)\n" << std::endl;
+
+    //heroes start at coordinates 0,0 of map which contains market
+    Square* currentPos = map->getSquare(0, 0);
+    squad->move(currentPos);
+
+    if (!enterMarket())
+        return;
+
+    unsigned int x = -1;
+    unsigned int y = -1;
+
+    while(true)
+    {
+        unsigned int tempX = x;
+        unsigned int tempY = y;
+
+        if (!playerMove(currentPos, x, y))
+            return;
+
+        //check if player is at same coordinates
+        if ( (x == -1 && y == -1) || (x == tempX && y == tempY) )
+            continue;
+
+        if (map->outOfBounds(x, y))
+        {
+            std::cout << "You are going out of bounds please try again" << std::endl;
+        }
+        else
+        {
+            Square* next = map->getSquare(x, y);
+
+            if (next->getType() == nonAccessible)
+            {
+                std::cout << "Non-Accessible square, please go to another direction" << std::endl;
+                continue;
+            }
+            else if (next->getType() == market)
+            {
+                currentPos->setSquad(nullptr);
+                squad->move(next);
+
+                if (!enterMarket())
+                    return;
+            }
+            else
+            {
+                currentPos->setSquad(nullptr);
+                squad->move(next);
+
+                if (!enterCommon())
+                    return;
+            }
+
+            currentPos = map->getSquare(x, y);
+        }
+    }
+}
+
+
+bool Game::playerMove(Square *currentPos, unsigned int &x1, unsigned int &y1) {
+
+    unsigned int x = currentPos->getX();
+    unsigned int y = currentPos->getY();
+
+    std::cout << "Move your heroes" << std::endl;
+
+    char button;
+    std::cin >> button;
+
+    switch (button)
+    {
+        case 'w':
+            x1 = x + 1;
+            y1 = y;
+            break;
+        case 's':
+            x1 = x - 1;
+            y1 = y;
+            break;
+        case 'a':
+            x1 = x;
+            y1 = y - 1;
+            break;
+        case 'd':
+            x1 = x;
+            y1 = y + 1;
+            break;
+        case 'm':
+            map->displayMap();
+            break;
+        case 'c':
+            std::cout << "Your Heroes: " << std::endl;
+            squad->print();
+            break;
+        case 'i':
+            if(!squad->checkInventory()) {
+                return false;           //if player quits game while checking inventory
+            }
+            break;
+        case 'q':
+            return false;
+        default:
+            std::cout << "Please enter a valid button" << std::endl;
+            break;
+    }
+
+    return true;
 }
 
 
@@ -348,6 +348,7 @@ bool Game::enterCommon() {
     }
 
 
+    //each time heroes get evolved in fight generate random monsters in a form of team to fight them
     MonsterSquad* enemies = createEnemies();
 
     Fight fight(squad, enemies);

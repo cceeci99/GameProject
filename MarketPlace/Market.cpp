@@ -6,6 +6,7 @@ void Market::open(Hero *hero) {
 
     while(true)
     {
+        std::cout << "Choose 0 or 1 or 2" << std::endl;
         std::cout << "0.Close Market \t 1.Open Items Section \t 2.Open Spells Section" << std::endl;
 
         int choice;

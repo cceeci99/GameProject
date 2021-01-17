@@ -427,7 +427,6 @@ void Game::victory(int monstersDefeated) {
 
         hero->addExperience(xp);
         hero->earnMoney(money);
-
     }
 }
 

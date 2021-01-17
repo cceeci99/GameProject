@@ -372,7 +372,7 @@ void Hero::checkInventory() {
             return;
         }
 
-        std::cout << "Choose something to equip/use" << std::endl;
+        std::cout << "Choose the place of the item you want to equip/use or 0 to close inventory" << std::endl;
 
         int pos;
         std::cin >> pos;    // get user input for position of item he want's to use

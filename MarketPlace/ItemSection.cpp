@@ -52,6 +52,7 @@ void ItemSection::open(Hero *hero) {
         std::cout << "Your Inventory: " << std::endl;
         hero->printInventory();
 
+        std::cout << "Choose 0 or 1 or 2" << std::endl;
         std::cout << "0.Close Items Section \t 1.Buy Item \t 2.Sell Item " << std::endl;
 
         int choice;

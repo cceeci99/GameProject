@@ -51,6 +51,7 @@ void SpellSection::open(Hero *hero) {
         std::cout << "Your Acquired Skills" << std::endl;
         hero->printSkills();
 
+        std::cout << "Choose 0 or 1 or 2" << std::endl;
         std::cout << "0.Close Spells Section \t 1.Buy Spell \t 2.Sell Spell" << std::endl;
 
         int choice;

@@ -1,6 +1,7 @@
 #include "Inventory.h"
 #include <vector>
 
+
 Inventory::Inventory() {
 
     for (int i = 0; i < INVENTORY_CAPACITY; i++)

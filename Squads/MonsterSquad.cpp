@@ -1,5 +1,6 @@
 #include "MonsterSquad.h"
 
+
 MonsterSquad::MonsterSquad(int size) {
 
     monsters = new Monster*[size];

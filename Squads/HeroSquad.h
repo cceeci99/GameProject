@@ -2,9 +2,10 @@
 #ifndef GAMEPROJECT_HEROSQUAD_H
 #define GAMEPROJECT_HEROSQUAD_H
 
+#include "../KEYBOARD_SYMBOLS.h"
+
 #include "../Creatures/Heroes/Hero.h"
 #include "../Map/Square/Square.h"
-#include "../KEYBOARD_SYMBOLS.h"
 
 class HeroSquad {
 

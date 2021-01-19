@@ -253,16 +253,16 @@ int Hero::attack() const {
 
 void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) {
 
-    std::cout << "Your acquired skills are:" << std::endl;
+    std::cout << "Your acquired spells are:" << std::endl;
     skills.print();
+
 
     while (true)
     {
+        std::cout << "Choose the place of spell you want to use" << std::endl;
+
         int pos;
         std::cin >> pos;
-
-        if (pos == 0)
-            return;
 
         pos--;
 

@@ -65,7 +65,7 @@ bool Skills::addSpell(Spell *newSpell) {
 
 
 Spell* Skills::getSpell(int pos) {
-    if (pos >= SPELLS_LIMIT)
+    if (pos >= SPELLS_LIMIT || pos < 0)
         return nullptr;
 
     return spells[pos];

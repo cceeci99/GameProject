@@ -4,6 +4,8 @@
 
 #include <vector>
 
+#include "KEYBOARD_SYMBOLS.h"
+
 #include "Map/Grid/Grid.h"
 #include "MarketPlace/Market.h"
 
@@ -23,11 +25,9 @@
 #include "Spells/IceSpell.h"
 #include "Spells/LightingSpell.h"
 
-#include "KEYBOARD_SYMBOLS.h"
 
 #define MAP_SIZE 8
 #define MAX_TEAMMATES 3
-
 
 
 class Game {

@@ -259,7 +259,7 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
 
     while (true)
     {
-        std::cout << "Choose the place of spell you want to use" << std::endl;
+        std::cout << "Choose the position of the spell you want to cast" << std::endl;
 
         int pos;
         std::cin >> pos;
@@ -323,7 +323,7 @@ void Hero::chooseEquipment() {
         return;
     }
 
-    std::cout << "Choose armor" << std::endl;
+    std::cout << "Choose the position of armor you want to equip (0 for none)" << std::endl;
     Armor* arm = inventory.chooseArmor();
 
     if (arm != nullptr)
@@ -339,7 +339,7 @@ void Hero::chooseEquipment() {
         equip(arm);
     }
 
-    std::cout << "Choose weapon" << std::endl;
+    std::cout << "Choose the position of weapon you want to equip (0 for none)" << std::endl;
     Weapon* weap = inventory.chooseWeapon();
 
     if (weap != nullptr)
@@ -372,7 +372,7 @@ void Hero::checkInventory() {
             return;
         }
 
-        std::cout << "Choose the place of the item you want to equip/use or 0 to close inventory" << std::endl;
+        std::cout << "Choose the position of the item you want to equip/use or 0 to close inventory" << std::endl;
 
         int pos;
         std::cin >> pos;    // get user input for position of item he want's to use

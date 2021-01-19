@@ -118,17 +118,17 @@ bool HeroSquad::checkInventory() {
         char answer;
         std::cin >> answer;
 
-        while ( answer != 'Y' && answer != 'y' && answer != 'N' && answer != 'n' && answer != 'Q' && answer != 'q')
+        while ( answer != YES && answer != YES_ && answer != NO && answer != NO_ && answer != QUIT && answer != QUIT_)
         {
             std::cout << "Invalid input please try again" << std::endl;
             std::cin >> answer;
         }
 
-        if (answer == 'Y' || answer == 'y')
+        if (answer == YES || answer == YES_)
         {
             heroes[i]->checkInventory();
         }
-        else if (answer == 'Q' || answer == 'q')
+        else if (answer == QUIT || answer == QUIT_)
         {
             return false;
         }

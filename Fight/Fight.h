@@ -5,6 +5,7 @@
 #include "../Squads/HeroSquad.h"
 #include "../Squads/MonsterSquad.h"
 
+#include "../KEYBOARD_SYMBOLS.h"
 
 class Fight {
 

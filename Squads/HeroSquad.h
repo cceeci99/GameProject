@@ -4,7 +4,7 @@
 
 #include "../Creatures/Heroes/Hero.h"
 #include "../Map/Square/Square.h"
-
+#include "../KEYBOARD_SYMBOLS.h"
 
 class HeroSquad {
 

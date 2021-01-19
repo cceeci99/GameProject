@@ -31,16 +31,16 @@ bool Fight::playerTurn() {
     {
         std::cin >> answer;
 
-        if(answer == 'Y' || answer == 'y')
+        if(answer == YES || answer == YES_)
         {
             displayStats();
             break;
         }
-        else if (answer =='N' || answer == 'n')
+        else if (answer == NO || answer == NO_)
         {
             break;
         }
-        else if (answer == 'Q' || answer == 'q')
+        else if (answer == QUIT || answer == QUIT_)
         {
             return false;
         }
@@ -71,17 +71,17 @@ bool Fight::playerTurn() {
 
         std::cin >> answer;
 
-        while (answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N' && answer != 'q' && answer != 'Q')
+        while (answer != YES_ && answer != YES && answer != NO_ && answer != NO && answer != QUIT_ && answer != QUIT)
         {
             std::cout << "Invalid input please try again" << std::endl;
             std::cin >> answer;
         }
 
-        if (answer == 'Y' || answer == 'y')
+        if (answer == YES || answer == YES_)
         {
             hero->chooseEquipment();
         }
-        else if (answer == 'Q' || answer == 'q')
+        else if (answer == QUIT || answer == QUIT_)
         {
             return false;
         }
@@ -89,7 +89,7 @@ bool Fight::playerTurn() {
         std::cout << "Do you want to make normal attack (o), cast spell(l) or use potion(p)" << std::endl;
         std::cin >> answer;
 
-        while(answer != 'o' && answer != 'l' && answer != 'p' && answer != 'q' && answer != 'Q')
+        while(answer != NORMAL_ATTACK && answer != CAST_SPELL && answer != USE_POTION && answer != QUIT_ && answer != QUIT)
         {
             std::cout << "invalid input try again" << std::endl;
             std::cin >> answer; 
@@ -113,11 +113,11 @@ bool Fight::playerTurn() {
             continue;
         }
 
-        if (answer == 'o')
+        if (answer == NORMAL_ATTACK)
         {
             normalAttack(hero, monster);
         }
-        else if (answer == 'l')
+        else if (answer == CAST_SPELL)
         {
             if (!hero->haveSkills())
             {
@@ -129,7 +129,7 @@ bool Fight::playerTurn() {
                 spellAttack(hero, monster);
             }
         }
-        else if (answer == 'p')
+        else if (answer == USE_POTION)
         {
             if(!hero->usePotion())
             {
@@ -137,7 +137,7 @@ bool Fight::playerTurn() {
                 continue;
             }
         }
-        else if (answer == 'Q'|| answer == 'q')
+        else if (answer == QUIT|| answer == QUIT_)
         {
             return false;
         }

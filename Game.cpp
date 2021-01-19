@@ -243,35 +243,36 @@ bool Game::playerMove(Square *currentPos, unsigned int &x1, unsigned int &y1) {
 
     switch (button)
     {
-        case 'w':
+        case MOVE_UP:
             x1 = x + 1;
             y1 = y;
             break;
-        case 's':
+        case MOVE_DOWN:
             x1 = x - 1;
             y1 = y;
             break;
-        case 'a':
+        case MOVE_LEFT:
             x1 = x;
             y1 = y - 1;
             break;
-        case 'd':
+        case MOVE_RIGHT:
             x1 = x;
             y1 = y + 1;
             break;
-        case 'm':
+        case SHOW_MAP:
             map->displayMap();
             break;
-        case 'c':
+        case SHOW_STATS:
             std::cout << "Your Heroes: " << std::endl;
             squad->print();
             break;
-        case 'i':
-            if(!squad->checkInventory()) {
+        case OPEN_INVENTORY:
+            if(!squad->checkInventory()){
                 return false;           //if player quits game while checking inventory
             }
             break;
-        case 'q':
+        case QUIT:
+        case QUIT_:
             return false;
         default:
             std::cout << "Please enter a valid button" << std::endl;
@@ -289,13 +290,13 @@ bool Game::enterMarket() {
     char answer;
     std::cin >> answer;
 
-    while ( answer != 'Y' && answer != 'y' && answer != 'N' && answer != 'n' && answer != 'Q' && answer != 'q')
+    while ( answer != YES && answer != YES_ && answer != NO && answer != NO_ && answer != QUIT && answer != QUIT_)
     {
         std::cout << "Invalid input please try again" << std::endl;
         std::cin >> answer;
     }
 
-    if (answer == 'Y' || answer == 'y')
+    if (answer == YES || answer == YES_)
     {
         int i = 0;
 
@@ -305,16 +306,16 @@ bool Game::enterMarket() {
 
             std::cin >> answer;
 
-            if (answer == 'Y' || answer == 'y')
+            if (answer == YES || answer == YES_)
             {
                 marketPlace->open(squad->getHero(i));
             }
-            else if (answer == 'N' || answer == 'n')
+            else if (answer == NO || answer == NO_)
             {
                 i++;
                 continue;
             }
-            else if (answer == 'Q' || answer == 'q')
+            else if (answer == QUIT || answer == QUIT_)
             {
                 return false;
             }
@@ -326,7 +327,7 @@ bool Game::enterMarket() {
             i++;
         }
     }
-    else if (answer == 'Q' || answer == 'q')
+    else if (answer == QUIT || answer == QUIT_)
     {
         return false;
     }

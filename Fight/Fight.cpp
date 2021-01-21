@@ -1,6 +1,18 @@
 #include "Fight.h"
 
 
+Fight::Fight(HeroSquad *heroes, MonsterSquad *enemies)
+        :heroes(heroes), enemies(enemies){
+    std::cout << "Fight Begins..." << std::endl;
+}
+
+
+Fight::~Fight() {
+    heroes = nullptr;
+    enemies = nullptr;
+}
+
+
 bool Fight::begin() {
     return ((random() % 100 + 1) <= 60);
 }
@@ -259,3 +271,4 @@ void Fight::monsterAttack(Monster *monster, Hero *hero) {
 
     std::cout << hero->getName() << "'s health: " << hero->getHealth() << std::endl;
 }
+

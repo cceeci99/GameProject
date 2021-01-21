@@ -25,12 +25,9 @@ private:
 
 public:
 
-    Fight(HeroSquad* heroes, MonsterSquad* enemies)
-    :heroes(heroes), enemies(enemies){
-        std::cout << "Fight Begins..." << std::endl;
-    }
+    Fight(HeroSquad* heroes, MonsterSquad* enemies);
 
-    ~Fight() = default;
+    ~Fight();
 
     static bool begin();
 

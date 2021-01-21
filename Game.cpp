@@ -74,7 +74,7 @@ void Game::createHeroes() {
     squad = new HeroSquad(n);
 
     //random names for heroes
-    static std::string names[10] = {"Karontor","Memnor","Luthic","Merlin","Sixin",
+    std::string names[10] = {"Karontor","Memnor","Luthic","Merlin","Sixin",
                                     "Ilneval", "Kratos", "Eadro", "Skerrit", "Jubilex"};
 
     std::vector<std::string> usedNames;
@@ -111,7 +111,7 @@ void Game::createHeroes() {
 MonsterSquad *Game::createEnemies() {
 
     //some random names for the monsters creation
-    static std::string names[10] = {"Abbathor","Arvoreen","Ehlonna","Heironeous","Pelor",
+    std::string names[10] = {"Abbathor","Arvoreen","Ehlonna","Heironeous","Pelor",
                                     "Urdlen", "Bahamut", "Orcus", "Vaprak", "Bahgtru"};
 
     int size = (int)random() % 3 + 1;   //create random from 1 to 3 monsters

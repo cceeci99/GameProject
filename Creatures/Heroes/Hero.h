@@ -17,7 +17,7 @@ private:
     int money;
 
     Inventory inventory;
-    Skills skills;
+    Skills skills;          //by skills, we mean the acquired spells of a hero
 
     Weapon* equippedWeapon = nullptr;
     Armor* equippedArmor = nullptr;
@@ -49,6 +49,12 @@ public:
 
     virtual void levelUp() = 0;
 
+    void addExperience(int xp);
+
+    void earnMoney(int money);
+    void looseMoney();
+
+    //methods used when hero is at market so he can see his stuffs and spells
     void printInventory() const;
     void printSkills() const;
 
@@ -62,11 +68,6 @@ public:
 
     void revive();
 
-    void earnMoney(int earned);
-    void looseMoney();
-
-    void addExperience(int xp);
-
     void buyItem(Item* newItem);
     void buySpell(Spell* newSpell);
 
@@ -77,6 +78,7 @@ public:
 
     //function that returns true if hero have acquired spells
     bool haveSkills() const;
+
     //while casting spell we must return it's damage, effect type of effect and it's duration those are given with parameters by reference
     void castSpell(int& damage, int& effect, int& duration, EffectType& type);
 

@@ -1,6 +1,42 @@
 #include "Hero.h"
 
 
+void Hero::addExperience(int xp) {
+
+    if (level == MAX_LEVEL)
+    {
+        std::cout << "You reached max level!" << std::endl;
+        return;
+    }
+
+    experience += xp;
+
+    //experience required for next level
+    int nextLevelExperience = 5 * ((level+1)*(level+1)) - (5 * (level+1));
+
+
+    if (experience >= nextLevelExperience)
+    {
+        std::cout << "Level UP! Congrats you reached level " << level+1 << std::endl;
+        levelUp();
+        return;
+    }
+
+    std::cout << "  |Current Experience: " << experience << "   Experience for next level: " << nextLevelExperience << "|" << std::endl;
+
+}
+
+
+void Hero::earnMoney(int gold) {
+    money += gold;
+}
+
+
+void Hero::looseMoney() {
+    money = money/2;
+}
+
+
 void Hero::printInventory() const {
     std::cout << "Money: " << money << std::endl;
     inventory.print();
@@ -9,6 +45,13 @@ void Hero::printInventory() const {
 
 void Hero::printSkills() const {
     skills.print();
+}
+
+
+bool Hero::avoidAttack() const {
+    int r = (int)random() % 100 +1;
+
+    return (r <= agility);
 }
 
 
@@ -38,54 +81,6 @@ void Hero::reduceHealth(int reduce) {
 }
 
 
-bool Hero::dead() const {
-    return health==0;
-}
-
-
-void Hero::earnMoney(int earned) {
-    money += earned;
-}
-
-
-void Hero::looseMoney() {
-    money = money/2;
-}
-
-
-void Hero::addExperience(int xp) {
-
-    if (level == MAX_LEVEL)
-    {
-        std::cout << "You reached max level!" << std::endl;
-        return;
-    }
-
-    experience += xp;
-
-    //experience required for next level
-    int nextLevelExperience = 5 * ((level+1)*(level+1)) - (5 * (level+1));
-
-
-    if (experience >= nextLevelExperience)
-    {
-        std::cout << "Level UP! Congrats you reached level " << level+1 << std::endl;
-        levelUp();
-        return;
-    }
-
-    std::cout << "  |Current Experience: " << experience << "   Experience for next level: " << nextLevelExperience << "|" << std::endl;
-
-}
-
-
-bool Hero::avoidAttack() const {
-    int r = (int)random() % 100 +1;
-
-    return (r <= agility);
-}
-
-
 void Hero::regenerate() {
 
     if (health != 0)
@@ -103,6 +98,11 @@ void Hero::regenerate() {
     {
         mana = 1000;
     }
+}
+
+
+bool Hero::dead() const {
+    return health==0;
 }
 
 
@@ -360,7 +360,6 @@ void Hero::chooseEquipment() {
 void Hero::checkInventory() {
 
     std::cout << "Opening inventory: " << std::endl;
-    std::cout << "Money: " << money << std::endl;
 
     inventory.print();
 

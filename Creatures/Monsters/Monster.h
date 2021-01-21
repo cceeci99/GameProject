@@ -41,16 +41,16 @@ public:
 
     virtual int attack() const = 0;
 
+    bool dead() const;
+
+    void regenerate() override;
+
     bool avoidAttack() const;
 
     void reduceHealth(int reduce) override;
     void reduceDamage(int reduce);
     void reduceDefence(int reduce);
     void reduceDodge(int reduce);
-
-    bool dead() const;
-
-    void regenerate() override;
 
     //functions of monster to deal with active spells used on it
     void activateSpell(EffectType type, int duration);

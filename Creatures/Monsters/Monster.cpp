@@ -1,6 +1,25 @@
 #include "Monster.h"
 
 
+bool Monster::dead() const {
+    return health==0;
+}
+
+
+void Monster::regenerate() {
+
+    if (health != 0)
+    {
+        health += (int) (health*0.1);
+
+        if (health >= 1000)
+        {
+            health = 1000;
+        }
+    }
+}
+
+
 bool Monster::avoidAttack() const {
     int r = (int)random() % 100 +1;
 
@@ -42,25 +61,6 @@ void Monster::reduceDodge(int reduce) {
     if (dodge < 0)
     {
         dodge = 0;
-    }
-}
-
-
-bool Monster::dead() const {
-    return health==0;
-}
-
-
-void Monster::regenerate() {
-
-    if (health != 0)
-    {
-        health += (int) (health*0.1);
-
-        if (health >= 1000)
-        {
-            health = 1000;
-        }
     }
 }
 

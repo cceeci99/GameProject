@@ -1,5 +1,7 @@
+
 #ifndef GAMEPROJECT_KEYBOARD_SYMBOLS_H
 #define GAMEPROJECT_KEYBOARD_SYMBOLS_H
+
 
 #define YES_ 'y'
 #define YES 'Y'
@@ -23,5 +25,6 @@
 #define SHOW_MAP 'm'
 
 #define OPEN_INVENTORY 'i'
+
 
 #endif //GAMEPROJECT_KEYBOARD_SYMBOLS_H

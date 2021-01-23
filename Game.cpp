@@ -35,20 +35,33 @@ Market* Game::createMarket() {
 
     Item* weapon = new Weapon("HeartBreaker", 100, 1, 100, true);
     marketPlace->addItem(weapon);
-    weapon = new Weapon("Crystal Sword", 100, 1, 80, false);
+    weapon = new Weapon("Crystal Sword", 200, 4, 150, false);
+    marketPlace->addItem(weapon);
+    weapon = new Weapon("Full Metal Rod", 350, 8, 200, false);
+    marketPlace->addItem(weapon);
+    weapon = new Weapon("Darkness Staff", 450, 14, 350, true);
     marketPlace->addItem(weapon);
 
-    Item* potion = new Potion("Antidote", 100, 1, 55, Health);
+    Item* potion = new Potion("Antidote", 100, 1, 200, Health);
+    marketPlace->addItem(potion);
+    potion = new Potion("Mana Tonic", 180, 3, 250, Mana);
+    marketPlace->addItem(potion);
+    potion = new Potion("Power Distiller", 250, 7, 100, Strength);
+    marketPlace->addItem(potion);
+    potion = new Potion("Mega-Potion", 340, 12, 70, Dexterity);
+    marketPlace->addItem(potion);
+    potion = new Potion("Speed Distiller", 400, 5, 55, Agility);
     marketPlace->addItem(potion);
 
 
-    Spell* spell = new FireSpell("Flame", 100, 1, 150,Range(100, 300), 50);
-    Spell* spell1 = new IceSpell("Freeze", 100, 1, 300,Range(200, 250), 80);
-    Spell* spell2 = new LightingSpell("Angel’s Mercy", 100, 1, 180,Range(100, 200), 5);
-
+    Spell* spell = new FireSpell("Flame", 100, 1, 150, Range(100, 300), 50);
     marketPlace->addSpell(spell);
-    marketPlace->addSpell(spell1);
-    marketPlace->addSpell(spell2);
+    spell = new IceSpell("Freeze", 150, 4, 300, Range(200, 350), 80);
+    marketPlace->addSpell(spell);
+    spell = new LightingSpell("Angel’s Mercy", 250, 8, 400, Range(250, 450), 5);
+    marketPlace->addSpell(spell);
+    spell = new FireSpell("Fireball", 350, 14, 500, Range(350, 550), 5);
+    marketPlace->addSpell(spell);
 
     return marketPlace;
 }

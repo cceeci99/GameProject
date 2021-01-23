@@ -13,6 +13,7 @@ private:
     int addedItems = 0;
     Item** items = new Item*[ITEMS_CAPACITY];
 
+    //buy and sell methods are encapsulated in market
     void buyOption(Hero* hero);
     static void sellOption(Hero* hero) ;
 
@@ -28,7 +29,7 @@ public:
 
     void open(Hero* hero);
 
-    void addItem(Item* newItem);
+    void addItem(Item* newItem);    //function used at the beginning for filling the market with items
 
 };
 

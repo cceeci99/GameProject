@@ -1,5 +1,6 @@
 #include "SpellSection.h"
 
+
 SpellSection::SpellSection() {
 
     for (int i=0; i<SPELLS_CAPACITY; i++)
@@ -121,7 +122,7 @@ void SpellSection::sellOption(Hero *hero) {
 
         pos--;
 
-        Spell* spell =hero->sellSpell(pos);
+        Spell* spell = hero->sellSpell(pos);
 
         if (spell == nullptr)
         {

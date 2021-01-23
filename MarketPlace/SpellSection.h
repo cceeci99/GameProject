@@ -13,8 +13,9 @@ private:
     int addedSpells = 0;
     Spell** spells = new Spell*[SPELLS_CAPACITY];
 
+    //buy and sell methods are encapsulated in market
     void buyOption(Hero* hero);
-    static void sellOption(Hero* hero) ;
+    static void sellOption(Hero* hero);
 
     Spell* getSpell(int pos);
 
@@ -28,7 +29,7 @@ public:
 
     void open(Hero* hero);
 
-    void addSpell(Spell* newSpell);
+    void addSpell(Spell* newSpell);     //function used at the beginning for filling the market with spells
 
 };
 

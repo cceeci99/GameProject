@@ -33,7 +33,7 @@
 class Game {
 
 private:
-
+    //Game has one map, market and the player's team of heroes
     Grid* map = nullptr;
 
     Market* marketPlace = nullptr;

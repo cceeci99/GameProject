@@ -10,6 +10,7 @@ class Market {
 
 private:
 
+    // A market has section with items and spells
     SpellSection spellSection;
     ItemSection itemSection;
 
@@ -21,9 +22,9 @@ public:
 
     void open(Hero* hero);
 
-    void addItem(Item* newItem);
+    void addItem(Item* newItem);        //function used at the beginning for filling the market with items
 
-    void addSpell(Spell* newSpell);
+    void addSpell(Spell* newSpell);     //function used at the beginning for filling the market with spells
 
 };
 

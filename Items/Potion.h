@@ -16,8 +16,8 @@ private:
 
 public:
 
-    Potion(const std::string& name, int price, int level, int enhancement, Attribute attribute, ItemType type = potion)
-    :Item(name, price, level, type), attribute(attribute) , enhancement(enhancement){
+    Potion(const std::string& name, int price, int level, int enhancement, Attribute attribute)
+    :Item(name, price, level, potion), attribute(attribute) , enhancement(enhancement){
 
         //attributes of heroes are given from enum Attribute in HERO_ATTRIBUTES.h
         switch (attribute)

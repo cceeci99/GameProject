@@ -15,8 +15,8 @@ private:
 
 public:
 
-    Weapon(const std::string& name, int price, int level, int damage, bool oneHanded, ItemType type = weapon)
-    :Item(name, price, level, type), damage(damage), oneHanded(oneHanded){
+    Weapon(const std::string& name, int price, int level, int damage, bool oneHanded)
+    :Item(name, price, level, weapon), damage(damage), oneHanded(oneHanded){
         if ( oneHanded )
             weaponType = "one handed";
         else

@@ -7,6 +7,7 @@
 
 #include "../KEYBOARD_SYMBOLS.h"
 
+
 class Fight {
 
 private:
@@ -15,6 +16,9 @@ private:
     MonsterSquad* enemies = nullptr;
 
     void displayStats() const;
+
+    //choose random monster and return monster or nullptr if monster avoids attack
+    Monster* chooseRandomMonster() const;
 
     static void normalAttack(Hero* hero, Monster* monster);
 

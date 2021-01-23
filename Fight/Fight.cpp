@@ -7,10 +7,7 @@ Fight::Fight(HeroSquad *heroes, MonsterSquad *enemies)
 }
 
 
-Fight::~Fight() {
-    heroes = nullptr;
-    enemies = nullptr;
-}
+Fight::~Fight() = default;
 
 
 bool Fight::begin() {
@@ -35,34 +32,6 @@ void Fight::displayStats() const {
 
 bool Fight::playerTurn() {
 
-    std::cout << "Do you want to display stats?" << std::endl;
-
-    char answer;
-
-    while(true)
-    {
-        std::cin >> answer;
-
-        if(answer == YES || answer == YES_)
-        {
-            displayStats();
-            break;
-        }
-        else if (answer == NO || answer == NO_)
-        {
-            break;
-        }
-        else if (answer == QUIT || answer == QUIT_)
-        {
-            return false;
-        }
-        else
-        {
-            std::cout << "Invalid input please try again" << std::endl;
-            continue;
-        }
-    }
-
     int i = 0;
 
     while (i < heroes->getSize())
@@ -79,55 +48,25 @@ bool Fight::playerTurn() {
         }
 
         std::cout << "Play with " << hero->getName() << std::endl;
-        std::cout << "Do you want to choose equipment y/n?" << std::endl;
 
+        std::cout << "Do you want to make normal attack (o), cast spell(l), use potion(p), display stats (c) or choose equipment(t)" << std::endl;
+        char answer;
         std::cin >> answer;
 
-        while (answer != YES_ && answer != YES && answer != NO_ && answer != NO && answer != QUIT_ && answer != QUIT)
-        {
-            std::cout << "Invalid input please try again" << std::endl;
-            std::cin >> answer;
-        }
-
-        if (answer == YES || answer == YES_)
-        {
-            hero->chooseEquipment();
-        }
-        else if (answer == QUIT || answer == QUIT_)
-        {
-            return false;
-        }
-
-        std::cout << "Do you want to make normal attack (o), cast spell(l) or use potion(p)" << std::endl;
-        std::cin >> answer;
-
-        while(answer != NORMAL_ATTACK && answer != CAST_SPELL && answer != USE_POTION && answer != QUIT_ && answer != QUIT)
+        while(answer != NORMAL_ATTACK && answer != CAST_SPELL && answer != USE_POTION && answer != CHOOSE_EQUIPMENT && answer != SHOW_STATS  && answer != QUIT_ && answer != QUIT)
         {
             std::cout << "invalid input try again" << std::endl;
             std::cin >> answer; 
         }
 
-        //each hero attacks random monster from the heroes
-        int r = (int) random() % enemies->getSize();
-        Monster* monster = enemies->getMonster(r);
-
-        //if some monster choosen for attack is dead try another one
-        while (monster->dead())
-        {
-            r = (int) random() % enemies->getSize();
-            monster = enemies->getMonster(r);
-        }
-
-        if (monster->avoidAttack())
-        {
-            std::cout << monster->getName() << " avoided attack" << std::endl;
-            i++;
-            continue;
-        }
 
         if (answer == NORMAL_ATTACK)
         {
-            normalAttack(hero, monster);
+            Monster* monster = chooseRandomMonster();
+            if (monster != nullptr)
+            {
+                normalAttack(hero, monster);
+            }
         }
         else if (answer == CAST_SPELL)
         {
@@ -138,7 +77,11 @@ bool Fight::playerTurn() {
             }
             else
             {
-                spellAttack(hero, monster);
+                Monster* monster = chooseRandomMonster();
+                if (monster != nullptr)
+                {
+                    spellAttack(hero, monster);
+                }
             }
         }
         else if (answer == USE_POTION)
@@ -149,14 +92,22 @@ bool Fight::playerTurn() {
                 continue;
             }
         }
-        else if (answer == QUIT|| answer == QUIT_)
+        else if (answer == SHOW_STATS)     //if player choose to display stats or choose equipment for some hero continue with the same hero until he make any attack or choose potion
+        {
+            displayStats();
+            continue;
+        }
+        else if (answer == CHOOSE_EQUIPMENT)
+        {
+            hero->chooseEquipment();
+            continue;
+        }
+        else if (answer == QUIT || answer == QUIT_)
         {
             return false;
         }
 
         i++;
-
-        std::cout << std::endl;
     }
 
     return true;
@@ -196,6 +147,28 @@ void Fight::enemiesTurn() {
         std::cout << std::endl;
     }
 }
+
+
+Monster *Fight::chooseRandomMonster() const {
+    int r = (int) random() % enemies->getSize();
+    Monster* monster = enemies->getMonster(r);
+
+    //if some monster choosen for attack is dead try another one
+    while (monster->dead())
+    {
+        r = (int) random() % enemies->getSize();
+        monster = enemies->getMonster(r);
+    }
+
+    if (monster->avoidAttack())
+    {
+        std::cout << monster->getName() << " avoided attack" << std::endl;
+        return nullptr;
+    }
+
+    return monster;
+}
+
 
 void Fight::normalAttack(Hero *hero, Monster *monster) {
 

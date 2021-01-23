@@ -24,13 +24,13 @@ Market* Game::createMarket() {
 
     marketPlace = new Market();
 
-    Item* armor = new Armor("Emblem", 100, 1, 100);
+    Item* armor = new Armor("Emblem", 100, 1, 70);
     marketPlace->addItem(armor);
-    armor = new Armor("Genji Shield", 150, 5, 150);
+    armor = new Armor("Genji Shield", 150, 5, 110);
     marketPlace->addItem(armor);
-    armor = new Armor("Rescue Shield", 200, 10, 250);
+    armor = new Armor("Rescue Shield", 200, 10, 200);
     marketPlace->addItem(armor);
-    armor = new Armor("Gold Shield", 500, 15, 400);
+    armor = new Armor("Gold Shield", 500, 15, 350);
     marketPlace->addItem(armor);
 
     Item* weapon = new Weapon("HeartBreaker", 100, 1, 100, true);
@@ -50,7 +50,7 @@ Market* Game::createMarket() {
     marketPlace->addItem(potion);
     potion = new Potion("Mega-Potion", 340, 12, 70, Dexterity);
     marketPlace->addItem(potion);
-    potion = new Potion("Speed Distiller", 400, 5, 55, Agility);
+    potion = new Potion("Speed Distiller", 400, 15, 55, Agility);
     marketPlace->addItem(potion);
 
 

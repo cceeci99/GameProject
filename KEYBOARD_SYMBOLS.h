@@ -26,5 +26,7 @@
 
 #define OPEN_INVENTORY 'i'
 
+#define CHOOSE_EQUIPMENT 't'
+
 
 #endif //GAMEPROJECT_KEYBOARD_SYMBOLS_H

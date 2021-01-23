@@ -85,7 +85,7 @@ void Hero::regenerate() {
 
     if (health != 0)
     {
-        health += (int) (health*(0.2));
+        health += (int) (health*(0.1));
         if (health >= 1000)
         {
             health = 1000;

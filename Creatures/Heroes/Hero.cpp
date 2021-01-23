@@ -44,7 +44,7 @@ void Hero::printInventory() const {
 
 
 void Hero::printSkills() const {
-    skills.print();
+    spells.print();
 }
 
 
@@ -145,7 +145,7 @@ void Hero::buySpell(Spell *newSpell) {
             return;
         }
 
-        if (skills.addSpell(newSpell))
+        if (spells.addSpell(newSpell))
         {
             money -= newSpell->getPrice();
         }
@@ -173,7 +173,7 @@ Item* Hero::sellItem(int pos) {
 
 Spell* Hero::sellSpell(int pos) {
 
-    Spell* spell = skills.removeSpell(pos);
+    Spell* spell = spells.removeSpell(pos);
 
     if (spell != nullptr)
     {
@@ -233,8 +233,8 @@ void Hero::use(Potion *potion) {
 }
 
 
-bool Hero::haveSkills() const {
-    return !skills.empty();
+bool Hero::spellsEmpty() const {
+    return spells.empty();
 }
 
 
@@ -254,7 +254,7 @@ int Hero::attack() const {
 void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) {
 
     std::cout << "Your acquired spells are:" << std::endl;
-    skills.print();
+    spells.print();
 
 
     while (true)
@@ -266,7 +266,7 @@ void Hero::castSpell(int& damage, int& effect, int& duration, EffectType& type) 
 
         pos--;
 
-        Spell *spell = skills.getSpell(pos);
+        Spell *spell = spells.getSpell(pos);
         if (spell == nullptr)
         {
             std::cout << "no available skill on this position" << std::endl;

@@ -1,6 +1,6 @@
 
-#ifndef GAMEPROJECT_SKILLS_H
-#define GAMEPROJECT_SKILLS_H
+#ifndef GAMEPROJECT_ACQUIREDSPELLS_H
+#define GAMEPROJECT_ACQUIREDSPELLS_H
 
 #include "../../Spells/Spell.h"
 
@@ -8,7 +8,7 @@
 
 //this class implements the acquired spells of some hero
 
-class Skills {
+class AcquiredSpells {
 
 private:
     int acquiredSpells = 0;
@@ -16,8 +16,8 @@ private:
 
 public:
 
-    Skills();
-    ~Skills();
+    AcquiredSpells();
+    ~AcquiredSpells();
 
     bool empty() const;
 
@@ -31,4 +31,4 @@ public:
 };
 
 
-#endif //GAMEPROJECT_SKILLS_H
+#endif //GAMEPROJECT_ACQUIREDSPELLS_H

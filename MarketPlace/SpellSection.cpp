@@ -49,11 +49,11 @@ void SpellSection::open(Hero *hero) {
         std::cout << "Available spells on market:" << std::endl;
         print();
 
-        std::cout << "Your Acquired Skills" << std::endl;
+        std::cout << "Your Acquired AcquiredSpells" << std::endl;
         hero->printSkills();
 
         std::cout << "Choose 0 or 1 or 2" << std::endl;
-        std::cout << "0.Close Spells Section \t 1.Buy Spell \t 2.Sell Spell" << std::endl;
+        std::cout << "0.Close AcquiredSpells Section \t 1.Buy Spell \t 2.Sell Spell" << std::endl;
 
         int choice;
         std::cin >> choice;
@@ -102,7 +102,7 @@ void SpellSection::buyOption(Hero *hero) {
         hero->buySpell(spell);
 
 
-        std::cout << "Your Acquired Skills" << std::endl;
+        std::cout << "Your Acquired AcquiredSpells" << std::endl;
         hero->printSkills();
     }
 }
@@ -130,7 +130,7 @@ void SpellSection::sellOption(Hero *hero) {
             continue;
         }
 
-        std::cout << "Your Acquired Skills" << std::endl;
+        std::cout << "Your Acquired AcquiredSpells" << std::endl;
         hero->printSkills();
     }
 }

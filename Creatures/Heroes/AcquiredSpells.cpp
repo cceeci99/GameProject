@@ -1,24 +1,24 @@
-#include "Skills.h"
+#include "AcquiredSpells.h"
 
 
-Skills::Skills() {
+AcquiredSpells::AcquiredSpells() {
     for (int i=0; i<SPELLS_LIMIT; i++)
     {
         spells[i] = nullptr;
     }
 }
 
-Skills::~Skills() {
+AcquiredSpells::~AcquiredSpells() {
     delete[] spells;
 }
 
 
-bool Skills::empty() const {
+bool AcquiredSpells::empty() const {
     return acquiredSpells == 0;
 }
 
 
-void Skills::print() const {
+void AcquiredSpells::print() const {
     for(int k=0; k<SPELLS_LIMIT; k++)
     {
         if ( spells[k] != nullptr )
@@ -30,7 +30,7 @@ void Skills::print() const {
 }
 
 
-bool Skills::addSpell(Spell *newSpell) {
+bool AcquiredSpells::addSpell(Spell *newSpell) {
     if ( acquiredSpells >= SPELLS_LIMIT )
     {
         std::cout << "You already have the max number of spells, cannot add new one" << std::endl;
@@ -64,7 +64,7 @@ bool Skills::addSpell(Spell *newSpell) {
 }
 
 
-Spell* Skills::getSpell(int pos) {
+Spell* AcquiredSpells::getSpell(int pos) {
     if (pos >= SPELLS_LIMIT || pos < 0)
         return nullptr;
 
@@ -72,7 +72,7 @@ Spell* Skills::getSpell(int pos) {
 }
 
 
-Spell* Skills::removeSpell(int pos) {
+Spell* AcquiredSpells::removeSpell(int pos) {
     if (pos >= SPELLS_LIMIT || spells[pos] == nullptr)
         return nullptr;
 

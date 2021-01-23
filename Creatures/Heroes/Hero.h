@@ -5,7 +5,7 @@
 #include "../LivingCreature.h"
 
 #include "Inventory.h"
-#include "Skills.h"
+#include "AcquiredSpells.h"
 
 
 enum HeroType{warrior=1, paladin=2, sorcerer=3};
@@ -17,7 +17,7 @@ private:
     int money;
 
     Inventory inventory;
-    Skills skills;          //by skills, we mean the acquired spells of a hero
+    AcquiredSpells spells;          //by spells, we mean the acquired spells of a hero
 
     Weapon* equippedWeapon = nullptr;
     Armor* equippedArmor = nullptr;
@@ -77,7 +77,7 @@ public:
     int attack() const;
 
     //function that returns true if hero have acquired spells
-    bool haveSkills() const;
+    bool spellsEmpty() const;
 
     //while casting spell we must return it's damage, effect type of effect and it's duration those are given with parameters by reference
     void castSpell(int& damage, int& effect, int& duration, EffectType& type);

@@ -75,8 +75,8 @@ Creatures/Heroes/Sorcerer.o: Creatures/Heroes/Sorcerer.cpp
 Creatures/Heroes/Inventory.o: Creatures/Heroes/Inventory.cpp
 	$(CC) $(CFLAGS) -c -o Creatures/Heroes/Inventory.o Creatures/Heroes/Inventory.cpp
 
-Creatures/Heroes/Skills.o: Creatures/Heroes/Skills.cpp
-	$(CC) $(CFLAGS) -c -o Creatures/Heroes/Skills.o Creatures/Heroes/Skills.cpp
+Creatures/Heroes/AcquiredSpells.o: Creatures/Heroes/AcquiredSpells.cpp
+	$(CC) $(CFLAGS) -c -o Creatures/Heroes/AcquiredSpells.o Creatures/Heroes/AcquiredSpells.cpp
 
 Map/Grid/Grid.o: Map/Grid/Grid.cpp
 	$(CC) $(CFLAGS) -c -o Map/Grid/Grid.o Map/Grid/Grid.cpp

@@ -13,11 +13,12 @@ class Fight {
 private:
 
     HeroSquad* heroes = nullptr;
+
     MonsterSquad* enemies = nullptr;
 
     void displayStats() const;
 
-    //choose random monster and return monster or nullptr if monster avoids attack
+    //return random monster or nullptr if monster avoids attack
     Monster* chooseRandomMonster() const;
 
     static void normalAttack(Hero* hero, Monster* monster);
@@ -31,7 +32,7 @@ public:
 
     Fight(HeroSquad* heroes, MonsterSquad* enemies);
 
-    ~Fight();
+    ~Fight() = default;
 
     static bool begin();
 

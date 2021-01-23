@@ -1,13 +1,9 @@
 #include "Fight.h"
 
 
-Fight::Fight(HeroSquad *heroes, MonsterSquad *enemies)
-        :heroes(heroes), enemies(enemies){
+Fight::Fight(HeroSquad *heroes, MonsterSquad *enemies) :heroes(heroes), enemies(enemies){
     std::cout << "Fight Begins..." << std::endl;
 }
-
-
-Fight::~Fight() = default;
 
 
 bool Fight::begin() {
@@ -70,7 +66,7 @@ bool Fight::playerTurn() {
         }
         else if (answer == CAST_SPELL)
         {
-            if (!hero->haveSkills())
+            if (hero->spellsEmpty())
             {
                 std::cout << "You don't have any acquired spells choose another option" << std::endl;
                 continue;
@@ -129,7 +125,7 @@ void Fight::enemiesTurn() {
         int r = (int) random() % heroes->getSize();
         Hero* hero = heroes->getHero(r);
 
-        //if random hero that is choosen for attack is dead choose another one
+        //if random hero that is chosen for attack is dead choose another one
         while (hero->dead())
         {
             r = (int) random() % heroes->getSize();
@@ -244,4 +240,3 @@ void Fight::monsterAttack(Monster *monster, Hero *hero) {
 
     std::cout << hero->getName() << "'s health: " << hero->getHealth() << std::endl;
 }
-

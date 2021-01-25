@@ -1,5 +1,6 @@
 #include "Spirit.h"
 
+
 void Spirit::print() const {
     std::cout << "Spirit: " << getName() << std::endl;
     std::cout << "Level: " << level << std::endl;

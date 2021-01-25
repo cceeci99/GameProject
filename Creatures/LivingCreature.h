@@ -27,10 +27,17 @@ public:
 
     virtual void regenerate() = 0;
 
+    virtual bool avoidAttack() const = 0;
+
+    virtual int attack() const = 0;
+
     std::string getName() const;
 
     int getHealth() const;
+
     int getLevel() const;
+
+    bool dead() const;
 
 };
 

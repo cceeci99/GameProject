@@ -1,5 +1,6 @@
 #include "Dragon.h"
 
+
 void Dragon::print() const {
     std::cout << "Dragon: " << getName() << std::endl;
     std::cout << "Level: " << level << std::endl;

@@ -1,11 +1,6 @@
 #include "Monster.h"
 
 
-bool Monster::dead() const {
-    return health==0;
-}
-
-
 void Monster::regenerate() {
 
     if (health != 0)

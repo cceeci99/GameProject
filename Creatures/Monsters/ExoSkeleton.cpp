@@ -1,5 +1,6 @@
 #include "ExoSkeleton.h"
 
+
 void ExoSkeleton::print() const {
     std::cout << "ExoSkeleton: " << getName() << std::endl;
     std::cout << "Level: " << level << std::endl;

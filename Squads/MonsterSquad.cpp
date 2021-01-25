@@ -1,7 +1,7 @@
 #include "MonsterSquad.h"
 
 
-MonsterSquad::MonsterSquad(int size) {
+MonsterSquad::MonsterSquad(int size): numberOfMonsters(size) {
 
     monsters = new Monster*[size];
 
@@ -10,7 +10,6 @@ MonsterSquad::MonsterSquad(int size) {
         monsters[i] = nullptr;
     }
 
-    numberOfMonsters = size;
 }
 
 

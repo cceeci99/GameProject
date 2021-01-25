@@ -1,5 +1,6 @@
 #include "Range.h"
 
+
 void Range::print() const {
     std::cout << min << "-" << max << std::endl;
 }

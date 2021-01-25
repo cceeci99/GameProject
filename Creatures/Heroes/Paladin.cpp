@@ -1,5 +1,6 @@
 #include "Paladin.h"
 
+
 void Paladin::print() const {
     std::cout << "Paladin: " << getName() << std::endl;
     std::cout << "Level " << level << std::endl;
@@ -10,6 +11,8 @@ void Paladin::print() const {
 
 void Paladin::levelUp() {
     level++;
+    health = MAX_HP;
+    mana = MAX_MP;
     experience = START_XP;
 
     strength += INCREASE_PALADIN_STRENGTH;

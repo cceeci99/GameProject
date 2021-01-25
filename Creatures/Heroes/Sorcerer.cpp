@@ -1,5 +1,6 @@
 #include "Sorcerer.h"
 
+
 void Sorcerer::print() const {
     std::cout << "Sorcerer: " << getName() << std::endl;
     std::cout << "Level " << level << std::endl;
@@ -10,6 +11,8 @@ void Sorcerer::print() const {
 
 void Sorcerer::levelUp() {
     level++;
+    health = MAX_HP;
+    mana = MAX_MP;
     experience = START_XP;
 
     strength += INCREASE_DEFAULT_STRENGTH;

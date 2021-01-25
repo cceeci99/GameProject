@@ -1,5 +1,6 @@
 #include "Square.h"
 
+
 int Square::getX() const {
     return x;
 }

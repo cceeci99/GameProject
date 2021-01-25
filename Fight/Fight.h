@@ -19,13 +19,16 @@ private:
     void displayStats() const;
 
     //return random monster or nullptr if monster avoids attack
-    Monster* chooseRandomMonster() const;
+    Monster* attackRandomMonster() const;
 
-    static void normalAttack(Hero* hero, Monster* monster);
+    //return random hero or nullptr if hero avoids attack
+    Hero* attackRandomHero() const;
 
+    //attack function between two creatures, one attacks and the other receive damage
+    static void attack(LivingCreature* attacker, LivingCreature* victim);
+
+    //function implements spell cast of hero on a monster
     static void spellAttack(Hero* hero, Monster* monster);
-
-    static void monsterAttack(Monster* monster, Hero* hero);
 
 
 public:

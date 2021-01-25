@@ -52,19 +52,14 @@ public:
     void addExperience(int xp);
 
     void earnMoney(int money);
+
     void looseMoney();
 
-    //methods used when hero is at market so he can see his stuffs and spells
-    void printInventory() const;
-    void printSkills() const;
-
-    bool avoidAttack() const;
+    bool avoidAttack() const override;
 
     void reduceHealth(int reduce) override;
 
     void regenerate() override;
-
-    bool dead() const;
 
     void revive();
 
@@ -74,7 +69,11 @@ public:
     Item* sellItem(int pos);
     Spell* sellSpell(int pos);
 
-    int attack() const;
+    //methods used when hero is at market so he can see his stuffs and spells
+    void printInventory() const;
+    void printSkills() const;
+
+    int attack() const override;
 
     //function that returns true if hero have acquired spells
     bool spellsEmpty() const;

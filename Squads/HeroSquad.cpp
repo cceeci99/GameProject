@@ -1,7 +1,7 @@
 #include "HeroSquad.h"
 
 
-HeroSquad::HeroSquad(int size) {
+HeroSquad::HeroSquad(int size): teammates(size) {
 
     heroes = new Hero*[size];
 
@@ -10,7 +10,6 @@ HeroSquad::HeroSquad(int size) {
         heroes[i] = nullptr;
     }
 
-    teammates = size;
 }
 
 

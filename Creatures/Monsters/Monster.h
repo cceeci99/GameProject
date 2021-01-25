@@ -39,13 +39,11 @@ public:
 
     void print() const override = 0;
 
-    virtual int attack() const = 0;
-
-    bool dead() const;
+    int attack() const override = 0;
 
     void regenerate() override;
 
-    bool avoidAttack() const;
+    bool avoidAttack() const override;
 
     void reduceHealth(int reduce) override;
     void reduceDamage(int reduce);

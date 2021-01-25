@@ -1,5 +1,6 @@
 #include "Warrior.h"
 
+
 void Warrior::print() const {
     std::cout << "Warrior: " << getName() << std::endl;
     std::cout << "Level: " << level << std::endl;
@@ -10,6 +11,8 @@ void Warrior::print() const {
 
 void Warrior::levelUp() {
     level++;
+    health = MAX_HP;
+    mana = MAX_MP;
     experience = START_XP;
 
     strength += INCREASE_WARRIOR_STRENGTH;

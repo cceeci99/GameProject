@@ -37,17 +37,6 @@ void Hero::looseMoney() {
 }
 
 
-void Hero::printInventory() const {
-    std::cout << "Money: " << money << std::endl;
-    inventory.print();
-}
-
-
-void Hero::printSkills() const {
-    spells.print();
-}
-
-
 bool Hero::avoidAttack() const {
     int r = (int)random() % 100 +1;
 
@@ -98,11 +87,6 @@ void Hero::regenerate() {
     {
         mana = 1000;
     }
-}
-
-
-bool Hero::dead() const {
-    return health==0;
 }
 
 
@@ -235,6 +219,17 @@ void Hero::use(Potion *potion) {
 
 bool Hero::spellsEmpty() const {
     return spells.empty();
+}
+
+
+void Hero::printInventory() const {
+    std::cout << "Money: " << money << std::endl;
+    inventory.print();
+}
+
+
+void Hero::printSkills() const {
+    spells.print();
 }
 
 

@@ -1,5 +1,6 @@
 #include "Spell.h"
 
+
 void Spell::printDamage() const {
     damageRange.print();
 }

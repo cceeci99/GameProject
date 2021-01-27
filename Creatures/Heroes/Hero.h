@@ -22,7 +22,7 @@ private:
     Weapon* equippedWeapon = nullptr;
     Armor* equippedArmor = nullptr;
 
-    //functions equip of armor/weapon and use of potion are private, and only class hero has access of them and calls them when it's needed
+    //functions equip of armor/weapon and use of potion are private, and only hero has access of them and calls them when it's needed
     void equip(Weapon* weapon);
     void equip(Armor* armor);
     void use(Potion* potion);

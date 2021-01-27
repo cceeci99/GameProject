@@ -7,6 +7,7 @@
 #include "../Creatures/Heroes/Hero.h"
 #include "../Map/Square/Square.h"
 
+
 class HeroSquad {
 
 private:

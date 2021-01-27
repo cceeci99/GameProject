@@ -14,6 +14,7 @@ class Inventory {
 
 private:
     int addedItems = 0;
+
     Item** items = new Item*[INVENTORY_CAPACITY];
 
 public:

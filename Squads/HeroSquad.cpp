@@ -9,7 +9,6 @@ HeroSquad::HeroSquad(int size): teammates(size) {
     {
         heroes[i] = nullptr;
     }
-
 }
 
 

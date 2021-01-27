@@ -12,11 +12,13 @@ class AcquiredSpells {
 
 private:
     int acquiredSpells = 0;
+
     Spell** spells = new Spell*[SPELLS_LIMIT];
 
 public:
 
     AcquiredSpells();
+
     ~AcquiredSpells();
 
     bool empty() const;

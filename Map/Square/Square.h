@@ -2,8 +2,11 @@
 #ifndef GAMEPROJECT_SQUARE_H
 #define GAMEPROJECT_SQUARE_H
 
-class HeroSquad;
 
+class HeroSquad;    //forwarding class
+
+
+//type of squares is enumeration for simplicity of the current game
 enum SquareType{nonAccessible, market, common};
 
 class Square {

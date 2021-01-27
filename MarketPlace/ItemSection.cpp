@@ -160,5 +160,3 @@ Item *ItemSection::getItem(int pos) {
 
     return items[pos];
 }
-
-

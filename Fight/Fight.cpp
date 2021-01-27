@@ -1,12 +1,8 @@
 #include "Fight.h"
 
 
-Fight::Fight(HeroSquad *heroes, MonsterSquad *enemies) :heroes(heroes), enemies(enemies){
-    std::cout << "Fight Begins..." << std::endl;
-}
-
-
 bool Fight::begin() {
+    //probability to begin a fight
     return ((random() % 100 + 1) <= 60);
 }
 

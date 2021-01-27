@@ -11,10 +11,12 @@ class ItemSection {
 
 private:
     int addedItems = 0;
+
     Item** items = new Item*[ITEMS_CAPACITY];
 
     //buy and sell methods are encapsulated in market
     void buyOption(Hero* hero);
+
     static void sellOption(Hero* hero) ;
 
     Item* getItem(int pos);

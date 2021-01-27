@@ -8,6 +8,7 @@ AcquiredSpells::AcquiredSpells() {
     }
 }
 
+
 AcquiredSpells::~AcquiredSpells() {
     delete[] spells;
 }

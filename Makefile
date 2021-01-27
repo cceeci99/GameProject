@@ -5,7 +5,7 @@ CFLAGS = -std=c++11
 CCFLAGS = -Wall -Werror -g
 
 # Αρχεία .o
-OBJS = Range/Range.o Spells/Spell.o Spells/FireSpell.o Spells/IceSpell.o Spells/LightingSpell.o  Spells/SpellEffect.o Items/Item.o Items/Armor.o Items/Weapon.o Items/Potion.o Creatures/LivingCreature.o Creatures/Monsters/Monster.o Creatures/Monsters/Spirit.o Creatures/Monsters/Dragon.o Creatures/Monsters/ExoSkeleton.o Creatures/Monsters/ActiveSpells.o Creatures/Heroes/Hero.o Creatures/Heroes/Warrior.o Creatures/Heroes/Paladin.o Creatures/Heroes/Sorcerer.o Creatures/Heroes/Inventory.o Creatures/Heroes/Skills.o Map/Grid/Grid.o Map/Square/Square.o MarketPlace/Market.o MarketPlace/ItemSection.o  MarketPlace/SpellSection.o Squads/HeroSquad.o Squads/MonsterSquad.o Fight/Fight.o Game.o main.o
+OBJS = Range/Range.o Spells/Spell.o Spells/FireSpell.o Spells/IceSpell.o Spells/LightingSpell.o  Spells/SpellEffect.o Items/Item.o Items/Armor.o Items/Weapon.o Items/Potion.o Creatures/LivingCreature.o Creatures/Monsters/Monster.o Creatures/Monsters/Spirit.o Creatures/Monsters/Dragon.o Creatures/Monsters/ExoSkeleton.o Creatures/Monsters/ActiveSpells.o Creatures/Heroes/Hero.o Creatures/Heroes/Warrior.o Creatures/Heroes/Paladin.o Creatures/Heroes/Sorcerer.o Creatures/Heroes/Inventory.o Creatures/Heroes/AcquiredSpells.o Map/Grid/Grid.o Map/Square/Square.o MarketPlace/Market.o MarketPlace/ItemSection.o  MarketPlace/SpellSection.o Squads/HeroSquad.o Squads/MonsterSquad.o Fight/Fight.o Game.o main.o
 
 EXEC = game
 

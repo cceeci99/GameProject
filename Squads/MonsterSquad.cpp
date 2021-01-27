@@ -9,7 +9,6 @@ MonsterSquad::MonsterSquad(int size): numberOfMonsters(size) {
     {
         monsters[i] = nullptr;
     }
-
 }
 
 
@@ -89,6 +88,7 @@ void MonsterSquad::regeneration() {
         monsters[i]->regenerate();
     }
 }
+
 
 void MonsterSquad::unchargeActiveSpells() {
 

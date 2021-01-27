@@ -2,9 +2,9 @@
 #ifndef GAMEPROJECT_GRID_H
 #define GAMEPROJECT_GRID_H
 
-#include "../Square/Square.h"
-#include "../../Squads/HeroSquad.h"
+#include <iostream>
 
+#include "../Square/Square.h"
 
 class Grid {
 

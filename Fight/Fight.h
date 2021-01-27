@@ -7,6 +7,7 @@
 
 #include "../KEYBOARD_SYMBOLS.h"
 
+//class Fight implements the fight between a team of heroes and a team of monsters(enemies)
 
 class Fight {
 
@@ -18,10 +19,10 @@ private:
 
     void displayStats() const;
 
-    //return random monster or nullptr if monster avoids attack
+    //function returning random monster or nullptr if monster avoids attack
     Monster* attackRandomMonster() const;
 
-    //return random hero or nullptr if hero avoids attack
+    //function returning random hero or nullptr if hero avoids attack
     Hero* attackRandomHero() const;
 
     //attack function between two creatures, one attacks and the other receive damage
@@ -33,7 +34,10 @@ private:
 
 public:
 
-    Fight(HeroSquad* heroes, MonsterSquad* enemies);
+    Fight(HeroSquad* heroes, MonsterSquad* enemies)
+    :heroes(heroes), enemies(enemies){
+        std::cout << "Fight Begins..." << std::endl;
+    }
 
     ~Fight() = default;
 

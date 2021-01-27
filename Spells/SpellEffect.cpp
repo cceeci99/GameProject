@@ -1,5 +1,6 @@
 #include "SpellEffect.h"
 
+
 bool SpellEffect::isActive() const {
     return active;
 }

@@ -24,6 +24,8 @@ Market* Game::createMarket() {
 
     marketPlace = new Market();
 
+    //random items for the market
+
     Item* armor = new Armor("Emblem", 100, 1, 70);
     marketPlace->addItem(armor);
     armor = new Armor("Genji Shield", 150, 5, 110);

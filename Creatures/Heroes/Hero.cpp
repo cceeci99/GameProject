@@ -38,6 +38,7 @@ void Hero::looseMoney() {
 
 
 bool Hero::avoidAttack() const {
+
     int r = (int)random() % 100 +1;
 
     return (r <= agility);
@@ -45,6 +46,7 @@ bool Hero::avoidAttack() const {
 
 
 void Hero::reduceHealth(int reduce) {
+
     if (equippedArmor != nullptr)
     {
 

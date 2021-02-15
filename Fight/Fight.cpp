@@ -170,6 +170,7 @@ Hero *Fight::attackRandomHero() const {
 
 
 void Fight::attack(LivingCreature *attacker, LivingCreature *victim) {
+
     int damage = attacker->attack();
     std::cout << attacker->getName() << " makes " << damage << " damage on " << victim->getName() << std::endl;
 

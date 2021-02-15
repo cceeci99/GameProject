@@ -2,6 +2,7 @@
 #ifndef GAMEPROJECT_GAME_H
 #define GAMEPROJECT_GAME_H
 
+
 #include <vector>
 
 #include "KEYBOARD_SYMBOLS.h"
@@ -46,7 +47,7 @@ private:
 
     Market* createMarket();
 
-    //methods returning bool value are used in case player quit game at any point of the game
+    //methods returning bool value are used in case that player quits at any point of the game
 
     bool playerMove(Square* currentPos, unsigned int& x1, unsigned int& y1);
 
